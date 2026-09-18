@@ -1,0 +1,41 @@
+.panel {
+  background-color: var(--color-bg-1);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition:
+    background-color var(--duration-base) var(--ease-standard),
+    box-shadow var(--duration-base) var(--ease-standard),
+    border-color var(--duration-base) var(--ease-standard);
+}
+
+.panel--elevated {
+  background-color: var(--color-bg-2);
+  box-shadow: var(--shadow-md);
+}
+
+.panel--padding-none {
+  padding: 0;
+}
+
+.panel--padding-sm {
+  padding: var(--space-3);
+}
+
+.panel--padding-md {
+  padding: var(--space-5);
+}
+
+.panel--padding-lg {
+  padding: var(--space-7);
+}
+
+.panel--glow-orange {
+  box-shadow: var(--shadow-md), var(--shadow-glow-orange);
+  border-color: var(--color-orange-subtle);
+}
+
+.panel--glow-purple {
+  box-shadow: var(--shadow-md), var(--shadow-glow-purple);
+  border-color: var(--color-purple-subtle);
+}

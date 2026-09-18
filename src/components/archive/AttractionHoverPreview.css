@@ -1,0 +1,24 @@
+.attraction-hover-preview {
+  position: relative;
+  display: inline-block;
+}
+
+.attraction-hover-preview__popup {
+  position: absolute;
+  bottom: calc(100% + var(--space-2));
+  left: 0;
+  z-index: var(--z-tooltip);
+  pointer-events: none;
+  animation: attraction-hover-preview-in var(--duration-fast) var(--ease-out);
+}
+
+@keyframes attraction-hover-preview-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

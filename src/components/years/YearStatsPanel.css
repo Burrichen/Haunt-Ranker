@@ -1,0 +1,118 @@
+.year-stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.year-stats__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.year-stats__title {
+  font-size: 1.125rem;
+}
+
+.year-stats__sample {
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-tertiary);
+}
+
+.year-stats__insufficient {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.year-stats__averages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.year-stats__average {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.year-stats__average dt {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-tertiary);
+}
+
+.year-stats__average dd {
+  margin: 0;
+  font-size: 1.375rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-primary);
+}
+
+.year-stats__average--total dd {
+  color: var(--color-orange-strong);
+}
+
+.year-stats__out-of {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+}
+
+.year-stats__superlatives {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-2) var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.year-stats__superlative {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  padding: var(--space-1) 0;
+}
+
+.year-stats__superlative-label {
+  flex: 0 0 106px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-tertiary);
+}
+
+.year-stats__superlative-link {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.year-stats__superlative-link:hover {
+  color: var(--color-orange-strong);
+  text-decoration: underline;
+}
+
+.year-stats__superlative-value {
+  flex: 0 0 auto;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-secondary);
+}

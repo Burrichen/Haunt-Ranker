@@ -1,0 +1,127 @@
+.year-ranking {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.year-ranking__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.year-ranking-row__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-1);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    border-color var(--duration-fast) var(--ease-standard),
+    background-color var(--duration-fast) var(--ease-standard);
+}
+
+.year-ranking-row__link:hover {
+  border-color: var(--color-border-strong);
+  background-color: var(--color-bg-2);
+}
+
+.year-ranking-row__position {
+  flex: 0 0 auto;
+  min-width: 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--color-text-tertiary);
+}
+
+.year-ranking-row__name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.year-ranking-row__sample {
+  flex: 0 0 auto;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-tertiary);
+}
+
+.year-ranking-row__metrics {
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: var(--space-4);
+}
+
+.year-ranking-row__metric {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-1);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-secondary);
+}
+
+.year-ranking-row__metric em {
+  font-style: normal;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-tertiary);
+}
+
+/* The metric the list is currently ordered by. */
+.year-ranking-row__metric--active {
+  font-weight: 600;
+  color: var(--color-orange-strong);
+}
+
+.year-ranking-row__out-of {
+  font-size: 0.6875rem;
+  color: var(--color-text-tertiary);
+}
+
+.year-ranking__insufficient {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.year-ranking__insufficient-title {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-tertiary);
+}
+
+.year-ranking__insufficient-description {
+  margin: 0;
+  max-width: 68ch;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--color-text-tertiary);
+}
+
+/* Narrow windows drop the metrics the list isn't ordered by. The sample
+   size deliberately stays: an average without it is the misleading part. */
+@media (max-width: 900px) {
+  .year-ranking-row__metric:not(.year-ranking-row__metric--active) {
+    display: none;
+  }
+}

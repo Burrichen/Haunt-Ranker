@@ -1,0 +1,138 @@
+.ranking-row {
+  list-style: none;
+}
+
+/* The hover-preview wrapper is inline-block by default; a ranking entry
+   needs it to span the full row so hovering anywhere shows the preview. */
+.ranking-row .attraction-hover-preview {
+  display: block;
+}
+
+.ranking-row__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-1);
+  transition:
+    border-color var(--duration-fast) var(--ease-standard),
+    background-color var(--duration-fast) var(--ease-standard);
+}
+
+.ranking-row__inner:hover {
+  border-color: var(--color-border-strong);
+  background-color: var(--color-bg-2);
+}
+
+.ranking-row--dragging .ranking-row__inner {
+  opacity: 0.5;
+}
+
+.ranking-row--drop-target .ranking-row__inner {
+  border-color: var(--color-orange);
+}
+
+.ranking-row__position {
+  flex: 0 0 auto;
+  min-width: 28px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--color-text-tertiary);
+}
+
+.ranking-row__grip {
+  display: inline-flex;
+  color: var(--color-text-tertiary);
+  cursor: grab;
+}
+
+.ranking-row__inner[draggable="true"]:active .ranking-row__grip {
+  cursor: grabbing;
+}
+
+.ranking-row__main {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  align-items: center;
+  gap: var(--space-3);
+  color: inherit;
+  text-decoration: none;
+}
+
+.ranking-row__name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.ranking-row__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: 0 0 auto;
+}
+
+.ranking-row__year {
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-tertiary);
+}
+
+.ranking-row__scores {
+  display: inline-flex;
+  gap: var(--space-3);
+  flex: 0 0 auto;
+}
+
+.ranking-row__score {
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-secondary);
+}
+
+.ranking-row__score em {
+  font-style: normal;
+  color: var(--color-text-tertiary);
+}
+
+.ranking-row__total {
+  flex: 0 0 auto;
+  min-width: 68px;
+  text-align: right;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-orange-strong);
+}
+
+.ranking-row__total-max {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+}
+
+.ranking-row__controls,
+.ranking-row__action {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex: 0 0 auto;
+}
+
+/* Below this the row can't hold the per-dimension breakdown without
+   crowding the name, so the total carries it alone. */
+@media (max-width: 900px) {
+  .ranking-row__scores {
+    display: none;
+  }
+}

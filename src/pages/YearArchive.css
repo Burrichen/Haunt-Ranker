@@ -1,0 +1,45 @@
+.year-archive {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.year-archive__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.year-archive__section-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 1.125rem;
+}
+
+.year-archive__section-icon {
+  display: inline-flex;
+  color: var(--color-text-tertiary);
+}
+
+.year-archive__section-count {
+  padding: 1px var(--space-2);
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-2);
+  color: var(--color-text-tertiary);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.year-archive__section-empty {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--color-text-tertiary);
+}
+
+.year-archive__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: var(--space-4);
+}

@@ -1,0 +1,155 @@
+.atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-atmosphere);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Glows are built from layered box-shadow blur rather than
+   `background: radial-gradient(...)` — see the note in Atmosphere.tsx. */
+.atmosphere__glow {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: var(--radius-full);
+}
+
+.atmosphere__glow--orange {
+  top: -2%;
+  left: 12%;
+  box-shadow:
+    0 0 120px 60px rgba(193, 98, 47, 0.1),
+    0 0 220px 120px rgba(193, 98, 47, 0.06);
+  animation: atmosphere-drift 90s var(--ease-standard) infinite alternate;
+}
+
+.atmosphere__glow--purple {
+  bottom: -4%;
+  right: 10%;
+  box-shadow:
+    0 0 140px 70px rgba(124, 106, 156, 0.1),
+    0 0 240px 130px rgba(124, 106, 156, 0.06);
+  animation: atmosphere-drift 120s var(--ease-standard) infinite alternate-reverse;
+}
+
+.atmosphere__stars {
+  position: absolute;
+  inset: 0;
+}
+
+.atmosphere__star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-text-primary);
+  opacity: 0.45;
+  animation: atmosphere-twinkle 7s ease-in-out infinite;
+}
+
+.atmosphere__star:nth-child(3n) {
+  animation-delay: -2.3s;
+}
+
+.atmosphere__star:nth-child(3n + 1) {
+  animation-delay: -4.6s;
+}
+
+.atmosphere__bat {
+  position: absolute;
+  width: 20px;
+  height: 10px;
+  opacity: 0.14;
+  animation: atmosphere-flutter 50s linear infinite;
+}
+
+.atmosphere__bat::before,
+.atmosphere__bat::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-text-primary);
+}
+
+.atmosphere__bat::before {
+  left: 0;
+  border-radius: 100% 0% 40% 0%;
+  transform: rotate(6deg);
+}
+
+.atmosphere__bat::after {
+  left: 8px;
+  border-radius: 0% 100% 0% 40%;
+  transform: rotate(-6deg);
+}
+
+.atmosphere__bat--one {
+  top: 6%;
+  left: 42%;
+  animation-delay: -8s;
+}
+
+.atmosphere__bat--two {
+  top: 6%;
+  left: 60%;
+  animation-duration: 65s;
+  animation-delay: -30s;
+}
+
+.atmosphere__treeline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 140px;
+  color: var(--color-bg-1);
+  opacity: 0.55;
+}
+
+@keyframes atmosphere-drift {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(36px, 28px);
+  }
+}
+
+@keyframes atmosphere-twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes atmosphere-flutter {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-60px, 18px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-reduce-motion="false"]) .atmosphere__glow,
+  :root:not([data-reduce-motion="false"]) .atmosphere__star,
+  :root:not([data-reduce-motion="false"]) .atmosphere__bat {
+    animation: none;
+  }
+}
+
+:root[data-reduce-motion="true"] .atmosphere__glow,
+:root[data-reduce-motion="true"] .atmosphere__star,
+:root[data-reduce-motion="true"] .atmosphere__bat {
+  animation: none;
+}

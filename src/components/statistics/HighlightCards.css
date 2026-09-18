@@ -1,0 +1,71 @@
+.highlights {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.highlights__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.highlights__title {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-tertiary);
+}
+
+.highlights__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: var(--space-3);
+}
+
+.highlights__empty p {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--color-text-tertiary);
+}
+
+.highlight-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.highlight-card__label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-tertiary);
+}
+
+/* Proportional figures, not tabular — these are standalone display numbers,
+   not a column that has to line up. */
+.highlight-card__value {
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--color-text-primary);
+}
+
+.highlight-card__out-of {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+}
+
+.highlight-card__name {
+  font-size: 0.875rem;
+  color: var(--color-orange-strong);
+  text-decoration: none;
+}
+
+.highlight-card__name:hover {
+  text-decoration: underline;
+}

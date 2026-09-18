@@ -1,0 +1,15 @@
+.related-attractions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.related-attractions__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.related-attractions__relation {
+  align-self: flex-start;
+}

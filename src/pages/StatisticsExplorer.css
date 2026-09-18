@@ -1,0 +1,10 @@
+.explorer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.explorer__results {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,48 @@
+.search-input {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 38px;
+  padding: 0 var(--space-2) 0 var(--space-3);
+  background-color: var(--color-bg-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--duration-fast) var(--ease-standard);
+}
+
+.search-input:has(.search-input__field:focus-visible) {
+  border-color: var(--color-focus);
+}
+
+.search-input__icon {
+  flex-shrink: 0;
+  color: var(--color-text-tertiary);
+}
+
+.search-input__field {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  background: none;
+  border: none;
+  color: var(--color-text-primary);
+  font-size: 0.875rem;
+}
+
+.search-input__field:focus {
+  outline: none;
+}
+
+.search-input__field::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+/* Remove the native OS search-field decorations so our own icon/clear button are the only affordances. */
+.search-input__field::-webkit-search-cancel-button,
+.search-input__field::-webkit-search-decoration {
+  display: none;
+}
+
+.search-input__clear {
+  flex-shrink: 0;
+}

@@ -1,0 +1,41 @@
+.chart-tooltip {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-3);
+  box-shadow: var(--shadow-md);
+}
+
+.chart-tooltip__headline {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* A short stroke of the mark colour, not a filled swatch — at tooltip
+   density a block is data-weight ink doing a label's job. */
+.chart-tooltip__key {
+  width: 12px;
+  height: 2px;
+  border-radius: 1px;
+  background-color: var(--color-orange);
+}
+
+.chart-tooltip__value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.chart-tooltip__title {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+.chart-tooltip__detail {
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+}

@@ -1,0 +1,102 @@
+.archive-card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  border-radius: var(--radius-lg);
+  height: 100%;
+}
+
+.archive-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  transition:
+    transform var(--duration-base) var(--ease-standard),
+    box-shadow var(--duration-base) var(--ease-standard),
+    border-color var(--duration-base) var(--ease-standard);
+}
+
+.archive-card-link:hover .archive-card {
+  transform: translateY(-2px);
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-md), var(--shadow-glow-orange);
+}
+
+.archive-card__art {
+  aspect-ratio: 3 / 4;
+  background-color: var(--color-bg-2);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.archive-card__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.archive-card__fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.archive-card__fallback-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full);
+}
+
+.archive-card__fallback-icon--house {
+  background-color: var(--color-orange-subtle);
+  color: var(--color-orange-strong);
+}
+
+.archive-card__fallback-icon--scare_zone {
+  background-color: var(--color-purple-subtle);
+  color: var(--color-purple-strong);
+}
+
+.archive-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+}
+
+.archive-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.archive-card__year {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+}
+
+.archive-card__name {
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.archive-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.archive-card__parks {
+  margin-top: auto;
+  padding-top: var(--space-1);
+}

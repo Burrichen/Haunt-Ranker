@@ -1,0 +1,43 @@
+.attraction-browser {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.attraction-browser__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.attraction-browser__search {
+  flex: 1;
+  min-width: 220px;
+  max-width: 420px;
+}
+
+.attraction-browser__toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.attraction-browser__count {
+  margin: 0;
+  color: var(--color-text-tertiary);
+  font-size: 0.8125rem;
+}
+
+.attraction-browser__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--space-5);
+}
+
+.attraction-browser__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}

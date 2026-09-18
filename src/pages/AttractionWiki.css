@@ -1,0 +1,48 @@
+.attraction-wiki__layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.attraction-wiki__main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+.attraction-wiki__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  position: sticky;
+  top: var(--space-6);
+}
+
+.attraction-wiki__event-name {
+  margin: 0;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.attraction-wiki__event-notes {
+  font-size: 0.875rem;
+  color: var(--color-text-tertiary);
+}
+
+@media (max-width: 900px) {
+  .attraction-wiki__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .attraction-wiki__sidebar {
+    position: static;
+  }
+}
+
+.attraction-wiki__admin {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: calc(var(--space-5) * -1);
+}

@@ -1,0 +1,112 @@
+.wiki-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.wiki-header__layout {
+  display: flex;
+  gap: var(--space-6);
+}
+
+.wiki-header__art {
+  flex-shrink: 0;
+  width: 180px;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background-color: var(--color-bg-2);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.wiki-header__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wiki-header__fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.wiki-header__fallback-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 76px;
+  border-radius: var(--radius-full);
+}
+
+.wiki-header__fallback-icon--house {
+  background-color: var(--color-orange-subtle);
+  color: var(--color-orange-strong);
+}
+
+.wiki-header__fallback-icon--scare_zone {
+  background-color: var(--color-purple-subtle);
+  color: var(--color-purple-strong);
+}
+
+.wiki-header__info {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--space-2);
+  justify-content: center;
+}
+
+.wiki-header__badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.wiki-header__name {
+  font-size: 2rem;
+  line-height: 1.15;
+}
+
+.wiki-header__variant {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+}
+
+.wiki-header__tagline {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  max-width: 640px;
+}
+
+.wiki-header__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.wiki-header__franchise {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 640px) {
+  .wiki-header__layout {
+    flex-direction: column;
+  }
+
+  .wiki-header__art {
+    width: 140px;
+  }
+}

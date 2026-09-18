@@ -1,0 +1,111 @@
+.score-meter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.score-meter__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.score-meter__label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.score-meter__value {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-orange-strong);
+}
+
+.score-meter__track {
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+}
+
+/* The zero stop sits at the head of the track so 0 is a real, clickable
+   score rather than something only reachable by clearing the whole rating. */
+.score-meter__zero {
+  flex: 0 0 auto;
+  width: 22px;
+  margin-right: var(--space-2);
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-2);
+  color: var(--color-text-tertiary);
+  font-family: inherit;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 22px;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard);
+}
+
+.score-meter__zero--static {
+  cursor: default;
+}
+
+.score-meter__zero:not(.score-meter__zero--static):hover {
+  border-color: var(--color-border-strong);
+  color: var(--color-text-secondary);
+}
+
+.score-meter__zero--selected {
+  border-color: var(--color-orange);
+  background-color: var(--color-orange-subtle);
+  color: var(--color-orange-strong);
+}
+
+.score-meter__segment {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 22px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  background-color: var(--color-bg-2);
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard);
+}
+
+/* A wider gap after each whole point, so the track reads as five points
+   each split into halves rather than ten anonymous blocks. */
+.score-meter__segment--whole {
+  margin-right: var(--space-2);
+}
+
+.score-meter__segment--whole:last-child {
+  margin-right: 0;
+}
+
+.score-meter__segment--filled {
+  border-color: var(--color-orange);
+  background-color: var(--color-orange);
+}
+
+.score-meter--readonly .score-meter__segment {
+  cursor: default;
+}
+
+.score-meter:not(.score-meter--readonly) .score-meter__segment:hover {
+  border-color: var(--color-orange-strong);
+}
+
+.score-meter__zero:focus-visible,
+.score-meter__segment:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}

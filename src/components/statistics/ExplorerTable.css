@@ -1,0 +1,97 @@
+/* Tables are the one place allowed to scroll sideways, rather than the page. */
+.explorer-table__scroll {
+  overflow-x: auto;
+}
+
+.explorer-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.explorer-table__caption {
+  margin-bottom: var(--space-3);
+  text-align: left;
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+}
+
+.explorer-table th {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-tertiary);
+  white-space: nowrap;
+}
+
+.explorer-table td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border-subtle);
+  color: var(--color-text-secondary);
+  vertical-align: middle;
+}
+
+.explorer-table__row:hover td {
+  background-color: var(--color-bg-2);
+}
+
+.explorer-table__rank {
+  width: 48px;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-tertiary);
+}
+
+.explorer-table__year {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.explorer-table__number {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* The column the query is actually answering. */
+.explorer-table__number--primary {
+  font-weight: 600;
+  color: var(--color-orange-strong);
+}
+
+.explorer-table__out-of {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+}
+
+.explorer-table__link {
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.explorer-table__link:hover {
+  color: var(--color-orange-strong);
+  text-decoration: underline;
+}
+
+/* The divider introducing the unrated block — same weight as a header row,
+   so it reads as a section rather than a data row. */
+.explorer-table__group {
+  padding-top: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.explorer-table__empty {
+  margin: 0;
+  padding: var(--space-6) 0;
+  font-size: 0.9375rem;
+  color: var(--color-text-tertiary);
+}

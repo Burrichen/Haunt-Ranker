@@ -1,0 +1,239 @@
+.settings-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.settings-panel__heading {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.settings-panel__title {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-tertiary);
+}
+
+.settings-panel__lead {
+  margin: 0;
+  max-width: 70ch;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.settings-panel__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.settings-panel__footnote {
+  margin: 0;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border-subtle);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--color-text-tertiary);
+}
+
+/* A labelled control that isn't a switch — label and explanation on the left,
+   the control itself on the right, matching Toggle's layout. */
+.settings-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+}
+
+.settings-field__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.settings-field__label {
+  font-size: 0.9375rem;
+  color: var(--color-text-primary);
+}
+
+.settings-field__description {
+  margin: 0;
+  max-width: 58ch;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.settings-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  margin: 0;
+}
+
+.settings-stats__item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-size: 0.8125rem;
+}
+
+.settings-stats__item dt {
+  color: var(--color-text-tertiary);
+}
+
+.settings-stats__item dd {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.settings-stats__empty {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--color-text-tertiary);
+}
+
+.settings-message {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.settings-message > svg {
+  flex-shrink: 0;
+  margin-top: 0.15em;
+}
+
+.settings-message > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.settings-message p {
+  margin: 0;
+}
+
+.settings-message--error {
+  border-color: var(--color-danger);
+  background: var(--color-danger-subtle);
+  color: var(--color-danger-strong);
+}
+
+.settings-message--ok {
+  border-color: var(--color-positive);
+  background: var(--color-positive-subtle);
+  color: var(--color-positive-strong);
+}
+
+.settings-message__title {
+  color: var(--color-text-primary);
+}
+
+.settings-message__list {
+  margin: 0;
+  padding-left: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.settings-message__path {
+  display: block;
+  margin-top: var(--space-1);
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+  overflow-wrap: anywhere;
+}
+
+/* The import preview — a plain comparison table, because the only useful
+   thing here is the numbers side by side. */
+.import-preview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.import-preview__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  font-size: 0.8125rem;
+}
+
+.import-preview__meta > div {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.import-preview__meta dt {
+  flex-shrink: 0;
+  width: 5.5rem;
+  color: var(--color-text-tertiary);
+}
+
+.import-preview__meta dd {
+  margin: 0;
+  color: var(--color-text-secondary);
+  overflow-wrap: anywhere;
+}
+
+.import-preview__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+}
+
+.import-preview__table th,
+.import-preview__table td {
+  padding: var(--space-2) var(--space-3);
+  text-align: right;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.import-preview__table th[scope="row"],
+.import-preview__table thead th:first-child {
+  text-align: left;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+.import-preview__table thead th {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-tertiary);
+}
+
+.import-preview__table td {
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.import-preview__table tfoot th,
+.import-preview__table tfoot td {
+  border-bottom: none;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+}
+
+.import-preview__note {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--color-text-tertiary);
+}

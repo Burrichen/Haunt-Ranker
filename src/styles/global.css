@@ -1,0 +1,109 @@
+@import "./tokens.css";
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+html {
+  /* This is a desktop-first, single-theme app: keep the window usable
+     rather than reflowing to a mobile layout below common breakpoints. */
+  min-width: 960px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-0);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: var(--color-orange-strong);
+}
+
+/* Visible, consistent focus ring across every interactive element */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Slim, unobtrusive scrollbars that still fit the palette */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-border-strong);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-text-tertiary);
+}
+
+/*
+ * Motion has three states, not two: the operating system's setting, plus an
+ * explicit override in either direction from Settings → Appearance (see
+ * useMotionPreference). `data-reduce-motion="false"` is what lets someone
+ * keep the app's motion even where the OS asks for less; the attribute's
+ * absence leaves the OS in charge, which is also what applies before any
+ * JavaScript has run.
+ */
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-reduce-motion="false"]) *,
+  :root:not([data-reduce-motion="false"]) *::before,
+  :root:not([data-reduce-motion="false"]) *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+:root[data-reduce-motion="true"] *,
+:root[data-reduce-motion="true"] *::before,
+:root[data-reduce-motion="true"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}

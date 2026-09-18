@@ -1,0 +1,22 @@
+.wiki-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.wiki-section__title {
+  font-size: 1.125rem;
+}
+
+.wiki-section__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.wiki-section__body p {
+  white-space: pre-line;
+  margin: 0;
+}

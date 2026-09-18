@@ -1,0 +1,105 @@
+.year-card-link {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+  border-radius: var(--radius-lg);
+}
+
+.year-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  transition:
+    transform var(--duration-base) var(--ease-standard),
+    border-color var(--duration-base) var(--ease-standard),
+    box-shadow var(--duration-base) var(--ease-standard);
+}
+
+.year-card-link:hover .year-card {
+  transform: translateY(-2px);
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-md), var(--shadow-glow-purple);
+}
+
+.year-card__art {
+  aspect-ratio: 16 / 9;
+  background-color: var(--color-bg-2);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.year-card__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.year-card__fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  width: 100%;
+  height: 100%;
+  color: var(--color-purple-strong);
+}
+
+.year-card__fallback-year {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+}
+
+.year-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+}
+
+.year-card__year {
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-tertiary);
+}
+
+.year-card__name {
+  font-size: 1.0625rem;
+  line-height: 1.3;
+}
+
+.year-card__counts {
+  display: flex;
+  gap: var(--space-5);
+  margin: 0;
+}
+
+.year-card__count {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.year-card__count dt {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-tertiary);
+}
+
+.year-card__count dd {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-primary);
+}
+
+.year-card__average {
+  margin-top: auto;
+  padding-top: var(--space-2);
+}

@@ -1,0 +1,88 @@
+.attraction-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.attraction-form__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.attraction-form__section-title {
+  font-size: 1rem;
+}
+
+.attraction-form__section-hint {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--color-text-tertiary);
+}
+
+.attraction-form__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+
+.attraction-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.attraction-form__grow {
+  flex: 1;
+  min-width: 200px;
+}
+
+.attraction-form__label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.attraction-form__select {
+  height: 38px;
+  min-width: 220px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-2);
+  color: var(--color-text-primary);
+  font-family: inherit;
+  font-size: 0.875rem;
+}
+
+.attraction-form__select:focus-visible {
+  outline: none;
+  border-color: var(--color-focus);
+}
+
+.attraction-form__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.attraction-form__hint {
+  margin: 0;
+  max-width: 64ch;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--color-text-tertiary);
+}
+
+.attraction-form__error {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--color-danger-strong);
+}
+
+.attraction-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+}

@@ -1,0 +1,113 @@
+.admin {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.admin__header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.admin__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.admin__section-title {
+  font-size: 1rem;
+}
+
+.admin__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.admin-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-2);
+}
+
+.admin-row__icon {
+  display: inline-flex;
+  color: var(--color-text-tertiary);
+}
+
+.admin-row__text {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.admin-row__title {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.admin-row__detail {
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+}
+
+.admin-row__actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: var(--space-2);
+}
+
+.admin__form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.admin__form--stacked {
+  flex-direction: column;
+  align-items: stretch;
+  padding-top: 0;
+  border-top: none;
+}
+
+.admin__form-year {
+  width: 120px;
+}
+
+.admin__form-grow {
+  flex: 1;
+  min-width: 200px;
+}
+
+.admin__empty {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--color-text-tertiary);
+}
+
+/* The consequence the reader most needs to see before confirming. */
+.admin__danger {
+  margin: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--color-danger-strong);
+  border-radius: var(--radius-md);
+  background-color: var(--color-danger-subtle);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+}

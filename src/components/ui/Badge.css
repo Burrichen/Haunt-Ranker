@@ -1,0 +1,37 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: 22px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.badge--neutral {
+  background-color: var(--color-bg-3);
+  color: var(--color-text-secondary);
+}
+
+.badge--orange {
+  background-color: var(--color-orange-subtle);
+  color: var(--color-orange-strong);
+}
+
+.badge--purple {
+  background-color: var(--color-purple-subtle);
+  color: var(--color-purple-strong);
+}
+
+.badge--danger {
+  background-color: var(--color-danger-subtle);
+  color: var(--color-danger-strong);
+}
+
+.badge--positive {
+  background-color: var(--color-positive-subtle);
+  color: var(--color-positive-strong);
+}

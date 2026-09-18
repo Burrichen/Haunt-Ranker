@@ -1,0 +1,35 @@
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.settings__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.settings__section-title {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-tertiary);
+}
+
+.settings__hint {
+  margin: 0;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border-subtle);
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+.settings__link {
+  color: var(--color-orange-strong);
+  text-decoration: none;
+}
+
+.settings__link:hover {
+  text-decoration: underline;
+}

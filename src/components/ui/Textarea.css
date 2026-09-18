@@ -1,0 +1,29 @@
+.field__control:has(.field__textarea) {
+  align-items: stretch;
+}
+
+.field__control:has(.field__textarea:focus-visible) {
+  border-color: var(--color-focus);
+}
+
+.field__textarea {
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-3);
+  background: none;
+  border: none;
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  font-family: inherit;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.field__textarea:focus {
+  outline: none;
+}
+
+.field__textarea::placeholder {
+  color: var(--color-text-tertiary);
+}

@@ -1,0 +1,105 @@
+.top-attractions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.top-attractions__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.top-attractions__title {
+  font-size: 1rem;
+}
+
+.top-attractions__note {
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+}
+
+.top-attractions__empty {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--color-text-tertiary);
+}
+
+.top-attractions__list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.top-attractions__row .attraction-hover-preview {
+  display: block;
+}
+
+.top-attractions__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--duration-fast) var(--ease-standard);
+}
+
+.top-attractions__inner:hover {
+  background-color: var(--color-bg-2);
+}
+
+.top-attractions__position {
+  flex: 0 0 auto;
+  min-width: 20px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--color-text-tertiary);
+}
+
+.top-attractions__link {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  align-items: baseline;
+  gap: var(--space-3);
+  color: inherit;
+  text-decoration: none;
+}
+
+.top-attractions__name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  color: var(--color-text-primary);
+}
+
+.top-attractions__year {
+  flex: 0 0 auto;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-tertiary);
+}
+
+.top-attractions__value {
+  flex: 0 0 auto;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-orange-strong);
+}
+
+.top-attractions__out-of {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+}
