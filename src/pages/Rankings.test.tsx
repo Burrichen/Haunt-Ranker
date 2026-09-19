@@ -46,6 +46,8 @@ function makeRow(name: string, scores: [number, number, number] | null): Ranking
     name: "Shadowfest 2101",
     description: null,
     sourceNotes: null,
+    startsOn: null,
+    endsOn: null,
     isSample: true,
     ...TIMESTAMPS,
   };

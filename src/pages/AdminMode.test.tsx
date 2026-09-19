@@ -34,6 +34,8 @@ function makeYear(calendarYear: number, name = `Shadowfest ${calendarYear}`): Ev
     name,
     description: null,
     sourceNotes: null,
+    startsOn: null,
+    endsOn: null,
     isSample: true,
     ...TIMESTAMPS,
   };

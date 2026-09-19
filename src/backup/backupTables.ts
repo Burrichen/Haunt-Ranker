@@ -61,6 +61,8 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
       name: { kind: "text" },
       description: { kind: "text", nullable: true },
       source_notes: { kind: "text", nullable: true },
+      starts_on: { kind: "text", nullable: true },
+      ends_on: { kind: "text", nullable: true },
       is_sample: { kind: "flag" },
       ...TIMESTAMPS,
     },

@@ -33,6 +33,8 @@ const YEAR: EventYear = {
   name: "Shadowfest 2101",
   description: null,
   sourceNotes: null,
+  startsOn: null,
+  endsOn: null,
   isSample: true,
   ...TIMESTAMPS,
 };

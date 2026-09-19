@@ -14,8 +14,8 @@ dashboard"), a generic ranking tool (see "Stats Explorer") and an opt-in
 Admin Mode for editing the archive itself (see "Admin Mode"), and a complete
 Settings page with a portable export/import backup (see "Settings and
 backups"). It packages as a per-user Windows installer (see "Windows
-release"). There's no real Halloween Horror Nights data yet — only a
-fictional dev sample dataset (see below).
+release"), and carries the real Halloween Horror Nights dataset for 2010-2026
+(see "The archive dataset"), validated but not yet imported by the app.
 
 ## Stack
 
@@ -50,6 +50,7 @@ Run these from the repository root.
 | `npm run db:seed`         | Create the fictional dev sample dataset (see below)               |
 | `npm run db:clear`        | Remove the dev sample dataset                                     |
 | `npm run db:reset`        | Clear then re-seed the dev sample dataset                         |
+| `npm run data:validate`   | Validate data/hhn-archive.json and dry-run an import              |
 | `npm run assets:icons`    | Regenerate the placeholder app icons                              |
 | `npm run assets:fonts`    | Re-download the bundled Inter/Fraunces subsets                    |
 
@@ -151,8 +152,9 @@ src/
   models/        Domain types for every entity (EventYear, Attraction,
                  Character, AttractionRelation, Source, Media, Rating,
                  Note, RankingEntry, Setting, Park) plus their Create/Input
-                 shapes, and `backup.ts` — the backup file's own shape and
-                 its `BACKUP_FORMAT_VERSION`. Pure types — no SQL, no React.
+                 shapes, `backup.ts` (the backup file's own shape) and
+                 `archiveDataset.ts` (the real-data import format's shape and
+                 its `ARCHIVE_FORMAT_VERSION`). Pure types — no SQL, no React.
   database/      `client.ts` (the lazy Tauri SQL connection), `types.ts`
                  (the `SqlExecutor` contract repositories depend on instead
                  of the concrete driver), `errors.ts` (typed
@@ -166,6 +168,12 @@ src/
                  this build expects (kept honest by a test that reads the
                  migrations directory). Schema migrations themselves live in
                  `src-tauri/migrations/*.sql`, not here — see below.
+  archive/       The real-data contract: `archiveTables.ts` (which tables a
+                 dataset may touch and which are the user's alone),
+                 `validateDataset.ts` (the format's validator),
+                 `importOperations.ts` (planning every write, and how to undo
+                 it) and `importDataset.ts` (preview and apply). See "The real
+                 data contract" below.
   backup/        The portable backup: `backupTables.ts` (one description of
                  every backed-up table, shared by the validator and the
                  SQL), `backupFormat.ts` (validate, upgrade, summarize,
@@ -272,6 +280,11 @@ src-tauri/
                  (see "Windows release" below).
   tauri.conf.json, capabilities/  Window and bundle configuration, and the
                  permission grants the webview runs under.
+
+docs/            `archive-dataset-format.md`, the specification real archive
+                 data is entered against, and `examples/` — a dataset the test
+                 suite validates, so the documentation can't drift from the
+                 validator.
 
 scripts/
   dev-db.ts      The `db:seed` / `db:clear` / `db:reset` CLI — connects to
@@ -1108,3 +1121,127 @@ person driving the UI:
 Each of these is covered by the automated suite at the repository level
 (including file-reopen persistence tests), so the manual pass is confirming
 the packaged app, not the logic.
+
+## The real data contract
+
+The app is structurally complete and the fictional development records are on
+their way out of real databases: migration `0006_retire_sample_data.sql`
+deletes every row flagged `is_sample = 1`, once, wherever it finds them. The
+flag and `npm run db:seed` / `db:clear` / `db:reset` stay — the fictional
+dataset is a development tool, and a shipped build has never inserted it (see
+"What a production build leaves out").
+
+Real Halloween Horror Nights records haven't been researched yet. What exists
+now is the **contract they will be entered against**, settled first so the data
+is entered once rather than reshaped later.
+
+**[`docs/archive-dataset-format.md`](docs/archive-dataset-format.md) is the
+specification**, with a worked example in
+[`docs/examples/`](docs/examples/archive-dataset.example.json) that the test
+suite validates on every run. In short:
+
+- One human-reviewable JSON file: `events`, `attractions` and shared `sources`,
+  covering type, parks, IP and franchise, summaries, the four wiki sections,
+  characters, location, event and attraction dates, relationships, media
+  metadata and citations.
+- **Identity is an explicit stable id, never a display name.** Names get
+  corrected; if identity came from the name, every correction would read as a
+  new attraction and strand the rating attached to the old one. `previousIds`
+  handles the rare case where an id itself must change.
+- **A dataset can't describe a person.** There is no field for a rating, a note
+  or a ranking position anywhere in the format.
+
+### What an import may touch
+
+`src/archive/archiveTables.ts` partitions every table into archive or personal
+and **fails to compile** if a new table is added without that decision being
+made. The archive side — event years, attractions, park assignments,
+characters, relations, sources, citations and media metadata — is what a
+dataset may add to and correct. The personal side — `user_ratings`,
+`user_notes`, `user_rankings`, `user_settings` — is never written by an import.
+
+The one exception exists so personal data _survives_ a correction: when a
+dataset declares an id change, the importer **moves** the record and everything
+pointing at it, the user's rating, note and ranking position included. Their
+contents are never read; the importer reads a count, to report how many rows
+moved.
+
+Imports are additive and corrective. Nothing is deleted, and an attraction
+dropped from a later dataset stays in the archive. Citations added by hand in
+Admin Mode survive every import. Park assignments are the one thing replaced
+outright, because a park left behind is a wrong fact rather than a preference.
+
+### How an import runs
+
+Validate the whole file (`validateDataset`) → plan every write against what's
+stored (`planImport`) → refuse as a whole if any part is impossible → apply,
+undoing every write already made if one fails. The undo log exists instead of a
+SQL transaction for the same reason the backup importer has one: the Tauri SQL
+plugin runs a connection pool, so `BEGIN`/`COMMIT` in separate calls aren't
+guaranteed to share a connection. It also never deletes an attraction, so it
+can't cascade into a rating — which restoring whole tables would.
+
+Running the same dataset twice changes nothing the second time; every record is
+matched by id and compared column by column.
+
+There is no UI for this yet, by design: this phase is the contract and its
+tests, and the importer is exercised end to end against real SQLite in
+`src/archive/importDataset.test.ts`.
+
+## The archive dataset
+
+[`data/hhn-archive.json`](data/hhn-archive.json) is the real Halloween Horror
+Nights data, in the format [`docs/archive-dataset-format.md`](docs/archive-dataset-format.md)
+describes. It is validated but **not yet imported by the app**: there is no
+importer UI yet, so a fresh install still starts with an empty archive.
+
+```
+npm run data:validate
+```
+
+runs the same two stages a real import does — `validateDataset` for structure,
+ids and internal references, then `previewImport` against a throwaway database
+with the real migrations applied, which is what catches anything only the
+stored archive could know. It currently reports 16 events, 416 attractions, 468
+sources and 50 relations, applying cleanly to an empty archive.
+
+### What's in it, and what deliberately isn't
+
+The dataset covers **2010–2026** at both parks — the scope cap, not the limit of
+what exists; the [research](docs/research/) established that usable material
+goes back to Orlando 1991.
+
+Every attraction carries what can be sourced: name, event year, type, parks, IP
+classification and franchise, the venue it was housed in, and at least one
+source. **394 of 416 have their IP classified** from each page's own "Based on"
+field; the other 22 are left unclassified rather than guessed.
+
+**Only 20 attractions have a summary**, and that is the point rather than an
+oversight. Prose is written only where an authoritative source describes the
+attraction — currently Universal's own 2026 press material, paraphrased. Every
+other overview, story, experience and development field is **absent, not
+empty-but-planned**: the archive's rule is that a field is filled when a source
+says so, and connective narrative is never invented to fill a page. The wiki
+pages for those attractions will show the sections they have and nothing else,
+which is what "only sections with data render" was built for.
+
+Characters and media are likewise absent. No artwork is referenced because none
+has been cleared, and the typographic fallback card is the correct presentation
+until it is.
+
+### Provenance
+
+Sources are labelled for what they are. The per-attraction rows come from the
+Halloween Horror Nights Wiki, recorded as `other` with a note on every one that
+it is a **fan-maintained archive, not a Universal publication** — so nothing
+from it is presented as an official statement. The 2026 summaries cite
+Universal's own press release and NBCUniversal's corporate guide as
+`official_site`. Each event year cites the YouTube walkthroughs the eligibility
+research verified, as `youtube`, with the channel as publisher; nothing is
+downloaded or repackaged.
+
+Two attractions are single records covering both parks, where a source
+described the two builds as essentially the same. The other 50 same-year
+cross-park pairs are separate records carrying "Orlando version" or "Hollywood
+version" and a `related_concept` relation between them — the reasoning is in
+[the catalogue research](docs/research/hhn-attraction-catalogue.md).

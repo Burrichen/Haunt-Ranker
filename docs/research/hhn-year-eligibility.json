@@ -1,0 +1,592 @@
+{
+  "$comment": "Machine-readable form of hhn-year-eligibility.md, for the data-entry phase. Research date 2026-09-19. Every youtube id here was verified via YouTube's oEmbed endpoint on that date. This is research metadata, NOT the archive dataset format (see docs/archive-dataset-format.md).",
+  "researchedAt": "2026-09-19",
+  "scope": {
+    "minYear": 2010,
+    "note": "The project owner capped the archive at 2010 and later, for both parks. The per-year recommendations below are the evidence-based findings and are unchanged; years before 2010 are eligible on the evidence but out of scope. Everything downstream is built from 2010 onwards."
+  },
+  "tiers": {
+    "A": "Multiple contemporaneous videos including walkthroughs, POV or long-form event coverage.",
+    "B": "Contemporaneous footage exists but is partial: short clips, commercials, parade or behind-the-scenes only.",
+    "C": "No contemporaneous footage found; retrospectives, histories or scanned programmes only.",
+    "D": "Nothing usable found."
+  },
+  "years": [
+    {
+      "calendarYear": 1986,
+      "hollywood": {
+        "event": "Halloween Horror Nights (haunted tram tour)",
+        "tier": "D",
+        "recommendation": "exclude",
+        "confidence": "high",
+        "note": "Different format (tram tour), discontinued after a fatal accident. Only a modern retrospective exists.",
+        "sources": ["3sa6QSA4J0Q"]
+      }
+    },
+    {
+      "calendarYear": 1991,
+      "orlando": {
+        "event": "Universal Studios Fright Nights",
+        "tier": "B",
+        "recommendation": "include",
+        "confidence": "medium-high",
+        "sources": ["OYh0MH-CgPk", "yMXL4OMgh4E", "hX1AC4uw7Hw"]
+      }
+    },
+    {
+      "calendarYear": 1992,
+      "orlando": {
+        "event": "Halloween Horror Nights II",
+        "tier": "B",
+        "recommendation": "include",
+        "confidence": "medium",
+        "sources": ["KJC7K4SOtAA", "p9hbq1E5eNo"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood)",
+        "tier": "C",
+        "recommendation": "exclude",
+        "confidence": "medium",
+        "note": "Facts exist in text sources; no contemporaneous footage found.",
+        "sources": ["2EgEd_08WuE", "Dh56NYxEpYE"]
+      }
+    },
+    {
+      "calendarYear": 1993,
+      "orlando": {
+        "event": "Halloween Horror Nights III",
+        "tier": "B",
+        "recommendation": "include",
+        "confidence": "medium",
+        "note": "Thin: short compilations only.",
+        "sources": ["ULJNHe4WjLk", "xS5gwFrSU6c"]
+      }
+    },
+    {
+      "calendarYear": 1994,
+      "orlando": {
+        "event": "Halloween Horror Nights IV",
+        "tier": "B",
+        "recommendation": "include",
+        "confidence": "medium",
+        "note": "Thin: short compilations only.",
+        "sources": ["yeK4CYAk9yg", "03aqZ-0WP6o", "Y2EHeXWgfX8"]
+      }
+    },
+    {
+      "calendarYear": 1995,
+      "orlando": {
+        "event": "Halloween Horror Nights V",
+        "tier": "B",
+        "recommendation": "include",
+        "confidence": "medium-high",
+        "sources": ["eeJ6qbrRpQI", "hkcNe-SZO3Q", "pQf23ucej2s", "xA3mwA6Deoo"]
+      }
+    },
+    {
+      "calendarYear": 1996,
+      "orlando": {
+        "event": "Halloween Horror Nights VI",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["eW6RD_0XhrE", "IBQ2TrrbY_k", "48ySmKXCz4M"]
+      }
+    },
+    {
+      "calendarYear": 1997,
+      "orlando": {
+        "event": "Halloween Horror Nights VII",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["WZ2FFnVwOT4", "I_HHL5a8mRc", "S58_emaq0-4", "01FUpoGWLvM", "pQVDGH9VSvA"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood)",
+        "tier": "C",
+        "recommendation": "exclude",
+        "confidence": "high",
+        "note": "HHN Wiki records four mazes; no contemporaneous footage found.",
+        "sources": ["2EgEd_08WuE", "Dh56NYxEpYE"]
+      }
+    },
+    {
+      "calendarYear": 1998,
+      "orlando": {
+        "event": "Halloween Horror Nights VIII",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["_0SDTMlXAUk", "ilZrMbcojMo", "FbE5lL3WQs8", "bIQqi4_9-Sc"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood)",
+        "tier": "C",
+        "recommendation": "exclude",
+        "confidence": "high",
+        "sources": ["2EgEd_08WuE", "Dh56NYxEpYE"]
+      }
+    },
+    {
+      "calendarYear": 1999,
+      "orlando": {
+        "event": "Halloween Horror Nights IX",
+        "tier": "B",
+        "recommendation": "include",
+        "confidence": "medium",
+        "note": "Gm67kCP0yLs is substantial but its title does not state the park — confirm before use.",
+        "sources": ["Gm67kCP0yLs", "4YPke4PjRAE", "5kiA8DugHfI"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood) — slogan \"Last Gasp\"",
+        "tier": "C",
+        "recommendation": "exclude",
+        "confidence": "high",
+        "note": "HHN Wiki records five mazes and carries an editor request for help; no footage found.",
+        "sources": ["2EgEd_08WuE", "Dh56NYxEpYE"]
+      }
+    },
+    {
+      "calendarYear": 2000,
+      "orlando": {
+        "event": "Halloween Horror Nights X",
+        "tier": "B",
+        "recommendation": "include",
+        "confidence": "medium-high",
+        "note": "Mostly parade footage and commercials; houses poorly covered.",
+        "sources": ["bhnKAq8_CNo", "Dch8hNHZg7Q", "UylQDxvA3fU", "R9ixPtOp4zM"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood)",
+        "tier": "C",
+        "recommendation": "exclude",
+        "confidence": "high",
+        "sources": ["2EgEd_08WuE", "Dh56NYxEpYE"]
+      }
+    },
+    {
+      "calendarYear": 2001,
+      "orlando": {
+        "event": "Halloween Horror Nights XI",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["2uz78Qra-kI", "FevoGQsO-FE", "ZASVfgnah14"]
+      }
+    },
+    {
+      "calendarYear": 2002,
+      "orlando": {
+        "event": "Halloween Horror Nights: Islands of Fear",
+        "venueNote": "Held at Islands of Adventure.",
+        "tier": "B",
+        "recommendation": "include",
+        "confidence": "medium-high",
+        "sources": ["ckIAG1JZ-jc", "8bQR4uxdfkg", "73Q05G6nJ7o"]
+      }
+    },
+    {
+      "calendarYear": 2003,
+      "orlando": {
+        "event": "Halloween Horror Nights 13",
+        "venueNote": "Held at Islands of Adventure.",
+        "tier": "B",
+        "recommendation": "include",
+        "confidence": "medium",
+        "sources": ["YkC0LLW-OUY", "RzJWTj2VjIc", "IWPPKuUo8hk"]
+      }
+    },
+    {
+      "calendarYear": 2004,
+      "orlando": {
+        "event": "Halloween Horror Nights XIV",
+        "venueNote": "Dual-park format across Universal Studios Florida and Islands of Adventure.",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["ycoKes4ktGc", "IkArSAM3VmY", "xEXjlUiRU5U"]
+      }
+    },
+    {
+      "calendarYear": 2005,
+      "orlando": {
+        "event": "Halloween Horror Nights: Tales of Terror",
+        "venueNote": "Held at Islands of Adventure.",
+        "tier": "B",
+        "recommendation": "include",
+        "confidence": "medium-high",
+        "sources": ["xRXJ4TKoRno", "SaKxWxif5aQ", "Miq5F5pm1UY"]
+      }
+    },
+    {
+      "calendarYear": 2006,
+      "orlando": {
+        "event": "Halloween Horror Nights: Sweet 16",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["vuGB82x2qI8", "L-D-nmNzeDI"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood)",
+        "tier": "B",
+        "recommendation": "include",
+        "confidence": "medium",
+        "note": "Terror Tram-heavy; mazes underdocumented.",
+        "sources": ["my7jxDonBC4", "64pNBwnrhRw", "sNWdOo-6hUg"]
+      }
+    },
+    {
+      "calendarYear": 2007,
+      "orlando": {
+        "event": "Halloween Horror Nights: Carnival of Carnage",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["0Ov1xnV617k", "0SzRzMBgU9w", "YvKGzoxX9FE"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood)",
+        "tier": "B",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["GZMq3nrBuYk", "a29hvWMft20"]
+      }
+    },
+    {
+      "calendarYear": 2008,
+      "orlando": {
+        "event": "Halloween Horror Nights: Reflections of Fear",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["EaiQWVJWQDg", "GfujxsftTWc"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood)",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["A69u6Jvozfo", "GhoWmZStLMA", "0S1xBsVV63g", "NI6MRuIpVyA"]
+      }
+    },
+    {
+      "calendarYear": 2009,
+      "orlando": {
+        "event": "Halloween Horror Nights: Ripped from the Silver Screen",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["WuaVx-Zo6Vk", "sLVTs2P6odM"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood)",
+        "tier": "B",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["ztJlYMg4HCI", "twfCfOdmNyw", "R38cqW1i1p0"]
+      }
+    },
+    {
+      "calendarYear": 2010,
+      "orlando": {
+        "event": "Halloween Horror Nights: Twenty Years of Fear",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["flYWJvzS26M", "awpa_gjy9tk", "W1Ev_INMJZo"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood)",
+        "tier": "B",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["1fmv3-y_rOk", "ckFp-1ddZgc", "fExrm2_KErw"]
+      }
+    },
+    {
+      "calendarYear": 2011,
+      "orlando": {
+        "event": "Halloween Horror Nights 21",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["yIhVvR7F7BE", "EtO-B-tRzfk", "GnNVEftnqtY"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood)",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["PrCrYIdx0-E", "QCTAM8QOoKs", "M_oK_Wadl7c"]
+      }
+    },
+    {
+      "calendarYear": 2012,
+      "orlando": {
+        "event": "Halloween Horror Nights 22",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["D6keQ8LN4TE", "IKGa-ynnQwI"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood)",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["Xrki2ycu2Nc", "feo5JFXsdOw", "RtP0FoKhdNQ"]
+      }
+    },
+    {
+      "calendarYear": 2013,
+      "orlando": {
+        "event": "Halloween Horror Nights 23",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["REgh_K1v7GU", "7buf54IMpOw"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood)",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["GerEP7QaUME", "SfPIY-TKk_U", "dNTrPzjB85w", "hyUInmZ8rc4"]
+      }
+    },
+    {
+      "calendarYear": 2014,
+      "orlando": {
+        "event": "Halloween Horror Nights 24",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["PV74J3HRxQA", "YFtLGKs-rks"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood)",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["3-lbYtVsVeE", "pTc5eWYYn8c"]
+      }
+    },
+    {
+      "calendarYear": 2015,
+      "orlando": {
+        "event": "Halloween Horror Nights 25",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["-Is5X25d_4Q", "yAAIQqrGX7w"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood)",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["XYqGlAPSv9o", "cy8kY5cB1yo", "0JaZ0Y5LQKg"]
+      }
+    },
+    {
+      "calendarYear": 2016,
+      "orlando": {
+        "event": "Halloween Horror Nights 26",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["7QY-VEJlJEs", "Xyyx8GB0hFE"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood)",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["zxYl5XEOW6Y", "tPK9FEf-zeg", "pdSkrGuSxYo"]
+      }
+    },
+    {
+      "calendarYear": 2017,
+      "orlando": {
+        "event": "Halloween Horror Nights 27",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["3jlRE7C_xMk", "tOc5T1qJNuc"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood)",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["jxsCzny-5_Y", "AUaXo9QdhwY", "PeGMvEK_Qsk"]
+      }
+    },
+    {
+      "calendarYear": 2018,
+      "orlando": {
+        "event": "Halloween Horror Nights 28",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["NslaslnMy0U", "s7Ug59yID5s"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood)",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["CWjOzLsf6h0", "Y-HlAYDetvY"]
+      }
+    },
+    {
+      "calendarYear": 2019,
+      "orlando": {
+        "event": "Halloween Horror Nights 29",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["qaI_1VP8R8Q", "jbJtDmip4Io"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood)",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["VAwQlKKaC2I", "FDNR3Ez0qzA"]
+      }
+    },
+    {
+      "calendarYear": 2020,
+      "orlando": {
+        "event": null,
+        "tier": null,
+        "recommendation": "exclude",
+        "confidence": "high",
+        "note": "Cancelled because of the COVID-19 pandemic — the first year Orlando did not hold the event."
+      },
+      "hollywood": {
+        "event": null,
+        "tier": null,
+        "recommendation": "exclude",
+        "confidence": "high",
+        "note": "Cancelled because of the COVID-19 pandemic."
+      }
+    },
+    {
+      "calendarYear": 2021,
+      "orlando": {
+        "event": "Halloween Horror Nights 30",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["d9Y4yjcocqA", "BNcorFdnazs"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood)",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["Xu7UlpPIUnw", "wmysS7pkYOc"]
+      }
+    },
+    {
+      "calendarYear": 2022,
+      "orlando": {
+        "event": "Halloween Horror Nights 31",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["-fC_8gbViQk", "JsMmKkL_Qkc"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood)",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["XmE_tsBHWLU", "vW2zlcm3Y-g", "MCSWeSo60ME"]
+      }
+    },
+    {
+      "calendarYear": 2023,
+      "orlando": {
+        "event": "Halloween Horror Nights 32",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["JGeEQ4lm_oQ", "CQB7PRg4l7Y"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood)",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["xOreB5snQDQ", "JiOYgeJ__eQ"]
+      }
+    },
+    {
+      "calendarYear": 2024,
+      "orlando": {
+        "event": "Halloween Horror Nights 33",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["g84SZ01LIw8", "zL82pm57X-4"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood)",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["Ebagd34AbTc", "GDOzqRhZJf0"]
+      }
+    },
+    {
+      "calendarYear": 2025,
+      "orlando": {
+        "event": "Halloween Horror Nights 34",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["QNiCePSStJM", "LWF5K1J_7v4"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood)",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "sources": ["TAnOkzwfbQg", "-UeOj1XHc9Y"]
+      }
+    },
+    {
+      "calendarYear": 2026,
+      "orlando": {
+        "event": "Halloween Horror Nights 35",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "note": "Season in progress at the time of research (28 August – 1 November 2026); treat as provisional.",
+        "sources": ["-iSxKy1XK98", "Kf4I7MD13bQ"]
+      },
+      "hollywood": {
+        "event": "Halloween Horror Nights (Hollywood)",
+        "tier": "A",
+        "recommendation": "include",
+        "confidence": "high",
+        "note": "Season in progress at the time of research; treat as provisional.",
+        "sources": ["uX0XbxLQGjY", "ZU-FWIk3t6Y", "peumL6fS5HY"]
+      }
+    }
+  ],
+  "yearsWithNoEvent": {
+    "orlando": [2020],
+    "hollywood": ["1987-1991", "1993-1996", "2001-2005", 2020]
+  },
+  "openQuestions": [
+    "Hollywood's Terror Tram fits neither 'house' nor 'scare_zone'. It runs in most Hollywood years and is among the best-documented Hollywood attractions on YouTube. Possible schema change — needs a decision.",
+    "Orlando's HHN ran at Islands of Adventure in 2002, 2003 and 2005, and across both Orlando parks in 2004. The park axis (Orlando vs Hollywood) still holds for provenance; the specific park would go in an attraction's location field. Confirm before entry.",
+    "Shows (Bill & Ted's Excellent Halloween Adventure, the Festival of the Dead parade, Frightmares) are heavily represented in archival footage but have no attraction type."
+  ]
+}

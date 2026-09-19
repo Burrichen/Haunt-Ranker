@@ -43,6 +43,8 @@ function populatedData(): BackupData {
         name: "Shadowfest 2101",
         description: null,
         source_notes: null,
+        starts_on: null,
+        ends_on: null,
         is_sample: 0,
         ...TIMESTAMPS,
       },

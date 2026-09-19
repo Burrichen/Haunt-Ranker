@@ -30,6 +30,8 @@ function makeEventYear(calendarYear: number): EventYear {
     name: `Shadowfest ${calendarYear}`,
     description: null,
     sourceNotes: null,
+    startsOn: null,
+    endsOn: null,
     isSample: true,
     ...TIMESTAMPS,
   };

@@ -5,6 +5,12 @@ import type { ParkId } from "./park";
  * of the database schema version. It changes only when the *shape of the
  * file* changes, so an older backup can be recognised and upgraded rather
  * than guessed at (see `src/backup/backupFormat.ts`).
+ *
+ * Adding a *nullable* column doesn't change it: an older file simply has no
+ * value for that column, which the reader already treats as null, and a
+ * newer file's extra column is dropped by an older reader. The version moves
+ * when an older file can no longer be read correctly — a renamed or removed
+ * column, a changed meaning, a new required field.
  */
 export const BACKUP_FORMAT_VERSION = 1;
 
@@ -27,6 +33,8 @@ export interface EventYearRow {
   name: string;
   description: string | null;
   source_notes: string | null;
+  starts_on: string | null;
+  ends_on: string | null;
   is_sample: number;
   created_at: string;
   updated_at: string;

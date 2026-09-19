@@ -35,6 +35,18 @@ fn migrations() -> Vec<Migration> {
             sql: include_str!("../migrations/0005_provenance.sql"),
             kind: MigrationKind::Up,
         },
+        Migration {
+            version: 6,
+            description: "retire the fictional development dataset",
+            sql: include_str!("../migrations/0006_retire_sample_data.sql"),
+            kind: MigrationKind::Up,
+        },
+        Migration {
+            version: 7,
+            description: "event years record their own run dates",
+            sql: include_str!("../migrations/0007_event_dates.sql"),
+            kind: MigrationKind::Up,
+        },
     ]
 }
 

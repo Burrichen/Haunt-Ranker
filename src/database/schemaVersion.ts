@@ -6,4 +6,4 @@
  * drifts from it, so adding a migration without updating this is caught in
  * CI rather than by a backup that claims the wrong schema.
  */
-export const SCHEMA_VERSION = 5;
+export const SCHEMA_VERSION = 7;

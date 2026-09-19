@@ -4,6 +4,7 @@ import { openBackupFile, saveBackupFile, writeSafetyBackup } from "../backup/bac
 import { buildBackupFile, serializeBackup } from "../backup/backupFormat";
 import { importBackupFile } from "../backup/importBackup";
 import { getDatabase } from "../database/client";
+import { SCHEMA_VERSION } from "../database/schemaVersion";
 import type { BackupData } from "../models/backup";
 import { PREFERENCE_KEYS } from "../preferences/localPreferences";
 import { createBackupRepository } from "../repositories/backupRepository";
@@ -53,6 +54,8 @@ function backupText(preferences = {}): string {
     name: "Shadowfest 2102",
     description: null,
     source_notes: null,
+    starts_on: null,
+    ends_on: null,
     is_sample: 0,
     created_at: "2026-01-01T00:00:00.000Z",
     updated_at: "2026-01-01T00:00:00.000Z",
@@ -119,7 +122,7 @@ describe("useBackup", () => {
     const written = JSON.parse(contents) as Record<string, unknown>;
     expect(written.formatVersion).toBe(1);
     expect(written.appVersion).toBe("0.1.0");
-    expect(written.schemaVersion).toBe(5);
+    expect(written.schemaVersion).toBe(SCHEMA_VERSION);
     expect(typeof written.exportedAt).toBe("string");
     expect(suggestedName).toMatch(/^haunt-ranker-backup-\d{4}-\d{2}-\d{2}-\d{4}\.json$/);
     expect(result.current.exportedPath).toBe("C:/Users/me/haunt-ranker-backup.json");

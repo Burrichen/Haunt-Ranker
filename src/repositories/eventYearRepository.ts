@@ -11,6 +11,8 @@ interface EventYearRow {
   name: string;
   description: string | null;
   source_notes: string | null;
+  starts_on: string | null;
+  ends_on: string | null;
   is_sample: number;
   created_at: string;
   updated_at: string;
@@ -23,6 +25,8 @@ function mapRow(row: EventYearRow): EventYear {
     name: row.name,
     description: row.description,
     sourceNotes: row.source_notes,
+    startsOn: row.starts_on,
+    endsOn: row.ends_on,
     isSample: row.is_sample === 1,
     createdAt: row.created_at,
     updatedAt: row.updated_at,
@@ -90,14 +94,17 @@ export function createEventYearRepository(db: SqlExecutor): EventYearRepository 
     const id = generateId();
     await withDatabaseErrors(() =>
       db.execute(
-        `INSERT INTO event_years (id, calendar_year, name, description, source_notes, is_sample)
-         VALUES (?, ?, ?, ?, ?, ?)`,
+        `INSERT INTO event_years (id, calendar_year, name, description, source_notes,
+                                  starts_on, ends_on, is_sample)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           id,
           input.calendarYear,
           input.name,
           input.description ?? null,
           input.sourceNotes ?? null,
+          input.startsOn ?? null,
+          input.endsOn ?? null,
           input.isSample ? 1 : 0,
         ],
       ),
@@ -127,13 +134,16 @@ export function createEventYearRepository(db: SqlExecutor): EventYearRepository 
       name: input.name ?? existing.name,
       description: input.description === undefined ? existing.description : input.description,
       sourceNotes: input.sourceNotes === undefined ? existing.sourceNotes : input.sourceNotes,
+      startsOn: input.startsOn === undefined ? existing.startsOn : input.startsOn,
+      endsOn: input.endsOn === undefined ? existing.endsOn : input.endsOn,
       isSample: input.isSample === undefined ? existing.isSample : input.isSample,
     };
 
     await withDatabaseErrors(() =>
       db.execute(
         `UPDATE event_years
-         SET calendar_year = ?, name = ?, description = ?, source_notes = ?, is_sample = ?,
+         SET calendar_year = ?, name = ?, description = ?, source_notes = ?,
+             starts_on = ?, ends_on = ?, is_sample = ?,
              updated_at = strftime('%Y-%m-%dT%H:%M:%fZ', 'now')
          WHERE id = ?`,
         [
@@ -141,6 +151,8 @@ export function createEventYearRepository(db: SqlExecutor): EventYearRepository 
           next.name,
           next.description ?? null,
           next.sourceNotes ?? null,
+          next.startsOn ?? null,
+          next.endsOn ?? null,
           next.isSample ? 1 : 0,
           id,
         ],

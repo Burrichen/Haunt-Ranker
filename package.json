@@ -1,7 +1,7 @@
 {
   "name": "haunt-ranker",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -19,7 +19,8 @@
     "test:watch": "vitest",
     "db:seed": "tsx scripts/dev-db.ts seed",
     "db:clear": "tsx scripts/dev-db.ts clear",
-    "db:reset": "tsx scripts/dev-db.ts reset"
+    "db:reset": "tsx scripts/dev-db.ts reset",
+    "data:validate": "tsx scripts/validate-dataset.ts"
   },
   "dependencies": {
     "@tauri-apps/api": "^2",

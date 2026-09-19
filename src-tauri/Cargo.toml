@@ -1,6 +1,6 @@
 [package]
 name = "haunt-ranker"
-version = "0.1.0"
+version = "0.2.0"
 description = "A local-first desktop app for browsing, reviewing and ranking Halloween Horror Nights attractions"
 authors = ["Haunt Ranker"]
 edition = "2021"

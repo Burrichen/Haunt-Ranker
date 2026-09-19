@@ -1,0 +1,111 @@
+{
+  "formatVersion": 1,
+  "datasetVersion": "0.0.1-example",
+  "generatedAt": "2026-09-18T00:00:00.000Z",
+  "notes": "An illustration of the format, not real data. Every record here is invented, and every URL is a .invalid placeholder. Real Halloween Horror Nights records have not been researched yet.",
+  "sources": [
+    {
+      "id": "example-channel-2101-recap",
+      "type": "youtube",
+      "title": "Example Event 2101 — full walkthrough",
+      "url": "https://youtube.invalid/watch?v=example",
+      "publisher": "An Example Channel",
+      "publishedAt": "2101-10-02",
+      "notes": "Used for the layout and the finale description."
+    },
+    {
+      "id": "example-official-lineup-2101",
+      "type": "official_site",
+      "title": "Example Event 2101 line-up announcement",
+      "url": "https://example.invalid/2101/lineup",
+      "publisher": "Example Park",
+      "publishedAt": "2101-06-14"
+    }
+  ],
+  "events": [
+    {
+      "id": "example-2101",
+      "calendarYear": 2101,
+      "name": "Example Event 2101",
+      "description": "A placeholder season, included so the format has something to show.",
+      "sourceNotes": "Line-up confirmed from the official announcement; dates from the same page.",
+      "dates": { "start": "2101-09-05", "end": "2101-11-02" },
+      "sourceIds": ["example-official-lineup-2101"],
+      "media": [
+        {
+          "id": "example-2101-key-art",
+          "kind": "event_artwork",
+          "url": "https://example.invalid/2101/key-art.jpg",
+          "attribution": "Example Park",
+          "licenseNotes": "Referenced only — no permission to redistribute has been established.",
+          "sourceId": "example-official-lineup-2101"
+        }
+      ]
+    }
+  ],
+  "attractions": [
+    {
+      "id": "example-2101-house-hollow-chapel",
+      "eventId": "example-2101",
+      "type": "house",
+      "name": "The Hollow Chapel",
+      "parks": ["hollywood", "orlando"],
+      "ip": { "type": "original" },
+      "summary": "An original house that ran at both parks, shown here as one record.",
+      "wiki": {
+        "overview": "A longer description of the house, written for someone who never got to walk through it.",
+        "story": "The premise, as the event told it.",
+        "experience": "What the walkthrough was actually like, room by room.",
+        "development": "What is known about how it was made."
+      },
+      "location": "Soundstage 22",
+      "dates": { "start": "2101-09-05", "end": "2101-11-02" },
+      "characters": [
+        {
+          "id": "example-2101-hollow-chapel-the-verger",
+          "name": "The Verger",
+          "description": "The figure who appeared in the entrance corridor."
+        }
+      ],
+      "media": [
+        {
+          "id": "example-2101-hollow-chapel-poster",
+          "kind": "poster",
+          "url": "https://example.invalid/2101/hollow-chapel.jpg",
+          "attribution": "Example Park",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": ["example-channel-2101-recap", "example-official-lineup-2101"]
+    },
+    {
+      "id": "example-2101-house-hollow-chapel-hollywood",
+      "previousIds": ["example-2101-house-hollow-chapel-west"],
+      "eventId": "example-2101",
+      "type": "house",
+      "name": "The Hollow Chapel",
+      "variantName": "Hollywood version",
+      "parks": ["hollywood"],
+      "ip": { "type": "original" },
+      "summary": "A substantially different version, so it gets its own record rather than being merged.",
+      "related": [
+        {
+          "attractionId": "example-2101-house-hollow-chapel",
+          "type": "previous_version",
+          "notes": "Shares a name and a premise; a different layout and finale."
+        }
+      ],
+      "sourceIds": ["example-channel-2101-recap"]
+    },
+    {
+      "id": "example-2101-zone-ashfall",
+      "eventId": "example-2101",
+      "type": "scare_zone",
+      "name": "Ashfall",
+      "parks": ["orlando"],
+      "ip": { "type": "licensed", "franchise": "Example Franchise" },
+      "summary": "A licensed scare zone, with the franchise recorded separately from the name.",
+      "location": "The central lagoon path"
+    }
+  ]
+}
