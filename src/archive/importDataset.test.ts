@@ -392,6 +392,36 @@ describe("importArchiveDataset", () => {
       expect(rows[0].count).toBe(0);
     });
 
+    it("accepts a relation to an attraction defined later in the same file", async () => {
+      // Relations have to be written after every attraction exists. Planning
+      // them inline looked fine and broke a foreign key the moment a real
+      // dataset related an attraction to one further down the file.
+      const forward = dataset();
+      forward.attractions[0].related = [
+        { attractionId: "example-2101-zone-later", type: "related_concept" },
+      ];
+      forward.attractions.push({
+        id: "example-2101-zone-later",
+        eventId: "example-2101",
+        type: "scare_zone",
+        name: "Defined Later",
+        parks: ["hollywood"],
+      });
+
+      const report = await importArchiveDataset(forward, repository);
+
+      expect(report.relations.created).toBe(1);
+      const rows = await db.select<Array<{ attraction_id: string; related_attraction_id: string }>>(
+        "SELECT attraction_id, related_attraction_id FROM attraction_relations",
+      );
+      expect(rows).toEqual([
+        {
+          attraction_id: "example-2101-house-one",
+          related_attraction_id: "example-2101-zone-later",
+        },
+      ]);
+    });
+
     it("accepts a relation to an attraction imported by an earlier dataset", async () => {
       await importArchiveDataset(dataset(), repository);
 

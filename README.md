@@ -35,24 +35,26 @@ release"), and carries the real Halloween Horror Nights dataset for 2010-2026
 
 Run these from the repository root.
 
-| Command                   | Description                                                       |
-| ------------------------- | ----------------------------------------------------------------- |
-| `npm run tauri dev`       | Launch the app in development (native window + HMR)               |
-| `npm run dev`             | Run only the Vite dev server (frontend in a browser tab)          |
-| `npm run build`           | Type-check and build the frontend for production                  |
-| `npm run release:windows` | Build the distributable Windows installer (see "Windows release") |
-| `npm run typecheck`       | Type-check without emitting                                       |
-| `npm run lint`            | Run ESLint                                                        |
-| `npm run format`          | Format the codebase with Prettier                                 |
-| `npm run format:check`    | Check formatting without writing                                  |
-| `npm run test`            | Run the test suite once                                           |
-| `npm run test:watch`      | Run tests in watch mode                                           |
-| `npm run db:seed`         | Create the fictional dev sample dataset (see below)               |
-| `npm run db:clear`        | Remove the dev sample dataset                                     |
-| `npm run db:reset`        | Clear then re-seed the dev sample dataset                         |
-| `npm run data:validate`   | Validate data/hhn-archive.json and dry-run an import              |
-| `npm run assets:icons`    | Regenerate the placeholder app icons                              |
-| `npm run assets:fonts`    | Re-download the bundled Inter/Fraunces subsets                    |
+| Command                   | Description                                                         |
+| ------------------------- | ------------------------------------------------------------------- |
+| `npm run tauri dev`       | Launch the app in development (native window + HMR)                 |
+| `npm run dev`             | Run only the Vite dev server (frontend in a browser tab)            |
+| `npm run build`           | Type-check and build the frontend for production                    |
+| `npm run release:windows` | Build the distributable Windows installer (see "Windows release")   |
+| `npm run typecheck`       | Type-check without emitting                                         |
+| `npm run lint`            | Run ESLint                                                          |
+| `npm run format`          | Format the codebase with Prettier                                   |
+| `npm run format:check`    | Check formatting without writing                                    |
+| `npm run test`            | Run the test suite once                                             |
+| `npm run test:watch`      | Run tests in watch mode                                             |
+| `npm run db:seed`         | Create the fictional dev sample dataset (see below)                 |
+| `npm run db:clear`        | Remove the dev sample dataset                                       |
+| `npm run db:reset`        | Clear then re-seed the dev sample dataset                           |
+| `npm run data:validate`   | Validate data/hhn-archive.json and apply it to a throwaway database |
+| `npm run data:import`     | Import the dataset into the app's real database                     |
+| `npm run data:verify`     | Check the imported archive through the app's own browsing logic     |
+| `npm run assets:icons`    | Regenerate the placeholder app icons                                |
+| `npm run assets:fonts`    | Re-download the bundled Inter/Fraunces subsets                      |
 
 ### Requirements
 
@@ -1192,18 +1194,26 @@ tests, and the importer is exercised end to end against real SQLite in
 
 [`data/hhn-archive.json`](data/hhn-archive.json) is the real Halloween Horror
 Nights data, in the format [`docs/archive-dataset-format.md`](docs/archive-dataset-format.md)
-describes. It is validated but **not yet imported by the app**: there is no
-importer UI yet, so a fresh install still starts with an empty archive.
+describes. It is validated, and imported into the archive by a script — there is
+still no importer UI, so a _fresh install_ starts empty until
+`npm run data:import` is run against it.
 
 ```
 npm run data:validate
 ```
 
-runs the same two stages a real import does — `validateDataset` for structure,
-ids and internal references, then `previewImport` against a throwaway database
-with the real migrations applied, which is what catches anything only the
-stored archive could know. It currently reports 16 events, 416 attractions, 468
-sources and 50 relations, applying cleanly to an empty archive.
+runs fourteen checks and writes
+[`docs/research/hhn-import-validation.md`](docs/research/hhn-import-validation.md):
+the format's own validator, then the archive-specific ones (unique ids,
+duplicates, years in scope, park associations, the cross-park decisions, IP
+values, source and media relationships, related-attraction ids, required
+fields), then every cited YouTube URL against YouTube itself, and finally **a
+real import into a throwaway database** — not a plan.
+
+That last stage earns its keep: planning alone passed a dataset that failed on
+execution, because relations were written before the attraction they pointed at
+existed. The importer now appends relations last, and
+`importDataset.test.ts` covers it.
 
 ### What's in it, and what deliberately isn't
 

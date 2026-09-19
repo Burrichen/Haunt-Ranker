@@ -7,6 +7,7 @@ import { getDatabase } from "../database/client";
 import { SCHEMA_VERSION } from "../database/schemaVersion";
 import type { BackupData } from "../models/backup";
 import { PREFERENCE_KEYS } from "../preferences/localPreferences";
+import { APP_VERSION } from "../version";
 import { createBackupRepository } from "../repositories/backupRepository";
 import { useBackup } from "./useBackup";
 
@@ -121,7 +122,7 @@ describe("useBackup", () => {
     const [contents, suggestedName] = mockedSave.mock.calls[0];
     const written = JSON.parse(contents) as Record<string, unknown>;
     expect(written.formatVersion).toBe(1);
-    expect(written.appVersion).toBe("0.1.0");
+    expect(written.appVersion).toBe(APP_VERSION);
     expect(written.schemaVersion).toBe(SCHEMA_VERSION);
     expect(typeof written.exportedAt).toBe("string");
     expect(suggestedName).toMatch(/^haunt-ranker-backup-\d{4}-\d{2}-\d{2}-\d{4}\.json$/);

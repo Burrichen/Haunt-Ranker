@@ -315,6 +315,9 @@ function upsert(
  */
 export function planImport(dataset: ArchiveDataset, state: ArchiveState): PlannedImport {
   const operations: ArchiveOperation[] = [];
+  // Relations are planned separately and appended last, because one can point
+  // at an attraction defined further down the file.
+  const relationOperations: ArchiveOperation[] = [];
   const errors: string[] = [];
   const report: ArchiveImportReport = {
     events: emptyCounts(),
@@ -464,6 +467,9 @@ export function planImport(dataset: ArchiveDataset, state: ArchiveState): Planne
 
       const triple = relationKey(attraction.id, relation.attractionId, relation.type);
       const existing = relationsByTriple.get(triple);
+      // Planned into their own list: a relation can point at an attraction
+      // that appears later in the file, and inserting it before that row
+      // exists breaks a foreign key.
       upsert(
         "attraction_relations",
         (existing?.id as string) ?? generateId(),
@@ -475,7 +481,7 @@ export function planImport(dataset: ArchiveDataset, state: ArchiveState): Planne
         },
         existing,
         report.relations,
-        operations,
+        relationOperations,
       );
     }
 
@@ -496,5 +502,5 @@ export function planImport(dataset: ArchiveDataset, state: ArchiveState): Planne
     }
   }
 
-  return { operations, report, errors };
+  return { operations: [...operations, ...relationOperations], report, errors };
 }

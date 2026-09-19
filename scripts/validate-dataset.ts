@@ -1,31 +1,54 @@
 /**
- * Validates `data/hhn-archive.json` and dry-runs it against a throwaway
- * database, so a dataset revision can be checked before it goes anywhere near
- * a real archive.
+ * Validates `data/hhn-archive.json` and writes a report to
+ * `docs/research/hhn-import-validation.md`.
  *
- * Two stages, matching how an import actually runs:
+ * Four stages, in the order an import would hit them:
  *
- *   1. `validateDataset` — structure, enumerations, id shape and collisions,
- *      and every reference inside the file.
- *   2. `previewImport` against a fresh in-memory database with the real
- *      migrations applied — the checks only the stored archive can make, plus
- *      a count of what an import would create.
+ *   1. `validateDataset` — the format's own validator: structure,
+ *      enumerations, id shape and collisions, and references inside the file.
+ *   2. Archive-specific checks this dataset has to satisfy beyond the format:
+ *      duplicate records, year range, park associations, the cross-park
+ *      merge/separate decisions, IP values, source and media relationships.
+ *   3. Every cited YouTube URL, checked against YouTube itself.
+ *   4. `previewImport` against a throwaway database with the real migrations
+ *      applied — the checks only the stored archive can make.
  *
- * Usage: npm run data:validate
+ * Exits non-zero if anything fails, so nothing that fails validation can be
+ * imported.
+ *
+ * Usage: npm run data:validate [--skip-youtube]
  */
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { DatabaseSync } from "node:sqlite";
-import { readdirSync } from "node:fs";
-import { previewImport } from "../src/archive/importDataset";
+import { importArchiveDataset, previewImport } from "../src/archive/importDataset";
+import type { ArchiveImportReport } from "../src/archive/importOperations";
 import { readDataset } from "../src/archive/validateDataset";
+import type { ArchiveDataset } from "../src/models/archiveDataset";
 import { NodeSqliteExecutor } from "../src/database/nodeSqliteExecutor";
 import { createArchiveImportRepository } from "../src/repositories/archiveImportRepository";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DATASET = join(ROOT, "data", "hhn-archive.json");
 const MIGRATIONS = join(ROOT, "src-tauri", "migrations");
+const REPORT = join(ROOT, "docs", "research", "hhn-import-validation.md");
+
+const MIN_YEAR = 2010;
+const MAX_YEAR = new Date().getFullYear();
+const PARKS = new Set(["hollywood", "orlando"]);
+const TYPES = new Set(["house", "scare_zone"]);
+
+interface Check {
+  name: string;
+  detail: string;
+  failures: string[];
+}
+
+const checks: Check[] = [];
+function check(name: string, detail: string, failures: string[]): void {
+  checks.push({ name, detail, failures });
+}
 
 function freshDatabase() {
   const db = new DatabaseSync(":memory:");
@@ -38,64 +61,308 @@ function freshDatabase() {
   return new NodeSqliteExecutor(db);
 }
 
+/** Stage 2: what this dataset must satisfy beyond the format's own rules. */
+function archiveChecks(dataset: ArchiveDataset): void {
+  const { events, attractions, sources = [] } = dataset;
+  const eventById = new Map(events.map((event) => [event.id, event]));
+  const attractionById = new Map(attractions.map((attraction) => [attraction.id, attraction]));
+  const sourceIds = new Set(sources.map((source) => source.id));
+
+  const allIds = [
+    ...events.map((e) => e.id),
+    ...attractions.map((a) => a.id),
+    ...sources.map((s) => s.id),
+  ];
+  check(
+    "Stable unique ids",
+    `${allIds.length} ids across events, attractions and sources`,
+    allIds.filter((id, index) => allIds.indexOf(id) !== index).map((id) => `duplicate id "${id}"`),
+  );
+
+  check(
+    "Required fields",
+    "every attraction has a name, an event, a type and at least one park",
+    attractions.flatMap((attraction) => {
+      const problems: string[] = [];
+      if (!attraction.name?.trim()) problems.push(`${attraction.id}: no name`);
+      if (!eventById.has(attraction.eventId))
+        problems.push(`${attraction.id}: unknown event "${attraction.eventId}"`);
+      if (!TYPES.has(attraction.type)) problems.push(`${attraction.id}: type "${attraction.type}"`);
+      if (!attraction.parks?.length) problems.push(`${attraction.id}: no park`);
+      return problems;
+    }),
+  );
+
+  check(
+    "No accidental duplicates",
+    "no two records share a name, year, type and park",
+    (() => {
+      const seen = new Map<string, string>();
+      const problems: string[] = [];
+      for (const attraction of attractions) {
+        const year = eventById.get(attraction.eventId)?.calendarYear;
+        for (const park of attraction.parks) {
+          const key = `${year}|${attraction.type}|${park}|${attraction.name.toLowerCase()}`;
+          const first = seen.get(key);
+          if (first) {
+            problems.push(
+              `${attraction.id} repeats ${first} (${attraction.name}, ${year}, ${park})`,
+            );
+          } else {
+            seen.set(key, attraction.id);
+          }
+        }
+      }
+      return problems;
+    })(),
+  );
+
+  check(
+    "Years in scope",
+    `every event year is between ${MIN_YEAR} and ${MAX_YEAR}`,
+    events
+      .filter((event) => event.calendarYear < MIN_YEAR || event.calendarYear > MAX_YEAR)
+      .map((event) => `${event.id}: ${event.calendarYear}`),
+  );
+
+  check(
+    "Park associations",
+    "parks are hollywood and/or orlando, never repeated",
+    attractions.flatMap((attraction) => {
+      const unknown = attraction.parks.filter((park) => !PARKS.has(park));
+      const duplicated = attraction.parks.length !== new Set(attraction.parks).size;
+      return [
+        ...unknown.map((park) => `${attraction.id}: unknown park "${park}"`),
+        ...(duplicated ? [`${attraction.id}: repeats a park`] : []),
+      ];
+    }),
+  );
+
+  const merged = attractions.filter((attraction) => attraction.parks.length > 1);
+  const separated = attractions.filter((attraction) => attraction.variantName);
+  check(
+    "Cross-park decisions",
+    `${merged.length} merged records cover both parks; ${separated.length} separated records carry a variant name and a relation`,
+    [
+      ...merged
+        .filter((attraction) => attraction.variantName)
+        .map((a) => `${a.id}: merged but also carries a variant name`),
+      ...separated
+        .filter((attraction) => attraction.parks.length !== 1)
+        .map((a) => `${a.id}: separated but claims ${a.parks.length} parks`),
+      ...separated
+        .filter(
+          (attraction) =>
+            attraction.parks[0] === "orlando" &&
+            !(attraction.related ?? []).some((relation) =>
+              attractionById.has(relation.attractionId),
+            ),
+        )
+        .map((a) => `${a.id}: separated Orlando record with no relation to its Hollywood twin`),
+    ],
+  );
+
+  check(
+    "Original / licensed values",
+    "IP is original or licensed, and a licensed attraction names its franchise",
+    attractions.flatMap((attraction) => {
+      if (!attraction.ip) {
+        return [];
+      }
+      const problems: string[] = [];
+      if (!["original", "licensed"].includes(attraction.ip.type)) {
+        problems.push(`${attraction.id}: ip.type "${attraction.ip.type}"`);
+      }
+      if (attraction.ip.type === "licensed" && !attraction.ip.franchise?.trim()) {
+        problems.push(`${attraction.id}: licensed with no franchise`);
+      }
+      if (attraction.ip.type === "original" && attraction.ip.franchise) {
+        problems.push(`${attraction.id}: original but names a franchise`);
+      }
+      return problems;
+    }),
+  );
+
+  check(
+    "Source relationships",
+    "every cited source exists, and every source is cited by something",
+    [
+      ...[...events, ...attractions].flatMap((entity) =>
+        (entity.sourceIds ?? [])
+          .filter((id) => !sourceIds.has(id))
+          .map((id) => `${entity.id} cites unknown source "${id}"`),
+      ),
+      ...[...sourceIds]
+        .filter(
+          (id) =>
+            ![...events, ...attractions].some((entity) => (entity.sourceIds ?? []).includes(id)),
+        )
+        .map((id) => `source "${id}" is never cited`),
+    ],
+  );
+
+  check(
+    "Media relationships",
+    "media entries point at a source that exists and carry a URL",
+    [...events, ...attractions].flatMap((entity) =>
+      (entity.media ?? []).flatMap((media) => {
+        const problems: string[] = [];
+        if (!media.url?.trim()) problems.push(`${entity.id}/${media.id}: no url`);
+        if (media.sourceId && !sourceIds.has(media.sourceId)) {
+          problems.push(`${entity.id}/${media.id}: unknown source "${media.sourceId}"`);
+        }
+        if (media.distribution === "bundled" && !media.licenseNotes?.trim()) {
+          problems.push(`${entity.id}/${media.id}: bundled without licence notes`);
+        }
+        return problems;
+      }),
+    ),
+  );
+
+  check(
+    "Related-attraction ids",
+    "every relation points at an attraction in this dataset",
+    attractions.flatMap((attraction) =>
+      (attraction.related ?? [])
+        .filter((relation) => !attractionById.has(relation.attractionId))
+        .map((relation) => `${attraction.id} → unknown "${relation.attractionId}"`),
+    ),
+  );
+}
+
+/** Stage 3: the cited videos, checked against YouTube. */
+async function youtubeChecks(dataset: ArchiveDataset): Promise<void> {
+  const videos = (dataset.sources ?? []).filter((source) => source.type === "youtube");
+  const failures: string[] = [];
+
+  for (const video of videos) {
+    const match = video.url?.match(/[?&]v=([A-Za-z0-9_-]{11})/);
+    if (!match) {
+      failures.push(`${video.id}: "${video.url}" is not a YouTube watch URL`);
+      continue;
+    }
+    const oembed = `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${match[1]}&format=json`;
+    try {
+      const response = await fetch(oembed);
+      if (!response.ok) {
+        failures.push(`${video.id}: ${video.url} responded ${response.status}`);
+      }
+    } catch (error) {
+      failures.push(`${video.id}: ${(error as Error).message}`);
+    }
+  }
+
+  check("YouTube URLs", `${videos.length} cited videos still resolve`, failures);
+}
+
 async function main(): Promise<void> {
-  const result = readDataset(readFileSync(DATASET, "utf8"));
+  const parsed = readDataset(readFileSync(DATASET, "utf8"));
 
-  if (!result.ok) {
-    console.error(`${DATASET} is not a valid dataset:\n`);
-    for (const problem of result.errors) {
-      console.error(`  - ${problem}`);
-    }
+  if (!parsed.ok) {
+    check("Dataset format", "structure, ids and internal references", parsed.errors);
+    writeReport(null);
+    console.error("Format validation failed. See the report.");
     process.exit(1);
   }
 
-  const { dataset, summary } = result;
-  console.log("Format valid.");
+  const { dataset, summary } = parsed;
   console.log(
-    `  format v${summary.formatVersion} | dataset ${summary.datasetVersion ?? "(unversioned)"}`,
+    `Dataset ${summary.datasetVersion ?? "(unversioned)"}: ${summary.events} events, ` +
+      `${summary.attractions} attractions, ${summary.sources} sources, ${summary.relations} relations.\n`,
   );
-  console.log(
-    `  ${summary.events} events, ${summary.attractions} attractions, ${summary.sources} sources, ` +
-      `${summary.characters} characters, ${summary.media} media, ${summary.relations} relations`,
-  );
+  check("Dataset format", "structure, ids and internal references", []);
+  archiveChecks(dataset);
 
-  const plan = await previewImport(dataset, createArchiveImportRepository(freshDatabase()));
+  if (!process.argv.includes("--skip-youtube")) {
+    await youtubeChecks(dataset);
+  }
 
-  if (plan.errors.length > 0) {
-    console.error("\nThe dataset can't be applied to an empty archive:\n");
-    for (const problem of plan.errors) {
-      console.error(`  - ${problem}`);
-    }
+  // Not a plan: a real import into a throwaway database. Planning alone would
+  // have missed a foreign key ordering bug that only showed up on execution.
+  const scratch = createArchiveImportRepository(freshDatabase());
+  const plan = await previewImport(dataset, scratch);
+  check("Plan against an empty archive", "every write the import would make", plan.errors);
+
+  let report: ArchiveImportReport | null = null;
+  try {
+    report = await importArchiveDataset(dataset, createArchiveImportRepository(freshDatabase()));
+    check("Applied to a throwaway database", "the import actually runs end to end", []);
+  } catch (error) {
+    check("Applied to a throwaway database", "the import actually runs end to end", [
+      (error as Error).message,
+    ]);
+  }
+
+  writeReport(report);
+
+  const failed = checks.filter((entry) => entry.failures.length > 0);
+  for (const entry of checks) {
+    const status = entry.failures.length === 0 ? "pass" : `FAIL (${entry.failures.length})`;
+    console.log(`${status.padEnd(10)} ${entry.name}`);
+  }
+  console.log(`\nReport: ${REPORT}`);
+
+  if (failed.length > 0) {
+    console.error(`\n${failed.length} check(s) failed — nothing should be imported.`);
     process.exit(1);
   }
+  console.log("All checks passed.");
+}
 
-  const { report } = plan;
-  console.log("\nDry run against an empty archive:");
-  console.log(`  events      ${report.events.created} created`);
-  console.log(`  attractions ${report.attractions.created} created`);
-  console.log(`  sources     ${report.sources.created} created`);
-  console.log(`  media       ${report.media.created} created`);
-  console.log(`  characters  ${report.characters.created} created`);
-  console.log(`  relations   ${report.relations.created} created`);
-  console.log(`  citations   ${report.citationsAdded} added`);
-  console.log(`  parks       ${report.parkChanges} assignments`);
+function writeReport(report: ArchiveImportReport | null): void {
+  const failed = checks.filter((entry) => entry.failures.length > 0);
+  const lines = [
+    "# Import validation report",
+    "",
+    `Generated by \`npm run data:validate\` on ${new Date().toISOString().slice(0, 10)} against`,
+    "[`data/hhn-archive.json`](../../data/hhn-archive.json).",
+    "",
+    failed.length === 0
+      ? "**Result: all checks passed.** The dataset is safe to import."
+      : `**Result: ${failed.length} check(s) failed. Nothing should be imported until they are fixed.**`,
+    "",
+    "| Check | What it covers | Result |",
+    "| ----- | -------------- | ------ |",
+    ...checks.map(
+      (entry) =>
+        `| ${entry.name} | ${entry.detail} | ${entry.failures.length === 0 ? "pass" : `**${entry.failures.length} failure(s)**`} |`,
+    ),
+    "",
+  ];
 
-  for (const warning of report.warnings) {
-    console.log(`  warning: ${warning}`);
+  for (const entry of failed) {
+    lines.push(`## ${entry.name} — failures`, "");
+    for (const failure of entry.failures.slice(0, 50)) {
+      lines.push(`- ${failure}`);
+    }
+    if (entry.failures.length > 50) {
+      lines.push(`- …and ${entry.failures.length - 50} more`);
+    }
+    lines.push("");
   }
 
-  // How much of the archive is actually documented, rather than merely listed.
-  const withSummary = dataset.attractions.filter((attraction) => attraction.summary).length;
-  const withIp = dataset.attractions.filter((attraction) => attraction.ip).length;
-  const withSources = dataset.attractions.filter(
-    (attraction) => (attraction.sourceIds ?? []).length > 0,
-  ).length;
-  console.log("\nCoverage:");
-  console.log(
-    `  ${withSources}/${dataset.attractions.length} attractions cite at least one source`,
-  );
-  console.log(`  ${withIp}/${dataset.attractions.length} have their IP classified`);
-  console.log(`  ${withSummary}/${dataset.attractions.length} have a summary`);
+  if (report) {
+    lines.push(
+      "## What the import writes",
+      "",
+      "Measured by running it for real against a throwaway database with the",
+      "real migrations applied — not by planning it:",
+      "",
+      `- ${report.events.created} event years`,
+      `- ${report.attractions.created} attractions`,
+      `- ${report.sources.created} sources, ${report.citationsAdded} citations`,
+      `- ${report.relations.created} relations`,
+      `- ${report.characters.created} characters, ${report.media.created} media records`,
+      `- ${report.parkChanges} park assignments`,
+      "",
+      "Nothing in this dataset can write to ratings, notes, rankings or settings:",
+      "the format has no field for them and the importer has no path to those",
+      "tables.",
+      "",
+    );
+  }
+
+  writeFileSync(REPORT, `${lines.join("\n")}\n`);
 }
 
 await main();
