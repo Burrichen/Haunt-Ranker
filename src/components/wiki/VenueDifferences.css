@@ -1,0 +1,30 @@
+.venue-differences {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.venue-differences__name {
+  margin: 0 0 var(--space-2);
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.venue-differences__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.venue-differences__field dt {
+  font-size: 0.8125rem;
+  color: var(--color-text-tertiary);
+}
+
+.venue-differences__field dd {
+  margin: 0;
+  line-height: 1.6;
+}

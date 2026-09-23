@@ -13,6 +13,7 @@ export const PREFERENCE_KEYS = {
   motion: "haunt-ranker:motion",
   attractionViewMode: "haunt-ranker:attraction-view-mode",
   adminMode: "haunt-ranker:admin-mode",
+  hauntScope: "haunt-ranker:haunt-scope",
 } as const;
 
 export type PreferenceKey = keyof typeof PREFERENCE_KEYS;

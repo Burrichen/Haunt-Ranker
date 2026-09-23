@@ -1,7 +1,9 @@
 import { CircleAlert, DoorOpen, LayoutGrid, Rows3, TreePine } from "lucide-react";
 import { useAttractionBrowser } from "../../hooks/useAttractionBrowser";
+import { useHauntScope } from "../../hooks/useHauntScope";
 import { useAttractionViewMode } from "../../hooks/useAttractionViewMode";
 import type { AttractionType } from "../../models/attraction";
+import { attractionTypeLabel } from "../../models/haunt";
 import { ArchiveCard } from "../archive";
 import { EmptyState, LoadingState, SearchInput, SegmentedControl } from "../ui";
 import { AttractionRow } from "./AttractionRow";
@@ -13,9 +15,9 @@ export interface AttractionBrowserProps {
   attractionType: AttractionType;
 }
 
-const TYPE_COPY: Record<AttractionType, { nounPlural: string; icon: typeof DoorOpen }> = {
-  house: { nounPlural: "houses", icon: DoorOpen },
-  scare_zone: { nounPlural: "scare zones", icon: TreePine },
+const TYPE_ICON: Record<AttractionType, typeof DoorOpen> = {
+  house: DoorOpen,
+  scare_zone: TreePine,
 };
 
 /**
@@ -39,8 +41,11 @@ export function AttractionBrowser({ attractionType }: AttractionBrowserProps) {
     areFiltersActive,
   } = useAttractionBrowser(attractionType);
   const [viewMode, setViewMode] = useAttractionViewMode();
+  const { hauntId } = useHauntScope();
 
-  const { nounPlural, icon: TypeIcon } = TYPE_COPY[attractionType];
+  // Whatever the haunt in view calls them: houses, mazes, or both.
+  const nounPlural = attractionTypeLabel(attractionType, hauntId, "many").toLowerCase();
+  const TypeIcon = TYPE_ICON[attractionType];
 
   if (error) {
     return (

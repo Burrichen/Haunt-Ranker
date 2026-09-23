@@ -37,6 +37,7 @@ function makeAttraction(overrides: Partial<Attraction> = {}): Attraction {
     openingDate: null,
     closingDate: null,
     locationNotes: null,
+    debutYear: null,
     parkIds: ["hollywood"],
     isSample: true,
     createdAt: "2026-01-01T00:00:00.000Z",
@@ -49,6 +50,7 @@ function makeEventYear(overrides: Partial<EventYear> = {}): EventYear {
   return {
     id: "y1",
     calendarYear: 2101,
+    hauntId: "hhn",
     name: "Shadowfest 2101",
     description: null,
     sourceNotes: null,
@@ -85,6 +87,8 @@ function makeWikiData(overrides: Partial<AttractionWikiState> = {}): AttractionW
     media: [],
     characters: [],
     sources: [],
+    venueSections: [],
+    appearances: [],
     rating: null,
     note: null,
     relatedItems: [],
@@ -325,5 +329,110 @@ describe("AttractionWiki", () => {
     expect(screen.getByText("Shadowfest 2101")).toBeInTheDocument();
     expect(screen.getByText("Opening")).toBeInTheDocument();
     expect(screen.getByText("Closing")).toBeInTheDocument();
+  });
+
+  describe("what differed between venues", () => {
+    const orlandoSection = {
+      attractionId: "a1",
+      venueId: "orlando" as const,
+      overview: null,
+      storyLore: null,
+      experienceDescription: "The Orlando build added a final room.",
+      developmentNotes: null,
+      locationNotes: null,
+      createdAt: "2026-01-01T00:00:00.000Z",
+      updatedAt: "2026-01-01T00:00:00.000Z",
+    };
+
+    it("shows a venue's differences under the one canonical record", () => {
+      mockedUseAttractionWiki.mockReturnValue(makeWikiData({ venueSections: [orlandoSection] }));
+      renderWiki();
+
+      expect(screen.getByText("At Each Venue")).toBeInTheDocument();
+      expect(screen.getByText("Orlando")).toBeInTheDocument();
+      expect(screen.getByText("The Orlando build added a final room.")).toBeInTheDocument();
+      // A field nobody recorded gets no heading of its own.
+      expect(screen.queryByText("Story / Lore")).not.toBeInTheDocument();
+    });
+
+    it("says nothing at all when there is nothing venue-specific to say", () => {
+      mockedUseAttractionWiki.mockReturnValue(makeWikiData());
+      renderWiki();
+
+      expect(screen.queryByText("At Each Venue")).not.toBeInTheDocument();
+    });
+  });
+
+  describe("which archive a record belongs to", () => {
+    it("names the haunt on the page and in the details", () => {
+      mockedUseAttractionWiki.mockReturnValue(makeWikiData());
+      renderWiki();
+
+      expect(screen.getAllByText("Halloween Horror Nights").length).toBeGreaterThan(0);
+    });
+
+    it("calls a Knott's record a maze, and states a verified debut", () => {
+      mockedUseAttractionWiki.mockReturnValue(
+        makeWikiData({
+          attraction: makeAttraction({ name: "Widows", debutYear: 2024 }),
+          eventYear: makeEventYear({
+            id: "knotts-2024",
+            hauntId: "knotts-scary-farm",
+            calendarYear: 2024,
+            name: "Knott's Scary Farm 2024",
+          }),
+        }),
+      );
+      renderWiki();
+
+      expect(screen.getAllByText("Maze").length).toBeGreaterThan(0);
+      expect(screen.getByText("Debut 2024")).toBeInTheDocument();
+      expect(screen.getByText("Debuted")).toBeInTheDocument();
+    });
+
+    it("lists the seasons it is known to have run in, and only when there are several", () => {
+      const knotts = makeEventYear({
+        id: "knotts-2022",
+        hauntId: "knotts-scary-farm",
+        calendarYear: 2022,
+        name: "Knott's Scary Farm 2022",
+      });
+      mockedUseAttractionWiki.mockReturnValue(
+        makeWikiData({
+          eventYear: knotts,
+          appearances: [
+            knotts,
+            makeEventYear({ id: "knotts-2023", hauntId: "knotts-scary-farm", calendarYear: 2023 }),
+            makeEventYear({ id: "knotts-2024", hauntId: "knotts-scary-farm", calendarYear: 2024 }),
+          ],
+        }),
+      );
+      renderWiki();
+
+      expect(screen.getByText("Known appearances")).toBeInTheDocument();
+      expect(screen.getByText("2022 • 2023 • 2024")).toBeInTheDocument();
+    });
+
+    it("says nothing about appearances when the archive has only seen one season", () => {
+      mockedUseAttractionWiki.mockReturnValue(makeWikiData({ appearances: [makeEventYear()] }));
+      renderWiki();
+
+      // One appearance repeats what the season already says, and claiming
+      // it as a record of returning years would be a fact nobody checked.
+      expect(screen.queryByText("Known appearances")).not.toBeInTheDocument();
+      expect(screen.queryByText("Debuted")).not.toBeInTheDocument();
+    });
+
+    it("keeps one rating panel however many venues a merged record covers", () => {
+      mockedUseAttractionWiki.mockReturnValue(
+        makeWikiData({
+          attraction: makeAttraction({ parkIds: ["hollywood", "orlando"] }),
+        }),
+      );
+      renderWiki();
+
+      expect(screen.getAllByText("My Review")).toHaveLength(1);
+      expect(screen.getAllByTitle(/Ran at/)).toHaveLength(2);
+    });
   });
 });

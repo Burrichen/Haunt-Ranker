@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { getDatabase } from "../database/client";
 import type { Attraction } from "../models/attraction";
+import type { AttractionVenueWiki } from "../models/attractionVenueWiki";
 import type { AttractionRelation } from "../models/attractionRelation";
 import type { Character } from "../models/character";
 import type { EventYear } from "../models/eventYear";
@@ -10,6 +11,8 @@ import type { Rating, RatingInput } from "../models/rating";
 import type { Source } from "../models/source";
 import { createAttractionRelationRepository } from "../repositories/attractionRelationRepository";
 import { createAttractionRepository } from "../repositories/attractionRepository";
+import { createAttractionVenueWikiRepository } from "../repositories/attractionVenueWikiRepository";
+import { createSeasonAppearanceRepository } from "../repositories/seasonAppearanceRepository";
 import { createCharacterRepository } from "../repositories/characterRepository";
 import { createEventYearRepository } from "../repositories/eventYearRepository";
 import { createMediaRepository } from "../repositories/mediaRepository";
@@ -35,6 +38,20 @@ export interface AttractionWikiData {
   media: Media[];
   characters: Character[];
   sources: Source[];
+  /**
+   * What differed at one venue, for an attraction that ran at more than
+   * one. Only sections that actually hold something are here, so the page
+   * never renders an empty heading.
+   */
+  venueSections: AttractionVenueWiki[];
+  /**
+   * Every season this attraction is known to have run in, oldest first.
+   *
+   * It is the archive's record of appearances, not an inference: a record
+   * the archive has only seen once has one, and the page says nothing about
+   * returning years it cannot verify.
+   */
+  appearances: EventYear[];
   /** `null` means genuinely unrated — never treat that as a rating of 0. */
   rating: Rating | null;
   /** The user's own free-text note, kept separate from the archive's facts. */
@@ -68,6 +85,8 @@ const INITIAL_STATE: AttractionWikiData = {
   media: [],
   characters: [],
   sources: [],
+  venueSections: [],
+  appearances: [],
   rating: null,
   note: null,
   relatedItems: [],
@@ -112,6 +131,8 @@ export function useAttractionWiki(attractionId: string | undefined): AttractionW
         const ratingRepo = createRatingRepository(db);
         const noteRepo = createNoteRepository(db);
         const relationRepo = createAttractionRelationRepository(db);
+        const venueWikiRepo = createAttractionVenueWikiRepository(db);
+        const appearanceRepo = createSeasonAppearanceRepository(db);
 
         const attraction = await attractionRepo.getById(attractionId);
         if (!attraction) {
@@ -121,15 +142,28 @@ export function useAttractionWiki(attractionId: string | undefined): AttractionW
           return;
         }
 
-        const [eventYear, media, characters, sources, rating, note, relations] = await Promise.all([
-          eventYearRepo.getById(attraction.eventYearId),
-          mediaRepo.getForAttraction(attraction.id),
-          characterRepo.getByAttraction(attraction.id),
-          sourceRepo.getForAttraction(attraction.id),
-          ratingRepo.getForAttraction(attraction.id),
-          noteRepo.getForAttraction(attraction.id),
-          relationRepo.getForAttraction(attraction.id),
-        ]);
+        const [eventYear, media, characters, sources, venueSections, rating, note, relations] =
+          await Promise.all([
+            eventYearRepo.getById(attraction.eventYearId),
+            mediaRepo.getForAttraction(attraction.id),
+            characterRepo.getByAttraction(attraction.id),
+            sourceRepo.getForAttraction(attraction.id),
+            venueWikiRepo.getByAttraction(attraction.id),
+            ratingRepo.getForAttraction(attraction.id),
+            noteRepo.getForAttraction(attraction.id),
+            relationRepo.getForAttraction(attraction.id),
+          ]);
+
+        // The seasons this record is known to have run in. A Knott's maze
+        // that returned for four years is one record with four of these;
+        // everything else has the one it belongs to.
+        const appearanceRows = await appearanceRepo.getByAttraction(attraction.id);
+        const appearanceSeasons = await Promise.all(
+          appearanceRows.map((appearance) => eventYearRepo.getById(appearance.seasonId)),
+        );
+        const appearances = appearanceSeasons
+          .filter((season): season is EventYear => season !== null)
+          .sort((a, b) => a.calendarYear - b.calendarYear);
 
         const otherIds = Array.from(
           new Set(
@@ -202,6 +236,8 @@ export function useAttractionWiki(attractionId: string | undefined): AttractionW
           media,
           characters,
           sources,
+          venueSections,
+          appearances,
           rating,
           note,
           relatedItems,

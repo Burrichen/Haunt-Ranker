@@ -43,3 +43,55 @@
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
   gap: var(--space-4);
 }
+
+/* Two plain columns: what was new, and what came back. Deliberately lists
+   rather than cards — the season's full line-up is below. */
+.year-archive__lineage {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-1);
+}
+
+@media (max-width: 700px) {
+  .year-archive__lineage {
+    grid-template-columns: 1fr;
+  }
+}
+
+.year-archive__lineage-title {
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-3);
+}
+
+.year-archive__lineage-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.year-archive__lineage-list a {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  font-size: 0.9375rem;
+}
+
+.year-archive__lineage-list a:hover {
+  color: var(--color-orange-strong);
+}
+
+.year-archive__lineage-note {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--color-text-tertiary);
+  line-height: 1.5;
+}

@@ -27,6 +27,7 @@ function makeEventYear(calendarYear: number): EventYear {
   return {
     id: `y${calendarYear}`,
     calendarYear,
+    hauntId: "hhn",
     name: `Shadowfest ${calendarYear}`,
     description: null,
     sourceNotes: null,
@@ -72,6 +73,7 @@ function makeRow(name: string, options: RowOptions = {}): StatisticsRow {
     openingDate: null,
     closingDate: null,
     locationNotes: null,
+    debutYear: null,
     parkIds,
     isSample: true,
     ...TIMESTAMPS,
@@ -359,5 +361,71 @@ describe("availableYears", () => {
     ]);
 
     expect(years).toEqual([2103, 2101]);
+  });
+});
+
+/**
+ * A house that ran at Hollywood and Orlando in the same season is one
+ * canonical attraction with two venues — one record, one rating, one place
+ * in every statistic. These tests are what stops it being counted twice.
+ */
+describe("an attraction that ran at both venues", () => {
+  const dual = makeRow("Dual Venue House", {
+    scores: [5, 5, 5],
+    parkIds: ["hollywood", "orlando"],
+  });
+  const hollywoodOnly = makeRow("Hollywood Only", { scores: [1, 1, 1], parkIds: ["hollywood"] });
+  const orlandoOnly = makeRow("Orlando Only", { scores: [2, 2, 2], parkIds: ["orlando"] });
+  const rows = [dual, hollywoodOnly, orlandoOnly];
+
+  it("counts once overall, and once in each venue's slice", () => {
+    expect(computeCoverage(rows).all).toEqual({ reviewed: 3, total: 3 });
+
+    const hollywood = filterStatisticsRows(rows, filters({ park: "hollywood" }));
+    const orlando = filterStatisticsRows(rows, filters({ park: "orlando" }));
+
+    expect(hollywood.map((row) => row.attraction.name)).toEqual([
+      "Dual Venue House",
+      "Hollywood Only",
+    ]);
+    expect(orlando.map((row) => row.attraction.name)).toEqual(["Dual Venue House", "Orlando Only"]);
+    // Each venue's slice holds it once — never twice for having two venues.
+    expect(hollywood.filter((row) => row.attraction.id === dual.attraction.id)).toHaveLength(1);
+  });
+
+  it("weighs it once in an average, not twice", () => {
+    const [point] = computeYearPerformance(rows, "total");
+
+    // (15 + 3 + 6) / 3 = 8. Counted twice it would be (15 + 15 + 3 + 6) / 4.
+    expect(point.reviewedCount).toBe(3);
+    expect(point.average).toBe(8);
+  });
+
+  it("appears once in the reviewed count and once in the distribution", () => {
+    const coverage = computeCoverage(rows);
+    expect(coverage.houses).toEqual({ reviewed: 3, total: 3 });
+
+    const buckets = computeScoreDistribution(rows);
+    const counted = buckets.reduce((total, bucket) => total + bucket.count, 0);
+    expect(counted).toBe(3);
+  });
+
+  it("takes one place in the Top 10, not one per venue", () => {
+    const top = computeTopAttractions(rows, "total");
+
+    expect(top.map((item) => item.attraction.name)).toEqual([
+      "Dual Venue House",
+      "Orlando Only",
+      "Hollywood Only",
+    ]);
+    expect(top.filter((item) => item.attraction.id === dual.attraction.id)).toHaveLength(1);
+  });
+
+  it("is one attraction in its season, however many venues it ran at", () => {
+    const withSecondYear = [...rows, makeRow("Later House", { scores: [3, 3, 3], year: 2102 })];
+    const points = computeYearPerformance(withSecondYear, "total");
+
+    expect(points.map((point) => point.reviewedCount)).toEqual([3, 1]);
+    expect(availableYears(withSecondYear)).toEqual([2102, 2101]);
   });
 });

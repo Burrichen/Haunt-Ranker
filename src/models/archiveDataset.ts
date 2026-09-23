@@ -53,6 +53,8 @@ export interface ArchiveDataset {
 export interface ArchiveEvent {
   id: string;
   previousIds?: string[];
+  /** Which haunt's season this is. Defaults to Halloween Horror Nights. */
+  hauntId?: string;
   calendarYear: number;
   name: string;
   description?: string | null;
@@ -100,6 +102,16 @@ export interface ArchiveAttraction {
   /** One or two sentences. The card and hover preview use this. */
   summary?: string | null;
   wiki?: ArchiveWikiSections;
+  /**
+   * What was true of one venue's build and not of the record as a whole.
+   *
+   * A house that ran at Hollywood and Orlando under the same name is one
+   * attraction here, however much the two builds differed. This is where
+   * those differences go, so merging never means losing them. Only for
+   * venues the attraction actually ran at, and only where something is
+   * known — an empty entry is a heading with nothing under it.
+   */
+  venueWiki?: ArchiveVenueWiki[];
   /** Where it stood — a soundstage, a lot, a street. */
   location?: string | null;
   dates?: ArchiveDateRange;
@@ -121,6 +133,18 @@ export interface ArchiveWikiSections {
   story?: string | null;
   experience?: string | null;
   development?: string | null;
+}
+
+export interface ArchiveVenueWiki extends ArchiveWikiSections {
+  /** Must be one of the attraction's own parks. */
+  park: ParkId;
+  location?: string | null;
+  /**
+   * Sources that speak for this venue's build rather than for the record as
+   * a whole — a walkthrough of one park's version, say. Ids of entries in
+   * the top-level `sources` list.
+   */
+  sourceIds?: string[];
 }
 
 export interface ArchiveCharacter {

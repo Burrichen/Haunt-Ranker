@@ -12,7 +12,7 @@ import type { ParkId } from "./park";
  * when an older file can no longer be read correctly — a renamed or removed
  * column, a changed meaning, a new required field.
  */
-export const BACKUP_FORMAT_VERSION = 1;
+export const BACKUP_FORMAT_VERSION = 2;
 
 /**
  * A backup is a table-level dump rather than a dump of the domain models.
@@ -22,13 +22,27 @@ export const BACKUP_FORMAT_VERSION = 1;
  * domain model exposes, and a restore that loses them would quietly change
  * the archive. Column names therefore match the database exactly, so what
  * comes out is what goes back in.
- *
- * `parks` is the one table not included: it's fixed reference data seeded by
- * a migration, never user-editable, and an import has no business replacing
- * it.
  */
+export interface HauntRow {
+  id: string;
+  name: string;
+  short_name: string;
+  description: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+/** A venue — Hollywood, Orlando, Knott's Berry Farm — and the haunt it belongs to. */
+export interface VenueRow {
+  id: ParkId;
+  name: string;
+  haunt_id: string;
+}
+
+/** A haunt's season. The calendar year alone was never its identity. */
 export interface EventYearRow {
   id: string;
+  haunt_id: string;
   calendar_year: number;
   name: string;
   description: string | null;
@@ -57,6 +71,7 @@ export interface AttractionRow {
   opening_date: string | null;
   closing_date: string | null;
   location_notes: string | null;
+  debut_year: number | null;
   is_sample: number;
   created_at: string;
   updated_at: string;
@@ -65,6 +80,13 @@ export interface AttractionRow {
 export interface AttractionParkRow {
   attraction_id: string;
   park_id: ParkId;
+}
+
+export interface SeasonAppearanceRow {
+  attraction_id: string;
+  season_id: string;
+  notes: string | null;
+  created_at: string;
 }
 
 export interface CharacterRow {
@@ -102,6 +124,40 @@ export interface SourceRow {
 export interface AttractionSourceRow {
   attraction_id: string;
   source_id: string;
+  venue_id: ParkId | null;
+}
+
+/**
+ * What differed between one venue's version of a merged attraction and the
+ * canonical record. Every field is optional, and an empty one renders as
+ * nothing at all rather than as an empty heading.
+ */
+export interface AttractionVenueWikiRow {
+  attraction_id: string;
+  venue_id: ParkId;
+  overview: string | null;
+  story_lore: string | null;
+  experience_description: string | null;
+  development_notes: string | null;
+  location_notes: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+/**
+ * A migration that could not proceed without choosing between two pieces of
+ * the user's own data, and stopped instead. Carried in backups because the
+ * unresolved question travels with the data it concerns.
+ */
+export interface MigrationConflictRow {
+  id: string;
+  migration: string;
+  kind: string;
+  subject_id: string | null;
+  other_id: string | null;
+  detail: string;
+  resolved_at: string | null;
+  created_at: string;
 }
 
 export interface EventYearSourceRow {
@@ -113,6 +169,7 @@ export interface MediaRow {
   id: string;
   attraction_id: string | null;
   event_year_id: string | null;
+  haunt_id: string | null;
   media_type: string;
   url: string | null;
   local_path: string | null;
@@ -145,6 +202,7 @@ export interface NoteRow {
 
 export interface RankingRow {
   id: string;
+  /** Which list this position belongs to — one haunt's, or all haunts'. */
   scope: string;
   attraction_id: string;
   position: number;
@@ -160,19 +218,24 @@ export interface SettingRow {
 
 /** Every table a backup carries, in an order that satisfies foreign keys. */
 export interface BackupData {
+  haunts: HauntRow[];
+  venues: VenueRow[];
   eventYears: EventYearRow[];
   attractions: AttractionRow[];
   attractionParks: AttractionParkRow[];
+  seasonAppearances: SeasonAppearanceRow[];
   characters: CharacterRow[];
   attractionRelations: AttractionRelationRow[];
   sources: SourceRow[];
   attractionSources: AttractionSourceRow[];
   eventYearSources: EventYearSourceRow[];
   media: MediaRow[];
+  attractionVenueWiki: AttractionVenueWikiRow[];
   ratings: RatingRow[];
   notes: NoteRow[];
   rankings: RankingRow[];
   settings: SettingRow[];
+  migrationConflicts: MigrationConflictRow[];
 }
 
 export type BackupTableKey = keyof BackupData;

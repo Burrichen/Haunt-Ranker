@@ -1,0 +1,54 @@
+.haunt-selector {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  margin-bottom: var(--space-4);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-2);
+}
+
+.haunt-selector__label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+.haunt-selector__options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.haunt-selector__option {
+  appearance: none;
+  text-align: left;
+  padding: var(--space-2) var(--space-2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: var(--color-text-secondary);
+  font: inherit;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard);
+}
+
+.haunt-selector__option:hover {
+  background-color: var(--color-bg-3);
+  color: var(--color-text-primary);
+}
+
+.haunt-selector__option--active,
+.haunt-selector__option--active:hover {
+  background-color: var(--color-orange-subtle);
+  border-color: var(--color-orange-subtle);
+  color: var(--color-orange-strong);
+  font-weight: 600;
+}

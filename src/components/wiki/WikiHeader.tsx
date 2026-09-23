@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { ParkBadgeRow } from "../archive";
 import type { Attraction, AttractionType } from "../../models/attraction";
 import type { EventYear } from "../../models/eventYear";
+import { attractionTypeLabel, HAUNT_NAMES } from "../../models/haunt";
+import { attractionDateLabel } from "../../utils/hauntDisplay";
 import { cn } from "../../utils/cn";
 import { Badge, IconButton } from "../ui";
 import "./WikiHeader.css";
@@ -15,11 +17,6 @@ export interface WikiHeaderProps {
   posterUrl: string | null;
   backTo: string;
 }
-
-const TYPE_LABEL: Record<AttractionType, string> = {
-  house: "House",
-  scare_zone: "Scare Zone",
-};
 
 const TYPE_ICON: Record<AttractionType, typeof DoorOpen> = {
   house: DoorOpen,
@@ -38,6 +35,7 @@ const IP_LABEL: Record<NonNullable<Attraction["ipType"]>, string> = {
  */
 export function WikiHeader({ attraction, eventYear, posterUrl, backTo }: WikiHeaderProps) {
   const [imageFailed, setImageFailed] = useState(false);
+  const hauntId = eventYear?.hauntId ?? null;
   const navigate = useNavigate();
   const showImage = Boolean(posterUrl) && !imageFailed;
   const TypeIcon = TYPE_ICON[attraction.attractionType];
@@ -75,10 +73,17 @@ export function WikiHeader({ attraction, eventYear, posterUrl, backTo }: WikiHea
         </div>
 
         <div className="wiki-header__info">
+          {/* Which archive this record belongs to comes first: on a page
+              reached from search or a link, it is the thing a reader most
+              needs to know. */}
+          {hauntId && <p className="wiki-header__haunt">{HAUNT_NAMES[hauntId].name}</p>}
+
           <div className="wiki-header__badges">
-            {eventYear && <Badge variant="neutral">{eventYear.calendarYear}</Badge>}
+            {attractionDateLabel(attraction, eventYear) && (
+              <Badge variant="neutral">{attractionDateLabel(attraction, eventYear)}</Badge>
+            )}
             <Badge variant={attraction.attractionType === "house" ? "orange" : "purple"}>
-              {TYPE_LABEL[attraction.attractionType]}
+              {attractionTypeLabel(attraction.attractionType, hauntId)}
             </Badge>
             {attraction.ipType && <Badge variant="neutral">{IP_LABEL[attraction.ipType]}</Badge>}
           </div>

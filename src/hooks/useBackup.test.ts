@@ -5,7 +5,7 @@ import { buildBackupFile, serializeBackup } from "../backup/backupFormat";
 import { importBackupFile } from "../backup/importBackup";
 import { getDatabase } from "../database/client";
 import { SCHEMA_VERSION } from "../database/schemaVersion";
-import type { BackupData } from "../models/backup";
+import { BACKUP_FORMAT_VERSION, type BackupData } from "../models/backup";
 import { PREFERENCE_KEYS } from "../preferences/localPreferences";
 import { APP_VERSION } from "../version";
 import { createBackupRepository } from "../repositories/backupRepository";
@@ -31,26 +31,40 @@ const mockedGetDatabase = vi.mocked(getDatabase);
 
 function emptyData(): BackupData {
   return {
+    haunts: [],
+    venues: [],
     eventYears: [],
     attractions: [],
     attractionParks: [],
+    seasonAppearances: [],
     characters: [],
     attractionRelations: [],
     sources: [],
     attractionSources: [],
     eventYearSources: [],
     media: [],
+    attractionVenueWiki: [],
     ratings: [],
     notes: [],
     rankings: [],
     settings: [],
+    migrationConflicts: [],
   };
 }
 
 function backupText(preferences = {}): string {
   const data = emptyData();
+  data.haunts.push({
+    id: "hhn",
+    name: "Halloween Horror Nights",
+    short_name: "HHN",
+    description: null,
+    created_at: "2026-01-01T00:00:00.000Z",
+    updated_at: "2026-01-01T00:00:00.000Z",
+  });
   data.eventYears.push({
     id: "y9",
+    haunt_id: "hhn",
     calendar_year: 2102,
     name: "Shadowfest 2102",
     description: null,
@@ -121,7 +135,7 @@ describe("useBackup", () => {
 
     const [contents, suggestedName] = mockedSave.mock.calls[0];
     const written = JSON.parse(contents) as Record<string, unknown>;
-    expect(written.formatVersion).toBe(1);
+    expect(written.formatVersion).toBe(BACKUP_FORMAT_VERSION);
     expect(written.appVersion).toBe(APP_VERSION);
     expect(written.schemaVersion).toBe(SCHEMA_VERSION);
     expect(typeof written.exportedAt).toBe("string");
@@ -177,7 +191,7 @@ describe("useBackup", () => {
     });
 
     expect(result.current.pendingImport?.path).toBe("C:/good.json");
-    expect(result.current.pendingImport?.summary.totalRows).toBe(1);
+    expect(result.current.pendingImport?.summary.totalRows).toBe(2);
     expect(mockedImport).not.toHaveBeenCalled();
   });
 

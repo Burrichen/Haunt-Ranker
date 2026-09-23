@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { BACKUP_TABLES } from "../backup/backupTables";
-import { ARCHIVE_TABLE_KEYS, PERSONAL_TABLE_KEYS } from "./archiveTables";
+import { ARCHIVE_TABLE_KEYS, LOCAL_TABLE_KEYS, PERSONAL_TABLE_KEYS } from "./archiveTables";
 
 /**
  * The partition between "facts about the event" and "what the user thinks" is
@@ -9,7 +9,7 @@ import { ARCHIVE_TABLE_KEYS, PERSONAL_TABLE_KEYS } from "./archiveTables";
  */
 describe("the archive / personal split", () => {
   it("classifies every table exactly once", () => {
-    const classified = [...ARCHIVE_TABLE_KEYS, ...PERSONAL_TABLE_KEYS];
+    const classified = [...ARCHIVE_TABLE_KEYS, ...PERSONAL_TABLE_KEYS, ...LOCAL_TABLE_KEYS];
     const all = BACKUP_TABLES.map((table) => table.key);
 
     expect([...classified].sort()).toEqual([...all].sort());

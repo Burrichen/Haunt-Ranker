@@ -3,10 +3,13 @@ import { DoorOpen, Star, TreePine } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { Attraction, AttractionType } from "../../models/attraction";
 import type { EventYear } from "../../models/eventYear";
+import { attractionTypeLabel } from "../../models/haunt";
+import { useHauntScope } from "../../hooks/useHauntScope";
 import type { Rating } from "../../models/rating";
 import { RATING_TOTAL_MAX } from "../../models/rating";
 import { cn } from "../../utils/cn";
 import { formatScore } from "../../utils/formatScore";
+import { attractionDateLabel, hauntNameOf } from "../../utils/hauntDisplay";
 import { Badge, Panel } from "../ui";
 import { ParkBadgeRow } from "./ParkBadge";
 import "./ArchiveCard.css";
@@ -19,11 +22,6 @@ export interface ArchiveCardProps {
   /** `null`/omitted means genuinely unrated — renders a "Not Rated" badge, never a 0. */
   rating?: Rating | null;
 }
-
-const TYPE_LABEL: Record<AttractionType, string> = {
-  house: "House",
-  scare_zone: "Scare Zone",
-};
 
 const TYPE_ICON: Record<AttractionType, typeof DoorOpen> = {
   house: DoorOpen,
@@ -43,8 +41,11 @@ const IP_LABEL: Record<NonNullable<Attraction["ipType"]>, string> = {
  */
 export function ArchiveCard({ attraction, eventYear, posterUrl, rating }: ArchiveCardProps) {
   const [imageFailed, setImageFailed] = useState(false);
+  const { isAllHaunts } = useHauntScope();
   const showImage = Boolean(posterUrl) && !imageFailed;
   const TypeIcon = TYPE_ICON[attraction.attractionType];
+  const hauntName = hauntNameOf(eventYear?.hauntId);
+  const dateLabel = attractionDateLabel(attraction, eventYear);
 
   return (
     <Link to={`/attractions/${attraction.id}`} className="archive-card-link">
@@ -72,12 +73,15 @@ export function ArchiveCard({ attraction, eventYear, posterUrl, rating }: Archiv
         </div>
         <div className="archive-card__body">
           <div className="archive-card__meta">
-            {eventYear && <span className="archive-card__year">{eventYear.calendarYear}</span>}
+            {dateLabel && <span className="archive-card__year">{dateLabel}</span>}
             <Badge variant={attraction.attractionType === "house" ? "orange" : "purple"}>
-              {TYPE_LABEL[attraction.attractionType]}
+              {attractionTypeLabel(attraction.attractionType, eventYear?.hauntId ?? null)}
             </Badge>
           </div>
           <h3 className="archive-card__name">{attraction.name}</h3>
+          {/* With both archives on screen a record has to say which one it
+              is from; inside a haunt that would be on every card. */}
+          {isAllHaunts && hauntName && <p className="archive-card__haunt">{hauntName}</p>}
           <div className="archive-card__badges">
             {attraction.ipType && <Badge variant="neutral">{IP_LABEL[attraction.ipType]}</Badge>}
             {rating ? (

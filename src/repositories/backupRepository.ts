@@ -10,8 +10,8 @@ export interface BackupRepository {
   /** What's in the database now — for showing the user what an import would replace. */
   counts(): Promise<BackupTableCount[]>;
   /**
-   * Replaces every backed-up table with the given data. Reference data
-   * (`parks`) is left alone.
+   * Replaces every backed-up table with the given data. Reference data —
+   * haunts and venues — is added to but never emptied.
    */
   replaceAll(data: BackupData): Promise<void>;
   /** The highest applied migration version, or null where that isn't recorded. */
@@ -50,13 +50,20 @@ export function createBackupRepository(db: SqlExecutor): BackupRepository {
       // so no delete ever trips a foreign key (and nothing relies on
       // cascade behaviour to do it silently).
       for (const spec of [...BACKUP_TABLES].reverse()) {
+        if (spec.reference) {
+          continue;
+        }
         await db.execute(`DELETE FROM ${spec.table}`);
       }
 
       for (const spec of BACKUP_TABLES) {
         const columns = columnNames(spec);
         const placeholders = columns.map(() => "?").join(", ");
-        const statement = `INSERT INTO ${spec.table} (${columns.join(", ")}) VALUES (${placeholders})`;
+        // Reference rows are already there, seeded by a migration. A backup
+        // may name one this build has never heard of, which is worth
+        // keeping; it may not redefine one this build relies on.
+        const verb = spec.reference ? "INSERT OR IGNORE INTO" : "INSERT INTO";
+        const statement = `${verb} ${spec.table} (${columns.join(", ")}) VALUES (${placeholders})`;
 
         for (const row of data[spec.key] ?? []) {
           const values = columns.map(

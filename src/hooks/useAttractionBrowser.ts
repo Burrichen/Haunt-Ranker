@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getDatabase } from "../database/client";
+import { useHauntScope } from "./useHauntScope";
 import { pickMediaSrc } from "../media/mediaFiles";
 import type { AttractionType } from "../models/attraction";
 import type { Media } from "../models/media";
+import { isInHauntScope } from "../models/haunt";
 import { allTimeScope } from "../models/ranking";
 import { createAttractionRepository } from "../repositories/attractionRepository";
 import { createEventYearRepository } from "../repositories/eventYearRepository";
@@ -67,6 +69,7 @@ export interface AttractionBrowser {
 export function useAttractionBrowser(attractionType: AttractionType): AttractionBrowser {
   const [searchParams, setSearchParams] = useSearchParams();
   const [data, setData] = useState<DataState>(INITIAL_DATA_STATE);
+  const { scope } = useHauntScope();
 
   useEffect(() => {
     let cancelled = false;
@@ -174,19 +177,27 @@ export function useAttractionBrowser(attractionType: AttractionType): Attraction
   );
   const clearFilters = useCallback(() => updateParams(DEFAULT_FILTERS, sort), [updateParams, sort]);
 
+  // The haunt in view narrows the archive before any filter does, so the
+  // year list, the result count and the rows themselves all describe the
+  // same thing.
+  const scopedRows = useMemo(
+    () => data.allRows.filter((row) => isInHauntScope(row.eventYear?.hauntId, scope)),
+    [data.allRows, scope],
+  );
+
   const availableYears = useMemo(() => {
     const years = new Set<number>();
-    for (const row of data.allRows) {
+    for (const row of scopedRows) {
       if (row.eventYear) {
         years.add(row.eventYear.calendarYear);
       }
     }
     return Array.from(years).sort((a, b) => b - a);
-  }, [data.allRows]);
+  }, [scopedRows]);
 
   const rows = useMemo(
-    () => filterAndSortRows(data.allRows, filters, sort),
-    [data.allRows, filters, sort],
+    () => filterAndSortRows(scopedRows, filters, sort),
+    [scopedRows, filters, sort],
   );
 
   return {

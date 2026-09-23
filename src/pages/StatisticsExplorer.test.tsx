@@ -24,6 +24,7 @@ const TIMESTAMPS = {
 const eventYear: EventYear = {
   id: "y2101",
   calendarYear: 2101,
+  hauntId: "hhn",
   name: "Shadowfest 2101",
   description: null,
   sourceNotes: null,
@@ -52,6 +53,7 @@ function makeAttraction(name: string): Attraction {
     openingDate: null,
     closingDate: null,
     locationNotes: null,
+    debutYear: null,
     parkIds: ["hollywood", "orlando"],
     isSample: true,
     ...TIMESTAMPS,
@@ -154,7 +156,8 @@ describe("StatisticsExplorer", () => {
       expect(screen.getByRole("radiogroup", { name: "Metric" })).toBeInTheDocument();
       expect(screen.getByRole("radiogroup", { name: "Direction" })).toBeInTheDocument();
       expect(screen.getByRole("radiogroup", { name: "Attraction type" })).toBeInTheDocument();
-      expect(screen.getByRole("radiogroup", { name: "Park" })).toBeInTheDocument();
+      expect(screen.getByRole("radiogroup", { name: "Venue" })).toBeInTheDocument();
+      expect(screen.getByRole("radiogroup", { name: "Haunt" })).toBeInTheDocument();
       expect(screen.getByRole("radiogroup", { name: "IP classification" })).toBeInTheDocument();
       expect(screen.getByRole("button", { name: "All years" })).toBeInTheDocument();
     });
@@ -234,8 +237,8 @@ describe("StatisticsExplorer", () => {
       expect(rows[1]).toHaveTextContent("Terror House");
       expect(rows[1]).toHaveTextContent("2101");
       expect(rows[1]).toHaveTextContent("12.0");
-      expect(within(rows[1]).getAllByTitle("Hollywood").length).toBe(1);
-      expect(within(rows[1]).getAllByTitle("Orlando").length).toBe(1);
+      expect(within(rows[1]).getAllByTitle(/Hollywood/).length).toBe(1);
+      expect(within(rows[1]).getAllByTitle(/Orlando/).length).toBe(1);
     });
 
     it("links each attraction to its wiki page", () => {

@@ -1,8 +1,9 @@
 # Haunt Ranker
 
 A local-first Windows desktop app for browsing, reviewing and ranking Halloween
-Horror Nights attractions — houses, scare zones, and years — built with
-Tauri, React, TypeScript and SQLite.
+haunt attractions — houses, mazes, scare zones and seasons, across Halloween
+Horror Nights and Knott's Scary Farm — built with Tauri, React, TypeScript and
+SQLite.
 
 This repository has the application shell, design system, a fully
 migrated/tested SQLite data layer, and every browsing page built on top of
@@ -15,7 +16,9 @@ Admin Mode for editing the archive itself (see "Admin Mode"), and a complete
 Settings page with a portable export/import backup (see "Settings and
 backups"). It packages as a per-user Windows installer (see "Windows
 release"), and carries the real Halloween Horror Nights dataset for 2010-2026
-(see "The archive dataset"), validated but not yet imported by the app.
+(see "The archive dataset"). It holds two haunts as equals — Halloween Horror
+Nights and Knott's Scary Farm — throughout the schema and the interface (see
+"Two haunts"); the Knott's archive itself has not been entered yet.
 
 ## Stack
 
@@ -1202,10 +1205,11 @@ still no importer UI, so a _fresh install_ starts empty until
 npm run data:validate
 ```
 
-runs fourteen checks and writes
+runs fifteen checks and writes
 [`docs/research/hhn-import-validation.md`](docs/research/hhn-import-validation.md):
 the format's own validator, then the archive-specific ones (unique ids,
-duplicates, years in scope, park associations, the cross-park decisions, IP
+duplicates, years in scope, park associations, one record per name per season,
+the cross-park decisions, IP
 values, source and media relationships, related-attraction ids, required
 fields), then every cited YouTube URL against YouTube itself, and finally **a
 real import into a throwaway database** — not a plan.
@@ -1217,13 +1221,13 @@ existed. The importer now appends relations last, and
 
 ### What's in it, and what deliberately isn't
 
-The dataset covers **2010–2026** at both parks — the scope cap, not the limit of
+The dataset covers **2010–2026** at both parks (367 canonical attractions) — the scope cap, not the limit of
 what exists; the [research](docs/research/) established that usable material
 goes back to Orlando 1991.
 
 Every attraction carries what can be sourced: name, event year, type, parks, IP
 classification and franchise, the venue it was housed in, and at least one
-source. **394 of 416 have their IP classified** from each page's own "Based on"
+source. **Most records have their IP classified** from each page's own "Based on"
 field; the other 22 are left unclassified rather than guessed.
 
 **Only 20 attractions have a summary**, and that is the point rather than an
@@ -1250,8 +1254,159 @@ Universal's own press release and NBCUniversal's corporate guide as
 research verified, as `youtube`, with the channel as publisher; nothing is
 downloaded or repackaged.
 
-Two attractions are single records covering both parks, where a source
-described the two builds as essentially the same. The other 50 same-year
-cross-park pairs are separate records carrying "Orlando version" or "Hollywood
-version" and a `related_concept` relation between them — the reasoning is in
-[the catalogue research](docs/research/hhn-attraction-catalogue.md).
+**51 attractions are single records covering both parks.** Two were merged
+during the catalogue research, where a source described the two builds as
+essentially the same; the other 49 were merged by the canonical cross-park rule
+(see "Two haunts"), which makes the same name in the same season one attraction
+whatever the two builds did differently. What each park's version had of its
+own — the venue it stood in, the sources describing it — is kept as a per-venue
+section of the record rather than discarded. The research that first separated
+them is still in
+[the catalogue research](docs/research/hhn-attraction-catalogue.md); the merge
+itself is reproducible with `npx tsx scripts/merge-cross-park.ts`.
+
+## Two haunts
+
+Haunt Ranker holds two Halloween events, and neither is an add-on to the
+other: **Halloween Horror Nights** (`hhn`) and **Knott's Scary Farm**
+(`knotts-scary-farm`). Migrations `0008_haunts_and_seasons.sql` and
+`0009_merge_hhn_cross_park.sql` introduced them without rebuilding the app or
+touching a single rating.
+
+### The shape
+
+```
+haunt ──< season ──< attraction
+  │                     │
+  └──< venue >──────────┘   (attraction_parks, now haunt-aware)
+```
+
+The domain calls them **haunts, seasons and venues**; the tables are still
+`haunts`, `event_years`, `parks` and `attraction_parks`. That mismatch is
+deliberate. `event_years` already had exactly the properties a season needs —
+a stable string id that isn't the year, a calendar year, a display name, run
+dates — so it became the season table by gaining a `haunt_id`, rather than
+being rebuilt under a new name while a user's database and every backup they
+have point at the old one. `EventYear`/`HauntSeason` and `Park`/`Venue` are
+aliases of each other in `src/models/`.
+
+| Concept    | Table                | Ids                                               |
+| ---------- | -------------------- | ------------------------------------------------- |
+| Haunt      | `haunts`             | `hhn`, `knotts-scary-farm`                        |
+| Season     | `event_years`        | e.g. `hhn-2024`, unique per `(haunt, year, name)` |
+| Venue      | `parks`              | `hollywood`, `orlando`, `knotts-berry-farm`       |
+| Appearance | `season_appearances` | one row per attraction per season it ran in       |
+
+A season is never identified by its calendar year alone — both haunts hold a
+2024 — and an attraction that returns is **one rankable record with several
+appearances**, not a new record each year. `attractions.debut_year` is the
+year something genuinely first ran, left null unless a source establishes it;
+it is deliberately not "the earliest year the archive happens to hold".
+
+### The cross-park rule
+
+For Halloween Horror Nights, the same attraction name in the same season at
+Hollywood and Orlando is **one canonical attraction carrying both venues** —
+one rating, one note, one place in a ranking — however much the two builds
+differed in layout, facade, scenes or scare actors.
+
+Matching is deliberately literal: names are compared after trimming,
+lowercasing and collapsing runs of spaces, and nothing else. No fuzzy
+matching, nothing merged for sharing a franchise or a similar title, and never
+across seasons or across haunts.
+
+Merging never costs a fact. What was true of one build and not the other moves
+into `attraction_venue_wiki` and renders as a per-venue subsection of the
+article — and only where something is actually recorded, never as an empty
+heading. Sources that speak for one park's version keep that attribution in
+`attraction_sources.venue_id`.
+
+Where **both** records carry a rating or a note, migration 0009 does not choose
+between them. It leaves both records exactly as they are and writes a row to
+`migration_conflicts`, so the clash is resolved by a person with nothing lost
+in the meantime. `createMigrationConflictRepository` reads that log.
+
+The survivor of a merge is the **lowest id** in the group, which is also the id
+the dataset names as canonical — so an upgraded database and a fresh install
+that imports the file end up with the same archive. The upgrade path was run
+end to end: 416 split records became 367 canonical ones with 49 merge reports
+and no conflicts, after which importing the dataset created nothing new and the
+rating on a merged-away record was found on the canonical one.
+
+### The haunt in view
+
+One choice runs through the whole app: which haunt is being looked at. It
+lives in `HauntScopeProvider` above the shell, is read by every page through
+`useHauntScope`, and is **remembered in local storage** — relaunching lands
+where the user left off rather than resetting to one haunt's archive. The
+default is All Haunts, because neither archive is the app's real subject with
+the other bolted on.
+
+The selector sits in the sidebar as three equal rows, not a dropdown. What the
+choice changes:
+
+| Where               | Under a haunt        | Under All Haunts                 |
+| ------------------- | -------------------- | -------------------------------- |
+| Nav and page titles | Houses / Mazes       | Houses & Mazes                   |
+| Attraction browser  | that haunt's records | both haunts' records             |
+| Years               | that haunt's seasons | both, each card naming its haunt |
+| Statistics          | that haunt's figures | both, with a Haunt facet         |
+| Rankings            | that haunt's lists   | the All Haunts lists             |
+| Cards and rows      | no haunt line        | the haunt named on each record   |
+
+Home is the exception: it always offers **both archives as equal entry
+points** — same size, same figures, same weight, differing only in accent —
+alongside a whole-archive search and the Rankings, Statistics and Years links.
+Choosing one sets the haunt in view, so the archive it opens already speaks
+that haunt's vocabulary. No artwork is generated for either: the entry points
+are typographic, like every other fallback in the app.
+
+A record is dated by its **verified debut** where one exists ("Debut 2024") and
+by its season otherwise. A wiki page names its haunt, and lists **Known
+appearances** only when the archive has verified more than one — a single
+appearance says nothing the season hasn't already said. A Knott's season page
+reads as **New This Year** and **Returning**, and where the archive can't place
+a record it says "Returning attraction archive not yet complete" rather than
+guessing (`src/utils/seasonLineage.ts`).
+
+A merged HHN attraction is one card carrying **both venue icons**, never two
+cards; each icon's tooltip says where it ran.
+
+### Vocabulary
+
+HHN has **Houses**; Knott's has **Mazes**; both have **Scare Zones**. The
+database calls the type `house` for both, and `attractionTypeLabel(type,
+hauntId)` in `src/models/haunt.ts` is the only place that decides what a reader
+sees. A list spanning both haunts says **"Houses & Mazes"**, because either
+haunt's own word would be wrong there. Internal terms like `walkthrough` never
+reach the UI.
+
+### Rankings
+
+Every ranking scope exists per haunt and across all haunts: HHN Houses, HHN
+Scare Zones, Knott's Mazes, Knott's Scare Zones, and the All Haunts lists.
+They are separate lists and are mutually non-destructive — ordering one never
+writes to another. All Haunts keeps the unprefixed scope keys (`houses:all`,
+`scare_zones:all`, `attractions:all`), so every ranking saved before there was
+a second haunt is still exactly where it was.
+
+### Statistics
+
+Statistics count canonical attractions, so an attraction that ran at both
+venues is counted **once** overall, once in Hollywood's slice and once in
+Orlando's — never twice for having two venues. `statistics.test.ts` covers
+that for averages, reviewed counts, distributions, the Top 10 and per-season
+figures.
+
+### Backups
+
+The backup format is at **version 2**, carrying haunts, venues, seasons,
+appearances, venue-specific wiki sections, debut years, ranking scopes and the
+migration conflict log alongside everything version 1 held. **Version 1
+backups still import**, through a registered upgrade rather than a special
+case: their seasons are read as HHN (all that existed when they were written),
+each attraction's appearance is recovered from the season it belonged to, and
+nothing is invented — debut years and venue sections arrive empty because a
+version 1 file genuinely says nothing about them. Haunts and venues are
+carried in the file for completeness but are never deleted by an import, so a
+restore can't leave an app with no haunts.

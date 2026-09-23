@@ -29,6 +29,7 @@ describe("rankings URL params", () => {
   it("round-trips a fully specified view", () => {
     const params: RankingsParams = {
       group: "all",
+      haunt: "hhn",
       mode: "manual",
       filters: {
         years: [2101, 2102],

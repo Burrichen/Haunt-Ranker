@@ -2,9 +2,12 @@ import { DoorOpen, TreePine } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { Attraction, AttractionType } from "../../models/attraction";
 import type { EventYear } from "../../models/eventYear";
+import { attractionTypeLabel } from "../../models/haunt";
 import type { Rating } from "../../models/rating";
 import { cn } from "../../utils/cn";
 import { formatScore } from "../../utils/formatScore";
+import { attractionDateLabel, hauntNameOf } from "../../utils/hauntDisplay";
+import { useHauntScope } from "../../hooks/useHauntScope";
 import { Badge, Panel } from "../ui";
 import { ParkBadgeRow } from "./ParkBadge";
 import "./AttractionPreviewCard.css";
@@ -16,11 +19,6 @@ export interface AttractionPreviewCardProps {
   rating: Rating | null;
   className?: string;
 }
-
-const TYPE_LABEL: Record<AttractionType, string> = {
-  house: "House",
-  scare_zone: "Scare Zone",
-};
 
 const TYPE_ICON: Record<AttractionType, typeof DoorOpen> = {
   house: DoorOpen,
@@ -46,6 +44,9 @@ export function AttractionPreviewCard({
   className,
 }: AttractionPreviewCardProps) {
   const TypeIcon = TYPE_ICON[attraction.attractionType];
+  const { isAllHaunts } = useHauntScope();
+  const hauntName = hauntNameOf(eventYear?.hauntId);
+  const dateLabel = attractionDateLabel(attraction, eventYear);
 
   return (
     <Link
@@ -61,11 +62,12 @@ export function AttractionPreviewCard({
         </div>
 
         <div className="attraction-preview-card__meta">
-          {eventYear && (
-            <span className="attraction-preview-card__year">{eventYear.calendarYear}</span>
+          {dateLabel && <span className="attraction-preview-card__year">{dateLabel}</span>}
+          {isAllHaunts && hauntName && (
+            <span className="attraction-preview-card__haunt">{hauntName}</span>
           )}
           <Badge variant={attraction.attractionType === "house" ? "orange" : "purple"}>
-            {TYPE_LABEL[attraction.attractionType]}
+            {attractionTypeLabel(attraction.attractionType, eventYear?.hauntId ?? null)}
           </Badge>
           {attraction.ipType && <Badge variant="neutral">{IP_LABEL[attraction.ipType]}</Badge>}
         </div>

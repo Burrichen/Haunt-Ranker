@@ -25,7 +25,7 @@ export type ArchiveOperation =
       changes: Record<string, unknown>;
       previous: Record<string, unknown>;
     }
-  | { kind: "link"; table: string; key: Record<string, string> }
+  | { kind: "link"; table: string; key: Record<string, string | null> }
   | { kind: "unlink"; table: string; key: Record<string, string> }
   | { kind: "rename"; entity: "attraction" | "eventYear"; from: string; to: string };
 
@@ -63,6 +63,10 @@ export interface ArchiveState {
   sources: Map<string, Record<string, unknown>>;
   media: Map<string, Record<string, unknown>>;
   attractionParks: Set<string>;
+  /** `attraction id|season id` for every appearance already recorded. */
+  seasonAppearances: Set<string>;
+  /** `attraction id|venue id` → the stored venue-specific wiki row. */
+  venueWiki: Map<string, Record<string, unknown>>;
   attractionSources: Set<string>;
   eventYearSources: Set<string>;
   /** Attraction id → how many ratings, notes and ranking rows point at it. */
@@ -95,6 +99,15 @@ export function relationKey(attractionId: string, relatedId: string, type: strin
   return [attractionId, relatedId, type].join(SEPARATOR);
 }
 
+/** The prose columns of a venue-specific section, in the order they are written. */
+const VENUE_WIKI_COLUMNS = [
+  "overview",
+  "story_lore",
+  "experience_description",
+  "development_notes",
+  "location_notes",
+];
+
 function emptyCounts(): ImportCounts {
   return { created: 0, updated: 0, unchanged: 0 };
 }
@@ -105,6 +118,7 @@ function nullable(value: unknown): string | null {
 
 function eventRow(event: ArchiveEvent): Record<string, unknown> {
   return {
+    haunt_id: event.hauntId ?? "hhn",
     calendar_year: event.calendarYear,
     name: event.name,
     description: nullable(event.description),
@@ -188,6 +202,33 @@ function remapLinks(links: Set<string>, from: string, to: string): void {
   }
 }
 
+/** The same, for a set keyed the other way round — appearances by season. */
+function remapSecond(links: Set<string>, from: string, to: string): void {
+  for (const link of [...links]) {
+    const [owner, other] = link.split(SEPARATOR);
+    if (other === from) {
+      links.delete(link);
+      links.add(pairKey(owner, to));
+    }
+  }
+}
+
+/** Re-keys a map of rows keyed `owner id|other id`, following a rename. */
+function remapKeyedRows(
+  rows: Map<string, Record<string, unknown>>,
+  column: string,
+  from: string,
+  to: string,
+): void {
+  for (const [key, row] of [...rows]) {
+    const [owner, other] = key.split(SEPARATOR);
+    if (owner === from) {
+      rows.delete(key);
+      rows.set(pairKey(to, other), { ...row, [column]: to });
+    }
+  }
+}
+
 function remapColumn(
   rows: Map<string, Record<string, unknown>>,
   column: string,
@@ -222,6 +263,8 @@ function remapState(
       state.attractions.set(to, { ...row, id: to, slug: to });
     }
     remapLinks(state.attractionParks, from, to);
+    remapLinks(state.seasonAppearances, from, to);
+    remapKeyedRows(state.venueWiki, "attraction_id", from, to);
     remapLinks(state.attractionSources, from, to);
     remapColumn(state.characters, "attraction_id", from, to);
     remapColumn(state.media, "attraction_id", from, to);
@@ -236,6 +279,7 @@ function remapState(
     state.eventYears.set(to, { ...row, id: to });
   }
   remapLinks(state.eventYearSources, from, to);
+  remapSecond(state.seasonAppearances, from, to);
   remapColumn(state.attractions, "event_year_id", from, to);
   remapColumn(state.media, "event_year_id", from, to);
 }
@@ -415,6 +459,66 @@ export function planImport(dataset: ArchiveDataset, state: ArchiveState): Planne
       { is_sample: 0 },
     );
 
+    // The season an attraction belongs to is also a season it appeared in.
+    // Appearances are only ever added here: a dataset says where a record
+    // belongs, and never that some other season it ran in didn't happen.
+    if (!state.seasonAppearances.has(pairKey(attraction.id, attraction.eventId))) {
+      operations.push({
+        kind: "link",
+        table: "season_appearances",
+        key: { attraction_id: attraction.id, season_id: attraction.eventId },
+      });
+    }
+
+    // What differed at one venue is as much a fact as the rest of the
+    // record, and is replaced the same way: the dataset says what is true
+    // there now, and a section it no longer lists is removed rather than
+    // left behind.
+    const desiredVenueWiki = new Map(
+      (attraction.venueWiki ?? []).map((section) => [
+        section.park as string,
+        {
+          attraction_id: attraction.id,
+          venue_id: section.park as string,
+          overview: nullable(section.overview),
+          story_lore: nullable(section.story),
+          experience_description: nullable(section.experience),
+          development_notes: nullable(section.development),
+          location_notes: nullable(section.location),
+        } as Record<string, string | null>,
+      ]),
+    );
+
+    for (const [venueId, row] of desiredVenueWiki) {
+      const key = pairKey(attraction.id, venueId);
+      const stored = state.venueWiki.get(key);
+      const same =
+        stored !== undefined &&
+        VENUE_WIKI_COLUMNS.every((column) => (stored[column] ?? null) === row[column]);
+      if (same) {
+        continue;
+      }
+      if (stored !== undefined) {
+        operations.push({
+          kind: "unlink",
+          table: "attraction_venue_wiki",
+          key: { attraction_id: attraction.id, venue_id: venueId },
+        });
+      }
+      operations.push({ kind: "link", table: "attraction_venue_wiki", key: row });
+    }
+
+    for (const key of state.venueWiki.keys()) {
+      const [owner, venueId] = key.split(SEPARATOR);
+      if (owner === attraction.id && !desiredVenueWiki.has(venueId)) {
+        operations.push({
+          kind: "unlink",
+          table: "attraction_venue_wiki",
+          key: { attraction_id: attraction.id, venue_id: venueId },
+        });
+      }
+    }
+
     // Where something ran is a factual claim, so the dataset's list replaces
     // what's stored: a park left behind would be a wrong fact, not a
     // preference someone chose.
@@ -490,12 +594,26 @@ export function planImport(dataset: ArchiveDataset, state: ArchiveState): Planne
     // Citations are only ever added: a source the dataset doesn't mention may
     // have been attached by hand in Admin Mode, and an import doesn't discard
     // someone's research.
-    for (const sourceId of attraction.sourceIds ?? []) {
+    // A source listed under a venue speaks for that venue's build; one
+    // listed on the attraction speaks for the record as a whole.
+    const venueOfSource = new Map<string, string>();
+    for (const section of attraction.venueWiki ?? []) {
+      for (const sourceId of section.sourceIds ?? []) {
+        venueOfSource.set(sourceId, section.park);
+      }
+    }
+
+    const citedSourceIds = new Set([...(attraction.sourceIds ?? []), ...venueOfSource.keys()]);
+    for (const sourceId of citedSourceIds) {
       if (!state.attractionSources.has(pairKey(attraction.id, sourceId))) {
         operations.push({
           kind: "link",
           table: "attraction_sources",
-          key: { attraction_id: attraction.id, source_id: sourceId },
+          key: {
+            attraction_id: attraction.id,
+            source_id: sourceId,
+            venue_id: venueOfSource.get(sourceId) ?? null,
+          },
         });
         report.citationsAdded += 1;
       }

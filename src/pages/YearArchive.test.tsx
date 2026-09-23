@@ -21,6 +21,7 @@ function makeEventYear(overrides: Partial<EventYear> = {}): EventYear {
   return {
     id: "y2101",
     calendarYear: 2101,
+    hauntId: "hhn",
     name: "Shadowfest 2101",
     description: null,
     sourceNotes: null,
@@ -55,6 +56,7 @@ function makeItem(
     openingDate: null,
     closingDate: null,
     locationNotes: null,
+    debutYear: null,
     parkIds: ["hollywood"],
     isSample: true,
     ...TIMESTAMPS,
@@ -89,6 +91,7 @@ function makeState(overrides: Partial<YearArchiveState> = {}): YearArchiveState 
     artworkUrl: null,
     houses,
     scareZones,
+    lineage: { newThisYear: [], returning: [], unclassified: [], isIncomplete: false },
     stats: computeYearStats([...houses, ...scareZones]),
     ...overrides,
   };
@@ -221,6 +224,65 @@ describe("YearArchive", () => {
       expect(popup).not.toBeNull();
       expect(within(popup as HTMLElement).getByText("Total")).toBeInTheDocument();
     });
+  });
+
+  describe("a Knott's season", () => {
+    const knottsSeason = makeEventYear({
+      id: "knotts-2024",
+      hauntId: "knotts-scary-farm",
+      calendarYear: 2024,
+      name: "Knott's Scary Farm 2024",
+    });
+
+    it("reads the season as what was new and what came back", () => {
+      const newOne = makeItem("Widows", null);
+      const returning = makeItem("Dark Entities", null);
+      renderYear({
+        eventYear: knottsSeason,
+        houses: [newOne, returning],
+        lineage: {
+          newThisYear: [newOne],
+          returning: [returning],
+          unclassified: [],
+          isIncomplete: false,
+        },
+      });
+
+      const lineage = within(screen.getByRole("region", { name: "New and returning" }));
+      expect(lineage.getByRole("heading", { name: "New This Year" })).toBeInTheDocument();
+      expect(lineage.getByRole("link", { name: "Widows" })).toBeInTheDocument();
+      expect(lineage.getByRole("link", { name: "Dark Entities" })).toBeInTheDocument();
+      // A maze is called a maze here, and the section counts it once.
+      expect(screen.getByRole("region", { name: "Mazes" })).toBeInTheDocument();
+    });
+
+    it("says the returning record is incomplete rather than guessing at it", () => {
+      const unplaceable = makeItem("Origins: The Curse of Calico", null);
+      renderYear({
+        eventYear: knottsSeason,
+        houses: [unplaceable],
+        lineage: {
+          newThisYear: [],
+          returning: [],
+          unclassified: [unplaceable],
+          isIncomplete: true,
+        },
+      });
+
+      const lineage = within(screen.getByRole("region", { name: "New and returning" }));
+      expect(
+        lineage.getByText("Returning attraction archive not yet complete"),
+      ).toBeInTheDocument();
+      // Nothing was placed into a section on no evidence.
+      expect(lineage.queryByRole("link")).not.toBeInTheDocument();
+    });
+  });
+
+  it("asks nothing about new and returning at HHN, where a house belongs to its year", () => {
+    renderYear({});
+
+    expect(screen.queryByRole("region", { name: "New and returning" })).not.toBeInTheDocument();
+    expect(screen.getByRole("region", { name: "Houses" })).toBeInTheDocument();
   });
 
   it("shows a loading state", () => {

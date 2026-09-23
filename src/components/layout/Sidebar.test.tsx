@@ -12,11 +12,18 @@ describe("Sidebar", () => {
     );
 
     const nav = screen.getByRole("navigation", { name: "Primary" });
-    ["Home", "Houses", "Scare Zones", "Years", "Rankings", "Statistics", "Settings"].forEach(
-      (label) => {
-        expect(screen.getByRole("link", { name: label })).toBeInTheDocument();
-      },
-    );
+    // The walkthrough link spans both haunts, so it carries neither haunt's word.
+    [
+      "Home",
+      "Houses & Mazes",
+      "Scare Zones",
+      "Years",
+      "Rankings",
+      "Statistics",
+      "Settings",
+    ].forEach((label) => {
+      expect(screen.getByRole("link", { name: label })).toBeInTheDocument();
+    });
     expect(nav).toBeInTheDocument();
   });
 });

@@ -26,6 +26,12 @@ export interface Attraction extends Timestamped {
   openingDate: string | null;
   closingDate: string | null;
   locationNotes: string | null;
+  /**
+   * The year this attraction genuinely first ran — a fact, not a
+   * calculation. It is NOT the earliest year the archive happens to hold,
+   * and stays null until something reliable says otherwise.
+   */
+  debutYear: number | null;
   parkIds: ParkId[];
   /** True for fictional development/sample data — see src/database/devSampleData.ts. */
   isSample: boolean;
@@ -49,6 +55,8 @@ export interface AttractionInput {
   openingDate?: string | null;
   closingDate?: string | null;
   locationNotes?: string | null;
+  /** Only where a source establishes it. Never inferred from the archive. */
+  debutYear?: number | null;
   /** Defaults to false. Only the dev sample seed should ever pass true. */
   isSample?: boolean;
 }

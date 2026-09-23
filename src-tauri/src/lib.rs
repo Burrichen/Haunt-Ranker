@@ -47,6 +47,18 @@ fn migrations() -> Vec<Migration> {
             sql: include_str!("../migrations/0007_event_dates.sql"),
             kind: MigrationKind::Up,
         },
+        Migration {
+            version: 8,
+            description: "haunts, seasons, venues and appearances",
+            sql: include_str!("../migrations/0008_haunts_and_seasons.sql"),
+            kind: MigrationKind::Up,
+        },
+        Migration {
+            version: 9,
+            description: "merge HHN same-name cross-park attractions",
+            sql: include_str!("../migrations/0009_merge_hhn_cross_park.sql"),
+            kind: MigrationKind::Up,
+        },
     ]
 }
 

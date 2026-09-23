@@ -108,6 +108,7 @@ export async function seedDevSampleData(db: SqlExecutor): Promise<DevSampleDataS
     y2101: (
       await eventYears.create({
         calendarYear: 2101,
+        hauntId: "hhn",
         name: "Shadowfest 2101",
         description: `${SAMPLE_NOTICE} A fictional stand-in event used to develop and test Haunt Ranker.`,
         isSample: true,
@@ -116,6 +117,7 @@ export async function seedDevSampleData(db: SqlExecutor): Promise<DevSampleDataS
     y2102: (
       await eventYears.create({
         calendarYear: 2102,
+        hauntId: "hhn",
         name: "Shadowfest 2102",
         description: SAMPLE_NOTICE,
         isSample: true,
@@ -124,6 +126,7 @@ export async function seedDevSampleData(db: SqlExecutor): Promise<DevSampleDataS
     y2103: (
       await eventYears.create({
         calendarYear: 2103,
+        hauntId: "hhn",
         name: "Shadowfest 2103",
         description: SAMPLE_NOTICE,
         isSample: true,

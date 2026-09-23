@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getDatabase } from "../database/client";
 import type { Attraction } from "../models/attraction";
 import type { EventYear } from "../models/eventYear";
+import { HAUNT_IDS, type HauntId } from "../models/haunt";
 import type { Rating } from "../models/rating";
 import { createAttractionRepository } from "../repositories/attractionRepository";
 import { createEventYearRepository } from "../repositories/eventYearRepository";
@@ -29,10 +30,24 @@ export interface ArchiveSummary {
   reviewed: number;
 }
 
+/** What one haunt's archive holds — the figures its entry point shows. */
+export interface HauntArchiveSummary {
+  hauntId: HauntId;
+  attractions: number;
+  seasons: number;
+  /** Attractions with a rating. Never inferred from a rating of 0. */
+  reviewed: number;
+  /** The span of seasons on file, e.g. 2010–2026, or null when there are none. */
+  firstYear: number | null;
+  lastYear: number | null;
+}
+
 export interface ArchiveOverview {
   isLoading: boolean;
   error: string | null;
   summary: ArchiveSummary;
+  /** One entry per haunt, in a fixed order — neither is a footnote to the other. */
+  haunts: HauntArchiveSummary[];
   /** A handful of attractions, chosen once per mount — stable for as long as the page stays open. */
   spotlight: ArchiveSpotlightItem[];
 }
@@ -43,6 +58,15 @@ const EMPTY_SUMMARY: ArchiveSummary = {
   scareZones: 0,
   reviewed: 0,
 };
+
+const EMPTY_HAUNTS: HauntArchiveSummary[] = [HAUNT_IDS.hhn, HAUNT_IDS.knotts].map((hauntId) => ({
+  hauntId,
+  attractions: 0,
+  seasons: 0,
+  reviewed: 0,
+  firstYear: null,
+  lastYear: null,
+}));
 
 /**
  * Loads a light overview of the archive for the Home page: totals, and a
@@ -55,6 +79,7 @@ export function useArchiveOverview(): ArchiveOverview {
     isLoading: true,
     error: null,
     summary: EMPTY_SUMMARY,
+    haunts: EMPTY_HAUNTS,
     spotlight: [],
   });
 
@@ -97,6 +122,23 @@ export function useArchiveOverview(): ArchiveOverview {
           return;
         }
 
+        const rated = new Set(ratedIds);
+        const haunts: HauntArchiveSummary[] = [HAUNT_IDS.hhn, HAUNT_IDS.knotts].map((hauntId) => {
+          const seasons = years.filter((year) => year.hauntId === hauntId);
+          const ownAttractions = attractions.filter(
+            (attraction) => yearsById.get(attraction.eventYearId)?.hauntId === hauntId,
+          );
+          const calendarYears = seasons.map((season) => season.calendarYear);
+          return {
+            hauntId,
+            attractions: ownAttractions.length,
+            seasons: seasons.length,
+            reviewed: ownAttractions.filter((attraction) => rated.has(attraction.id)).length,
+            firstYear: calendarYears.length > 0 ? Math.min(...calendarYears) : null,
+            lastYear: calendarYears.length > 0 ? Math.max(...calendarYears) : null,
+          };
+        });
+
         setState({
           isLoading: false,
           error: null,
@@ -106,6 +148,7 @@ export function useArchiveOverview(): ArchiveOverview {
             scareZones: attractions.filter((a) => a.attractionType === "scare_zone").length,
             reviewed: ratedIds.length,
           },
+          haunts,
           spotlight,
         });
       } catch (error) {

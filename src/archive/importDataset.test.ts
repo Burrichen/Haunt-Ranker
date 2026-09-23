@@ -40,6 +40,7 @@ describe("importArchiveDataset", () => {
         {
           id: "example-2101",
           calendarYear: 2101,
+          hauntId: "hhn",
           name: "Example Event 2101",
           dates: { start: "2101-09-05", end: "2101-11-02" },
           sourceIds: ["example-recap"],
@@ -134,6 +135,70 @@ describe("importArchiveDataset", () => {
         "SELECT starts_on, ends_on FROM event_years",
       );
       expect(rows[0]).toEqual({ starts_on: "2101-09-05", ends_on: "2101-11-02" });
+    });
+
+    it("records the season each attraction appeared in", async () => {
+      await importArchiveDataset(dataset(), repository);
+
+      const rows = await db.select<Array<{ attraction_id: string; season_id: string }>>(
+        "SELECT attraction_id, season_id FROM season_appearances",
+      );
+      expect(rows).toEqual([
+        { attraction_id: "example-2101-house-one", season_id: "example-2101" },
+      ]);
+    });
+
+    it("says which haunt the season belongs to", async () => {
+      await importArchiveDataset(dataset(), repository);
+
+      const rows = await db.select<Array<{ haunt_id: string }>>("SELECT haunt_id FROM event_years");
+      expect(rows).toEqual([{ haunt_id: "hhn" }]);
+    });
+
+    it("keeps what differed at one venue of a record covering both", async () => {
+      const both = dataset();
+      both.attractions[0].parks = ["hollywood", "orlando"];
+      both.attractions[0].venueWiki = [
+        { park: "orlando", experience: "The Orlando build added a final room." },
+      ];
+
+      await importArchiveDataset(both, repository);
+
+      const rows = await db.select<
+        Array<{ venue_id: string; experience_description: string; overview: string | null }>
+      >("SELECT venue_id, experience_description, overview FROM attraction_venue_wiki");
+      expect(rows).toEqual([
+        {
+          venue_id: "orlando",
+          experience_description: "The Orlando build added a final room.",
+          // Nothing was said about the overview there, so nothing is stored.
+          overview: null,
+        },
+      ]);
+    });
+
+    it("corrects and removes venue sections the way it does any other fact", async () => {
+      const first = dataset();
+      first.attractions[0].parks = ["hollywood", "orlando"];
+      first.attractions[0].venueWiki = [{ park: "orlando", experience: "First telling." }];
+      await importArchiveDataset(first, repository);
+
+      const corrected = dataset();
+      corrected.attractions[0].parks = ["hollywood", "orlando"];
+      corrected.attractions[0].venueWiki = [{ park: "orlando", experience: "Corrected telling." }];
+      await importArchiveDataset(corrected, repository);
+
+      let rows = await db.select<Array<{ experience_description: string }>>(
+        "SELECT experience_description FROM attraction_venue_wiki",
+      );
+      expect(rows).toEqual([{ experience_description: "Corrected telling." }]);
+
+      const withoutIt = dataset();
+      withoutIt.attractions[0].parks = ["hollywood", "orlando"];
+      await importArchiveDataset(withoutIt, repository);
+
+      rows = await db.select("SELECT experience_description FROM attraction_venue_wiki");
+      expect(rows).toEqual([]);
     });
 
     it("marks nothing as sample data", async () => {

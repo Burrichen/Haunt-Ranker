@@ -23,6 +23,7 @@ interface AttractionRow {
   opening_date: string | null;
   closing_date: string | null;
   location_notes: string | null;
+  debut_year: number | null;
   is_sample: number;
   created_at: string;
   updated_at: string;
@@ -51,6 +52,7 @@ function mapRow(row: AttractionRow, parkIds: ParkId[]): Attraction {
     openingDate: row.opening_date,
     closingDate: row.closing_date,
     locationNotes: row.location_notes,
+    debutYear: row.debut_year,
     parkIds,
     isSample: row.is_sample === 1,
     createdAt: row.created_at,
@@ -185,8 +187,8 @@ export function createAttractionRepository(db: SqlExecutor): AttractionRepositor
            id, event_year_id, attraction_type, name, slug, variant_name, ip_type,
            franchise_name, short_summary, full_overview, story_lore,
            experience_description, development_notes, opening_date, closing_date,
-           location_notes, is_sample
-         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+           location_notes, debut_year, is_sample
+         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           id,
           input.eventYearId,
@@ -204,11 +206,22 @@ export function createAttractionRepository(db: SqlExecutor): AttractionRepositor
           input.openingDate ?? null,
           input.closingDate ?? null,
           input.locationNotes ?? null,
+          input.debutYear ?? null,
           input.isSample ? 1 : 0,
         ],
       ),
     );
     await setParks(id, input.parkIds);
+    // The season it belongs to is also the first season it appeared in.
+    // Recording it here keeps "which seasons did this run in?" answerable
+    // the same way for a record created today and one the migration
+    // backfilled.
+    await withDatabaseErrors(() =>
+      db.execute(
+        "INSERT OR IGNORE INTO season_appearances (attraction_id, season_id) VALUES (?, ?)",
+        [id, input.eventYearId],
+      ),
+    );
 
     const created = await getById(id);
     if (!created) {
@@ -255,6 +268,7 @@ export function createAttractionRepository(db: SqlExecutor): AttractionRepositor
       closingDate: input.closingDate === undefined ? existing.closingDate : input.closingDate,
       locationNotes:
         input.locationNotes === undefined ? existing.locationNotes : input.locationNotes,
+      debutYear: input.debutYear === undefined ? existing.debutYear : input.debutYear,
       isSample: input.isSample === undefined ? existing.isSample : input.isSample,
     };
 
@@ -264,7 +278,8 @@ export function createAttractionRepository(db: SqlExecutor): AttractionRepositor
          SET event_year_id = ?, attraction_type = ?, name = ?, slug = ?, variant_name = ?,
              ip_type = ?, franchise_name = ?, short_summary = ?, full_overview = ?,
              story_lore = ?, experience_description = ?, development_notes = ?,
-             opening_date = ?, closing_date = ?, location_notes = ?, is_sample = ?,
+             opening_date = ?, closing_date = ?, location_notes = ?, debut_year = ?,
+             is_sample = ?,
              updated_at = strftime('%Y-%m-%dT%H:%M:%fZ', 'now')
          WHERE id = ?`,
         [
@@ -283,6 +298,7 @@ export function createAttractionRepository(db: SqlExecutor): AttractionRepositor
           next.openingDate ?? null,
           next.closingDate ?? null,
           next.locationNotes ?? null,
+          next.debutYear ?? null,
           next.isSample ? 1 : 0,
           id,
         ],
@@ -291,6 +307,22 @@ export function createAttractionRepository(db: SqlExecutor): AttractionRepositor
 
     if (input.parkIds !== undefined) {
       await setParks(id, input.parkIds);
+    }
+
+    // Correcting which season a record belongs to moves its own appearance
+    // with it. Any other season it appeared in is a separate fact and is
+    // left alone.
+    if (next.eventYearId !== existing.eventYearId) {
+      await withDatabaseErrors(async () => {
+        await db.execute(
+          "DELETE FROM season_appearances WHERE attraction_id = ? AND season_id = ?",
+          [id, existing.eventYearId],
+        );
+        await db.execute(
+          "INSERT OR IGNORE INTO season_appearances (attraction_id, season_id) VALUES (?, ?)",
+          [id, next.eventYearId],
+        );
+      });
     }
 
     const updated = await getById(id);

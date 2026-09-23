@@ -223,11 +223,11 @@ describe("dev sample data", () => {
         expect(count, `expected ${table} to be empty after clearing`).toBe(0);
       }
 
-      // Parks are permanent reference data, not sample data — untouched.
+      // Venues are permanent reference data, not sample data — untouched.
       const parks = await db.select<Array<{ count: number }>>(
         "SELECT COUNT(*) as count FROM parks",
       );
-      expect(parks[0].count).toBe(2);
+      expect(parks[0].count).toBe(3);
     });
 
     it("resetDevSampleData can be called repeatedly without error", async () => {

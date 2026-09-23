@@ -46,6 +46,7 @@ function makeAttraction(name: string): Attraction {
     openingDate: null,
     closingDate: null,
     locationNotes: null,
+    debutYear: null,
     parkIds: ["hollywood"],
     isSample: true,
     ...TIMESTAMPS,
@@ -67,6 +68,7 @@ function makeRating(theme: number, fun: number, fear: number): Rating {
 const eventYear: EventYear = {
   id: "y2101",
   calendarYear: 2101,
+  hauntId: "hhn",
   name: "Shadowfest 2101",
   description: null,
   sourceNotes: null,
@@ -196,7 +198,8 @@ describe("Statistics dashboard", () => {
       renderDashboard();
 
       expect(screen.getByRole("radiogroup", { name: "Attraction type" })).toBeInTheDocument();
-      expect(screen.getByRole("radiogroup", { name: "Park" })).toBeInTheDocument();
+      expect(screen.getByRole("radiogroup", { name: "Venue" })).toBeInTheDocument();
+      expect(screen.getByRole("radiogroup", { name: "Haunt" })).toBeInTheDocument();
       expect(screen.getByRole("radiogroup", { name: "IP classification" })).toBeInTheDocument();
       expect(screen.getByRole("radiogroup", { name: "Metric" })).toBeInTheDocument();
       expect(screen.getByRole("button", { name: "All years" })).toBeInTheDocument();
@@ -217,10 +220,10 @@ describe("Statistics dashboard", () => {
     it("filters to houses, a park and an IP classification", () => {
       const state = renderDashboard();
       const type = within(screen.getByRole("radiogroup", { name: "Attraction type" }));
-      const park = within(screen.getByRole("radiogroup", { name: "Park" }));
+      const park = within(screen.getByRole("radiogroup", { name: "Venue" }));
       const ip = within(screen.getByRole("radiogroup", { name: "IP classification" }));
 
-      fireEvent.click(type.getByRole("radio", { name: "Houses" }));
+      fireEvent.click(type.getByRole("radio", { name: "Houses & Mazes" }));
       expect(state.setFilters).toHaveBeenLastCalledWith({
         ...DEFAULT_STATISTICS_FILTERS,
         type: "house",
@@ -332,7 +335,7 @@ describe("Statistics dashboard", () => {
         "aria-valuetext",
         "4 of 7 reviewed",
       );
-      expect(screen.getByRole("progressbar", { name: "Houses reviewed" })).toHaveAttribute(
+      expect(screen.getByRole("progressbar", { name: "Houses & Mazes reviewed" })).toHaveAttribute(
         "aria-valuetext",
         "2 of 4 reviewed",
       );

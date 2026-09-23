@@ -39,6 +39,7 @@ function makeAttraction(name: string, overrides: Partial<Attraction> = {}): Attr
     openingDate: null,
     closingDate: null,
     locationNotes: null,
+    debutYear: null,
     parkIds: ["hollywood"],
     isSample: true,
     ...TIMESTAMPS,
@@ -50,6 +51,7 @@ function makeEventYear(calendarYear: number): EventYear {
   return {
     id: `y${calendarYear}`,
     calendarYear,
+    hauntId: "hhn",
     name: `Shadowfest ${calendarYear}`,
     description: null,
     sourceNotes: null,

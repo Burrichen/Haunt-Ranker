@@ -5,6 +5,7 @@ import { Sidebar } from "../components/layout/Sidebar";
 import { SCHEMA_VERSION } from "../database/schemaVersion";
 import { useBackup, type BackupState } from "../hooks/useBackup";
 import { useSampleData, type SampleDataState } from "../hooks/useSampleData";
+import { BACKUP_FORMAT_VERSION } from "../models/backup";
 import { PREFERENCE_KEYS } from "../preferences/localPreferences";
 import { Settings } from "./Settings";
 
@@ -191,7 +192,9 @@ describe("Settings", () => {
 
       expect(screen.getByText(/sqlite:haunt-ranker\.db/)).toBeInTheDocument();
       expect(screen.getByText(new RegExp(`schema version ${SCHEMA_VERSION}`))).toBeInTheDocument();
-      expect(screen.getByText(/backup format v1/)).toBeInTheDocument();
+      expect(
+        screen.getByText(new RegExp(`backup format v${BACKUP_FORMAT_VERSION}`)),
+      ).toBeInTheDocument();
     });
   });
 

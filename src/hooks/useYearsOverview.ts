@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getDatabase } from "../database/client";
+import { isInHauntScope } from "../models/haunt";
+import { useHauntScope } from "./useHauntScope";
 import type { Media } from "../models/media";
 import { createAttractionRepository } from "../repositories/attractionRepository";
 import { createEventYearRepository } from "../repositories/eventYearRepository";
@@ -46,6 +48,7 @@ export interface YearsOverview {
 export function useYearsOverview(): YearsOverview {
   const [searchParams, setSearchParams] = useSearchParams();
   const [data, setData] = useState<DataState>(INITIAL_DATA);
+  const { scope } = useHauntScope();
 
   const { view, sort } = useMemo(() => parseYearsParams(searchParams), [searchParams]);
 
@@ -137,12 +140,19 @@ export function useYearsOverview(): YearsOverview {
     [setSearchParams, view],
   );
 
-  const ranking = useMemo(() => buildYearRanking(data.summaries, sort), [data.summaries, sort]);
+  // Seasons belong to a haunt, so the haunt in view decides which are
+  // listed and which are ranked against each other.
+  const summaries = useMemo(
+    () => data.summaries.filter((summary) => isInHauntScope(summary.eventYear.hauntId, scope)),
+    [data.summaries, scope],
+  );
+
+  const ranking = useMemo(() => buildYearRanking(summaries, sort), [summaries, sort]);
 
   return {
     isLoading: data.isLoading,
     error: data.error,
-    summaries: data.summaries,
+    summaries,
     view,
     setView,
     sort,

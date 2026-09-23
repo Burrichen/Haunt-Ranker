@@ -220,6 +220,49 @@ describe("ranking persistence", () => {
     ]);
   });
 
+  it("keeps each haunt's ranking independent of the others and of All Haunts", async () => {
+    const { best, middle, zone } = await seed();
+
+    const first = restart();
+    const rankings = createRankingRepository(first);
+    await rankings.setScope(rankingGroupScope("houses", "all"), [best, middle]);
+    await rankings.setScope(rankingGroupScope("houses", "hhn"), [middle, best]);
+    await rankings.setScope(rankingGroupScope("houses", "knotts-scary-farm"), [best]);
+    await rankings.setScope(rankingGroupScope("scare_zones", "hhn"), [zone]);
+
+    const second = restart();
+    const reloaded = createRankingRepository(second);
+    const idsIn = async (scope: string) =>
+      (await reloaded.getScope(scope)).map((entry) => entry.attractionId);
+
+    // Ranking one haunt's houses leaves the other haunt's list, and the All
+    // Haunts list, exactly as they were.
+    expect(await idsIn(rankingGroupScope("houses", "all"))).toEqual([best, middle]);
+    expect(await idsIn(rankingGroupScope("houses", "hhn"))).toEqual([middle, best]);
+    expect(await idsIn(rankingGroupScope("houses", "knotts-scary-farm"))).toEqual([best]);
+    expect(await idsIn(rankingGroupScope("scare_zones", "hhn"))).toEqual([zone]);
+    expect(await idsIn(rankingGroupScope("scare_zones", "knotts-scary-farm"))).toEqual([]);
+  });
+
+  it("leaves a ranking saved before there was a second haunt as the All Haunts list", async () => {
+    // Existing installs hold rows under the unprefixed scopes. Those are
+    // the All Haunts lists, not orphans to be migrated or dropped.
+    expect(rankingGroupScope("houses", "all")).toBe("houses:all");
+    expect(rankingGroupScope("all", "all")).toBe("attractions:all");
+    expect(rankingGroupScope("houses", "hhn")).toBe("hhn:houses:all");
+
+    const { best, middle } = await seed();
+    const first = restart();
+    await createRankingRepository(first).setScope("houses:all", [middle, best]);
+
+    const second = restart();
+    expect(
+      (await createRankingRepository(second).getScope(rankingGroupScope("houses"))).map(
+        (entry) => entry.attractionId,
+      ),
+    ).toEqual([middle, best]);
+  });
+
   it("shares a scope with the attraction browser's Personal Ranking sort", async () => {
     // Both read the same saved order, so ranking houses on this page is what
     // the browser's "Personal Ranking" sort picks up.

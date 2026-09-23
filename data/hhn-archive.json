@@ -4305,40 +4305,6 @@
       "sourceIds": ["wiki-universal-s-house-of-horrors-orlando-2012"]
     },
     {
-      "id": "hhn-2012-house-the-walking-dead-dead-inside-orlando",
-      "eventId": "hhn-2012",
-      "type": "house",
-      "name": "The Walking Dead: Dead Inside",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "location": "Disaster!",
-      "sourceIds": ["wiki-the-walking-dead-dead-inside-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2012-house-the-walking-dead-dead-inside-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
-      "id": "hhn-2012-house-welcome-to-silent-hill-orlando",
-      "eventId": "hhn-2012",
-      "type": "house",
-      "name": "Welcome to Silent Hill",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "location": "Soundstage 22",
-      "sourceIds": ["wiki-welcome-to-silent-hill-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2012-house-welcome-to-silent-hill-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
       "id": "hhn-2012-house-alice-cooper-welcome-to-my-nightmare",
       "eventId": "hhn-2012",
       "type": "house",
@@ -4377,27 +4343,6 @@
       },
       "location": "Soundstage 21",
       "sourceIds": ["wiki-resident-evil-escape-from-raccoon-city"]
-    },
-    {
-      "id": "hhn-2013-house-the-walking-dead-no-safe-haven-orlando",
-      "eventId": "hhn-2013",
-      "type": "house",
-      "name": "The Walking Dead: No Safe Haven",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "The Walking Dead"
-      },
-      "location": "Parade Warehouse",
-      "sourceIds": ["wiki-the-walking-dead-no-safe-haven-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2013-house-the-walking-dead-no-safe-haven-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
     },
     {
       "id": "hhn-2013-house-evil-dead",
@@ -4489,27 +4434,6 @@
       "sourceIds": ["wiki-the-walking-dead-the-undead-streets"]
     },
     {
-      "id": "hhn-2014-house-avp-alien-vs-predator-orlando",
-      "eventId": "hhn-2014",
-      "type": "house",
-      "name": "AVP: Alien vs. Predator",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Alien"
-      },
-      "location": "Soundstage 24",
-      "sourceIds": ["wiki-avp-alien-vs-predator-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2014-house-avp-alien-vs-predator-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
       "id": "hhn-2014-house-dollhouse-of-the-damned",
       "eventId": "hhn-2014",
       "type": "house",
@@ -4520,27 +4444,6 @@
       },
       "location": "Sprung Tent 1",
       "sourceIds": ["wiki-dollhouse-of-the-damned-haunted-house"]
-    },
-    {
-      "id": "hhn-2014-house-dracula-untold-reign-of-blood-orlando",
-      "eventId": "hhn-2014",
-      "type": "house",
-      "name": "Dracula Untold: Reign of Blood",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Dracula Untold"
-      },
-      "location": "Soundstage 24",
-      "sourceIds": ["wiki-dracula-untold-reign-of-blood-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2014-house-dracula-untold-reign-of-blood-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
     },
     {
       "id": "hhn-2014-house-giggles-and-gore-inc",
@@ -4580,48 +4483,6 @@
       "sourceIds": ["wiki-roanoke-cannibal-colony"]
     },
     {
-      "id": "hhn-2014-house-the-walking-dead-end-of-the-line-orlando",
-      "eventId": "hhn-2014",
-      "type": "house",
-      "name": "The Walking Dead: End of the Line",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "The Walking Dead"
-      },
-      "location": "Soundstage 25",
-      "sourceIds": ["wiki-the-walking-dead-the-end-of-the-line-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2014-house-the-walking-dead-end-of-the-line-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
-      "id": "hhn-2014-house-from-dusk-till-dawn-orlando",
-      "eventId": "hhn-2014",
-      "type": "house",
-      "name": "From Dusk Till Dawn",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "From Dusk Till Dawn: The"
-      },
-      "location": "Soundstage 22",
-      "sourceIds": ["wiki-from-dusk-till-dawn-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2014-house-from-dusk-till-dawn-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
       "id": "hhn-2014-zone-bayou-of-blood",
       "eventId": "hhn-2014",
       "type": "scare_zone",
@@ -4658,27 +4519,6 @@
       "parks": ["orlando"],
       "location": "Plaza of the Stars",
       "sourceIds": ["wiki-maskerade-unstitched"]
-    },
-    {
-      "id": "hhn-2014-zone-the-purge-anarchy-orlando",
-      "eventId": "hhn-2014",
-      "type": "scare_zone",
-      "name": "The Purge: Anarchy",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "The Purge"
-      },
-      "location": "New York",
-      "sourceIds": ["wiki-the-purge-anarchy-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2014-zone-the-purge-anarchy-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
     },
     {
       "id": "hhn-2015-house-jack-presents-25-years-of-monsters-and-mayhem",
@@ -4853,69 +4693,6 @@
       "sourceIds": ["wiki-all-nite-die-in-double-feature"]
     },
     {
-      "id": "hhn-2016-house-krampus-orlando",
-      "eventId": "hhn-2016",
-      "type": "house",
-      "name": "Krampus",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Krampus"
-      },
-      "location": "Shrek Theater",
-      "sourceIds": ["wiki-krampus-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2016-house-krampus-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
-      "id": "hhn-2016-house-american-horror-story-orlando",
-      "eventId": "hhn-2016",
-      "type": "house",
-      "name": "American Horror Story",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "American Horror Story"
-      },
-      "location": "Soundstage 19",
-      "sourceIds": ["wiki-american-horror-story-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2016-house-american-horror-story-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
-      "id": "hhn-2016-house-the-exorcist-orlando",
-      "eventId": "hhn-2016",
-      "type": "house",
-      "name": "The Exorcist",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "The Exorcist"
-      },
-      "location": "Soundstage 22",
-      "sourceIds": ["wiki-the-exorcist-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2016-house-the-exorcist-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
       "id": "hhn-2016-house-the-walking-dead",
       "eventId": "hhn-2016",
       "type": "house",
@@ -4939,27 +4716,6 @@
       },
       "location": "Soundstage 24B",
       "sourceIds": ["wiki-ghost-town-the-curse-of-lightning-gulch"]
-    },
-    {
-      "id": "hhn-2016-house-halloween-hell-comes-to-haddonfield-orlando",
-      "eventId": "hhn-2016",
-      "type": "house",
-      "name": "Halloween: Hell Comes to Haddonfield",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Halloween II"
-      },
-      "location": "Parade Warehouse",
-      "sourceIds": ["wiki-halloween-hell-comes-to-haddonfield-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2016-house-halloween-hell-comes-to-haddonfield-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
     },
     {
       "id": "hhn-2016-house-lunatic-s-playground-3d-you-won-t-stand-a-chance",
@@ -5072,86 +4828,6 @@
       "sourceIds": ["wiki-american-horror-story-volume-2"]
     },
     {
-      "id": "hhn-2017-house-the-shining-orlando",
-      "eventId": "hhn-2017",
-      "type": "house",
-      "name": "The Shining",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "The Shining"
-      },
-      "location": "Soundstage 22",
-      "sourceIds": ["wiki-the-shining-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2017-house-the-shining-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
-      "id": "hhn-2017-house-ash-vs-evil-dead-orlando",
-      "eventId": "hhn-2017",
-      "type": "house",
-      "name": "Ash Vs. Evil Dead",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Ash vs Evil Dead"
-      },
-      "location": "Parade Warehouse",
-      "sourceIds": ["wiki-ash-vs-evil-dead-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2017-house-ash-vs-evil-dead-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
-      "id": "hhn-2017-house-saw-the-games-of-jigsaw-orlando",
-      "eventId": "hhn-2017",
-      "type": "house",
-      "name": "SAW: The Games of Jigsaw",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "SAW"
-      },
-      "location": "Shrek Theater",
-      "sourceIds": ["wiki-saw-the-games-of-jigsaw-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2017-house-saw-the-games-of-jigsaw-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
-      "id": "hhn-2017-house-the-horrors-of-blumhouse-orlando",
-      "eventId": "hhn-2017",
-      "type": "house",
-      "name": "The Horrors of Blumhouse",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "location": "MIB Tent",
-      "sourceIds": ["wiki-the-horrors-of-blumhouse-orlando-2017"],
-      "related": [
-        {
-          "attractionId": "hhn-2017-house-the-horrors-of-blumhouse-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
       "id": "hhn-2017-house-dead-waters",
       "eventId": "hhn-2017",
       "type": "house",
@@ -5259,48 +4935,6 @@
       "sourceIds": ["wiki-trick-r-treat-scarezone-orlando"]
     },
     {
-      "id": "hhn-2018-house-stranger-things-orlando",
-      "eventId": "hhn-2018",
-      "type": "house",
-      "name": "Stranger Things",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Stranger Things"
-      },
-      "location": "Soundstage 22",
-      "sourceIds": ["wiki-stranger-things-orlando-2018"],
-      "related": [
-        {
-          "attractionId": "hhn-2018-house-stranger-things-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
-      "id": "hhn-2018-house-trick-r-treat-orlando",
-      "eventId": "hhn-2018",
-      "type": "house",
-      "name": "Trick 'r Treat",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Trick 'r Treat"
-      },
-      "location": "Parade Warehouse",
-      "sourceIds": ["wiki-trick-r-treat-haunted-house-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2018-house-trick-r-treat-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
       "id": "hhn-2018-house-dead-exposure-patient-zero",
       "eventId": "hhn-2018",
       "type": "house",
@@ -5347,48 +4981,6 @@
       },
       "location": "Second Parade Warehouse",
       "sourceIds": ["wiki-seeds-of-extinction"]
-    },
-    {
-      "id": "hhn-2018-house-poltergeist-orlando",
-      "eventId": "hhn-2018",
-      "type": "house",
-      "name": "Poltergeist",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Poltergeist"
-      },
-      "location": "Soundstage 25",
-      "sourceIds": ["wiki-poltergeist-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2018-house-poltergeist-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
-      "id": "hhn-2018-house-halloween-4-the-return-of-michael-myers-orlando",
-      "eventId": "hhn-2018",
-      "type": "house",
-      "name": "Halloween 4: The Return of Michael Myers",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Halloween 4: The Return of Michael Myers"
-      },
-      "location": "Shrek Theater",
-      "sourceIds": ["wiki-halloween-4-the-return-of-michael-myers-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2018-house-halloween-4-the-return-of-michael-myers-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
     },
     {
       "id": "hhn-2018-house-the-horrors-of-blumhouse",
@@ -5471,27 +5063,6 @@
       "sourceIds": ["wiki-killer-klowns-from-outer-space-scarezone"]
     },
     {
-      "id": "hhn-2019-house-stranger-things-orlando",
-      "eventId": "hhn-2019",
-      "type": "house",
-      "name": "Stranger Things",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Stranger Things 2"
-      },
-      "location": "Soundstage 25",
-      "sourceIds": ["wiki-stranger-things-orlando-2019"],
-      "related": [
-        {
-          "attractionId": "hhn-2019-house-stranger-things-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
       "id": "hhn-2019-house-nightingales-blood-pit",
       "eventId": "hhn-2019",
       "type": "house",
@@ -5541,69 +5112,6 @@
       "sourceIds": ["wiki-yeti-terror-of-the-yukon"]
     },
     {
-      "id": "hhn-2019-house-ghostbusters-orlando",
-      "eventId": "hhn-2019",
-      "type": "house",
-      "name": "Ghostbusters",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Ghostbusters"
-      },
-      "location": "Soundstage 22",
-      "sourceIds": ["wiki-ghostbusters-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2019-house-ghostbusters-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
-      "id": "hhn-2019-house-killer-klowns-from-outer-space-orlando",
-      "eventId": "hhn-2019",
-      "type": "house",
-      "name": "Killer Klowns From Outer Space",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Killer Klowns From Outer Space"
-      },
-      "location": "Shrek Theater",
-      "sourceIds": ["wiki-killer-klowns-from-outer-space-haunted-house-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2019-house-killer-klowns-from-outer-space-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
-      "id": "hhn-2019-house-us-orlando",
-      "eventId": "hhn-2019",
-      "type": "house",
-      "name": "Us",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Us"
-      },
-      "location": "Soundstage 24",
-      "sourceIds": ["wiki-us-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2019-house-us-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
       "id": "hhn-2019-house-graveyard-games",
       "eventId": "hhn-2019",
       "type": "house",
@@ -5614,27 +5122,6 @@
       },
       "location": "Parade Warehouse",
       "sourceIds": ["wiki-graveyard-games"]
-    },
-    {
-      "id": "hhn-2019-house-house-of-1000-corpses-orlando",
-      "eventId": "hhn-2019",
-      "type": "house",
-      "name": "House of 1000 Corpses",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "House of 1000 Corpses"
-      },
-      "location": "MIB Tent",
-      "sourceIds": ["wiki-house-of-1000-corpses-haunted-house-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2019-house-house-of-1000-corpses-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
     },
     {
       "id": "hhn-2019-zone-zombieland-double-tap",
@@ -5709,48 +5196,6 @@
       },
       "location": "Shrek Theater",
       "sourceIds": ["wiki-case-files-unearthed-legendary-truth"]
-    },
-    {
-      "id": "hhn-2021-house-universal-monsters-the-bride-of-frankenstein-liv-orlando",
-      "eventId": "hhn-2021",
-      "type": "house",
-      "name": "Universal Monsters: The Bride of Frankenstein Lives",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Universal Classic Monsters"
-      },
-      "location": "Soundstage 23A",
-      "sourceIds": ["wiki-universal-monsters-the-bride-of-frankenstein-lives-hollywood"],
-      "related": [
-        {
-          "attractionId": "hhn-2021-house-universal-monsters-the-bride-of-frankenstein-liv-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
-      "id": "hhn-2021-house-the-texas-chainsaw-massacre-orlando",
-      "eventId": "hhn-2021",
-      "type": "house",
-      "name": "The Texas Chainsaw Massacre",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "The Texas Chainsaw Massacre"
-      },
-      "location": "Soundstage 23B",
-      "sourceIds": ["wiki-the-texas-chainsaw-massacre-orlando-2021"],
-      "related": [
-        {
-          "attractionId": "hhn-2021-house-the-texas-chainsaw-massacre-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
     },
     {
       "id": "hhn-2021-house-revenge-of-the-tooth-fairy",
@@ -5924,27 +5369,6 @@
       "sourceIds": ["wiki-hellblock-horror"]
     },
     {
-      "id": "hhn-2022-house-halloween-orlando",
-      "eventId": "hhn-2022",
-      "type": "house",
-      "name": "Halloween",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Halloween"
-      },
-      "location": "Soundstage 23B",
-      "sourceIds": ["wiki-halloween-orlando-2022"],
-      "related": [
-        {
-          "attractionId": "hhn-2022-house-halloween-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
       "id": "hhn-2022-house-fiesta-de-chupacabras",
       "eventId": "hhn-2022",
       "type": "house",
@@ -5967,69 +5391,6 @@
       },
       "location": "Soundstage 24B",
       "sourceIds": ["wiki-dead-man-s-pier-winter-s-wake"]
-    },
-    {
-      "id": "hhn-2022-house-the-horrors-of-blumhouse-orlando",
-      "eventId": "hhn-2022",
-      "type": "house",
-      "name": "The Horrors of Blumhouse",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Freaky"
-      },
-      "location": "Fast & Furious Location",
-      "sourceIds": ["wiki-the-horrors-of-blumhouse-orlando-2022"],
-      "related": [
-        {
-          "attractionId": "hhn-2022-house-the-horrors-of-blumhouse-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
-      "id": "hhn-2022-house-universal-monsters-legends-collide-orlando",
-      "eventId": "hhn-2022",
-      "type": "house",
-      "name": "Universal Monsters: Legends Collide",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Universal Classic Monsters"
-      },
-      "location": "Parade Warehouse",
-      "sourceIds": ["wiki-universal-monsters-legends-collide-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2022-house-universal-monsters-legends-collide-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
-      "id": "hhn-2022-house-the-weeknd-after-hours-nightmare-orlando",
-      "eventId": "hhn-2022",
-      "type": "house",
-      "name": "The Weeknd: After Hours Nightmare",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "After Hours"
-      },
-      "location": "Second Parade Warehouse",
-      "sourceIds": ["wiki-the-weeknd-after-hours-nightmare-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2022-house-the-weeknd-after-hours-nightmare-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
     },
     {
       "id": "hhn-2022-house-descendants-of-destruction",
@@ -6141,27 +5502,6 @@
       "sourceIds": ["wiki-blood-moon-dark-offerings-haunted-house"]
     },
     {
-      "id": "hhn-2023-house-stranger-things-4-orlando",
-      "eventId": "hhn-2023",
-      "type": "house",
-      "name": "Stranger Things 4",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Stranger Things 4"
-      },
-      "location": "Soundstage 23B",
-      "sourceIds": ["wiki-stranger-things-4-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2023-house-stranger-things-4-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
       "id": "hhn-2023-house-dueling-dragons-choose-thy-fate",
       "eventId": "hhn-2023",
       "type": "house",
@@ -6184,69 +5524,6 @@
       },
       "location": "Soundstage 24B",
       "sourceIds": ["wiki-yeti-campground-kills-haunted-house"]
-    },
-    {
-      "id": "hhn-2023-house-chucky-ultimate-kill-count-orlando",
-      "eventId": "hhn-2023",
-      "type": "house",
-      "name": "Chucky: Ultimate Kill Count",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Child's Play"
-      },
-      "location": "Fast & Furious Location",
-      "sourceIds": ["wiki-chucky-ultimate-kill-count-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2023-house-chucky-ultimate-kill-count-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
-      "id": "hhn-2023-house-universal-monsters-unmasked-orlando",
-      "eventId": "hhn-2023",
-      "type": "house",
-      "name": "Universal Monsters: Unmasked",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Universal Classic Monsters"
-      },
-      "location": "Parade Warehouse",
-      "sourceIds": ["wiki-universal-monsters-unmasked-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2023-house-universal-monsters-unmasked-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
-      "id": "hhn-2023-house-the-last-of-us-orlando",
-      "eventId": "hhn-2023",
-      "type": "house",
-      "name": "The Last of Us",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "The Last of Us"
-      },
-      "location": "Second Parade Warehouse",
-      "sourceIds": ["wiki-the-last-of-us-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2023-house-the-last-of-us-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
     },
     {
       "id": "hhn-2023-house-the-darkest-deal",
@@ -6333,27 +5610,6 @@
       "sourceIds": ["wiki-shipyard-32-horrors-unhinged"]
     },
     {
-      "id": "hhn-2024-house-a-quiet-place-orlando",
-      "eventId": "hhn-2024",
-      "type": "house",
-      "name": "A Quiet Place",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "A Quiet Place"
-      },
-      "location": "Soundstage 22",
-      "sourceIds": ["wiki-a-quiet-place-orlando-2024"],
-      "related": [
-        {
-          "attractionId": "hhn-2024-house-a-quiet-place-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
       "id": "hhn-2024-house-monstruos-the-monsters-of-latin-america",
       "eventId": "hhn-2024",
       "type": "house",
@@ -6364,48 +5620,6 @@
       },
       "location": "Soundstage 23A",
       "sourceIds": ["wiki-monstruos-the-monsters-of-latin-america-orlando"]
-    },
-    {
-      "id": "hhn-2024-house-ghostbusters-frozen-empire-orlando",
-      "eventId": "hhn-2024",
-      "type": "house",
-      "name": "Ghostbusters: Frozen Empire",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Ghostbusters: Frozen Empire"
-      },
-      "location": "Soundstage 23B",
-      "sourceIds": ["wiki-ghostbusters-frozen-empire-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2024-house-ghostbusters-frozen-empire-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
-      "id": "hhn-2024-house-insidious-the-further-orlando",
-      "eventId": "hhn-2024",
-      "type": "house",
-      "name": "Insidious: The Further",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Insidious"
-      },
-      "location": "Soundstage 24A",
-      "sourceIds": ["wiki-insidious-the-further-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2024-house-insidious-the-further-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
     },
     {
       "id": "hhn-2024-house-triplets-of-terror",
@@ -6454,27 +5668,6 @@
       },
       "location": "Sprung Tent 2",
       "sourceIds": ["wiki-slaughter-sinema-2"]
-    },
-    {
-      "id": "hhn-2024-house-universal-monsters-eternal-bloodlines-orlando",
-      "eventId": "hhn-2024",
-      "type": "house",
-      "name": "Universal Monsters: Eternal Bloodlines",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Universal Classic Monsters"
-      },
-      "location": "Sprung Tent 3",
-      "sourceIds": ["wiki-universal-monsters-eternal-bloodlines-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2024-house-universal-monsters-eternal-bloodlines-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
     },
     {
       "id": "hhn-2024-house-goblin-s-feast",
@@ -6562,27 +5755,6 @@
       "sourceIds": ["wiki-el-artista-a-spanish-haunting-haunted-house"]
     },
     {
-      "id": "hhn-2025-house-wwe-presents-the-horrors-of-the-wyatt-sicks-orlando",
-      "eventId": "hhn-2025",
-      "type": "house",
-      "name": "WWE Presents: The Horrors of The Wyatt Sicks",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "The Wyatt Sicks"
-      },
-      "location": "Soundstage 23A",
-      "sourceIds": ["wiki-wwe-presents-the-horrors-of-the-wyatt-sicks-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2025-house-wwe-presents-the-horrors-of-the-wyatt-sicks-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
       "id": "hhn-2025-house-five-nights-at-freddy-s",
       "eventId": "hhn-2025",
       "type": "house",
@@ -6609,48 +5781,6 @@
       },
       "location": "Soundstage 24B",
       "sourceIds": ["wiki-grave-of-flesh-haunted-house"]
-    },
-    {
-      "id": "hhn-2025-house-terrifier-orlando",
-      "eventId": "hhn-2025",
-      "type": "house",
-      "name": "Terrifier",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Terrifier"
-      },
-      "location": "Soundstage 25",
-      "sourceIds": ["wiki-terrifier-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2025-house-terrifier-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
-      "id": "hhn-2025-house-jason-universe-orlando",
-      "eventId": "hhn-2025",
-      "type": "house",
-      "name": "Jason Universe",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Friday the 13th"
-      },
-      "location": "Fast & Furious Location",
-      "sourceIds": ["wiki-jason-universe-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2025-house-jason-universe-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
     },
     {
       "id": "hhn-2025-house-hatchet-and-chains-demon-bounty-hunters",
@@ -6687,27 +5817,6 @@
       },
       "location": "Sprung Tent 3",
       "sourceIds": ["wiki-g-lkn-monsters-of-the-north"]
-    },
-    {
-      "id": "hhn-2025-house-fallout-orlando",
-      "eventId": "hhn-2025",
-      "type": "house",
-      "name": "Fallout",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Fallout"
-      },
-      "location": "Sprung Tent 4",
-      "sourceIds": ["wiki-fallout-orlando"],
-      "related": [
-        {
-          "attractionId": "hhn-2025-house-fallout-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
     },
     {
       "id": "hhn-2025-zone-the-origins-of-horror",
@@ -6795,72 +5904,6 @@
       "sourceIds": ["wiki-jack-and-oddfellow-chaos-and-control", "press-uo-hhn-2026-overview"]
     },
     {
-      "id": "hhn-2026-house-evil-dead-burn-orlando",
-      "eventId": "hhn-2026",
-      "type": "house",
-      "name": "Evil Dead Burn",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Evil Dead Burn"
-      },
-      "summary": "Takes guests first-hand through the film's most frightening moments.",
-      "location": "Soundstage 23A",
-      "sourceIds": ["wiki-evil-dead-burn-orlando", "press-uo-hhn-2026-overview"],
-      "related": [
-        {
-          "attractionId": "hhn-2026-house-evil-dead-burn-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
-      "id": "hhn-2026-house-stranger-things-5-orlando",
-      "eventId": "hhn-2026",
-      "type": "house",
-      "name": "Stranger Things 5",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Stranger Things 5"
-      },
-      "summary": "Built on the fifth and final season of the Netflix series, as the barrier between Hawkins and the Upside Down gives way.",
-      "location": "Soundstage 23B",
-      "sourceIds": ["wiki-stranger-things-5-orlando", "press-uo-hhn-2026-overview"],
-      "related": [
-        {
-          "attractionId": "hhn-2026-house-stranger-things-5-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
-      "id": "hhn-2026-house-ozzy-osbourne-prince-of-darkness-orlando",
-      "eventId": "hhn-2026",
-      "type": "house",
-      "name": "Ozzy Osbourne: Prince of Darkness",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Ozzy Osbourne"
-      },
-      "summary": "A journey through the imagery of Ozzy Osbourne's solo career.",
-      "location": "Soundstage 24A",
-      "sourceIds": ["wiki-ozzy-osbourne-prince-of-darkness-orlando", "press-uo-hhn-2026-overview"],
-      "related": [
-        {
-          "attractionId": "hhn-2026-house-ozzy-osbourne-prince-of-darkness-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
       "id": "hhn-2026-house-madlands-caged-cannibals",
       "eventId": "hhn-2026",
       "type": "house",
@@ -6916,50 +5959,6 @@
       ]
     },
     {
-      "id": "hhn-2026-house-sinners-orlando",
-      "eventId": "hhn-2026",
-      "type": "house",
-      "name": "Sinners",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Sinners"
-      },
-      "summary": "Set in the Mississippi Delta of the 1930s, on the opening night of the juke joint run by twin brothers Smoke and Stack.",
-      "location": "Sprung Tent 3",
-      "sourceIds": ["wiki-sinners-orlando", "press-uo-hhn-2026-overview"],
-      "related": [
-        {
-          "attractionId": "hhn-2026-house-sinners-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
-      "id": "hhn-2026-house-hellraiser-orlando",
-      "eventId": "hhn-2026",
-      "type": "house",
-      "name": "Hellraiser",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Hellraiser"
-      },
-      "summary": "Guests open the Lament Configuration and summon the Cenobites, drawing on the first three films. Doug Bradley reprises Pinhead.",
-      "location": "Sprung Tent 4",
-      "sourceIds": ["wiki-hellraiser-orlando", "press-uo-hhn-2026-overview"],
-      "related": [
-        {
-          "attractionId": "hhn-2026-house-hellraiser-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
-    },
-    {
       "id": "hhn-2026-zone-infernal-carnival-of-nightmares",
       "eventId": "hhn-2026",
       "type": "scare_zone",
@@ -6984,28 +5983,6 @@
       "summary": "A troupe of clowns takes over the city streets.",
       "location": "New York",
       "sourceIds": ["wiki-downtown-clowntown-scarezone", "press-uo-hhn-2026-overview"]
-    },
-    {
-      "id": "hhn-2026-zone-fortnitemares-orlando",
-      "eventId": "hhn-2026",
-      "type": "scare_zone",
-      "name": "Fortnitemares",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Fortnite"
-      },
-      "summary": "Guests drop into the world of Fortnitemares.",
-      "location": "Central Park",
-      "sourceIds": ["wiki-fortnitemares-orlando", "press-uo-hhn-2026-overview"],
-      "related": [
-        {
-          "attractionId": "hhn-2026-zone-fortnitemares-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ]
     },
     {
       "id": "hhn-2026-zone-sideshow-of-decay",
@@ -7353,14 +6330,28 @@
       "eventId": "hhn-2012",
       "type": "house",
       "name": "The Walking Dead: Dead Inside",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "The Walking Dead"
       },
-      "location": "Wild West Stage",
-      "sourceIds": ["wiki-the-walking-dead-dead-inside-hollywood"]
+      "location": null,
+      "slug": "hhn-2012-house-the-walking-dead-dead-inside",
+      "previousIds": ["hhn-2012-house-the-walking-dead-dead-inside-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Wild West Stage",
+          "sourceIds": ["wiki-the-walking-dead-dead-inside-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Disaster!",
+          "sourceIds": ["wiki-the-walking-dead-dead-inside-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2012-house-the-texas-chainsaw-massacre-the-saw-is-the-law",
@@ -7380,14 +6371,28 @@
       "eventId": "hhn-2012",
       "type": "house",
       "name": "Welcome to Silent Hill",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Silent Hill"
       },
-      "location": "Mummy Venue",
-      "sourceIds": ["wiki-welcome-to-silent-hill-hollywood"]
+      "location": null,
+      "slug": "hhn-2012-house-welcome-to-silent-hill",
+      "previousIds": ["hhn-2012-house-welcome-to-silent-hill-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Mummy Venue",
+          "sourceIds": ["wiki-welcome-to-silent-hill-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 22",
+          "sourceIds": ["wiki-welcome-to-silent-hill-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2012-house-la-llorona-la-cazadora-de-ni-os",
@@ -7560,14 +6565,28 @@
       "eventId": "hhn-2013",
       "type": "house",
       "name": "The Walking Dead: No Safe Haven",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "The Walking Dead"
       },
-      "location": "Metro Sets Tent",
-      "sourceIds": ["wiki-the-walking-dead-no-safe-haven-hollywood"]
+      "location": null,
+      "slug": "hhn-2013-house-the-walking-dead-no-safe-haven",
+      "previousIds": ["hhn-2013-house-the-walking-dead-no-safe-haven-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Metro Sets Tent",
+          "sourceIds": ["wiki-the-walking-dead-no-safe-haven-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Parade Warehouse",
+          "sourceIds": ["wiki-the-walking-dead-no-safe-haven-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2013-zone-terror-tram-invaded-by-the-walking-dead",
@@ -7663,14 +6682,28 @@
       "eventId": "hhn-2014",
       "type": "house",
       "name": "AVP: Alien vs. Predator",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Alien"
       },
-      "location": "Soundstage 747",
-      "sourceIds": ["wiki-avp-alien-vs-predator-hollywood"]
+      "location": null,
+      "slug": "hhn-2014-house-avp-alien-vs-predator",
+      "previousIds": ["hhn-2014-house-avp-alien-vs-predator-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Soundstage 747",
+          "sourceIds": ["wiki-avp-alien-vs-predator-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 24",
+          "sourceIds": ["wiki-avp-alien-vs-predator-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2014-house-clowns-3d-music-by-slash",
@@ -7689,14 +6722,28 @@
       "eventId": "hhn-2014",
       "type": "house",
       "name": "Dracula Untold: Reign of Blood",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Dracula Untold"
       },
-      "location": "Parisian Courtyard",
-      "sourceIds": ["wiki-dracula-untold-reign-of-blood-hollywood"]
+      "location": null,
+      "slug": "hhn-2014-house-dracula-untold-reign-of-blood",
+      "previousIds": ["hhn-2014-house-dracula-untold-reign-of-blood-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Parisian Courtyard",
+          "sourceIds": ["wiki-dracula-untold-reign-of-blood-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 24",
+          "sourceIds": ["wiki-dracula-untold-reign-of-blood-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2014-house-face-off-in-the-flesh-hollywood",
@@ -7717,28 +6764,56 @@
       "eventId": "hhn-2014",
       "type": "house",
       "name": "From Dusk Till Dawn",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "From Dusk Till Dawn: The"
       },
-      "location": "FDTD Area",
-      "sourceIds": ["wiki-from-dusk-till-dawn-hollywood"]
+      "location": null,
+      "slug": "hhn-2014-house-from-dusk-till-dawn",
+      "previousIds": ["hhn-2014-house-from-dusk-till-dawn-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "FDTD Area",
+          "sourceIds": ["wiki-from-dusk-till-dawn-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 22",
+          "sourceIds": ["wiki-from-dusk-till-dawn-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2014-house-the-walking-dead-end-of-the-line-hollywood",
       "eventId": "hhn-2014",
       "type": "house",
       "name": "The Walking Dead: End of the Line",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "The Walking Dead"
       },
-      "location": "Metro Sets Tent",
-      "sourceIds": ["wiki-the-walking-dead-end-of-the-line-hollywood"]
+      "location": null,
+      "slug": "hhn-2014-house-the-walking-dead-end-of-the-line",
+      "previousIds": ["hhn-2014-house-the-walking-dead-end-of-the-line-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Metro Sets Tent",
+          "sourceIds": ["wiki-the-walking-dead-end-of-the-line-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 25",
+          "sourceIds": ["wiki-the-walking-dead-the-end-of-the-line-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2014-zone-terror-tram-invaded-by-the-walking-dead",
@@ -7782,14 +6857,28 @@
       "eventId": "hhn-2014",
       "type": "scare_zone",
       "name": "The Purge: Anarchy",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "The Purge"
       },
-      "location": "Front Gates",
-      "sourceIds": ["wiki-the-purge-anarchy-hollywood"]
+      "location": null,
+      "slug": "hhn-2014-zone-the-purge-anarchy",
+      "previousIds": ["hhn-2014-zone-the-purge-anarchy-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Front Gates",
+          "sourceIds": ["wiki-the-purge-anarchy-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "New York",
+          "sourceIds": ["wiki-the-purge-anarchy-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2014-zone-skullz",
@@ -7960,24 +7049,56 @@
       "eventId": "hhn-2016",
       "type": "house",
       "name": "American Horror Story",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
-      "location": "FDTD Area",
-      "sourceIds": ["wiki-american-horror-story-hollywood"]
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
+      "location": null,
+      "slug": "hhn-2016-house-american-horror-story",
+      "previousIds": ["hhn-2016-house-american-horror-story-orlando"],
+      "summary": null,
+      "ip": {
+        "type": "licensed",
+        "franchise": "American Horror Story"
+      },
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "FDTD Area",
+          "sourceIds": ["wiki-american-horror-story-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 19",
+          "sourceIds": ["wiki-american-horror-story-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2016-house-the-exorcist-hollywood",
       "eventId": "hhn-2016",
       "type": "house",
       "name": "The Exorcist",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "The Exorcist"
       },
-      "location": "Mummy Venue",
-      "sourceIds": ["wiki-the-exorcist-hollywood"]
+      "location": null,
+      "slug": "hhn-2016-house-the-exorcist",
+      "previousIds": ["hhn-2016-house-the-exorcist-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Mummy Venue",
+          "sourceIds": ["wiki-the-exorcist-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 22",
+          "sourceIds": ["wiki-the-exorcist-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2016-house-freddy-vs-jason",
@@ -7997,28 +7118,56 @@
       "eventId": "hhn-2016",
       "type": "house",
       "name": "Halloween: Hell Comes to Haddonfield",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Halloween II"
       },
-      "location": "Jurassic Park Queue",
-      "sourceIds": ["wiki-halloween-hell-comes-to-haddonfield-hollywood"]
+      "location": null,
+      "slug": "hhn-2016-house-halloween-hell-comes-to-haddonfield",
+      "previousIds": ["hhn-2016-house-halloween-hell-comes-to-haddonfield-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Jurassic Park Queue",
+          "sourceIds": ["wiki-halloween-hell-comes-to-haddonfield-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Parade Warehouse",
+          "sourceIds": ["wiki-halloween-hell-comes-to-haddonfield-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2016-house-krampus-hollywood",
       "eventId": "hhn-2016",
       "type": "house",
       "name": "Krampus",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Krampus"
       },
-      "location": "Metro Sets Tent",
-      "sourceIds": ["wiki-krampus-hollywood"]
+      "location": null,
+      "slug": "hhn-2016-house-krampus",
+      "previousIds": ["hhn-2016-house-krampus-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Metro Sets Tent",
+          "sourceIds": ["wiki-krampus-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Shrek Theater",
+          "sourceIds": ["wiki-krampus-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2016-house-the-texas-chainsaw-massacre-blood-brothers",
@@ -8089,27 +7238,45 @@
       "eventId": "hhn-2017",
       "type": "house",
       "name": "The Shining",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "The Shining"
       },
-      "location": "Mummy Venue",
-      "sourceIds": ["wiki-the-shining-hollywood"]
+      "location": null,
+      "slug": "hhn-2017-house-the-shining",
+      "previousIds": ["hhn-2017-house-the-shining-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Mummy Venue",
+          "sourceIds": ["wiki-the-shining-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 22",
+          "sourceIds": ["wiki-the-shining-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2017-house-ash-vs-evil-dead-hollywood",
       "eventId": "hhn-2017",
       "type": "house",
       "name": "Ash Vs. Evil Dead",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Ash vs Evil Dead"
       },
-      "sourceIds": ["wiki-ash-vs-evil-dead-hollywood"]
+      "sourceIds": ["wiki-ash-vs-evil-dead-hollywood", "wiki-ash-vs-evil-dead-orlando"],
+      "slug": "hhn-2017-house-ash-vs-evil-dead",
+      "previousIds": ["hhn-2017-house-ash-vs-evil-dead-orlando"],
+      "location": "Parade Warehouse",
+      "summary": null
     },
     {
       "id": "hhn-2017-house-titans-of-terror",
@@ -8129,14 +7296,28 @@
       "eventId": "hhn-2017",
       "type": "house",
       "name": "SAW: The Games of Jigsaw",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "SAW"
       },
-      "location": "747 Tent",
-      "sourceIds": ["wiki-saw-the-games-of-jigsaw-hollywood"]
+      "location": null,
+      "slug": "hhn-2017-house-saw-the-games-of-jigsaw",
+      "previousIds": ["hhn-2017-house-saw-the-games-of-jigsaw-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "747 Tent",
+          "sourceIds": ["wiki-saw-the-games-of-jigsaw-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Shrek Theater",
+          "sourceIds": ["wiki-saw-the-games-of-jigsaw-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2017-house-insidious-beyond-the-further",
@@ -8156,14 +7337,28 @@
       "eventId": "hhn-2017",
       "type": "house",
       "name": "The Horrors of Blumhouse",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Happy Death Day"
       },
-      "location": "Parisian Courtyard",
-      "sourceIds": ["wiki-the-horrors-of-blumhouse-hollywood-2017"]
+      "location": null,
+      "slug": "hhn-2017-house-the-horrors-of-blumhouse",
+      "previousIds": ["hhn-2017-house-the-horrors-of-blumhouse-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Parisian Courtyard",
+          "sourceIds": ["wiki-the-horrors-of-blumhouse-hollywood-2017"]
+        },
+        {
+          "park": "orlando",
+          "location": "MIB Tent",
+          "sourceIds": ["wiki-the-horrors-of-blumhouse-orlando-2017"]
+        }
+      ]
     },
     {
       "id": "hhn-2017-house-the-walking-dead-attraction",
@@ -8232,28 +7427,56 @@
       "eventId": "hhn-2018",
       "type": "house",
       "name": "Stranger Things",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Stranger Things"
       },
-      "location": "Soundstage 29",
-      "sourceIds": ["wiki-stranger-things-hollywood-2018"]
+      "location": null,
+      "slug": "hhn-2018-house-stranger-things",
+      "previousIds": ["hhn-2018-house-stranger-things-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Soundstage 29",
+          "sourceIds": ["wiki-stranger-things-hollywood-2018"]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 22",
+          "sourceIds": ["wiki-stranger-things-orlando-2018"]
+        }
+      ]
     },
     {
       "id": "hhn-2018-house-trick-r-treat-hollywood",
       "eventId": "hhn-2018",
       "type": "house",
       "name": "Trick 'r Treat",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Trick 'r Treat"
       },
-      "location": "Mummy Venue",
-      "sourceIds": ["wiki-trick-r-treat-haunted-maze-hollywood"]
+      "location": null,
+      "slug": "hhn-2018-house-trick-r-treat",
+      "previousIds": ["hhn-2018-house-trick-r-treat-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Mummy Venue",
+          "sourceIds": ["wiki-trick-r-treat-haunted-maze-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Parade Warehouse",
+          "sourceIds": ["wiki-trick-r-treat-haunted-house-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2018-house-the-first-purge",
@@ -8286,28 +7509,56 @@
       "eventId": "hhn-2018",
       "type": "house",
       "name": "Poltergeist",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Poltergeist"
       },
-      "location": "747 Tent",
-      "sourceIds": ["wiki-poltergeist-hollywood"]
+      "location": null,
+      "slug": "hhn-2018-house-poltergeist",
+      "previousIds": ["hhn-2018-house-poltergeist-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "747 Tent",
+          "sourceIds": ["wiki-poltergeist-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 25",
+          "sourceIds": ["wiki-poltergeist-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2018-house-halloween-4-the-return-of-michael-myers-hollywood",
       "eventId": "hhn-2018",
       "type": "house",
       "name": "Halloween 4: The Return of Michael Myers",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Halloween 4: The Return of Michael Myers"
       },
-      "location": "Waterworld Queue",
-      "sourceIds": ["wiki-halloween-4-the-return-of-michael-myers-hollywood"]
+      "location": null,
+      "slug": "hhn-2018-house-halloween-4-the-return-of-michael-myers",
+      "previousIds": ["hhn-2018-house-halloween-4-the-return-of-michael-myers-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Waterworld Queue",
+          "sourceIds": ["wiki-halloween-4-the-return-of-michael-myers-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Shrek Theater",
+          "sourceIds": ["wiki-halloween-4-the-return-of-michael-myers-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2018-house-the-horrors-of-blumhouse-chapter-two",
@@ -8414,14 +7665,28 @@
       "eventId": "hhn-2019",
       "type": "house",
       "name": "Stranger Things",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Stranger Things 2"
       },
-      "location": "Soundstage 29",
-      "sourceIds": ["wiki-stranger-things-hollywood-2019"]
+      "location": null,
+      "slug": "hhn-2019-house-stranger-things",
+      "previousIds": ["hhn-2019-house-stranger-things-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Soundstage 29",
+          "sourceIds": ["wiki-stranger-things-hollywood-2019"]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 25",
+          "sourceIds": ["wiki-stranger-things-orlando-2019"]
+        }
+      ]
     },
     {
       "id": "hhn-2019-house-holidayz-in-hell",
@@ -8466,28 +7731,56 @@
       "eventId": "hhn-2019",
       "type": "house",
       "name": "Ghostbusters",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Ghostbusters"
       },
-      "location": "747 Tent",
-      "sourceIds": ["wiki-ghostbusters-hollywood"]
+      "location": null,
+      "slug": "hhn-2019-house-ghostbusters",
+      "previousIds": ["hhn-2019-house-ghostbusters-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "747 Tent",
+          "sourceIds": ["wiki-ghostbusters-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 22",
+          "sourceIds": ["wiki-ghostbusters-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2019-house-killer-klowns-from-outer-space-hollywood",
       "eventId": "hhn-2019",
       "type": "house",
       "name": "Killer Klowns From Outer Space",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Killer Klowns From Outer Space"
       },
-      "location": "Mummy Venue",
-      "sourceIds": ["wiki-killer-klowns-from-outer-space-hollywood"]
+      "location": null,
+      "slug": "hhn-2019-house-killer-klowns-from-outer-space",
+      "previousIds": ["hhn-2019-house-killer-klowns-from-outer-space-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Mummy Venue",
+          "sourceIds": ["wiki-killer-klowns-from-outer-space-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Shrek Theater",
+          "sourceIds": ["wiki-killer-klowns-from-outer-space-haunted-house-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2019-house-creepshow",
@@ -8503,24 +7796,56 @@
       "eventId": "hhn-2019",
       "type": "house",
       "name": "Us",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
-      "location": "Tram Garage Tent 1",
-      "sourceIds": ["wiki-us-hollywood"]
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
+      "location": null,
+      "slug": "hhn-2019-house-us",
+      "previousIds": ["hhn-2019-house-us-orlando"],
+      "summary": null,
+      "ip": {
+        "type": "licensed",
+        "franchise": "Us"
+      },
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Tram Garage Tent 1",
+          "sourceIds": ["wiki-us-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 24",
+          "sourceIds": ["wiki-us-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2019-house-house-of-1000-corpses-hollywood",
       "eventId": "hhn-2019",
       "type": "house",
       "name": "House of 1000 Corpses",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "House of 1000 Corpses"
       },
-      "location": "Waterworld Queue",
-      "sourceIds": ["wiki-house-of-1000-corpses-haunted-maze-hollywood"]
+      "location": null,
+      "slug": "hhn-2019-house-house-of-1000-corpses",
+      "previousIds": ["hhn-2019-house-house-of-1000-corpses-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Waterworld Queue",
+          "sourceIds": ["wiki-house-of-1000-corpses-haunted-maze-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "MIB Tent",
+          "sourceIds": ["wiki-house-of-1000-corpses-haunted-house-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2019-house-the-curse-of-pandora-s-box",
@@ -8612,28 +7937,56 @@
       "eventId": "hhn-2021",
       "type": "house",
       "name": "Universal Monsters: The Bride of Frankenstein Lives",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Universal Classic Monsters"
       },
-      "location": "Parisian Courtyard",
-      "sourceIds": ["wiki-universal-monsters-the-bride-of-frankenstein-lives-hollywood"]
+      "location": null,
+      "slug": "hhn-2021-house-universal-monsters-the-bride-of-frankenstein-liv",
+      "previousIds": ["hhn-2021-house-universal-monsters-the-bride-of-frankenstein-liv-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Parisian Courtyard",
+          "sourceIds": ["wiki-universal-monsters-the-bride-of-frankenstein-lives-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 23A",
+          "sourceIds": ["wiki-universal-monsters-the-bride-of-frankenstein-lives-hollywood"]
+        }
+      ]
     },
     {
       "id": "hhn-2021-house-the-texas-chainsaw-massacre-hollywood",
       "eventId": "hhn-2021",
       "type": "house",
       "name": "The Texas Chainsaw Massacre",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "The Texas Chainsaw Massacre"
       },
-      "location": "Mummy Venue",
-      "sourceIds": ["wiki-the-texas-chainsaw-massacre-hollywood"]
+      "location": null,
+      "slug": "hhn-2021-house-the-texas-chainsaw-massacre",
+      "previousIds": ["hhn-2021-house-the-texas-chainsaw-massacre-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Mummy Venue",
+          "sourceIds": ["wiki-the-texas-chainsaw-massacre-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 23B",
+          "sourceIds": ["wiki-the-texas-chainsaw-massacre-orlando-2021"]
+        }
+      ]
     },
     {
       "id": "hhn-2021-house-the-exorcist",
@@ -8741,56 +8094,112 @@
       "eventId": "hhn-2022",
       "type": "house",
       "name": "Universal Monsters: Legends Collide",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Universal Classic Monsters"
       },
-      "location": "Mummy Venue",
-      "sourceIds": ["wiki-universal-monsters-legends-collide-hollywood"]
+      "location": null,
+      "slug": "hhn-2022-house-universal-monsters-legends-collide",
+      "previousIds": ["hhn-2022-house-universal-monsters-legends-collide-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Mummy Venue",
+          "sourceIds": ["wiki-universal-monsters-legends-collide-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Parade Warehouse",
+          "sourceIds": ["wiki-universal-monsters-legends-collide-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2022-house-halloween-hollywood",
       "eventId": "hhn-2022",
       "type": "house",
       "name": "Halloween",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Halloween"
       },
-      "location": "H-Lot South",
-      "sourceIds": ["wiki-halloween-hollywood-2022"]
+      "location": null,
+      "slug": "hhn-2022-house-halloween",
+      "previousIds": ["hhn-2022-house-halloween-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "H-Lot South",
+          "sourceIds": ["wiki-halloween-hollywood-2022"]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 23B",
+          "sourceIds": ["wiki-halloween-orlando-2022"]
+        }
+      ]
     },
     {
       "id": "hhn-2022-house-the-horrors-of-blumhouse-hollywood",
       "eventId": "hhn-2022",
       "type": "house",
       "name": "The Horrors of Blumhouse",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Freaky"
       },
-      "location": "Waterworld Queue",
-      "sourceIds": ["wiki-the-horrors-of-blumhouse-hollywood-2022"]
+      "location": null,
+      "slug": "hhn-2022-house-the-horrors-of-blumhouse",
+      "previousIds": ["hhn-2022-house-the-horrors-of-blumhouse-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Waterworld Queue",
+          "sourceIds": ["wiki-the-horrors-of-blumhouse-hollywood-2022"]
+        },
+        {
+          "park": "orlando",
+          "location": "Fast & Furious Location",
+          "sourceIds": ["wiki-the-horrors-of-blumhouse-orlando-2022"]
+        }
+      ]
     },
     {
       "id": "hhn-2022-house-the-weeknd-after-hours-nightmare-hollywood",
       "eventId": "hhn-2022",
       "type": "house",
       "name": "The Weeknd: After Hours Nightmare",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "After Hours"
       },
-      "location": "Soundstage 29",
-      "sourceIds": ["wiki-the-weeknd-after-hours-nightmare-hollywood"]
+      "location": null,
+      "slug": "hhn-2022-house-the-weeknd-after-hours-nightmare",
+      "previousIds": ["hhn-2022-house-the-weeknd-after-hours-nightmare-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Soundstage 29",
+          "sourceIds": ["wiki-the-weeknd-after-hours-nightmare-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Second Parade Warehouse",
+          "sourceIds": ["wiki-the-weeknd-after-hours-nightmare-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2022-house-scarecrow-the-reaping",
@@ -8896,56 +8305,112 @@
       "eventId": "hhn-2023",
       "type": "house",
       "name": "Chucky: Ultimate Kill Count",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Child's Play"
       },
-      "location": "H-Lot North",
-      "sourceIds": ["wiki-chucky-ultimate-kill-count-hollywood"]
+      "location": null,
+      "slug": "hhn-2023-house-chucky-ultimate-kill-count",
+      "previousIds": ["hhn-2023-house-chucky-ultimate-kill-count-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "H-Lot North",
+          "sourceIds": ["wiki-chucky-ultimate-kill-count-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Fast & Furious Location",
+          "sourceIds": ["wiki-chucky-ultimate-kill-count-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2023-house-the-last-of-us-hollywood",
       "eventId": "hhn-2023",
       "type": "house",
       "name": "The Last of Us",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "The Last of Us"
       },
-      "location": "Mummy Venue",
-      "sourceIds": ["wiki-the-last-of-us-hollywood"]
+      "location": null,
+      "slug": "hhn-2023-house-the-last-of-us",
+      "previousIds": ["hhn-2023-house-the-last-of-us-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Mummy Venue",
+          "sourceIds": ["wiki-the-last-of-us-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Second Parade Warehouse",
+          "sourceIds": ["wiki-the-last-of-us-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2023-house-stranger-things-4-hollywood",
       "eventId": "hhn-2023",
       "type": "house",
       "name": "Stranger Things 4",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Stranger Things"
       },
-      "location": "Soundstage 15",
-      "sourceIds": ["wiki-stranger-things-4-hollywood"]
+      "location": null,
+      "slug": "hhn-2023-house-stranger-things-4",
+      "previousIds": ["hhn-2023-house-stranger-things-4-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Soundstage 15",
+          "sourceIds": ["wiki-stranger-things-4-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 23B",
+          "sourceIds": ["wiki-stranger-things-4-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2023-house-universal-monsters-unmasked-hollywood",
       "eventId": "hhn-2023",
       "type": "house",
       "name": "Universal Monsters: Unmasked",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Universal Classic Monsters"
       },
-      "location": "H-Lot South",
-      "sourceIds": ["wiki-universal-monsters-unmasked-hollywood"]
+      "location": null,
+      "slug": "hhn-2023-house-universal-monsters-unmasked",
+      "previousIds": ["hhn-2023-house-universal-monsters-unmasked-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "H-Lot South",
+          "sourceIds": ["wiki-universal-monsters-unmasked-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Parade Warehouse",
+          "sourceIds": ["wiki-universal-monsters-unmasked-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2023-house-monstruos-the-monsters-of-latin-america",
@@ -9038,14 +8503,28 @@
       "eventId": "hhn-2024",
       "type": "house",
       "name": "A Quiet Place",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "A Quiet Place"
       },
-      "location": "UBE Venue",
-      "sourceIds": ["wiki-a-quiet-place-hollywood-2024"]
+      "location": null,
+      "slug": "hhn-2024-house-a-quiet-place",
+      "previousIds": ["hhn-2024-house-a-quiet-place-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "UBE Venue",
+          "sourceIds": ["wiki-a-quiet-place-hollywood-2024"]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 22",
+          "sourceIds": ["wiki-a-quiet-place-orlando-2024"]
+        }
+      ]
     },
     {
       "id": "hhn-2024-house-dead-exposure-death-valley",
@@ -9076,42 +8555,84 @@
       "eventId": "hhn-2024",
       "type": "house",
       "name": "Ghostbusters: Frozen Empire",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Ghostbusters: Frozen Empire"
       },
-      "location": "H-Lot North",
-      "sourceIds": ["wiki-ghostbusters-frozen-empire-hollywood"]
+      "location": null,
+      "slug": "hhn-2024-house-ghostbusters-frozen-empire",
+      "previousIds": ["hhn-2024-house-ghostbusters-frozen-empire-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "H-Lot North",
+          "sourceIds": ["wiki-ghostbusters-frozen-empire-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 23B",
+          "sourceIds": ["wiki-ghostbusters-frozen-empire-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2024-house-insidious-the-further-hollywood",
       "eventId": "hhn-2024",
       "type": "house",
       "name": "Insidious: The Further",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Insidious"
       },
-      "location": "H-Lot South",
-      "sourceIds": ["wiki-insidious-the-further-hollywood"]
+      "location": null,
+      "slug": "hhn-2024-house-insidious-the-further",
+      "previousIds": ["hhn-2024-house-insidious-the-further-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "H-Lot South",
+          "sourceIds": ["wiki-insidious-the-further-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 24A",
+          "sourceIds": ["wiki-insidious-the-further-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2024-house-universal-monsters-eternal-bloodlines-hollywood",
       "eventId": "hhn-2024",
       "type": "house",
       "name": "Universal Monsters: Eternal Bloodlines",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Universal Classic Monsters"
       },
-      "location": "Soundstage 12",
-      "sourceIds": ["wiki-universal-monsters-eternal-bloodlines-hollywood"]
+      "location": null,
+      "slug": "hhn-2024-house-universal-monsters-eternal-bloodlines",
+      "previousIds": ["hhn-2024-house-universal-monsters-eternal-bloodlines-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Soundstage 12",
+          "sourceIds": ["wiki-universal-monsters-eternal-bloodlines-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Sprung Tent 3",
+          "sourceIds": ["wiki-universal-monsters-eternal-bloodlines-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2024-house-the-texas-chainsaw-massacre-the-legacy-of-leathe",
@@ -9201,14 +8722,28 @@
       "eventId": "hhn-2025",
       "type": "house",
       "name": "Fallout",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Fallout"
       },
-      "location": "UBE Venue",
-      "sourceIds": ["wiki-fallout-hollywood"]
+      "location": null,
+      "slug": "hhn-2025-house-fallout",
+      "previousIds": ["hhn-2025-house-fallout-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "UBE Venue",
+          "sourceIds": ["wiki-fallout-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Sprung Tent 4",
+          "sourceIds": ["wiki-fallout-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2025-house-monstruos-3-the-ghosts-of-latin-america",
@@ -9227,14 +8762,28 @@
       "eventId": "hhn-2025",
       "type": "house",
       "name": "Jason Universe",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Friday The 13th"
       },
-      "location": "Mummy Venue",
-      "sourceIds": ["wiki-jason-universe-hollywood"]
+      "location": null,
+      "slug": "hhn-2025-house-jason-universe",
+      "previousIds": ["hhn-2025-house-jason-universe-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Mummy Venue",
+          "sourceIds": ["wiki-jason-universe-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Fast & Furious Location",
+          "sourceIds": ["wiki-jason-universe-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2025-house-scarecrow-music-by-slash",
@@ -9253,28 +8802,56 @@
       "eventId": "hhn-2025",
       "type": "house",
       "name": "WWE Presents: The Horrors of The Wyatt Sicks",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "The Wyatt Sicks"
       },
-      "location": "Jurassic World Queue",
-      "sourceIds": ["wiki-wwe-presents-the-horrors-of-the-wyatt-sicks-hollywood"]
+      "location": null,
+      "slug": "hhn-2025-house-wwe-presents-the-horrors-of-the-wyatt-sicks",
+      "previousIds": ["hhn-2025-house-wwe-presents-the-horrors-of-the-wyatt-sicks-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Jurassic World Queue",
+          "sourceIds": ["wiki-wwe-presents-the-horrors-of-the-wyatt-sicks-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 23A",
+          "sourceIds": ["wiki-wwe-presents-the-horrors-of-the-wyatt-sicks-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2025-house-terrifier-hollywood",
       "eventId": "hhn-2025",
       "type": "house",
       "name": "Terrifier",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Terrifier"
       },
-      "location": "H-Lot North",
-      "sourceIds": ["wiki-terrifier-hollywood"]
+      "location": null,
+      "slug": "hhn-2025-house-terrifier",
+      "previousIds": ["hhn-2025-house-terrifier-orlando"],
+      "summary": null,
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "H-Lot North",
+          "sourceIds": ["wiki-terrifier-hollywood"]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 25",
+          "sourceIds": ["wiki-terrifier-orlando"]
+        }
+      ]
     },
     {
       "id": "hhn-2025-house-poltergeist",
@@ -9351,15 +8928,28 @@
       "eventId": "hhn-2026",
       "type": "house",
       "name": "Sinners",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Sinners"
       },
       "summary": "Set in the Mississippi Delta of the 1930s, on the opening night of the juke joint run by twin brothers Smoke and Stack.",
-      "location": "UBE Venue",
-      "sourceIds": ["wiki-sinners-hollywood", "press-nbcu-halloween-2026-guide"]
+      "location": null,
+      "slug": "hhn-2026-house-sinners",
+      "previousIds": ["hhn-2026-house-sinners-orlando"],
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "UBE Venue",
+          "sourceIds": ["wiki-sinners-hollywood", "press-nbcu-halloween-2026-guide"]
+        },
+        {
+          "park": "orlando",
+          "location": "Sprung Tent 3",
+          "sourceIds": ["wiki-sinners-orlando", "press-uo-hhn-2026-overview"]
+        }
+      ]
     },
     {
       "id": "hhn-2026-house-killcea-era-music-by-slash",
@@ -9378,17 +8968,33 @@
       "eventId": "hhn-2026",
       "type": "house",
       "name": "Ozzy Osbourne: Prince of Darkness",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Ozzy Osbourne"
       },
       "summary": "A journey through the imagery of Ozzy Osbourne's solo career.",
-      "location": "Mummy Venue",
-      "sourceIds": [
-        "wiki-ozzy-osbourne-prince-of-darkness-hollywood",
-        "press-nbcu-halloween-2026-guide"
+      "location": null,
+      "slug": "hhn-2026-house-ozzy-osbourne-prince-of-darkness",
+      "previousIds": ["hhn-2026-house-ozzy-osbourne-prince-of-darkness-orlando"],
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Mummy Venue",
+          "sourceIds": [
+            "wiki-ozzy-osbourne-prince-of-darkness-hollywood",
+            "press-nbcu-halloween-2026-guide"
+          ]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 24A",
+          "sourceIds": [
+            "wiki-ozzy-osbourne-prince-of-darkness-orlando",
+            "press-uo-hhn-2026-overview"
+          ]
+        }
       ]
     },
     {
@@ -9396,15 +9002,28 @@
       "eventId": "hhn-2026",
       "type": "house",
       "name": "Stranger Things 5",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Stranger Things 5"
       },
       "summary": "Built on the fifth and final season of the Netflix series, as the barrier between Hawkins and the Upside Down gives way.",
-      "location": "Soundstage 15",
-      "sourceIds": ["wiki-stranger-things-5-hollywood", "press-nbcu-halloween-2026-guide"]
+      "location": null,
+      "slug": "hhn-2026-house-stranger-things-5",
+      "previousIds": ["hhn-2026-house-stranger-things-5-orlando"],
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "Soundstage 15",
+          "sourceIds": ["wiki-stranger-things-5-hollywood", "press-nbcu-halloween-2026-guide"]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 23B",
+          "sourceIds": ["wiki-stranger-things-5-orlando", "press-uo-hhn-2026-overview"]
+        }
+      ]
     },
     {
       "id": "hhn-2026-house-killer-klowns-from-outer-space",
@@ -9436,30 +9055,56 @@
       "eventId": "hhn-2026",
       "type": "house",
       "name": "Hellraiser",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Hellraiser"
       },
       "summary": "Guests open the Lament Configuration and summon the Cenobites, drawing on the first three films. Doug Bradley reprises Pinhead.",
-      "location": "H-Lot North",
-      "sourceIds": ["wiki-hellraiser-hollywood", "press-nbcu-halloween-2026-guide"]
+      "location": null,
+      "slug": "hhn-2026-house-hellraiser",
+      "previousIds": ["hhn-2026-house-hellraiser-orlando"],
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "H-Lot North",
+          "sourceIds": ["wiki-hellraiser-hollywood", "press-nbcu-halloween-2026-guide"]
+        },
+        {
+          "park": "orlando",
+          "location": "Sprung Tent 4",
+          "sourceIds": ["wiki-hellraiser-orlando", "press-uo-hhn-2026-overview"]
+        }
+      ]
     },
     {
       "id": "hhn-2026-house-evil-dead-burn-hollywood",
       "eventId": "hhn-2026",
       "type": "house",
       "name": "Evil Dead Burn",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Evil Dead Burn"
       },
       "summary": "Takes guests first-hand through the film's most frightening moments.",
-      "location": "H-Lot South",
-      "sourceIds": ["wiki-evil-dead-burn-hollywood", "press-nbcu-halloween-2026-guide"]
+      "location": null,
+      "slug": "hhn-2026-house-evil-dead-burn",
+      "previousIds": ["hhn-2026-house-evil-dead-burn-orlando"],
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "H-Lot South",
+          "sourceIds": ["wiki-evil-dead-burn-hollywood", "press-nbcu-halloween-2026-guide"]
+        },
+        {
+          "park": "orlando",
+          "location": "Soundstage 23A",
+          "sourceIds": ["wiki-evil-dead-burn-orlando", "press-uo-hhn-2026-overview"]
+        }
+      ]
     },
     {
       "id": "hhn-2026-zone-terror-tram-starring-art-the-clown",
@@ -9479,15 +9124,28 @@
       "eventId": "hhn-2026",
       "type": "scare_zone",
       "name": "Fortnitemares",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
+      "parks": ["hollywood", "orlando"],
+      "variantName": null,
       "ip": {
         "type": "licensed",
         "franchise": "Fortnite"
       },
       "summary": "Guests drop into the world of Fortnitemares.",
-      "location": "New York Street",
-      "sourceIds": ["wiki-fortnitemares-hollywood", "press-nbcu-halloween-2026-guide"]
+      "location": null,
+      "slug": "hhn-2026-zone-fortnitemares",
+      "previousIds": ["hhn-2026-zone-fortnitemares-orlando"],
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "New York Street",
+          "sourceIds": ["wiki-fortnitemares-hollywood", "press-nbcu-halloween-2026-guide"]
+        },
+        {
+          "park": "orlando",
+          "location": "Central Park",
+          "sourceIds": ["wiki-fortnitemares-orlando", "press-uo-hhn-2026-overview"]
+        }
+      ]
     },
     {
       "id": "hhn-2026-zone-el-circo-de-la-muerte",

@@ -1,6 +1,7 @@
 import { coveragePercent, type Coverage, type CoverageSlice } from "../../utils/statistics";
 import { Panel } from "../ui";
 import "./CoveragePanel.css";
+import { attractionTypeLabel } from "../../models/haunt";
 
 export interface CoveragePanelProps {
   coverage: Coverage;
@@ -43,7 +44,7 @@ export function CoveragePanel({ coverage }: CoveragePanelProps) {
     <Panel elevated padding="lg" className="coverage">
       <h2 className="coverage__title">Review coverage</h2>
       <CoverageMeter label="All attractions" slice={coverage.all} />
-      <CoverageMeter label="Houses" slice={coverage.houses} />
+      <CoverageMeter label={attractionTypeLabel("house", null, "many")} slice={coverage.houses} />
       <CoverageMeter label="Scare Zones" slice={coverage.scareZones} />
     </Panel>
   );

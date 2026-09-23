@@ -10,10 +10,12 @@ import {
   LoadingState,
   PageHeader,
   Panel,
+  SegmentedControl,
 } from "../components/ui";
 import { useAdminArchive, type AdminAttractionRow } from "../hooks/useAdminArchive";
 import { useAdminMode } from "../hooks/useAdminMode";
 import type { EventYear } from "../models/eventYear";
+import { HAUNT_IDS, HAUNT_NAMES, type HauntId } from "../models/haunt";
 import { formatScore } from "../utils/formatScore";
 import "./AdminMode.css";
 
@@ -139,6 +141,9 @@ export function AdminMode() {
 
   const [newYearName, setNewYearName] = useState("");
   const [newYearNumber, setNewYearNumber] = useState("");
+  // Two haunts can both hold a 2024 season, so which one this is has to be
+  // said rather than assumed.
+  const [newYearHaunt, setNewYearHaunt] = useState<HauntId>(HAUNT_IDS.hhn);
   const [yearError, setYearError] = useState<string | null>(null);
   const [deletingYear, setDeletingYear] = useState<EventYear | null>(null);
   const [deletingAttraction, setDeletingAttraction] = useState<AdminAttractionRow | null>(null);
@@ -150,7 +155,11 @@ export function AdminMode() {
   const handleAddYear = async () => {
     setYearError(null);
     try {
-      await createYear({ calendarYear: Number(newYearNumber), name: newYearName.trim() });
+      await createYear({
+        hauntId: newYearHaunt,
+        calendarYear: Number(newYearNumber),
+        name: newYearName.trim(),
+      });
       setNewYearName("");
       setNewYearNumber("");
     } catch (caught) {
@@ -213,6 +222,15 @@ export function AdminMode() {
             )}
 
             <div className="admin__form">
+              <SegmentedControl
+                aria-label="Haunt"
+                value={newYearHaunt}
+                onChange={setNewYearHaunt}
+                options={[
+                  { value: HAUNT_IDS.hhn, label: HAUNT_NAMES[HAUNT_IDS.hhn].shortName },
+                  { value: HAUNT_IDS.knotts, label: HAUNT_NAMES[HAUNT_IDS.knotts].shortName },
+                ]}
+              />
               <Input
                 label="Year"
                 type="number"

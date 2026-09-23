@@ -43,6 +43,17 @@ export function createArchiveImportRepository(db: SqlExecutor): ArchiveImportRep
     return new Set(rows.map((row) => pairKey(row[first], row[second])));
   }
 
+  /** Venue-specific wiki sections, keyed `attraction id|venue id`. */
+  async function venueWikiRows(): Promise<Map<string, Record<string, unknown>>> {
+    const columns = columnsOf("attractionVenueWiki");
+    const rows = await db.select<Array<Record<string, unknown>>>(
+      `SELECT ${columns.join(", ")} FROM attraction_venue_wiki`,
+    );
+    return new Map(
+      rows.map((row) => [pairKey(row.attraction_id as string, row.venue_id as string), row]),
+    );
+  }
+
   async function readState(): Promise<ArchiveState> {
     return withDatabaseErrors(async () => {
       // Only how many, never what they say: the importer has no reason to
@@ -63,6 +74,8 @@ export function createArchiveImportRepository(db: SqlExecutor): ArchiveImportRep
         sources: await mapOf("sources", "sources"),
         media: await mapOf("media", "media"),
         attractionParks: await setOf("attraction_parks", "attraction_id", "park_id"),
+        venueWiki: await venueWikiRows(),
+        seasonAppearances: await setOf("season_appearances", "attraction_id", "season_id"),
         attractionSources: await setOf("attraction_sources", "attraction_id", "source_id"),
         eventYearSources: await setOf("event_year_sources", "event_year_id", "source_id"),
         personalRowCounts: new Map(personal.map((row) => [row.attraction_id, row.count])),
@@ -102,11 +115,16 @@ export function createArchiveImportRepository(db: SqlExecutor): ArchiveImportRep
     return rows[0]?.updated_at;
   }
 
-  async function deleteLink(table: string, key: Record<string, string>): Promise<void> {
+  async function deleteLink(table: string, key: Record<string, string | null>): Promise<void> {
+    // A row whose prose columns are null still has to be matched, and
+    // `= NULL` never matches anything.
     const columns = Object.keys(key);
+    const where = columns
+      .map((column) => (key[column] === null ? `${column} IS NULL` : `${column} = ?`))
+      .join(" AND ");
     await db.execute(
-      `DELETE FROM ${table} WHERE ${columns.map((column) => `${column} = ?`).join(" AND ")}`,
-      columns.map((column) => key[column]),
+      `DELETE FROM ${table} WHERE ${where}`,
+      columns.filter((column) => key[column] !== null).map((column) => key[column]),
     );
   }
 
@@ -163,6 +181,11 @@ export function createArchiveImportRepository(db: SqlExecutor): ArchiveImportRep
           from,
         ]);
       }
+      // Appearances name the season in a column of their own.
+      await db.execute("UPDATE season_appearances SET season_id = ? WHERE season_id = ?", [
+        to,
+        from,
+      ]);
     }
 
     await db.execute(`DELETE FROM ${table} WHERE id = ?`, [from]);

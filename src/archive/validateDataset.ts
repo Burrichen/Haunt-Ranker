@@ -36,6 +36,9 @@ const SOURCE_TYPES = [
   "other",
 ];
 
+/** The haunts the app ships with; a dataset can't invent one. */
+const HAUNT_IDS = ["hhn", "knotts-scary-farm"];
+
 const MIN_CALENDAR_YEAR = 1900;
 const MAX_CALENDAR_YEAR = 2200;
 
@@ -283,6 +286,9 @@ function validateEvent(
 
   const eventId = id(value.id, `${path}.id`, problems);
   claim(taken, eventId, `${path}.id`, problems);
+  if (value.hauntId !== undefined) {
+    oneOf(value.hauntId, HAUNT_IDS, `${path}.hauntId`, problems, false);
+  }
   validatePreviousIds(value, eventId, path, problems);
   text(value.name, `${path}.name`, problems, true);
 
@@ -321,6 +327,74 @@ interface AttractionCounts {
   characters: number;
   media: number;
   relations: number;
+}
+
+const VENUE_WIKI_SECTIONS = ["overview", "story", "experience", "development", "location"];
+
+/**
+ * What differed at one venue of an attraction that ran at more than one.
+ *
+ * Two rules: it can only describe a venue the attraction actually ran at,
+ * and it has to say something. An entry naming a venue and holding nothing
+ * would render as a heading with nothing under it.
+ */
+function validateVenueWiki(
+  value: unknown,
+  parks: unknown,
+  path: string,
+  sourceIds: Set<string>,
+  problems: Problems,
+): void {
+  if (value === undefined) {
+    return;
+  }
+  if (!Array.isArray(value)) {
+    problems.add(path, "should be a list of venue-specific sections");
+    return;
+  }
+
+  const ownParks = new Set(Array.isArray(parks) ? parks : []);
+  const seen = new Set<string>();
+
+  value.forEach((entry, index) => {
+    const at = `${path}[${index}]`;
+    if (!isRecord(entry)) {
+      problems.add(at, "should be an object");
+      return;
+    }
+
+    const park = oneOf(entry.park, Object.values(PARK_IDS), `${at}.park`, problems);
+    if (park !== null) {
+      if (!ownParks.has(park)) {
+        problems.add(
+          `${at}.park`,
+          `"${park}" isn't one of this attraction's parks — a venue section can only ` +
+            "describe somewhere it actually ran",
+        );
+      }
+      if (seen.has(park)) {
+        problems.add(`${at}.park`, `"${park}" already has a venue section`);
+      }
+      seen.add(park);
+    }
+
+    let written = 0;
+    for (const section of VENUE_WIKI_SECTIONS) {
+      const content = text(entry[section], `${at}.${section}`, problems);
+      if (content !== null) {
+        written += 1;
+      }
+    }
+
+    validateSourceIds(entry.sourceIds, `${at}.sourceIds`, sourceIds, problems);
+    if (Array.isArray(entry.sourceIds) && entry.sourceIds.length > 0) {
+      written += 1;
+    }
+
+    if (written === 0) {
+      problems.add(at, "says nothing, so it would render as an empty heading — leave it out");
+    }
+  });
 }
 
 function validateAttraction(
@@ -366,6 +440,8 @@ function validateAttraction(
       }
     }
   }
+
+  validateVenueWiki(value.venueWiki, value.parks, `${path}.venueWiki`, sourceIds, problems);
 
   dateRange(value.dates, `${path}.dates`, problems);
 

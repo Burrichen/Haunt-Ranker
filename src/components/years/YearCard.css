@@ -60,6 +60,16 @@
   padding: var(--space-4);
 }
 
+.year-card__haunt {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-1);
+}
+
 .year-card__year {
   font-size: 0.75rem;
   font-weight: 500;

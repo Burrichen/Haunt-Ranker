@@ -7,6 +7,7 @@ import {
   MyReview,
   RelatedAttractions,
   SourceList,
+  VenueDifferences,
   WikiHeader,
   WikiSection,
 } from "../components/wiki";
@@ -28,6 +29,8 @@ export function AttractionWiki() {
     media,
     characters,
     sources,
+    venueSections,
+    appearances,
     rating,
     note,
     relatedItems,
@@ -102,6 +105,12 @@ export function AttractionWiki() {
             </WikiSection>
           )}
 
+          {venueSections.length > 0 && (
+            <WikiSection title="At Each Venue">
+              <VenueDifferences sections={venueSections} />
+            </WikiSection>
+          )}
+
           {characters.length > 0 && (
             <WikiSection title="Characters / Creatures">
               <CharacterGrid characters={characters} />
@@ -144,7 +153,12 @@ export function AttractionWiki() {
         </div>
 
         <aside className="attraction-wiki__sidebar">
-          <DetailsPanel attraction={attraction} eventYear={eventYear} relatedItems={relatedItems} />
+          <DetailsPanel
+            attraction={attraction}
+            eventYear={eventYear}
+            appearances={appearances}
+            relatedItems={relatedItems}
+          />
           <MyReview
             attractionName={attraction.name}
             rating={rating}

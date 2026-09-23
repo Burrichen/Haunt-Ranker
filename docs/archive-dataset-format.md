@@ -61,6 +61,7 @@ shape of the format.
 | -------------- | -------- | ----------------------------------------------------------- |
 | `id`           | yes      | Stable id                                                   |
 | `previousIds`  | no       | Ids this event used to have — see "Renaming" below          |
+| `hauntId`      | no       | `hhn` (the default) or `knotts-scary-farm`                  |
 | `calendarYear` | yes      | Whole year, 1900–2200                                       |
 | `name`         | yes      | e.g. "Halloween Horror Nights 2024"                         |
 | `description`  | no       | Prose about the year                                        |
@@ -69,8 +70,12 @@ shape of the format.
 | `sourceIds`    | no       | Ids from `sources` — a season recap belongs to the year     |
 | `media`        | no       | Event artwork (see "Media")                                 |
 
-One event record covers **both parks**. Which parks an attraction actually ran
-at is recorded on the attraction, because that's where it differs.
+An event is one haunt's **season**. A season is never identified by its year
+alone — both haunts hold a 2024 — so `hauntId` says whose it is, defaulting to
+Halloween Horror Nights.
+
+One HHN season record covers **both parks**. Which parks an attraction actually
+ran at is recorded on the attraction, because that's where it differs.
 
 ### `attractions[]`
 
@@ -87,6 +92,7 @@ at is recorded on the attraction, because that's where it differs.
 | `ip`          | no       | `{ "type": "original" \| "licensed", "franchise": "…" }`            |
 | `summary`     | no       | One or two sentences; used on cards and hover previews              |
 | `wiki`        | no       | `{ overview, story, experience, development }` — all optional prose |
+| `venueWiki`   | no       | What differed at one venue — see below                              |
 | `location`    | no       | Where it stood: a soundstage, a lot, a street                       |
 | `dates`       | no       | `{ start, end }` — when this attraction opened and closed           |
 | `characters`  | no       | `[{ id, name, description? }]`                                      |
@@ -94,12 +100,35 @@ at is recorded on the attraction, because that's where it differs.
 | `media`       | no       | See "Media"                                                         |
 | `sourceIds`   | no       | Ids from `sources`                                                  |
 
-**Shared appearances vs. separate versions.** Listing both parks in one record
-means _the same attraction_ appeared at both. A version different enough to be
-worth describing separately gets **its own record, with its own id**, and the
-two are linked with a `previous_version` relation; `variantName` (e.g.
-"Hollywood version") is what tells them apart in the UI. Nothing is ever merged
-automatically on a name.
+**One record per name per season.** For Halloween Horror Nights, the same name
+in the same season at Hollywood and Orlando is **one attraction carrying both
+parks** — one rating, one note, one place in a ranking — however much the two
+builds differed. A dataset that still holds two records for such a pair is
+rejected by validation, because the database it imports into merges exactly
+that shape (migration `0009_merge_hhn_cross_park.sql`).
+
+`variantName` remains for versions that are genuinely different attractions
+under different names, and those stay separate records with their own ids,
+linked by a relation.
+
+### `venueWiki[]`
+
+What was true of one venue's build and not of the record as a whole. Merging
+two parks into one attraction must not cost a fact, and this is where the facts
+go.
+
+| Field         | Required | Notes                                                  |
+| ------------- | -------- | ------------------------------------------------------ |
+| `park`        | yes      | Must be one of the attraction's own `parks`            |
+| `overview`    | no       | Prose, as in `wiki`                                    |
+| `story`       | no       |                                                        |
+| `experience`  | no       |                                                        |
+| `development` | no       |                                                        |
+| `location`    | no       | Where this park's version stood                        |
+| `sourceIds`   | no       | Sources describing this version rather than the record |
+
+An entry must say something: a venue section holding nothing would render as a
+heading with nothing under it, so validation rejects it. One entry per park.
 
 `related[].type` is one of `sequel`, `previous_version`, `same_franchise`,
 `related_concept`. A relation may point at an attraction in this file _or_ at

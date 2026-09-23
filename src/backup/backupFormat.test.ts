@@ -17,28 +17,62 @@ const TIMESTAMPS = {
 
 function emptyData(): BackupData {
   return {
+    haunts: [],
+    venues: [],
     eventYears: [],
     attractions: [],
     attractionParks: [],
+    seasonAppearances: [],
     characters: [],
     attractionRelations: [],
     sources: [],
     attractionSources: [],
     eventYearSources: [],
     media: [],
+    attractionVenueWiki: [],
     ratings: [],
     notes: [],
     rankings: [],
     settings: [],
+    migrationConflicts: [],
+  };
+}
+
+/** The haunts and venues a migration seeds, as a backup carries them. */
+function referenceData(): Pick<BackupData, "haunts" | "venues"> {
+  return {
+    haunts: [
+      {
+        id: "hhn",
+        name: "Halloween Horror Nights",
+        short_name: "HHN",
+        description: null,
+        ...TIMESTAMPS,
+      },
+      {
+        id: "knotts-scary-farm",
+        name: "Knott's Scary Farm",
+        short_name: "Knott's",
+        description: null,
+        ...TIMESTAMPS,
+      },
+    ],
+    venues: [
+      { id: "hollywood", name: "Hollywood", haunt_id: "hhn" },
+      { id: "orlando", name: "Orlando", haunt_id: "hhn" },
+      { id: "knotts-berry-farm", name: "Knott's Berry Farm", haunt_id: "knotts-scary-farm" },
+    ],
   };
 }
 
 function populatedData(): BackupData {
   return {
     ...emptyData(),
+    ...referenceData(),
     eventYears: [
       {
         id: "y1",
+        haunt_id: "hhn",
         calendar_year: 2101,
         name: "Shadowfest 2101",
         description: null,
@@ -67,11 +101,20 @@ function populatedData(): BackupData {
         opening_date: null,
         closing_date: null,
         location_notes: null,
+        debut_year: null,
         is_sample: 0,
         ...TIMESTAMPS,
       },
     ],
     attractionParks: [{ attraction_id: "a1", park_id: "hollywood" }],
+    seasonAppearances: [
+      {
+        attraction_id: "a1",
+        season_id: "y1",
+        notes: null,
+        created_at: TIMESTAMPS.created_at,
+      },
+    ],
     ratings: [{ id: "rt1", attraction_id: "a1", theme: 4.5, fun: 3, fear: 5, ...TIMESTAMPS }],
   };
 }
@@ -103,7 +146,7 @@ describe("validateBackup", () => {
       return;
     }
     expect(result.backup.data.attractions[0].name).toBe("Moonlight Manor");
-    expect(result.summary.totalRows).toBe(4);
+    expect(result.summary.totalRows).toBe(10);
   });
 
   it("refuses anything that isn't a backup at all", () => {
@@ -182,13 +225,14 @@ describe("validateBackup", () => {
     );
   });
 
-  it("refuses media that belongs to both an attraction and a year, or to neither", () => {
+  it("refuses media that belongs to more than one owner, or to none", () => {
     const both = populatedData();
     both.media = [
       {
         id: "m1",
         attraction_id: "a1",
         event_year_id: "y1",
+        haunt_id: null,
         media_type: "poster",
         url: "https://example.invalid/p.jpg",
         local_path: null,
@@ -200,14 +244,28 @@ describe("validateBackup", () => {
       },
     ];
     expect(errorsOf(makeFile({ data: both }))[0]).toMatch(
-      /exactly one attraction or one event year/,
+      /exactly one attraction, season or haunt/,
     );
 
     const orphan = populatedData();
     orphan.media = [{ ...both.media[0], attraction_id: null, event_year_id: null }];
     expect(errorsOf(makeFile({ data: orphan }))[0]).toMatch(
-      /exactly one attraction or one event year/,
+      /exactly one attraction, season or haunt/,
     );
+
+    // A haunt is the third owner a media item can have, and no more of a
+    // second one than a year is.
+    const hauntAndAttraction = populatedData();
+    hauntAndAttraction.media = [{ ...both.media[0], event_year_id: null, haunt_id: "hhn" }];
+    expect(errorsOf(makeFile({ data: hauntAndAttraction }))[0]).toMatch(
+      /exactly one attraction, season or haunt/,
+    );
+
+    const hauntOnly = populatedData();
+    hauntOnly.media = [
+      { ...both.media[0], attraction_id: null, event_year_id: null, haunt_id: "hhn" },
+    ];
+    expect(validateBackup(makeFile({ data: hauntOnly })).ok).toBe(true);
   });
 
   it("refuses media with neither a url nor a file", () => {
@@ -217,6 +275,7 @@ describe("validateBackup", () => {
         id: "m1",
         attraction_id: "a1",
         event_year_id: null,
+        haunt_id: null,
         media_type: "poster",
         url: null,
         local_path: null,
@@ -307,13 +366,73 @@ describe("readBackup", () => {
   });
 });
 
+/**
+ * A backup as version 1 wrote them: no haunts, no venues, no appearances,
+ * and every season implicitly Halloween Horror Nights.
+ */
+function version1File(): Record<string, unknown> {
+  return {
+    formatVersion: 1,
+    appVersion: "0.2.0",
+    schemaVersion: 7,
+    exportedAt: "2026-09-18T12:00:00.000Z",
+    data: {
+      eventYears: [
+        {
+          id: "y1",
+          calendar_year: 2024,
+          name: "Halloween Horror Nights 2024",
+          description: null,
+          source_notes: null,
+          starts_on: null,
+          ends_on: null,
+          is_sample: 0,
+          ...TIMESTAMPS,
+        },
+      ],
+      attractions: [
+        {
+          id: "a1",
+          event_year_id: "y1",
+          attraction_type: "house",
+          name: "Moonlight Manor",
+          slug: "moonlight-manor",
+          variant_name: null,
+          ip_type: "original",
+          franchise_name: null,
+          short_summary: null,
+          full_overview: null,
+          story_lore: null,
+          experience_description: null,
+          development_notes: null,
+          opening_date: null,
+          closing_date: null,
+          location_notes: null,
+          is_sample: 0,
+          ...TIMESTAMPS,
+        },
+      ],
+      attractionParks: [{ attraction_id: "a1", park_id: "orlando" }],
+      characters: [],
+      attractionRelations: [],
+      sources: [],
+      attractionSources: [],
+      eventYearSources: [],
+      media: [],
+      ratings: [{ id: "rt1", attraction_id: "a1", theme: 5, fun: 4, fear: 3, ...TIMESTAMPS }],
+      notes: [{ id: "n1", attraction_id: "a1", note: "Best of the year.", ...TIMESTAMPS }],
+      rankings: [{ id: "rk1", scope: "house", attraction_id: "a1", position: 1, ...TIMESTAMPS }],
+      settings: [],
+    },
+    preferences: { ambientEffects: true },
+  };
+}
+
 describe("upgradeBackup", () => {
-  // The format is on its first version, so there is nothing real to upgrade
-  // yet. These exercise the mechanism itself, so the first format change is
-  // a new entry in the table rather than a new code path.
   it("walks the chain until the file is current", () => {
     const upgrades: Record<number, BackupUpgrade> = {
       0: (raw) => ({ ...raw, wasUpgraded: true }),
+      1: (raw) => ({ ...raw, wasUpgradedAgain: true }),
     };
 
     const result = upgradeBackup({ formatVersion: 0 }, upgrades);
@@ -323,6 +442,7 @@ describe("upgradeBackup", () => {
       return;
     }
     expect(result.raw.wasUpgraded).toBe(true);
+    expect(result.raw.wasUpgradedAgain).toBe(true);
     expect(result.raw.formatVersion).toBe(BACKUP_FORMAT_VERSION);
   });
 
@@ -348,6 +468,74 @@ describe("upgradeBackup", () => {
   });
 });
 
+describe("a version 1 backup", () => {
+  it("still imports, through the upgrade rather than around it", () => {
+    const result = validateBackup(version1File());
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) {
+      return;
+    }
+    expect(result.backup.formatVersion).toBe(BACKUP_FORMAT_VERSION);
+  });
+
+  it("keeps every rating, note and ranking position it carried", () => {
+    const result = validateBackup(version1File());
+    expect(result.ok).toBe(true);
+    if (!result.ok) {
+      return;
+    }
+
+    expect(result.backup.data.ratings).toEqual([
+      { id: "rt1", attraction_id: "a1", theme: 5, fun: 4, fear: 3, ...TIMESTAMPS },
+    ]);
+    expect(result.backup.data.notes[0].note).toBe("Best of the year.");
+    expect(result.backup.data.rankings[0]).toMatchObject({ scope: "house", position: 1 });
+    expect(result.backup.preferences.ambientEffects).toBe(true);
+  });
+
+  it("reads its seasons as Halloween Horror Nights, because that is all it held", () => {
+    const result = validateBackup(version1File());
+    expect(result.ok).toBe(true);
+    if (!result.ok) {
+      return;
+    }
+
+    expect(result.backup.data.haunts.map((haunt) => haunt.id)).toEqual([
+      "hhn",
+      "knotts-scary-farm",
+    ]);
+    expect(result.backup.data.eventYears[0].haunt_id).toBe("hhn");
+    expect(result.backup.data.venues.map((venue) => venue.id)).toContain("knotts-berry-farm");
+  });
+
+  it("recovers each attraction's appearance from the season it belonged to", () => {
+    const result = validateBackup(version1File());
+    expect(result.ok).toBe(true);
+    if (!result.ok) {
+      return;
+    }
+
+    expect(result.backup.data.seasonAppearances).toEqual([
+      { attraction_id: "a1", season_id: "y1", notes: null, created_at: TIMESTAMPS.created_at },
+    ]);
+  });
+
+  it("invents nothing it wasn't told", () => {
+    const result = validateBackup(version1File());
+    expect(result.ok).toBe(true);
+    if (!result.ok) {
+      return;
+    }
+
+    // A version 1 file says nothing about debut years or venue-specific
+    // sections, and a guess would be indistinguishable from a fact.
+    expect(result.backup.data.attractions[0].debut_year).toBeNull();
+    expect(result.backup.data.attractionVenueWiki).toEqual([]);
+    expect(result.backup.data.migrationConflicts).toEqual([]);
+  });
+});
+
 describe("summarizeBackup", () => {
   it("counts every table, not just a headline total", () => {
     const result = validateBackup(makeFile());
@@ -362,8 +550,8 @@ describe("summarizeBackup", () => {
     expect(byKey.get("attractions")).toBe(1);
     expect(byKey.get("ratings")).toBe(1);
     expect(byKey.get("notes")).toBe(0);
-    expect(summary.counts).toHaveLength(13);
-    expect(summary.totalRows).toBe(4);
+    expect(summary.counts).toHaveLength(18);
+    expect(summary.totalRows).toBe(10);
   });
 });
 

@@ -13,10 +13,26 @@ describe("ParkRepository", () => {
     parks = createParkRepository(db);
   });
 
-  it("is seeded with exactly Hollywood and Orlando", async () => {
+  it("is seeded with one venue per place the two haunts run", async () => {
     const all = await parks.getAll();
 
-    expect(all.map((park) => park.id).sort()).toEqual(["hollywood", "orlando"]);
-    expect(all.map((park) => park.name).sort()).toEqual(["Hollywood", "Orlando"]);
+    expect(all.map((park) => park.id).sort()).toEqual([
+      "hollywood",
+      "knotts-berry-farm",
+      "orlando",
+    ]);
+    expect(all.map((park) => park.name).sort()).toEqual([
+      "Hollywood",
+      "Knott's Berry Farm",
+      "Orlando",
+    ]);
+  });
+
+  it("says which haunt each venue belongs to", async () => {
+    const byId = new Map((await parks.getAll()).map((park) => [park.id, park.hauntId]));
+
+    expect(byId.get("hollywood")).toBe("hhn");
+    expect(byId.get("orlando")).toBe("hhn");
+    expect(byId.get("knotts-berry-farm")).toBe("knotts-scary-farm");
   });
 });

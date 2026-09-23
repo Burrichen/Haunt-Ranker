@@ -30,6 +30,7 @@ const TIMESTAMPS = {
 const YEAR: EventYear = {
   id: "y2101",
   calendarYear: 2101,
+  hauntId: "hhn",
   name: "Shadowfest 2101",
   description: null,
   sourceNotes: null,
@@ -57,6 +58,7 @@ function makeAttraction(overrides: Partial<Attraction> = {}): Attraction {
     openingDate: null,
     closingDate: null,
     locationNotes: null,
+    debutYear: null,
     parkIds: ["hollywood"],
     isSample: true,
     ...TIMESTAMPS,

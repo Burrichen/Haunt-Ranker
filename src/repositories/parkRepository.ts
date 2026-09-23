@@ -5,10 +5,15 @@ import type { Park, ParkId } from "../models/park";
 interface ParkRow {
   id: string;
   name: string;
+  haunt_id: string;
 }
 
 function mapRow(row: ParkRow): Park {
-  return { id: row.id as ParkId, name: row.name };
+  return {
+    id: row.id as ParkId,
+    name: row.name,
+    hauntId: (row.haunt_id ?? "hhn") as Park["hauntId"],
+  };
 }
 
 export interface ParkRepository {

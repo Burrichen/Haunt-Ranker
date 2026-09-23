@@ -26,6 +26,7 @@ function makeDataset(overrides: Record<string, unknown> = {}): Record<string, un
       {
         id: "example-2101",
         calendarYear: 2101,
+        hauntId: "hhn",
         name: "Example Event 2101",
         description: "A placeholder event.",
         dates: { start: "2101-09-05", end: "2101-11-02" },
@@ -179,6 +180,46 @@ describe("validateDataset", () => {
         }),
       );
       expect(errors[0]).toMatch(/can't be related to itself/);
+    });
+
+    it("accepts venue-specific sections for a venue it actually ran at", () => {
+      const result = validateDataset(
+        withAttraction({
+          parks: ["hollywood", "orlando"],
+          venueWiki: [{ park: "orlando", experience: "The Orlando build added a room." }],
+        }),
+      );
+      expect(result.ok).toBe(true);
+    });
+
+    it("refuses a venue section for somewhere the attraction never ran", () => {
+      const errors = errorsOf(
+        withAttraction({
+          parks: ["hollywood"],
+          venueWiki: [{ park: "orlando", experience: "Something." }],
+        }),
+      );
+      expect(errors[0]).toMatch(/isn't one of this attraction's parks/);
+    });
+
+    it("refuses a venue section with nothing in it", () => {
+      const errors = errorsOf(
+        withAttraction({ parks: ["orlando"], venueWiki: [{ park: "orlando" }] }),
+      );
+      expect(errors[0]).toMatch(/would render as an empty heading/);
+    });
+
+    it("refuses two venue sections for the same venue", () => {
+      const errors = errorsOf(
+        withAttraction({
+          parks: ["orlando"],
+          venueWiki: [
+            { park: "orlando", experience: "One." },
+            { park: "orlando", experience: "Two." },
+          ],
+        }),
+      );
+      expect(errors[0]).toMatch(/already has a venue section/);
     });
 
     it("only accepts the fixed relation types", () => {

@@ -45,6 +45,7 @@ describe("EventYearRepository", () => {
   it("updates only the fields provided, leaving the rest untouched", async () => {
     const created = await years.create({
       calendarYear: 2024,
+      hauntId: "hhn",
       name: "HHN 2024",
       description: "Original description",
     });
@@ -100,6 +101,7 @@ describe("EventYearRepository", () => {
 
       expect(await years.getById(created.id)).toMatchObject({
         calendarYear: 2024,
+        hauntId: "hhn",
         name: "HHN 2024",
       });
     });

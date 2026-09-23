@@ -33,6 +33,13 @@
   white-space: nowrap;
 }
 
+.attraction-row__haunt {
+  margin-left: var(--space-2);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--color-text-tertiary);
+}
+
 .attraction-row__year {
   color: var(--color-text-tertiary);
   font-size: 0.8125rem;

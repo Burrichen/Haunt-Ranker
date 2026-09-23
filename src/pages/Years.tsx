@@ -9,7 +9,9 @@ import {
   SegmentedControl,
   type DropdownItem,
 } from "../components/ui";
+import { useHauntScope } from "../hooks/useHauntScope";
 import { useYearsOverview } from "../hooks/useYearsOverview";
+import { hauntScopeLabel } from "../models/haunt";
 import {
   RANKING_DIRECTIONS,
   RANKING_METRICS,
@@ -32,6 +34,7 @@ const SORT_OPTIONS: YearRankingSort[] = RANKING_METRICS.flatMap((metric: Ranking
 
 export function Years() {
   const { isLoading, error, summaries, view, setView, sort, setSort, ranking } = useYearsOverview();
+  const { scope, isAllHaunts } = useHauntScope();
 
   const sortItems: DropdownItem[] = SORT_OPTIONS.map((option) => ({
     label: `Average ${rankingSortLabel(option)}`,
@@ -42,7 +45,11 @@ export function Years() {
     <div className="years">
       <PageHeader
         title="Years"
-        subtitle="Every event in the archive, and how they compare."
+        subtitle={
+          isAllHaunts
+            ? "Every season from both haunts, and how they compare."
+            : `Every ${hauntScopeLabel(scope)} season, and how they compare.`
+        }
         actions={
           view === "rankings" ? (
             <Dropdown
@@ -80,7 +87,11 @@ export function Years() {
         <EmptyState
           icon={<Calendar size={24} />}
           title="No years yet"
-          description="Event years will appear here as they're added to the archive."
+          description={
+            isAllHaunts
+              ? "Seasons will appear here as they're added to the archive."
+              : `No ${hauntScopeLabel(scope)} seasons are in the archive yet.`
+          }
         />
       ) : view === "rankings" ? (
         <YearRankingList ranking={ranking} sort={sort} />

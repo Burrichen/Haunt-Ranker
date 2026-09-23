@@ -16,15 +16,19 @@ import type { BackupTableKey } from "../models/backup";
  * repointed at the new id. Their contents are never read, changed or deleted.
  */
 export const ARCHIVE_TABLE_KEYS = [
+  "haunts",
+  "venues",
   "eventYears",
   "attractions",
   "attractionParks",
+  "seasonAppearances",
   "characters",
   "attractionRelations",
   "sources",
   "attractionSources",
   "eventYearSources",
   "media",
+  "attractionVenueWiki",
 ] as const satisfies readonly BackupTableKey[];
 
 export const PERSONAL_TABLE_KEYS = [
@@ -34,20 +38,30 @@ export const PERSONAL_TABLE_KEYS = [
   "settings",
 ] as const satisfies readonly BackupTableKey[];
 
+/**
+ * Tables that are neither facts about the event nor anything the user wrote:
+ * they describe this installation's own history. An import must not write to
+ * them either, so they're named rather than left to fall through.
+ */
+export const LOCAL_TABLE_KEYS = ["migrationConflicts"] as const satisfies readonly BackupTableKey[];
+
 export type ArchiveTableKey = (typeof ARCHIVE_TABLE_KEYS)[number];
 export type PersonalTableKey = (typeof PERSONAL_TABLE_KEYS)[number];
+export type LocalTableKey = (typeof LOCAL_TABLE_KEYS)[number];
 
 /**
  * Fails to compile if a table is ever added without deciding which side of the
  * line it falls on. A new table is exactly the moment that decision is easiest
  * to forget and most expensive to get wrong.
  */
-type Unclassified = Exclude<BackupTableKey, ArchiveTableKey | PersonalTableKey>;
+type Unclassified = Exclude<BackupTableKey, ArchiveTableKey | PersonalTableKey | LocalTableKey>;
 export type EveryTableIsClassified = Unclassified extends never ? true : Unclassified;
 
 /** The tables holding rows that belong to one attraction, keyed by that column. */
 export const ATTRACTION_OWNED_TABLES = [
   "attraction_parks",
+  "season_appearances",
+  "attraction_venue_wiki",
   "characters",
   "attraction_sources",
   "media",

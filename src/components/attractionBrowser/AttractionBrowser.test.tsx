@@ -35,6 +35,7 @@ function makeAttraction(overrides: Partial<Attraction> = {}): Attraction {
     openingDate: null,
     closingDate: null,
     locationNotes: null,
+    debutYear: null,
     parkIds: ["hollywood"],
     isSample: true,
     createdAt: "2026-01-01T00:00:00.000Z",
@@ -101,7 +102,7 @@ describe("AttractionBrowser", () => {
     mockedUseAttractionBrowser.mockReturnValue(makeBrowserState({ isLoading: true }));
     renderBrowser();
 
-    expect(screen.getByText("Loading houses…")).toBeInTheDocument();
+    expect(screen.getByText("Loading houses & mazes…")).toBeInTheDocument();
   });
 
   it("shows an error state instead of the toolbar's results", () => {
@@ -116,7 +117,7 @@ describe("AttractionBrowser", () => {
     mockedUseAttractionBrowser.mockReturnValue(makeBrowserState({ rows: [] }));
     renderBrowser();
 
-    expect(screen.getByText("No houses yet")).toBeInTheDocument();
+    expect(screen.getByText("No houses & mazes yet")).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Clear filters" })).not.toBeInTheDocument();
   });
 

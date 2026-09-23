@@ -1,6 +1,14 @@
 import type { AttractionType, IpType } from "../../models/attraction";
-import type { ParkId } from "../../models/park";
+import { useHauntScope } from "../../hooks/useHauntScope";
+import {
+  attractionTypeLabel,
+  HAUNT_SCOPES,
+  hauntScopeLabel,
+  type HauntScope,
+} from "../../models/haunt";
+import { HAUNT_VENUES, PARK_IDS, type ParkId } from "../../models/park";
 import type { StatisticsFilters } from "../../utils/statistics";
+import { PARK_NAMES } from "../archive";
 import { Button, Dropdown, SegmentedControl, type DropdownItem } from "../ui";
 
 export interface StatisticsFacetsProps {
@@ -12,17 +20,22 @@ export interface StatisticsFacetsProps {
 /** "all" stands in for null in the segmented controls, which need a string value. */
 const ALL = "all";
 
-const TYPE_OPTIONS = [
-  { value: ALL, label: "All" },
-  { value: "house", label: "Houses" },
-  { value: "scare_zone", label: "Scare Zones" },
-];
+const HAUNT_OPTIONS = HAUNT_SCOPES.map((option: HauntScope) => ({
+  value: option,
+  label: hauntScopeLabel(option, option === "all" ? "full" : "short"),
+}));
 
-const PARK_OPTIONS = [
-  { value: ALL, label: "All" },
-  { value: "hollywood", label: "Hollywood" },
-  { value: "orlando", label: "Orlando" },
-];
+/** Only the venues the haunt in view actually runs at. */
+function venueOptions(scope: HauntScope) {
+  const venues =
+    scope === "all"
+      ? [PARK_IDS.hollywood, PARK_IDS.orlando, PARK_IDS.knottsBerryFarm]
+      : HAUNT_VENUES[scope];
+  return [
+    { value: ALL, label: "All" },
+    ...venues.map((venue) => ({ value: venue, label: PARK_NAMES[venue] })),
+  ];
+}
 
 const IP_OPTIONS = [
   { value: ALL, label: "All" },
@@ -40,6 +53,14 @@ function toNullable<T extends string>(value: string): T | null {
  * different things by them.
  */
 export function StatisticsFacets({ filters, onChange, availableYears }: StatisticsFacetsProps) {
+  const { scope, setScope, hauntId } = useHauntScope();
+
+  const typeOptions = [
+    { value: ALL, label: "All" },
+    { value: "house", label: attractionTypeLabel("house", hauntId, "many") },
+    { value: "scare_zone", label: attractionTypeLabel("scare_zone", hauntId, "many") },
+  ];
+
   const yearItems: DropdownItem[] = [
     { label: "All years", onSelect: () => onChange({ ...filters, year: null }) },
     ...availableYears.map((year) => ({
@@ -50,6 +71,21 @@ export function StatisticsFacets({ filters, onChange, availableYears }: Statisti
 
   return (
     <>
+      <div className="statistics-filters__group">
+        <span className="statistics-filters__label">Haunt</span>
+        <SegmentedControl
+          options={HAUNT_OPTIONS}
+          value={scope}
+          onChange={(value: HauntScope) => {
+            // Venues belong to a haunt, so a venue filter from the other one
+            // would leave the dashboard showing nothing at all.
+            setScope(value);
+            onChange({ ...filters, park: null });
+          }}
+          aria-label="Haunt"
+        />
+      </div>
+
       <div className="statistics-filters__group">
         <span className="statistics-filters__label">Year</span>
         <Dropdown
@@ -65,7 +101,7 @@ export function StatisticsFacets({ filters, onChange, availableYears }: Statisti
       <div className="statistics-filters__group">
         <span className="statistics-filters__label">Type</span>
         <SegmentedControl
-          options={TYPE_OPTIONS}
+          options={typeOptions}
           value={filters.type ?? ALL}
           onChange={(value) => onChange({ ...filters, type: toNullable<AttractionType>(value) })}
           aria-label="Attraction type"
@@ -73,12 +109,12 @@ export function StatisticsFacets({ filters, onChange, availableYears }: Statisti
       </div>
 
       <div className="statistics-filters__group">
-        <span className="statistics-filters__label">Park</span>
+        <span className="statistics-filters__label">Venue</span>
         <SegmentedControl
-          options={PARK_OPTIONS}
+          options={venueOptions(scope)}
           value={filters.park ?? ALL}
           onChange={(value) => onChange({ ...filters, park: toNullable<ParkId>(value) })}
-          aria-label="Park"
+          aria-label="Venue"
         />
       </div>
 

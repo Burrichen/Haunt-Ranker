@@ -33,6 +33,14 @@ export interface BackupTableSpec {
   columns: Record<string, BackupColumn>;
   /** Deterministic export order, so two exports of the same data are identical. */
   orderBy: string;
+  /**
+   * Reference data: carried in a backup so the file explains itself and so
+   * its ids can be checked, but never deleted by an import. A migration
+   * seeds these rows and everything else points at them; an import that
+   * emptied them — because some older or hand-edited file happened not to
+   * list them — would leave an app with no haunts at all.
+   */
+  reference?: boolean;
   /** A constraint spanning more than one column. Returns a problem, or null. */
   rowCheck?: (row: Record<string, unknown>) => string | null;
 }
@@ -51,12 +59,39 @@ const PARK_ID_VALUES = Object.values(PARK_IDS);
  */
 export const BACKUP_TABLES: readonly BackupTableSpec[] = [
   {
+    key: "haunts",
+    table: "haunts",
+    label: "Haunts",
+    orderBy: "id",
+    reference: true,
+    columns: {
+      id: { kind: "text" },
+      name: { kind: "text" },
+      short_name: { kind: "text" },
+      description: { kind: "text", nullable: true },
+      ...TIMESTAMPS,
+    },
+  },
+  {
+    key: "venues",
+    table: "parks",
+    label: "Venues",
+    orderBy: "id",
+    reference: true,
+    columns: {
+      id: { kind: "text" },
+      name: { kind: "text" },
+      haunt_id: { kind: "text", references: "haunts" },
+    },
+  },
+  {
     key: "eventYears",
     table: "event_years",
-    label: "Event years",
+    label: "Seasons",
     orderBy: "id",
     columns: {
       id: { kind: "text" },
+      haunt_id: { kind: "text", references: "haunts" },
       calendar_year: { kind: "int" },
       name: { kind: "text" },
       description: { kind: "text", nullable: true },
@@ -89,6 +124,10 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
       opening_date: { kind: "text", nullable: true },
       closing_date: { kind: "text", nullable: true },
       location_notes: { kind: "text", nullable: true },
+      // The year it genuinely first ran, where that's known. Never inferred
+      // from the archive's own earliest year, so it stays null far more
+      // often than not.
+      debut_year: { kind: "int", nullable: true },
       is_sample: { kind: "flag" },
       ...TIMESTAMPS,
     },
@@ -96,13 +135,25 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
   {
     key: "attractionParks",
     table: "attraction_parks",
-    label: "Park assignments",
+    label: "Venue assignments",
     orderBy: "attraction_id, park_id",
     columns: {
       attraction_id: { kind: "text", references: "attractions" },
-      // Parks are fixed reference data, so the known ids are the whole
-      // validation — a backup naming some other park is corrupt.
-      park_id: { kind: "text", values: PARK_ID_VALUES },
+      // Venues are reference data seeded by a migration, so the known ids are
+      // most of the validation — a backup naming some other venue is corrupt.
+      park_id: { kind: "text", values: PARK_ID_VALUES, references: "venues" },
+    },
+  },
+  {
+    key: "seasonAppearances",
+    table: "season_appearances",
+    label: "Season appearances",
+    orderBy: "attraction_id, season_id",
+    columns: {
+      attraction_id: { kind: "text", references: "attractions" },
+      season_id: { kind: "text", references: "eventYears" },
+      notes: { kind: "text", nullable: true },
+      created_at: { kind: "text" },
     },
   },
   {
@@ -129,7 +180,14 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
       related_attraction_id: { kind: "text", references: "attractions" },
       relation_type: {
         kind: "text",
-        values: ["sequel", "previous_version", "same_franchise", "related_concept"],
+        values: [
+          "sequel",
+          "previous_version",
+          "same_franchise",
+          "related_concept",
+          "reimagining_of",
+          "revival_of",
+        ],
       },
       notes: { kind: "text", nullable: true },
       ...TIMESTAMPS,
@@ -173,6 +231,9 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
     columns: {
       attraction_id: { kind: "text", references: "attractions" },
       source_id: { kind: "text", references: "sources" },
+      // Set when a source speaks for one venue's version of a merged
+      // attraction rather than for the record as a whole.
+      venue_id: { kind: "text", nullable: true, values: PARK_ID_VALUES, references: "venues" },
     },
   },
   {
@@ -194,6 +255,7 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
       id: { kind: "text" },
       attraction_id: { kind: "text", nullable: true, references: "attractions" },
       event_year_id: { kind: "text", nullable: true, references: "eventYears" },
+      haunt_id: { kind: "text", nullable: true, references: "haunts" },
       media_type: {
         kind: "text",
         values: ["poster", "promotional_image", "logo", "event_artwork", "local_image"],
@@ -207,15 +269,32 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
       ...TIMESTAMPS,
     },
     rowCheck: (row) => {
-      const ownedByAttraction = row.attraction_id !== null;
-      const ownedByYear = row.event_year_id !== null;
-      if (ownedByAttraction === ownedByYear) {
-        return "media must belong to exactly one attraction or one event year";
+      const owners = [row.attraction_id, row.event_year_id, row.haunt_id].filter(
+        (owner) => owner !== null,
+      );
+      if (owners.length !== 1) {
+        return "media must belong to exactly one attraction, season or haunt";
       }
       if (row.url === null && row.local_path === null) {
         return "media needs either a url or a local_path";
       }
       return null;
+    },
+  },
+  {
+    key: "attractionVenueWiki",
+    table: "attraction_venue_wiki",
+    label: "Venue-specific wiki sections",
+    orderBy: "attraction_id, venue_id",
+    columns: {
+      attraction_id: { kind: "text", references: "attractions" },
+      venue_id: { kind: "text", values: PARK_ID_VALUES, references: "venues" },
+      overview: { kind: "text", nullable: true },
+      story_lore: { kind: "text", nullable: true },
+      experience_description: { kind: "text", nullable: true },
+      development_notes: { kind: "text", nullable: true },
+      location_notes: { kind: "text", nullable: true },
+      ...TIMESTAMPS,
     },
   },
   {
@@ -253,6 +332,9 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
     orderBy: "scope, position",
     columns: {
       id: { kind: "text" },
+      // One list per scope — a haunt's houses, its scare zones, or the same
+      // across all haunts. Deliberately free text: a scope a build doesn't
+      // know about is carried through a backup rather than dropped.
       scope: { kind: "text" },
       attraction_id: { kind: "text", references: "attractions" },
       position: { kind: "int" },
@@ -268,6 +350,25 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
       key: { kind: "text" },
       value: { kind: "text" },
       updated_at: { kind: "text" },
+    },
+  },
+  {
+    key: "migrationConflicts",
+    table: "migration_conflicts",
+    label: "Migration conflict reports",
+    orderBy: "id",
+    columns: {
+      id: { kind: "text" },
+      migration: { kind: "text" },
+      kind: { kind: "text" },
+      // Ids, but not foreign keys: a report may name a record that the very
+      // migration it describes went on to merge away, and losing the report
+      // would be worse than holding an id nothing points at any more.
+      subject_id: { kind: "text", nullable: true },
+      other_id: { kind: "text", nullable: true },
+      detail: { kind: "text" },
+      resolved_at: { kind: "text", nullable: true },
+      created_at: { kind: "text" },
     },
   },
 ];

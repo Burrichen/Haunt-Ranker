@@ -17,14 +17,15 @@ import {
   SegmentedControl,
 } from "../components/ui";
 import { useRankings } from "../hooks/useRankings";
-import type { RankingGroup } from "../models/ranking";
+import { attractionTypeLabel, HAUNT_IDS, HAUNT_NAMES } from "../models/haunt";
+import type { RankingGroup, RankingHauntScope } from "../models/ranking";
 import type { RankingMode } from "../utils/rankings";
 import "./Rankings.css";
 
-const GROUP_OPTIONS = [
-  { value: "houses" as const, label: "Houses" },
-  { value: "scare_zones" as const, label: "Scare Zones" },
-  { value: "all" as const, label: "All Attractions" },
+const HAUNT_OPTIONS = [
+  { value: "all" as const, label: "All Haunts" },
+  { value: HAUNT_IDS.hhn, label: HAUNT_NAMES[HAUNT_IDS.hhn].shortName },
+  { value: HAUNT_IDS.knotts, label: HAUNT_NAMES[HAUNT_IDS.knotts].shortName },
 ];
 
 const MODE_OPTIONS = [
@@ -32,11 +33,31 @@ const MODE_OPTIONS = [
   { value: "manual" as const, label: "My Ranking" },
 ];
 
-const GROUP_NOUN: Record<RankingGroup, string> = {
-  houses: "houses",
-  scare_zones: "scare zones",
-  all: "attractions",
-};
+/**
+ * The group labels in the vocabulary of whichever haunt is being ranked:
+ * HHN has houses, Knott's has mazes, and a list spanning both can only
+ * honestly say "Houses & Mazes".
+ */
+function groupOptions(haunt: RankingHauntScope): Array<{ value: RankingGroup; label: string }> {
+  const hauntId = haunt === "all" ? null : haunt;
+  return [
+    { value: "houses", label: attractionTypeLabel("house", hauntId, "many") },
+    { value: "scare_zones", label: attractionTypeLabel("scare_zone", hauntId, "many") },
+    { value: "all", label: "All Attractions" },
+  ];
+}
+
+function groupNoun(group: RankingGroup, haunt: RankingHauntScope): string {
+  if (group === "all") {
+    return "attractions";
+  }
+  const hauntId = haunt === "all" ? null : haunt;
+  return attractionTypeLabel(
+    group === "houses" ? "house" : "scare_zone",
+    hauntId,
+    "many",
+  ).toLowerCase();
+}
 
 export function Rankings() {
   const rankings = useRankings();
@@ -46,6 +67,8 @@ export function Rankings() {
     error,
     group,
     setGroup,
+    haunt,
+    setHaunt,
     mode,
     setMode,
     hasManualRanking,
@@ -67,7 +90,7 @@ export function Rankings() {
   } = rankings;
 
   const isManual = mode === "manual";
-  const noun = GROUP_NOUN[group];
+  const noun = groupNoun(group, haunt);
 
   const handleReset = async () => {
     await resetToCalculated();
@@ -83,7 +106,13 @@ export function Rankings() {
 
       <div className="rankings__toolbar">
         <SegmentedControl
-          options={GROUP_OPTIONS}
+          options={HAUNT_OPTIONS}
+          value={haunt}
+          onChange={(next: RankingHauntScope) => setHaunt(next)}
+          aria-label="Haunt"
+        />
+        <SegmentedControl
+          options={groupOptions(haunt)}
           value={group}
           onChange={(next: RankingGroup) => setGroup(next)}
           aria-label="Ranking group"

@@ -1,6 +1,6 @@
 import type { ParkId } from "../../models/park";
 import { cn } from "../../utils/cn";
-import { PARK_ICONS, PARK_NAMES } from "./parkConstants";
+import { PARK_ICONS, PARK_VENUE_NAMES } from "./parkConstants";
 import "./ParkBadge.css";
 
 export interface ParkBadgeRowProps {
@@ -26,7 +26,7 @@ export function ParkBadgeRow({ parkIds, className }: ParkBadgeRowProps) {
       {parkIds.map((parkId) => {
         const Icon = PARK_ICONS[parkId];
         return (
-          <span key={parkId} className="park-badge" title={PARK_NAMES[parkId]}>
+          <span key={parkId} className="park-badge" title={`Ran at ${PARK_VENUE_NAMES[parkId]}`}>
             <Icon size={13} strokeWidth={1.75} />
           </span>
         );

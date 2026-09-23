@@ -2,6 +2,7 @@ import { useState } from "react";
 import { CalendarDays, ChevronLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import type { EventYear } from "../../models/eventYear";
+import { attractionTypeLabel } from "../../models/haunt";
 import { Badge, IconButton } from "../ui";
 import "./YearHeader.css";
 
@@ -51,10 +52,16 @@ export function YearHeader({ eventYear, artworkUrl, houseCount, scareZoneCount }
           <h1 className="year-header__name">{eventYear.name}</h1>
           <div className="year-header__badges">
             <Badge variant="orange">
-              {houseCount} {houseCount === 1 ? "House" : "Houses"}
+              {houseCount}{" "}
+              {attractionTypeLabel("house", eventYear.hauntId, houseCount === 1 ? "one" : "many")}
             </Badge>
             <Badge variant="purple">
-              {scareZoneCount} {scareZoneCount === 1 ? "Scare Zone" : "Scare Zones"}
+              {scareZoneCount}{" "}
+              {attractionTypeLabel(
+                "scare_zone",
+                eventYear.hauntId,
+                scareZoneCount === 1 ? "one" : "many",
+              )}
             </Badge>
           </div>
           {eventYear.description && (

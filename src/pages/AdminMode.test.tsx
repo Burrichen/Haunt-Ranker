@@ -31,6 +31,7 @@ function makeYear(calendarYear: number, name = `Shadowfest ${calendarYear}`): Ev
   return {
     id: `y${calendarYear}`,
     calendarYear,
+    hauntId: "hhn",
     name,
     description: null,
     sourceNotes: null,
@@ -60,6 +61,7 @@ function makeAttraction(name: string): Attraction {
     openingDate: null,
     closingDate: null,
     locationNotes: null,
+    debutYear: null,
     parkIds: ["hollywood"],
     isSample: true,
     ...TIMESTAMPS,
@@ -222,6 +224,7 @@ describe("AdminMode", () => {
       await waitFor(() =>
         expect(archive.createYear).toHaveBeenCalledWith({
           calendarYear: 2104,
+          hauntId: "hhn",
           name: "Shadowfest 2104",
         }),
       );

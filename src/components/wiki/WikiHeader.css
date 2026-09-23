@@ -63,6 +63,15 @@
   justify-content: center;
 }
 
+.wiki-header__haunt {
+  margin: 0 0 var(--space-2);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
 .wiki-header__badges {
   display: flex;
   flex-wrap: wrap;

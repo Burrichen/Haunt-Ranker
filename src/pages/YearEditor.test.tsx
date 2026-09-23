@@ -24,6 +24,7 @@ const TIMESTAMPS = {
 const YEAR: EventYear = {
   id: "y2101",
   calendarYear: 2101,
+  hauntId: "hhn",
   name: "Shadowfest 2101",
   description: "A fictional stand-in event.",
   sourceNotes: null,
@@ -114,6 +115,8 @@ describe("YearEditor", () => {
 
     await waitFor(() =>
       expect(editor.save).toHaveBeenCalledWith({
+        // The editor corrects a season's details; which haunt it belongs to
+        // isn't one of them, so it's left exactly as it was.
         name: "Shadowfest 2101",
         calendarYear: 2101,
         description: "A fictional stand-in event.",

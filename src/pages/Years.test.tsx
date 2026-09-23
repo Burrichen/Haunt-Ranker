@@ -15,6 +15,7 @@ function makeEventYear(calendarYear: number): EventYear {
   return {
     id: `y${calendarYear}`,
     calendarYear,
+    hauntId: "hhn",
     name: `Shadowfest ${calendarYear}`,
     description: null,
     sourceNotes: null,

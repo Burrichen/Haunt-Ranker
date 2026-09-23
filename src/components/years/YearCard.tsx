@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { CalendarDays } from "lucide-react";
 import { Link } from "react-router-dom";
+import { attractionTypeLabel, HAUNT_NAMES } from "../../models/haunt";
+import { useHauntScope } from "../../hooks/useHauntScope";
 import { RATING_TOTAL_MAX } from "../../models/rating";
 import { formatScore } from "../../utils/formatScore";
 import type { YearSummary } from "../../utils/years";
@@ -19,6 +21,7 @@ export interface YearCardProps {
  */
 export function YearCard({ summary }: YearCardProps) {
   const [imageFailed, setImageFailed] = useState(false);
+  const { isAllHaunts } = useHauntScope();
   const { eventYear, artworkUrl, houseCount, scareZoneCount, reviewedCount, averages } = summary;
   const showImage = Boolean(artworkUrl) && !imageFailed;
 
@@ -42,16 +45,21 @@ export function YearCard({ summary }: YearCardProps) {
         </div>
 
         <div className="year-card__body">
+          {/* Two haunts both hold a 2024, so a mixed list names the haunt
+              before the year. */}
+          {isAllHaunts && (
+            <span className="year-card__haunt">{HAUNT_NAMES[eventYear.hauntId].name}</span>
+          )}
           <span className="year-card__year">{eventYear.calendarYear}</span>
           <h3 className="year-card__name">{eventYear.name}</h3>
 
           <dl className="year-card__counts">
             <div className="year-card__count">
-              <dt>Houses</dt>
+              <dt>{attractionTypeLabel("house", eventYear.hauntId, "many")}</dt>
               <dd>{houseCount}</dd>
             </div>
             <div className="year-card__count">
-              <dt>Scare Zones</dt>
+              <dt>{attractionTypeLabel("scare_zone", eventYear.hauntId, "many")}</dt>
               <dd>{scareZoneCount}</dd>
             </div>
             <div className="year-card__count">

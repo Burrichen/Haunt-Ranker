@@ -49,6 +49,11 @@
   color: var(--color-text-tertiary);
 }
 
+.attraction-preview-card__haunt {
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+}
+
 .attraction-preview-card__parks {
   margin: 0;
 }

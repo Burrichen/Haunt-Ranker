@@ -138,6 +138,27 @@ function archiveChecks(dataset: ArchiveDataset): void {
     }),
   );
 
+  // The canonical rule: for one haunt, the same name in the same season is
+  // one attraction carrying both venues. A dataset that still holds two
+  // records for such a pair disagrees with the database it imports into,
+  // where migration 0009 merges exactly this shape.
+  const byNormalisedName = new Map<string, typeof attractions>();
+  for (const attraction of attractions) {
+    const key = [
+      attraction.eventId,
+      attraction.type,
+      attraction.name.trim().toLowerCase().replace(/\s+/g, " "),
+    ].join("|");
+    byNormalisedName.set(key, [...(byNormalisedName.get(key) ?? []), attraction]);
+  }
+  check(
+    "One record per name per season",
+    "the same name in the same season is one canonical attraction carrying both venues",
+    [...byNormalisedName.values()]
+      .filter((group) => group.length > 1)
+      .map((group) => `${group.map((a) => a.id).join(" + ")}: same name in one season`),
+  );
+
   const merged = attractions.filter((attraction) => attraction.parks.length > 1);
   const separated = attractions.filter((attraction) => attraction.variantName);
   check(
@@ -186,19 +207,29 @@ function archiveChecks(dataset: ArchiveDataset): void {
   check(
     "Source relationships",
     "every cited source exists, and every source is cited by something",
-    [
-      ...[...events, ...attractions].flatMap((entity) =>
-        (entity.sourceIds ?? [])
-          .filter((id) => !sourceIds.has(id))
-          .map((id) => `${entity.id} cites unknown source "${id}"`),
-      ),
-      ...[...sourceIds]
-        .filter(
-          (id) =>
-            ![...events, ...attractions].some((entity) => (entity.sourceIds ?? []).includes(id)),
-        )
-        .map((id) => `source "${id}" is never cited`),
-    ],
+    (() => {
+      // A source can be cited by the record as a whole, or by one venue's
+      // section of it — a walkthrough of one park's build, say.
+      const citationsOf = (entity: (typeof events | typeof attractions)[number]): string[] => [
+        ...(entity.sourceIds ?? []),
+        ...("venueWiki" in entity ? (entity.venueWiki ?? []) : []).flatMap(
+          (section) => section.sourceIds ?? [],
+        ),
+      ];
+      const entities = [...events, ...attractions];
+      const cited = new Set(entities.flatMap(citationsOf));
+
+      return [
+        ...entities.flatMap((entity) =>
+          citationsOf(entity)
+            .filter((id) => !sourceIds.has(id))
+            .map((id) => `${entity.id} cites unknown source "${id}"`),
+        ),
+        ...[...sourceIds]
+          .filter((id) => !cited.has(id))
+          .map((id) => `source "${id}" is never cited`),
+      ];
+    })(),
   );
 
   check(

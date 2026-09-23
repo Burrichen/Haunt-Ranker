@@ -37,15 +37,79 @@ export type BackupReadResult =
  * An upgrade from one backup format version to the next, keyed by the
  * version it upgrades *from*.
  *
- * Empty while the format is still on its first version. When the format
- * changes, the old shape gets an entry here rather than the reader growing
- * branches: `upgradeBackup` walks the chain until the file is current, and a
- * missing link is reported honestly instead of being read as though nothing
- * had changed.
+ * When the format changes, the old shape gets an entry here rather than the
+ * reader growing branches: `upgradeBackup` walks the chain until the file is
+ * current, and a missing link is reported honestly instead of being read as
+ * though nothing had changed.
  */
 export type BackupUpgrade = (raw: Record<string, unknown>) => Record<string, unknown>;
 
-export const BACKUP_UPGRADES: Record<number, BackupUpgrade> = {};
+function rowsOf(data: Record<string, unknown>, key: string): Array<Record<string, unknown>> {
+  const value = data[key];
+  return Array.isArray(value) ? value.filter(isRecord) : [];
+}
+
+/**
+ * Version 1 → 2: the file learns about haunts.
+ *
+ * A version 1 backup was written when the archive held Halloween Horror
+ * Nights and nothing else, so every season and every venue in it is an HHN
+ * one — that much can be said without guessing. The rest is reconstruction
+ * of things version 1 recorded in another form: each attraction belonged to
+ * exactly one season, so that becomes its first appearance. Nothing is
+ * invented: debut years, venue-specific sections and conflict reports all
+ * arrive empty, because a version 1 file genuinely says nothing about them.
+ */
+const upgradeV1ToV2: BackupUpgrade = (raw) => {
+  const data = isRecord(raw.data) ? { ...raw.data } : {};
+  const stamp = typeof raw.exportedAt === "string" ? raw.exportedAt : new Date().toISOString();
+
+  data.haunts = [
+    {
+      id: "hhn",
+      name: "Halloween Horror Nights",
+      short_name: "HHN",
+      description:
+        "Universal's Halloween event, running at Universal Orlando and " +
+        "Universal Studios Hollywood.",
+      created_at: stamp,
+      updated_at: stamp,
+    },
+    {
+      id: "knotts-scary-farm",
+      name: "Knott's Scary Farm",
+      short_name: "Knott's",
+      description: "The Halloween event at Knott's Berry Farm in Buena Park, California.",
+      created_at: stamp,
+      updated_at: stamp,
+    },
+  ];
+
+  // Venues weren't carried in version 1 at all — they were reference data
+  // seeded by a migration — so they're restated here as that migration
+  // leaves them.
+  data.venues = [
+    { id: "hollywood", name: "Hollywood", haunt_id: "hhn" },
+    { id: "orlando", name: "Orlando", haunt_id: "hhn" },
+    { id: "knotts-berry-farm", name: "Knott's Berry Farm", haunt_id: "knotts-scary-farm" },
+  ];
+
+  data.eventYears = rowsOf(data, "eventYears").map((row) => ({ ...row, haunt_id: "hhn" }));
+
+  data.seasonAppearances = rowsOf(data, "attractions").map((row) => ({
+    attraction_id: row.id,
+    season_id: row.event_year_id,
+    notes: null,
+    created_at: typeof row.created_at === "string" ? row.created_at : stamp,
+  }));
+
+  data.attractionVenueWiki = [];
+  data.migrationConflicts = [];
+
+  return { ...raw, data };
+};
+
+export const BACKUP_UPGRADES: Record<number, BackupUpgrade> = { 1: upgradeV1ToV2 };
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);

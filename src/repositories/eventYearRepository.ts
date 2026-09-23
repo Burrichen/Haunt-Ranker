@@ -7,6 +7,7 @@ import type { Repository } from "./types";
 
 interface EventYearRow {
   id: string;
+  haunt_id: string;
   calendar_year: number;
   name: string;
   description: string | null;
@@ -21,6 +22,7 @@ interface EventYearRow {
 function mapRow(row: EventYearRow): EventYear {
   return {
     id: row.id,
+    hauntId: (row.haunt_id ?? "hhn") as EventYear["hauntId"],
     calendarYear: row.calendar_year,
     name: row.name,
     description: row.description,
@@ -94,11 +96,12 @@ export function createEventYearRepository(db: SqlExecutor): EventYearRepository 
     const id = generateId();
     await withDatabaseErrors(() =>
       db.execute(
-        `INSERT INTO event_years (id, calendar_year, name, description, source_notes,
+        `INSERT INTO event_years (id, haunt_id, calendar_year, name, description, source_notes,
                                   starts_on, ends_on, is_sample)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           id,
+          input.hauntId ?? "hhn",
           input.calendarYear,
           input.name,
           input.description ?? null,
@@ -130,6 +133,7 @@ export function createEventYearRepository(db: SqlExecutor): EventYearRepository 
     }
 
     const next: EventYearInput = {
+      hauntId: input.hauntId ?? existing.hauntId,
       calendarYear: input.calendarYear ?? existing.calendarYear,
       name: input.name ?? existing.name,
       description: input.description === undefined ? existing.description : input.description,
@@ -142,11 +146,12 @@ export function createEventYearRepository(db: SqlExecutor): EventYearRepository 
     await withDatabaseErrors(() =>
       db.execute(
         `UPDATE event_years
-         SET calendar_year = ?, name = ?, description = ?, source_notes = ?,
+         SET haunt_id = ?, calendar_year = ?, name = ?, description = ?, source_notes = ?,
              starts_on = ?, ends_on = ?, is_sample = ?,
              updated_at = strftime('%Y-%m-%dT%H:%M:%fZ', 'now')
          WHERE id = ?`,
         [
+          next.hauntId ?? "hhn",
           next.calendarYear,
           next.name,
           next.description ?? null,

@@ -1,5 +1,5 @@
 import type { AttractionType, IpType } from "../models/attraction";
-import type { RankingGroup } from "../models/ranking";
+import { RANKING_HAUNT_SCOPES, type RankingGroup, type RankingHauntScope } from "../models/ranking";
 import type { ParkFacet } from "./attractionBrowser";
 import {
   DEFAULT_RANKING_FILTERS,
@@ -20,6 +20,7 @@ const IP_TYPES: readonly IpType[] = ["original", "licensed"];
 const ATTRACTION_TYPES: readonly AttractionType[] = ["house", "scare_zone"];
 
 export const DEFAULT_RANKING_GROUP: RankingGroup = "houses";
+export const DEFAULT_RANKING_HAUNT: RankingHauntScope = "all";
 
 function parseOne<T extends string>(raw: string | null, allowed: readonly T[]): T | null {
   return raw && (allowed as readonly string[]).includes(raw) ? (raw as T) : null;
@@ -48,6 +49,8 @@ function parseYearList(raw: string | null): number[] {
 
 export interface RankingsParams {
   group: RankingGroup;
+  /** Which haunt's list this is — or All Haunts, a list in its own right. */
+  haunt: RankingHauntScope;
   /**
    * `null` means the URL doesn't pin a mode, so the page picks the default:
    * manual whenever a saved manual ranking exists for the group, since the
@@ -64,6 +67,9 @@ export function parseRankingsParams(params: URLSearchParams): RankingsParams {
 
   return {
     group: parseOne<RankingGroup>(params.get("group"), GROUPS) ?? DEFAULT_RANKING_GROUP,
+    haunt:
+      parseOne<RankingHauntScope>(params.get("haunt"), RANKING_HAUNT_SCOPES) ??
+      DEFAULT_RANKING_HAUNT,
     mode: parseOne<RankingMode>(params.get("mode"), MODES),
     filters: {
       years: parseYearList(params.get("year")),
@@ -81,6 +87,7 @@ export function parseRankingsParams(params: URLSearchParams): RankingsParams {
 /** The inverse — only writes what differs from the defaults, for tidy URLs. */
 export function rankingsParamsToSearchParams({
   group,
+  haunt,
   mode,
   filters,
   sort,
@@ -89,6 +96,9 @@ export function rankingsParamsToSearchParams({
 
   if (group !== DEFAULT_RANKING_GROUP) {
     params.set("group", group);
+  }
+  if (haunt !== DEFAULT_RANKING_HAUNT) {
+    params.set("haunt", haunt);
   }
   if (mode) {
     params.set("mode", mode);
@@ -117,6 +127,7 @@ export function rankingsParamsToSearchParams({
 
 export const DEFAULT_RANKINGS_PARAMS: RankingsParams = {
   group: DEFAULT_RANKING_GROUP,
+  haunt: DEFAULT_RANKING_HAUNT,
   mode: null,
   filters: DEFAULT_RANKING_FILTERS,
   sort: DEFAULT_RANKING_SORT,

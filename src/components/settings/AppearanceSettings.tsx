@@ -56,8 +56,8 @@ export function AppearanceSettings() {
         <div className="settings-field__text">
           <span className="settings-field__label">Attraction lists</span>
           <p className="settings-field__description">
-            How Houses, Scare Zones and year pages list attractions. The same choice is on those
-            pages — this is the one it remembers.
+            How attraction and year pages list attractions. The same choice is on those pages — this
+            is the one it remembers.
           </p>
         </div>
         <SegmentedControl

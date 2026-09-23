@@ -12,6 +12,8 @@ export { ReviewEditor } from "./ReviewEditor";
 export type { ReviewEditorProps } from "./ReviewEditor";
 export { SourceList } from "./SourceList";
 export type { SourceListProps } from "./SourceList";
+export { VenueDifferences } from "./VenueDifferences";
+export type { VenueDifferencesProps } from "./VenueDifferences";
 export { WikiHeader } from "./WikiHeader";
 export type { WikiHeaderProps } from "./WikiHeader";
 export { WikiSection } from "./WikiSection";

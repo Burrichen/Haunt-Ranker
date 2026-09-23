@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { SqlExecutor } from "../database/types";
-import type { BackupFile } from "../models/backup";
+import { BACKUP_FORMAT_VERSION, type BackupFile } from "../models/backup";
 import { createBackupRepository } from "../repositories/backupRepository";
 import { createTestDatabase } from "../test/createTestDatabase";
 import { buildBackupFile } from "./backupFormat";
@@ -99,7 +99,7 @@ describe("importBackupFile", () => {
       data: { ratings: unknown[]; notes: Array<{ note: string }> };
     };
 
-    expect(snapshot.formatVersion).toBe(1);
+    expect(snapshot.formatVersion).toBe(BACKUP_FORMAT_VERSION);
     expect(snapshot.preferences).toEqual({ ambientEffects: false });
     expect(snapshot.data.ratings).toHaveLength(1);
     expect(snapshot.data.notes[0].note).toBe("Worth queueing for.");

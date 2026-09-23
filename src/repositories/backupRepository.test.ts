@@ -21,8 +21,8 @@ describe("backupRepository", () => {
 
   async function seedArchive(): Promise<void> {
     await db.execute(
-      `INSERT INTO event_years (id, calendar_year, name, description, source_notes, is_sample)
-       VALUES ('y1', 2101, 'Shadowfest 2101', 'A fictional stand-in.', 'From the official site', 0)`,
+      `INSERT INTO event_years (id, haunt_id, calendar_year, name, description, source_notes, is_sample)
+       VALUES ('y1', 'hhn', 2101, 'Shadowfest 2101', 'A fictional stand-in.', 'From the official site', 0)`,
     );
     await db.execute(
       `INSERT INTO attractions (id, event_year_id, attraction_type, name, slug, ip_type, short_summary)
@@ -42,6 +42,16 @@ describe("backupRepository", () => {
       "INSERT INTO attraction_parks (attraction_id, park_id) VALUES ('a2', 'orlando')",
     );
     await db.execute(
+      "INSERT INTO season_appearances (attraction_id, season_id) VALUES ('a1', 'y1')",
+    );
+    await db.execute(
+      "INSERT INTO season_appearances (attraction_id, season_id) VALUES ('a2', 'y1')",
+    );
+    await db.execute(
+      `INSERT INTO attraction_venue_wiki (attraction_id, venue_id, experience_description)
+       VALUES ('a1', 'orlando', 'The Orlando version added a final room.')`,
+    );
+    await db.execute(
       "INSERT INTO characters (id, attraction_id, name, description) VALUES ('c1', 'a1', 'The Curator', 'Keeps the house.')",
     );
     await db.execute(
@@ -53,7 +63,7 @@ describe("backupRepository", () => {
        VALUES ('s1', 'youtube', 'A walkthrough', 'https://example.invalid/v', 'A Channel', '2101-10-02')`,
     );
     await db.execute(
-      "INSERT INTO attraction_sources (attraction_id, source_id) VALUES ('a1', 's1')",
+      "INSERT INTO attraction_sources (attraction_id, source_id, venue_id) VALUES ('a1', 's1', 'orlando')",
     );
     await db.execute(
       "INSERT INTO event_year_sources (event_year_id, source_id) VALUES ('y1', 's1')",
@@ -100,13 +110,19 @@ describe("backupRepository", () => {
   it("exports every table, including the join tables no single model owns", async () => {
     const data = await createBackupRepository(db).exportData();
 
+    expect(data.haunts).toHaveLength(2);
+    expect(data.venues).toHaveLength(3);
     expect(data.eventYears).toHaveLength(1);
     expect(data.attractions).toHaveLength(2);
     expect(data.attractionParks).toHaveLength(3);
+    expect(data.seasonAppearances).toHaveLength(2);
+    expect(data.attractionVenueWiki).toHaveLength(1);
     expect(data.characters).toHaveLength(1);
     expect(data.attractionRelations).toHaveLength(1);
     expect(data.sources).toHaveLength(1);
-    expect(data.attractionSources).toEqual([{ attraction_id: "a1", source_id: "s1" }]);
+    expect(data.attractionSources).toEqual([
+      { attraction_id: "a1", source_id: "s1", venue_id: "orlando" },
+    ]);
     expect(data.eventYearSources).toEqual([{ event_year_id: "y1", source_id: "s1" }]);
     expect(data.media).toHaveLength(2);
     expect(data.ratings).toHaveLength(1);
@@ -197,12 +213,15 @@ describe("backupRepository", () => {
     expect(rows.map((row) => row.id)).toEqual(["a1", "a2"]);
   });
 
-  it("leaves the parks reference table alone", async () => {
+  it("leaves the venue and haunt reference tables alone", async () => {
     const repository = createBackupRepository(db);
     await repository.replaceAll(await repository.exportData());
 
     const parks = await db.select<Array<{ id: string }>>("SELECT id FROM parks ORDER BY id");
-    expect(parks.map((row) => row.id)).toEqual(["hollywood", "orlando"]);
+    expect(parks.map((row) => row.id)).toEqual(["hollywood", "knotts-berry-farm", "orlando"]);
+
+    const haunts = await db.select<Array<{ id: string }>>("SELECT id FROM haunts ORDER BY id");
+    expect(haunts.map((row) => row.id)).toEqual(["hhn", "knotts-scary-farm"]);
   });
 
   it("restores an empty backup as genuinely empty", async () => {
@@ -212,19 +231,24 @@ describe("backupRepository", () => {
         serializeBackup(
           buildBackupFile({
             data: {
+              haunts: [],
+              venues: [],
               eventYears: [],
               attractions: [],
               attractionParks: [],
+              seasonAppearances: [],
               characters: [],
               attractionRelations: [],
               sources: [],
               attractionSources: [],
               eventYearSources: [],
               media: [],
+              attractionVenueWiki: [],
               ratings: [],
               notes: [],
               rankings: [],
               settings: [],
+              migrationConflicts: [],
             },
             preferences: {},
             appVersion: "0.1.0",
@@ -240,8 +264,14 @@ describe("backupRepository", () => {
     }
     await repository.replaceAll(empty.backup.data);
 
+    // Everything the user could have put there is gone; the haunts and
+    // venues a migration seeded are not, because nothing else would have
+    // anywhere to attach to afterwards.
     const counts = await repository.counts();
-    expect(counts.every((entry) => entry.count === 0)).toBe(true);
+    const emptied = counts.filter((entry) => entry.key !== "haunts" && entry.key !== "venues");
+    expect(emptied.every((entry) => entry.count === 0)).toBe(true);
+    expect(counts.find((entry) => entry.key === "haunts")?.count).toBe(2);
+    expect(counts.find((entry) => entry.key === "venues")?.count).toBe(3);
   });
 
   it("restores into a database that has never seen this data", async () => {
@@ -251,7 +281,16 @@ describe("backupRepository", () => {
 
     await fresh.replaceAll(exported);
 
-    expect(await fresh.exportData()).toEqual(exported);
+    const restored = await fresh.exportData();
+    // Haunts and venues are the receiving install's own, seeded there by the
+    // same migration, so only their timestamps differ.
+    expect({ ...restored, haunts: [], venues: [] }).toEqual({
+      ...exported,
+      haunts: [],
+      venues: [],
+    });
+    expect(restored.haunts.map((haunt) => haunt.id)).toEqual(exported.haunts.map((h) => h.id));
+    expect(restored.venues).toEqual(exported.venues);
   });
 
   it("counts what's stored now, table by table", async () => {

@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getDatabase } from "../database/client";
+import { useHauntScope } from "./useHauntScope";
 import type { EntityId } from "../models/common";
-import { rankingGroupScope, type RankingGroup } from "../models/ranking";
+import { rankingGroupScope, type RankingGroup, type RankingHauntScope } from "../models/ranking";
 import { createAttractionRepository } from "../repositories/attractionRepository";
 import { createEventYearRepository } from "../repositories/eventYearRepository";
 import { createRankingRepository } from "../repositories/rankingRepository";
@@ -46,6 +47,10 @@ export interface Rankings {
 
   group: RankingGroup;
   setGroup: (group: RankingGroup) => void;
+
+  /** Whose list this is: one haunt's, or the All Haunts list. */
+  haunt: RankingHauntScope;
+  setHaunt: (haunt: RankingHauntScope) => void;
 
   /** Resolved mode — manual whenever a saved manual ranking exists, unless the URL says otherwise. */
   mode: RankingMode;
@@ -95,8 +100,12 @@ export function useRankings(): Rankings {
   const [isSaving, setIsSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
 
+  const { scope, setScope } = useHauntScope();
   const params = useMemo(() => parseRankingsParams(searchParams), [searchParams]);
   const { group, filters, sort } = params;
+  // A link can pin a haunt; otherwise this page shows the one the rest of
+  // the app is showing, rather than resetting to a different archive.
+  const haunt = searchParams.get("haunt") === null ? scope : params.haunt;
 
   useEffect(() => {
     let cancelled = false;
@@ -109,7 +118,7 @@ export function useRankings(): Rankings {
           createAttractionRepository(db).getAll(),
           createEventYearRepository(db).getAll(),
           createRatingRepository(db).getAll(),
-          createRankingRepository(db).getScope(rankingGroupScope(group)),
+          createRankingRepository(db).getScope(rankingGroupScope(group, haunt)),
         ]);
 
         if (cancelled) {
@@ -126,7 +135,10 @@ export function useRankings(): Rankings {
             attraction,
             eventYear: yearsById.get(attraction.eventYearId) ?? null,
             rating: ratingByAttraction.get(attraction.id) ?? null,
-          }));
+          }))
+          // A haunt's list holds only that haunt's attractions; All Haunts
+          // holds them all, as its own list rather than a merge of the two.
+          .filter((row) => haunt === "all" || row.eventYear?.hauntId === haunt);
 
         setData({
           isLoading: false,
@@ -152,7 +164,7 @@ export function useRankings(): Rankings {
     return () => {
       cancelled = true;
     };
-  }, [group]);
+  }, [group, haunt]);
 
   const hasManualRanking = data.orderedIds.length > 0;
   // A saved manual order takes precedence: it's what the user sees by
@@ -173,6 +185,16 @@ export function useRankings(): Rankings {
       updateParams({ group: nextGroup, mode: null, filters: DEFAULT_RANKING_FILTERS });
     },
     [updateParams],
+  );
+  const setHaunt = useCallback(
+    (nextHaunt: RankingHauntScope) => {
+      // Each list keeps its own order, so switching haunts only changes
+      // which one is being looked at — it never writes to either. The
+      // choice is the app-wide one, so the nav and every other page follow.
+      setScope(nextHaunt);
+      updateParams({ haunt: nextHaunt, mode: null, filters: DEFAULT_RANKING_FILTERS });
+    },
+    [setScope, updateParams],
   );
   const setMode = useCallback(
     (nextMode: RankingMode) => updateParams({ mode: nextMode }),
@@ -235,7 +257,7 @@ export function useRankings(): Rankings {
       setSaveError(null);
       try {
         const db = await getDatabase();
-        await createRankingRepository(db).setScope(rankingGroupScope(group), nextOrder);
+        await createRankingRepository(db).setScope(rankingGroupScope(group, haunt), nextOrder);
         setData((previous) => ({ ...previous, orderedIds: nextOrder }));
       } catch (error) {
         setSaveError(error instanceof Error ? error.message : "Couldn't save your ranking order.");
@@ -243,7 +265,7 @@ export function useRankings(): Rankings {
         setIsSaving(false);
       }
     },
-    [group],
+    [group, haunt],
   );
 
   const reorder = useCallback(
@@ -270,7 +292,7 @@ export function useRankings(): Rankings {
     setSaveError(null);
     try {
       const db = await getDatabase();
-      await createRankingRepository(db).clearScope(rankingGroupScope(group));
+      await createRankingRepository(db).clearScope(rankingGroupScope(group, haunt));
       setData((previous) => ({ ...previous, orderedIds: [] }));
       updateParams({ mode: "calculated" });
     } catch (error) {
@@ -278,13 +300,15 @@ export function useRankings(): Rankings {
     } finally {
       setIsSaving(false);
     }
-  }, [group, updateParams]);
+  }, [group, haunt, updateParams]);
 
   return {
     isLoading: data.isLoading,
     error: data.error,
     group,
     setGroup,
+    haunt,
+    setHaunt,
     mode,
     setMode,
     hasManualRanking,

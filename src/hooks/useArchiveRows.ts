@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { getDatabase } from "../database/client";
+import { isInHauntScope } from "../models/haunt";
+import { useHauntScope } from "./useHauntScope";
 import { createAttractionRepository } from "../repositories/attractionRepository";
 import { createEventYearRepository } from "../repositories/eventYearRepository";
 import { createRatingRepository } from "../repositories/ratingRepository";
@@ -21,6 +23,7 @@ const INITIAL: ArchiveRows = { isLoading: true, error: null, rows: [] };
  */
 export function useArchiveRows(): ArchiveRows {
   const [state, setState] = useState<ArchiveRows>(INITIAL);
+  const { scope } = useHauntScope();
 
   useEffect(() => {
     let cancelled = false;
@@ -69,5 +72,13 @@ export function useArchiveRows(): ArchiveRows {
     };
   }, []);
 
-  return state;
+  // The haunt in view narrows the archive before any statistic is computed,
+  // so the dashboard and the explorer are always describing the same thing
+  // and neither can quietly include the other haunt's records.
+  const rows = useMemo(
+    () => state.rows.filter((row) => isInHauntScope(row.eventYear?.hauntId, scope)),
+    [state.rows, scope],
+  );
+
+  return { ...state, rows };
 }
