@@ -1,0 +1,57 @@
+.haunt-comparison__title {
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-4);
+}
+
+.haunt-comparison__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.haunt-comparison__table th,
+.haunt-comparison__table td {
+  text-align: left;
+  padding: var(--space-2) var(--space-3) var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.haunt-comparison__table thead th {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+.haunt-comparison__table tbody th {
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.haunt-comparison__table tbody tr:last-child th,
+.haunt-comparison__table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.haunt-comparison__sample,
+.haunt-comparison__insufficient {
+  color: var(--color-text-tertiary);
+  font-size: 0.8125rem;
+}
+
+.haunt-comparison__out-of {
+  color: var(--color-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.haunt-comparison__note {
+  margin: var(--space-4) 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--color-text-tertiary);
+  max-width: 70ch;
+}

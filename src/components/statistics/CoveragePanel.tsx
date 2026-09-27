@@ -1,7 +1,8 @@
 import { coveragePercent, type Coverage, type CoverageSlice } from "../../utils/statistics";
 import { Panel } from "../ui";
 import "./CoveragePanel.css";
-import { attractionTypeLabel } from "../../models/haunt";
+import { useHauntScope } from "../../hooks/useHauntScope";
+import { useHauntRegistry } from "../../hooks/useHauntRegistry";
 
 export interface CoveragePanelProps {
   coverage: Coverage;
@@ -40,12 +41,20 @@ function CoverageMeter({ label, slice }: { label: string; slice: CoverageSlice }
  * step of the fill's own hue so the state reads across the whole bar.
  */
 export function CoveragePanel({ coverage }: CoveragePanelProps) {
+  // The haunt in view names its own attraction types here too, so the
+  // coverage bars and the facets above them can't disagree.
+  const { hauntId } = useHauntScope();
+  const registry = useHauntRegistry();
+
   return (
     <Panel elevated padding="lg" className="coverage">
       <h2 className="coverage__title">Review coverage</h2>
       <CoverageMeter label="All attractions" slice={coverage.all} />
-      <CoverageMeter label={attractionTypeLabel("house", null, "many")} slice={coverage.houses} />
-      <CoverageMeter label="Scare Zones" slice={coverage.scareZones} />
+      <CoverageMeter label={registry.label("house", hauntId, "many")} slice={coverage.houses} />
+      <CoverageMeter
+        label={registry.label("scare_zone", hauntId, "many")}
+        slice={coverage.scareZones}
+      />
     </Panel>
   );
 }

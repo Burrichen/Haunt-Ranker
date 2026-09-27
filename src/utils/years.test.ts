@@ -55,6 +55,7 @@ function makeItem(
     closingDate: null,
     locationNotes: null,
     debutYear: null,
+    experienceTypeId: null,
     parkIds: ["hollywood"],
     isSample: true,
     ...TIMESTAMPS,

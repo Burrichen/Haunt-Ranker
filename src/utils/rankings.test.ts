@@ -40,6 +40,7 @@ function makeAttraction(name: string, overrides: Partial<Attraction> = {}): Attr
     closingDate: null,
     locationNotes: null,
     debutYear: null,
+    experienceTypeId: null,
     parkIds: ["hollywood"],
     isSample: true,
     ...TIMESTAMPS,

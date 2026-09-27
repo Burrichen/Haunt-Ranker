@@ -12,6 +12,7 @@ import {
   type TopAttraction,
 } from "../utils/statistics";
 import { Statistics } from "./Statistics";
+import { TestHaunts } from "../test/hauntRegistry";
 
 // Only the dashboard's data hook is stubbed; `useStatisticsView` stays real so
 // the page shell still reads the view out of the URL as it does in the app.
@@ -47,6 +48,7 @@ function makeAttraction(name: string): Attraction {
     closingDate: null,
     locationNotes: null,
     debutYear: null,
+    experienceTypeId: null,
     parkIds: ["hollywood"],
     isSample: true,
     ...TIMESTAMPS,
@@ -160,6 +162,20 @@ function makeState(overrides: Partial<StatisticsState> = {}): StatisticsState {
       houses: { reviewed: 2, total: 4 },
       scareZones: { reviewed: 2, total: 3 },
     },
+    hauntComparison: [
+      {
+        hauntId: "hhn" as const,
+        reviewedCount: 4,
+        attractionCount: 7,
+        averages: { total: 11, theme: 4, fun: 3.5, fear: 3.5 },
+      },
+      {
+        hauntId: "knotts-scary-farm" as const,
+        reviewedCount: 1,
+        attractionCount: 3,
+        averages: null,
+      },
+    ],
     topAttractions: TOP,
     attractionCount: 7,
     ...overrides,
@@ -170,9 +186,11 @@ function renderDashboard(overrides: Partial<StatisticsState> = {}) {
   const state = makeState(overrides);
   mockedUseStatistics.mockReturnValue(state);
   render(
-    <MemoryRouter>
-      <Statistics />
-    </MemoryRouter>,
+    <TestHaunts>
+      <MemoryRouter>
+        <Statistics />
+      </MemoryRouter>
+    </TestHaunts>,
   );
   return state;
 }
@@ -223,7 +241,7 @@ describe("Statistics dashboard", () => {
       const park = within(screen.getByRole("radiogroup", { name: "Venue" }));
       const ip = within(screen.getByRole("radiogroup", { name: "IP classification" }));
 
-      fireEvent.click(type.getByRole("radio", { name: "Houses & Mazes" }));
+      fireEvent.click(type.getByRole("radio", { name: "Houses" }));
       expect(state.setFilters).toHaveBeenLastCalledWith({
         ...DEFAULT_STATISTICS_FILTERS,
         type: "house",
@@ -335,7 +353,7 @@ describe("Statistics dashboard", () => {
         "aria-valuetext",
         "4 of 7 reviewed",
       );
-      expect(screen.getByRole("progressbar", { name: "Houses & Mazes reviewed" })).toHaveAttribute(
+      expect(screen.getByRole("progressbar", { name: "Houses reviewed" })).toHaveAttribute(
         "aria-valuetext",
         "2 of 4 reviewed",
       );

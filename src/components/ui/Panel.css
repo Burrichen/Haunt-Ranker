@@ -39,3 +39,13 @@
   box-shadow: var(--shadow-md), var(--shadow-glow-purple);
   border-color: var(--color-purple-subtle);
 }
+
+.panel--glow-green {
+  box-shadow: var(--shadow-md), var(--shadow-glow-green);
+  border-color: var(--color-green-subtle);
+}
+
+.panel--glow-blue {
+  box-shadow: var(--shadow-md), var(--shadow-glow-blue);
+  border-color: var(--color-blue-subtle);
+}

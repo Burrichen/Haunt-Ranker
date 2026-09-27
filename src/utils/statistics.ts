@@ -1,9 +1,11 @@
 import type { Attraction, AttractionType, IpType } from "../models/attraction";
 import type { EntityId } from "../models/common";
 import type { EventYear } from "../models/eventYear";
+import type { HauntId } from "../models/haunt";
 import type { ParkId } from "../models/park";
 import type { Rating } from "../models/rating";
 import { RATING_TOTAL_MAX } from "../models/rating";
+import { MIN_REVIEWED_FOR_STATS } from "./years";
 import { pickExtreme, ratedOnly, type AttractionExtreme } from "./attractionMetrics";
 import type { RankingMetric } from "./rankings";
 
@@ -258,4 +260,54 @@ export function availableYears(rows: StatisticsRow[]): number[] {
     }
   }
   return Array.from(years).sort((a, b) => b - a);
+}
+
+/** One haunt's reviewed averages, for the All Haunts comparison. */
+export interface HauntComparisonRow {
+  hauntId: HauntId;
+  /** How many of this haunt's attractions in the current slice are reviewed. */
+  reviewedCount: number;
+  /** How many it holds in the slice at all, reviewed or not. */
+  attractionCount: number;
+  /** `null` below the threshold: too little reviewed to average honestly. */
+  averages: { total: number; theme: number; fun: number; fear: number } | null;
+}
+
+/**
+ * The haunts side by side, averaged over what has actually been reviewed.
+ *
+ * Every row carries its sample size, and a haunt with too little reviewed
+ * gets no averages at all rather than a number that looks like a verdict.
+ * Haunts reviewed to very different depths are not comparable, and this
+ * is deliberately arranged so the reader can see that for themselves.
+ */
+export function compareHaunts(rows: StatisticsRow[], hauntIds: HauntId[]): HauntComparisonRow[] {
+  return hauntIds.map((hauntId) => {
+    const own = rows.filter((row) => row.eventYear?.hauntId === hauntId);
+    const rated = ratedOnly(own);
+
+    if (rated.length < MIN_REVIEWED_FOR_STATS) {
+      return {
+        hauntId,
+        reviewedCount: rated.length,
+        attractionCount: own.length,
+        averages: null,
+      };
+    }
+
+    const mean = (pick: (rating: Rating) => number) =>
+      rated.reduce((sum, item) => sum + pick(item.rating), 0) / rated.length;
+
+    return {
+      hauntId,
+      reviewedCount: rated.length,
+      attractionCount: own.length,
+      averages: {
+        total: mean((rating) => rating.total),
+        theme: mean((rating) => rating.theme),
+        fun: mean((rating) => rating.fun),
+        fear: mean((rating) => rating.fear),
+      },
+    };
+  });
 }

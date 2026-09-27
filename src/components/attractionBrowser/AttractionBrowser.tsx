@@ -1,10 +1,11 @@
-import { CircleAlert, DoorOpen, LayoutGrid, Rows3, TreePine } from "lucide-react";
+import { CircleAlert, LayoutGrid, Rows3 } from "lucide-react";
 import { useAttractionBrowser } from "../../hooks/useAttractionBrowser";
 import { useHauntScope } from "../../hooks/useHauntScope";
+import { useHauntRegistry } from "../../hooks/useHauntRegistry";
 import { useAttractionViewMode } from "../../hooks/useAttractionViewMode";
 import type { AttractionType } from "../../models/attraction";
-import { attractionTypeLabel } from "../../models/haunt";
 import { ArchiveCard } from "../archive";
+import { attractionTypeIcon } from "../archive/typeIcons";
 import { EmptyState, LoadingState, SearchInput, SegmentedControl } from "../ui";
 import { AttractionRow } from "./AttractionRow";
 import { FilterBar } from "./FilterBar";
@@ -14,11 +15,6 @@ import "./AttractionBrowser.css";
 export interface AttractionBrowserProps {
   attractionType: AttractionType;
 }
-
-const TYPE_ICON: Record<AttractionType, typeof DoorOpen> = {
-  house: DoorOpen,
-  scare_zone: TreePine,
-};
 
 /**
  * Shared browsing UI for both Houses and Scare Zones: search, filters,
@@ -42,10 +38,10 @@ export function AttractionBrowser({ attractionType }: AttractionBrowserProps) {
   } = useAttractionBrowser(attractionType);
   const [viewMode, setViewMode] = useAttractionViewMode();
   const { hauntId } = useHauntScope();
+  const registry = useHauntRegistry();
 
   // Whatever the haunt in view calls them: houses, mazes, or both.
-  const nounPlural = attractionTypeLabel(attractionType, hauntId, "many").toLowerCase();
-  const TypeIcon = TYPE_ICON[attractionType];
+  const nounPlural = registry.label(attractionType, hauntId, "many").toLowerCase();
 
   if (error) {
     return (
@@ -96,7 +92,7 @@ export function AttractionBrowser({ attractionType }: AttractionBrowserProps) {
         // filter bar above already has one visible, so a second identical
         // button right below it would just be noise.
         <EmptyState
-          icon={<TypeIcon size={24} />}
+          icon={attractionTypeIcon(attractionType, { size: 24 })}
           title={areFiltersActive ? "No matches" : `No ${nounPlural} yet`}
           description={
             areFiltersActive

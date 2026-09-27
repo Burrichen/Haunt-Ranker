@@ -6,6 +6,7 @@ import { useYearsOverview, type YearsOverview } from "../hooks/useYearsOverview"
 import { buildYearRanking, type YearAverages, type YearSummary } from "../utils/years";
 import { DEFAULT_YEAR_SORT } from "../utils/years";
 import { Years } from "./Years";
+import { TestHaunts } from "../test/hauntRegistry";
 
 vi.mock("../hooks/useYearsOverview");
 
@@ -60,9 +61,11 @@ function renderYears(overrides: Partial<YearsOverview> = {}) {
   const state = makeState(overrides);
   mockedUseYearsOverview.mockReturnValue(state);
   render(
-    <MemoryRouter>
-      <Years />
-    </MemoryRouter>,
+    <TestHaunts>
+      <MemoryRouter>
+        <Years />
+      </MemoryRouter>
+    </TestHaunts>,
   );
   return state;
 }

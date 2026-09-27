@@ -32,6 +32,7 @@ const mockedGetDatabase = vi.mocked(getDatabase);
 function emptyData(): BackupData {
   return {
     haunts: [],
+    experienceTypes: [],
     venues: [],
     eventYears: [],
     attractions: [],
@@ -48,6 +49,7 @@ function emptyData(): BackupData {
     notes: [],
     rankings: [],
     settings: [],
+    hauntPacks: [],
     migrationConflicts: [],
   };
 }
@@ -59,6 +61,13 @@ function backupText(preferences = {}): string {
     name: "Halloween Horror Nights",
     short_name: "HHN",
     description: null,
+    tagline: null,
+    accent: "orange",
+    venues_label: null,
+    sort_order: 0,
+    pack_id: null,
+    pack_version: null,
+    pack_updated_at: null,
     created_at: "2026-01-01T00:00:00.000Z",
     updated_at: "2026-01-01T00:00:00.000Z",
   });
@@ -71,6 +80,9 @@ function backupText(preferences = {}): string {
     source_notes: null,
     starts_on: null,
     ends_on: null,
+    pack_id: null,
+    pack_version: null,
+    pack_updated_at: null,
     is_sample: 0,
     created_at: "2026-01-01T00:00:00.000Z",
     updated_at: "2026-01-01T00:00:00.000Z",

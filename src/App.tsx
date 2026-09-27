@@ -3,6 +3,8 @@ import { AppShell } from "./components/layout/AppShell";
 import { AdminMode } from "./pages/AdminMode";
 import { AttractionEditor } from "./pages/AttractionEditor";
 import { AttractionWiki } from "./pages/AttractionWiki";
+import { HauntLanding } from "./pages/HauntLanding";
+import { Haunts } from "./pages/Haunts";
 import { Home } from "./pages/Home";
 import { Houses } from "./pages/Houses";
 import { Rankings } from "./pages/Rankings";
@@ -19,6 +21,8 @@ function App() {
       <Routes>
         <Route element={<AppShell />}>
           <Route index element={<Home />} />
+          <Route path="haunts" element={<Haunts />} />
+          <Route path="haunts/:hauntId" element={<HauntLanding />} />
           <Route path="houses" element={<Houses />} />
           <Route path="scare-zones" element={<ScareZones />} />
           <Route path="years" element={<Years />} />

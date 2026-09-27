@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { useMotionPreference } from "../../hooks/useMotionPreference";
+import { HauntRegistryProvider } from "./HauntRegistryProvider";
 import { HauntScopeProvider } from "./HauntScopeProvider";
 import { Atmosphere } from "../atmosphere/Atmosphere";
 import { Sidebar } from "./Sidebar";
@@ -11,18 +12,23 @@ export function AppShell() {
   useMotionPreference();
 
   return (
-    // The haunt in view is shared by the nav and every page under it, so it
-    // is held above both rather than read separately in each.
-    <HauntScopeProvider>
-      <div className="app-shell">
-        <Atmosphere />
-        <Sidebar />
-        <main className="app-shell__content">
-          <div className="app-shell__content-inner">
-            <Outlet />
-          </div>
-        </main>
-      </div>
-    </HauntScopeProvider>
+    // Which haunts exist, and what they call things, is read once here: the
+    // scope below it, the nav and every page all work from those rows, which
+    // is what lets an imported Haunt Pack appear throughout the app.
+    <HauntRegistryProvider>
+      {/* The haunt in view is shared by the nav and every page under it, so
+          it is held above both rather than read separately in each. */}
+      <HauntScopeProvider>
+        <div className="app-shell">
+          <Atmosphere />
+          <Sidebar />
+          <main className="app-shell__content">
+            <div className="app-shell__content-inner">
+              <Outlet />
+            </div>
+          </main>
+        </div>
+      </HauntScopeProvider>
+    </HauntRegistryProvider>
   );
 }

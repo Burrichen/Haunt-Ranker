@@ -1,0 +1,267 @@
+.pack-import {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.pack-import__lead {
+  margin: 0;
+  max-width: 78ch;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--color-text-tertiary);
+}
+
+.pack-import__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* Packs are long files. The paste area is sized to show enough of one to
+   tell at a glance whether the right thing landed in it. */
+.pack-import__textarea .field__textarea {
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: auto;
+}
+
+.pack-import__history {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.pack-import__history-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  align-self: flex-start;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+}
+
+.pack-import__history-toggle:hover {
+  color: var(--color-text-secondary);
+}
+
+.pack-import__history-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pack-import__history-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-2);
+}
+
+.pack-import__history-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.pack-import__history-title {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.pack-import__history-detail,
+.pack-import__history-notes {
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+}
+
+.pack-import__history-notes {
+  font-style: italic;
+}
+
+/* The preview, shown in the confirm dialog. */
+.pack-import__preview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.pack-import__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin: 0;
+}
+
+.pack-import__meta dt {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-tertiary);
+}
+
+.pack-import__meta dd {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: var(--space-1) 0 0;
+  font-size: 0.8125rem;
+  color: var(--color-text-primary);
+}
+
+.pack-import__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+}
+
+.pack-import__table th,
+.pack-import__table td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border-subtle);
+  text-align: right;
+}
+
+.pack-import__table thead th,
+.pack-import__table tbody th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.pack-import__table thead th {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-tertiary);
+  text-align: right;
+}
+
+.pack-import__table thead th:first-child {
+  text-align: left;
+}
+
+.pack-import__note,
+.pack-import__provenance {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--color-text-tertiary);
+}
+
+.pack-import__provenance {
+  padding-left: var(--space-3);
+  border-left: 2px solid var(--color-border);
+  font-style: italic;
+}
+
+.pack-import__flags {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.pack-import__flags h4 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  font-size: 0.8125rem;
+}
+
+.pack-import__flags ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding-left: var(--space-4);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.pack-import__flags-lead {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--color-text-tertiary);
+}
+
+.pack-import__flags--conflict {
+  border-color: var(--color-danger);
+  background: var(--color-danger-subtle);
+}
+
+.pack-import__flags--conflict h4 {
+  color: var(--color-danger-strong);
+}
+
+.pack-import__flags--warning {
+  border-color: var(--color-warning, var(--color-border));
+  background: var(--color-bg-2);
+}
+
+.pack-import__conflict {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pack-import__conflict-title {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.pack-import__conflict-field {
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.6875rem;
+  color: var(--color-text-tertiary);
+}
+
+.pack-import__conflict-detail {
+  margin: 0;
+}
+
+.pack-import__conflict-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin: var(--space-1) 0 0;
+}
+
+.pack-import__conflict-values dt {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-tertiary);
+}
+
+.pack-import__conflict-values dd {
+  margin: 2px 0 0;
+  max-width: 44ch;
+  color: var(--color-text-secondary);
+}

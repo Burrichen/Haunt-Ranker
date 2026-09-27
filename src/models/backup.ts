@@ -12,7 +12,7 @@ import type { ParkId } from "./park";
  * when an older file can no longer be read correctly — a renamed or removed
  * column, a changed meaning, a new required field.
  */
-export const BACKUP_FORMAT_VERSION = 2;
+export const BACKUP_FORMAT_VERSION = 3;
 
 /**
  * A backup is a table-level dump rather than a dump of the domain models.
@@ -28,6 +28,27 @@ export interface HauntRow {
   name: string;
   short_name: string;
   description: string | null;
+  tagline: string | null;
+  accent: string;
+  venues_label: string | null;
+  sort_order: number;
+  pack_id: string | null;
+  pack_version: string | null;
+  pack_updated_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+/** What one haunt calls one kind of experience — House, Maze, Trail. */
+export interface ExperienceTypeRow {
+  id: string;
+  haunt_id: string;
+  category: string;
+  label_one: string;
+  label_many: string;
+  description: string | null;
+  sort_order: number;
+  pack_id: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -37,6 +58,9 @@ export interface VenueRow {
   id: ParkId;
   name: string;
   haunt_id: string;
+  icon: string | null;
+  sort_order: number;
+  pack_id: string | null;
 }
 
 /** A haunt's season. The calendar year alone was never its identity. */
@@ -49,6 +73,9 @@ export interface EventYearRow {
   source_notes: string | null;
   starts_on: string | null;
   ends_on: string | null;
+  pack_id: string | null;
+  pack_version: string | null;
+  pack_updated_at: string | null;
   is_sample: number;
   created_at: string;
   updated_at: string;
@@ -72,6 +99,11 @@ export interface AttractionRow {
   closing_date: string | null;
   location_notes: string | null;
   debut_year: number | null;
+  experience_type_id: string | null;
+  source_pack_id: string | null;
+  source_pack_version: string | null;
+  pack_updated_at: string | null;
+  manual_edit_at: string | null;
   is_sample: number;
   created_at: string;
   updated_at: string;
@@ -117,6 +149,10 @@ export interface SourceRow {
   published_at: string | null;
   notes: string | null;
   is_sample: number;
+  source_pack_id: string | null;
+  source_pack_version: string | null;
+  pack_updated_at: string | null;
+  manual_edit_at: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -142,6 +178,20 @@ export interface AttractionVenueWikiRow {
   location_notes: string | null;
   created_at: string;
   updated_at: string;
+}
+
+/** One Haunt Pack import: what arrived, from where, and when. */
+export interface HauntPackRow {
+  id: string;
+  pack_id: string;
+  pack_version: string;
+  schema_id: string;
+  haunt_id: string;
+  haunt_name: string;
+  generated_at: string | null;
+  imported_at: string;
+  summary: string;
+  provenance_notes: string | null;
 }
 
 /**
@@ -219,6 +269,7 @@ export interface SettingRow {
 /** Every table a backup carries, in an order that satisfies foreign keys. */
 export interface BackupData {
   haunts: HauntRow[];
+  experienceTypes: ExperienceTypeRow[];
   venues: VenueRow[];
   eventYears: EventYearRow[];
   attractions: AttractionRow[];
@@ -235,6 +286,7 @@ export interface BackupData {
   notes: NoteRow[];
   rankings: RankingRow[];
   settings: SettingRow[];
+  hauntPacks: HauntPackRow[];
   migrationConflicts: MigrationConflictRow[];
 }
 

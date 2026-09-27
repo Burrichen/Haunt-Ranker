@@ -21,6 +21,12 @@ export interface YearArchive {
   houses: YearAttraction[];
   scareZones: YearAttraction[];
   /**
+   * Everything else the season held — a show, or whatever kind of thing a
+   * haunt this app has never seen calls its own. Kept separate from the two
+   * named lists so a page can lay them out in the haunt's own order.
+   */
+  otherKinds: YearAttraction[];
+  /**
    * The season's line-up split into what was new and what came back, from
    * verified debut years and earlier appearances only.
    */
@@ -33,6 +39,7 @@ const EMPTY_LINEAGE: SeasonLineage<YearAttraction> = {
   returning: [],
   unclassified: [],
   isIncomplete: false,
+  tracksReturning: false,
 };
 
 const INITIAL_STATE: YearArchive = {
@@ -43,6 +50,7 @@ const INITIAL_STATE: YearArchive = {
   artworkUrl: null,
   houses: [],
   scareZones: [],
+  otherKinds: [],
   lineage: EMPTY_LINEAGE,
   stats: null,
 };
@@ -127,6 +135,11 @@ export function useYearArchive(eventYearId: string | undefined): YearArchive {
           artworkUrl: await pickMediaSrc(yearMedia, "event_artwork"),
           houses: items.filter((item) => item.attraction.attractionType === "house"),
           scareZones: items.filter((item) => item.attraction.attractionType === "scare_zone"),
+          otherKinds: items.filter(
+            (item) =>
+              item.attraction.attractionType !== "house" &&
+              item.attraction.attractionType !== "scare_zone",
+          ),
           lineage: classifySeasonLineage(
             items,
             eventYear,

@@ -11,7 +11,7 @@ import {
 } from "../components/ui";
 import { useHauntScope } from "../hooks/useHauntScope";
 import { useYearsOverview } from "../hooks/useYearsOverview";
-import { hauntScopeLabel } from "../models/haunt";
+import { useHauntRegistry } from "../hooks/useHauntRegistry";
 import {
   RANKING_DIRECTIONS,
   RANKING_METRICS,
@@ -35,6 +35,7 @@ const SORT_OPTIONS: YearRankingSort[] = RANKING_METRICS.flatMap((metric: Ranking
 export function Years() {
   const { isLoading, error, summaries, view, setView, sort, setSort, ranking } = useYearsOverview();
   const { scope, isAllHaunts } = useHauntScope();
+  const registry = useHauntRegistry();
 
   const sortItems: DropdownItem[] = SORT_OPTIONS.map((option) => ({
     label: `Average ${rankingSortLabel(option)}`,
@@ -48,7 +49,7 @@ export function Years() {
         subtitle={
           isAllHaunts
             ? "Every season from both haunts, and how they compare."
-            : `Every ${hauntScopeLabel(scope)} season, and how they compare.`
+            : `Every ${registry.scopeLabel(scope)} season, and how they compare.`
         }
         actions={
           view === "rankings" ? (
@@ -90,11 +91,31 @@ export function Years() {
           description={
             isAllHaunts
               ? "Seasons will appear here as they're added to the archive."
-              : `No ${hauntScopeLabel(scope)} seasons are in the archive yet.`
+              : `No ${registry.scopeLabel(scope)} seasons are in the archive yet.`
           }
         />
       ) : view === "rankings" ? (
         <YearRankingList ranking={ranking} sort={sort} />
+      ) : isAllHaunts ? (
+        // Two haunts both hold a 2024, and they are not one event. Grouped
+        // under their haunt, never merged into a single year.
+        registry.haunts.map((entry) => {
+          const haunt = entry.id;
+          const seasons = summaries.filter((summary) => summary.eventYear.hauntId === haunt);
+          if (seasons.length === 0) {
+            return null;
+          }
+          return (
+            <section key={haunt} className="years__group" aria-label={entry.name}>
+              <h2 className="years__group-title">{entry.name}</h2>
+              <div className="years__grid">
+                {seasons.map((summary) => (
+                  <YearCard key={summary.eventYear.id} summary={summary} showHaunt={false} />
+                ))}
+              </div>
+            </section>
+          );
+        })
       ) : (
         <div className="years__grid">
           {summaries.map((summary) => (

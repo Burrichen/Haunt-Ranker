@@ -6,6 +6,14 @@ import type { SqlExecutor } from "../database/types";
 
 const NOW = "strftime('%Y-%m-%dT%H:%M:%fZ', 'now')";
 
+/**
+ * Tables with no `updated_at` of their own. Venues are reference rows a
+ * pack rewrites in place, and the pack log is append-only; neither has ever
+ * carried a modified time, and writing one would be a schema change dressed
+ * up as an update.
+ */
+const WITHOUT_UPDATED_AT = new Set(["parks", "haunt_packs"]);
+
 function columnsOf(key: string): string[] {
   const spec = BACKUP_TABLES.find((table) => table.key === key);
   if (!spec) {
@@ -99,6 +107,15 @@ export function createArchiveImportRepository(db: SqlExecutor): ArchiveImportRep
   ): Promise<void> {
     const columns = Object.keys(values);
     const assignments = columns.map((column) => `${column} = ?`).join(", ");
+
+    if (WITHOUT_UPDATED_AT.has(table)) {
+      await db.execute(`UPDATE ${table} SET ${assignments} WHERE id = ?`, [
+        ...columns.map((column) => values[column] ?? null),
+        id,
+      ]);
+      return;
+    }
+
     const stamp = updatedAt === undefined ? NOW : "?";
     await db.execute(`UPDATE ${table} SET ${assignments}, updated_at = ${stamp} WHERE id = ?`, [
       ...columns.map((column) => values[column] ?? null),
@@ -108,6 +125,9 @@ export function createArchiveImportRepository(db: SqlExecutor): ArchiveImportRep
   }
 
   async function readUpdatedAt(table: string, id: string): Promise<string | undefined> {
+    if (WITHOUT_UPDATED_AT.has(table)) {
+      return undefined;
+    }
     const rows = await db.select<Array<{ updated_at: string }>>(
       `SELECT updated_at FROM ${table} WHERE id = ?`,
       [id],

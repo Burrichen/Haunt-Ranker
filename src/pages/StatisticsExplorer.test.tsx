@@ -11,6 +11,7 @@ import {
 import { DEFAULT_STATISTICS_FILTERS, type StatisticsRow } from "../utils/statistics";
 import type { ExplorerAttractionRow } from "../utils/statisticsExplorer";
 import { StatisticsExplorer } from "./StatisticsExplorer";
+import { TestHaunts } from "../test/hauntRegistry";
 
 vi.mock("../hooks/useStatisticsExplorer");
 
@@ -54,6 +55,7 @@ function makeAttraction(name: string): Attraction {
     closingDate: null,
     locationNotes: null,
     debutYear: null,
+    experienceTypeId: null,
     parkIds: ["hollywood", "orlando"],
     isSample: true,
     ...TIMESTAMPS,
@@ -136,9 +138,11 @@ function renderExplorer(overrides: Partial<ExplorerState> = {}) {
   const state = makeState(overrides);
   mockedUseExplorer.mockReturnValue(state);
   render(
-    <MemoryRouter>
-      <StatisticsExplorer />
-    </MemoryRouter>,
+    <TestHaunts>
+      <MemoryRouter>
+        <StatisticsExplorer />
+      </MemoryRouter>
+    </TestHaunts>,
   );
   return state;
 }

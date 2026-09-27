@@ -18,6 +18,7 @@ const TIMESTAMPS = {
 function emptyData(): BackupData {
   return {
     haunts: [],
+    experienceTypes: [],
     venues: [],
     eventYears: [],
     attractions: [],
@@ -34,6 +35,7 @@ function emptyData(): BackupData {
     notes: [],
     rankings: [],
     settings: [],
+    hauntPacks: [],
     migrationConflicts: [],
   };
 }
@@ -47,6 +49,13 @@ function referenceData(): Pick<BackupData, "haunts" | "venues"> {
         name: "Halloween Horror Nights",
         short_name: "HHN",
         description: null,
+        tagline: null,
+        accent: "orange",
+        venues_label: null,
+        sort_order: 0,
+        pack_id: null,
+        pack_version: null,
+        pack_updated_at: null,
         ...TIMESTAMPS,
       },
       {
@@ -54,13 +63,41 @@ function referenceData(): Pick<BackupData, "haunts" | "venues"> {
         name: "Knott's Scary Farm",
         short_name: "Knott's",
         description: null,
+        tagline: null,
+        accent: "purple",
+        venues_label: null,
+        sort_order: 10,
+        pack_id: null,
+        pack_version: null,
+        pack_updated_at: null,
         ...TIMESTAMPS,
       },
     ],
     venues: [
-      { id: "hollywood", name: "Hollywood", haunt_id: "hhn" },
-      { id: "orlando", name: "Orlando", haunt_id: "hhn" },
-      { id: "knotts-berry-farm", name: "Knott's Berry Farm", haunt_id: "knotts-scary-farm" },
+      {
+        id: "hollywood",
+        name: "Hollywood",
+        haunt_id: "hhn",
+        icon: "star",
+        sort_order: 0,
+        pack_id: null,
+      },
+      {
+        id: "orlando",
+        name: "Orlando",
+        haunt_id: "hhn",
+        icon: "palm",
+        sort_order: 10,
+        pack_id: null,
+      },
+      {
+        id: "knotts-berry-farm",
+        name: "Knott's Berry Farm",
+        haunt_id: "knotts-scary-farm",
+        icon: "ferris-wheel",
+        sort_order: 20,
+        pack_id: null,
+      },
     ],
   };
 }
@@ -79,6 +116,9 @@ function populatedData(): BackupData {
         source_notes: null,
         starts_on: null,
         ends_on: null,
+        pack_id: null,
+        pack_version: null,
+        pack_updated_at: null,
         is_sample: 0,
         ...TIMESTAMPS,
       },
@@ -102,6 +142,11 @@ function populatedData(): BackupData {
         closing_date: null,
         location_notes: null,
         debut_year: null,
+        experience_type_id: null,
+        source_pack_id: null,
+        source_pack_version: null,
+        pack_updated_at: null,
+        manual_edit_at: null,
         is_sample: 0,
         ...TIMESTAMPS,
       },
@@ -185,15 +230,17 @@ describe("validateBackup", () => {
     (data.attractions[0] as unknown as Record<string, unknown>).attraction_type = "maze";
 
     expect(errorsOf(makeFile({ data }))[0]).toMatch(
-      /attraction_type should be one of house, scare_zone/,
+      /attraction_type should be one of house, scare_zone, show, other/,
     );
   });
 
-  it("refuses a park that isn't one of the two", () => {
+  it("refuses a venue the backup doesn't contain", () => {
     const data = populatedData();
     (data.attractionParks[0] as unknown as Record<string, unknown>).park_id = "singapore";
 
-    expect(errorsOf(makeFile({ data }))[0]).toMatch(/park_id should be one of hollywood, orlando/);
+    expect(errorsOf(makeFile({ data }))[0]).toMatch(
+      /park_id points at "singapore", which isn't in this backup/,
+    );
   });
 
   it("refuses a rating that isn't a real score", () => {
@@ -423,6 +470,7 @@ function version1File(): Record<string, unknown> {
       notes: [{ id: "n1", attraction_id: "a1", note: "Best of the year.", ...TIMESTAMPS }],
       rankings: [{ id: "rk1", scope: "house", attraction_id: "a1", position: 1, ...TIMESTAMPS }],
       settings: [],
+      hauntPacks: [],
     },
     preferences: { ambientEffects: true },
   };
@@ -433,6 +481,7 @@ describe("upgradeBackup", () => {
     const upgrades: Record<number, BackupUpgrade> = {
       0: (raw) => ({ ...raw, wasUpgraded: true }),
       1: (raw) => ({ ...raw, wasUpgradedAgain: true }),
+      2: (raw) => raw,
     };
 
     const result = upgradeBackup({ formatVersion: 0 }, upgrades);
@@ -550,7 +599,7 @@ describe("summarizeBackup", () => {
     expect(byKey.get("attractions")).toBe(1);
     expect(byKey.get("ratings")).toBe(1);
     expect(byKey.get("notes")).toBe(0);
-    expect(summary.counts).toHaveLength(18);
+    expect(summary.counts).toHaveLength(20);
     expect(summary.totalRows).toBe(10);
   });
 });

@@ -8,6 +8,7 @@ import { useSampleData, type SampleDataState } from "../hooks/useSampleData";
 import { BACKUP_FORMAT_VERSION } from "../models/backup";
 import { PREFERENCE_KEYS } from "../preferences/localPreferences";
 import { Settings } from "./Settings";
+import { TestHaunts } from "../test/hauntRegistry";
 
 vi.mock("../hooks/useBackup");
 vi.mock("../hooks/useSampleData");
@@ -66,9 +67,11 @@ function renderSettings(
   mockedUseBackup.mockReturnValue(backupState);
   mockedUseSampleData.mockReturnValue(sampleState);
   render(
-    <MemoryRouter>
-      <Settings />
-    </MemoryRouter>,
+    <TestHaunts>
+      <MemoryRouter>
+        <Settings />
+      </MemoryRouter>
+    </TestHaunts>,
   );
   return { backup: backupState, sampleData: sampleState };
 }
@@ -355,9 +358,11 @@ describe("Sidebar", () => {
 
   it("does not list Admin Mode while it's off", () => {
     render(
-      <MemoryRouter>
-        <Sidebar />
-      </MemoryRouter>,
+      <TestHaunts>
+        <MemoryRouter>
+          <Sidebar />
+        </MemoryRouter>
+      </TestHaunts>,
     );
 
     expect(screen.queryByRole("link", { name: /Admin Mode/ })).not.toBeInTheDocument();
@@ -367,9 +372,11 @@ describe("Sidebar", () => {
   it("lists Admin Mode once it's on", () => {
     window.localStorage.setItem(STORAGE_KEY, "true");
     render(
-      <MemoryRouter>
-        <Sidebar />
-      </MemoryRouter>,
+      <TestHaunts>
+        <MemoryRouter>
+          <Sidebar />
+        </MemoryRouter>
+      </TestHaunts>,
     );
 
     expect(screen.getByRole("link", { name: /Admin Mode/ })).toHaveAttribute("href", "/admin");

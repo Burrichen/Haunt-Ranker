@@ -1,5 +1,6 @@
 import { useHauntScope } from "../../hooks/useHauntScope";
-import { HAUNT_SCOPES, hauntScopeLabel, type HauntScope } from "../../models/haunt";
+import { useHauntRegistry } from "../../hooks/useHauntRegistry";
+import type { HauntScope } from "../../models/haunt";
 import { cn } from "../../utils/cn";
 import "./HauntSelector.css";
 
@@ -17,6 +18,7 @@ export interface HauntSelectorProps {
  */
 export function HauntSelector({ className }: HauntSelectorProps) {
   const { scope, setScope } = useHauntScope();
+  const registry = useHauntRegistry();
 
   return (
     <div className={cn("haunt-selector", className)}>
@@ -28,7 +30,7 @@ export function HauntSelector({ className }: HauntSelectorProps) {
         role="radiogroup"
         aria-labelledby="haunt-selector-label"
       >
-        {HAUNT_SCOPES.map((option: HauntScope) => (
+        {registry.scopes().map((option: HauntScope) => (
           <button
             key={option}
             type="button"
@@ -40,7 +42,7 @@ export function HauntSelector({ className }: HauntSelectorProps) {
             )}
             onClick={() => setScope(option)}
           >
-            {hauntScopeLabel(option)}
+            {registry.scopeLabel(option)}
           </button>
         ))}
       </div>

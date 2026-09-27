@@ -24,6 +24,7 @@ interface AttractionRow {
   closing_date: string | null;
   location_notes: string | null;
   debut_year: number | null;
+  experience_type_id: string | null;
   is_sample: number;
   created_at: string;
   updated_at: string;
@@ -53,6 +54,7 @@ function mapRow(row: AttractionRow, parkIds: ParkId[]): Attraction {
     closingDate: row.closing_date,
     locationNotes: row.location_notes,
     debutYear: row.debut_year,
+    experienceTypeId: row.experience_type_id,
     parkIds,
     isSample: row.is_sample === 1,
     createdAt: row.created_at,
@@ -187,8 +189,8 @@ export function createAttractionRepository(db: SqlExecutor): AttractionRepositor
            id, event_year_id, attraction_type, name, slug, variant_name, ip_type,
            franchise_name, short_summary, full_overview, story_lore,
            experience_description, development_notes, opening_date, closing_date,
-           location_notes, debut_year, is_sample
-         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+           location_notes, debut_year, experience_type_id, is_sample
+         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           id,
           input.eventYearId,
@@ -207,6 +209,7 @@ export function createAttractionRepository(db: SqlExecutor): AttractionRepositor
           input.closingDate ?? null,
           input.locationNotes ?? null,
           input.debutYear ?? null,
+          input.experienceTypeId ?? null,
           input.isSample ? 1 : 0,
         ],
       ),
@@ -230,6 +233,15 @@ export function createAttractionRepository(db: SqlExecutor): AttractionRepositor
     return created;
   }
 
+  /**
+   * Edits a record by hand.
+   *
+   * This is the only path that stamps `manual_edit_at`: a Haunt Pack writes
+   * through the archive importer instead, and compares the two dates to
+   * decide whether it may correct a field or has to report a conflict and
+   * leave the edit alone. So the stamp means precisely "a person changed
+   * this here", which is what the pack rule needs it to mean.
+   */
   async function update(id: EntityId, input: Partial<AttractionInput>): Promise<Attraction> {
     if (input.name !== undefined) {
       assertName(input.name);
@@ -269,6 +281,8 @@ export function createAttractionRepository(db: SqlExecutor): AttractionRepositor
       locationNotes:
         input.locationNotes === undefined ? existing.locationNotes : input.locationNotes,
       debutYear: input.debutYear === undefined ? existing.debutYear : input.debutYear,
+      experienceTypeId:
+        input.experienceTypeId === undefined ? existing.experienceTypeId : input.experienceTypeId,
       isSample: input.isSample === undefined ? existing.isSample : input.isSample,
     };
 
@@ -279,8 +293,9 @@ export function createAttractionRepository(db: SqlExecutor): AttractionRepositor
              ip_type = ?, franchise_name = ?, short_summary = ?, full_overview = ?,
              story_lore = ?, experience_description = ?, development_notes = ?,
              opening_date = ?, closing_date = ?, location_notes = ?, debut_year = ?,
-             is_sample = ?,
-             updated_at = strftime('%Y-%m-%dT%H:%M:%fZ', 'now')
+             experience_type_id = ?, is_sample = ?,
+             updated_at = strftime('%Y-%m-%dT%H:%M:%fZ', 'now'),
+             manual_edit_at = strftime('%Y-%m-%dT%H:%M:%fZ', 'now')
          WHERE id = ?`,
         [
           next.eventYearId,
@@ -299,6 +314,7 @@ export function createAttractionRepository(db: SqlExecutor): AttractionRepositor
           next.closingDate ?? null,
           next.locationNotes ?? null,
           next.debutYear ?? null,
+          next.experienceTypeId ?? null,
           next.isSample ? 1 : 0,
           id,
         ],

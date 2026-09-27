@@ -10,6 +10,7 @@ import {
   computeHighlights,
   computeScoreDistribution,
   computeTopAttractions,
+  compareHaunts,
   computeYearPerformance,
   coveragePercent,
   DEFAULT_STATISTICS_FILTERS,
@@ -74,6 +75,7 @@ function makeRow(name: string, options: RowOptions = {}): StatisticsRow {
     closingDate: null,
     locationNotes: null,
     debutYear: null,
+    experienceTypeId: null,
     parkIds,
     isSample: true,
     ...TIMESTAMPS,
@@ -427,5 +429,65 @@ describe("an attraction that ran at both venues", () => {
 
     expect(points.map((point) => point.reviewedCount)).toEqual([3, 1]);
     expect(availableYears(withSecondYear)).toEqual([2102, 2101]);
+  });
+});
+
+describe("compareHaunts", () => {
+  // The haunts to compare are given, not assumed — which is what lets a
+  // haunt that arrived in a pack appear here at all.
+  const HAUNTS = ["hhn", "knotts-scary-farm"];
+
+  function hhnRow(name: string, scores: [number, number, number] | null): StatisticsRow {
+    return makeRow(name, { scores, year: 2101 });
+  }
+
+  function knottsRow(name: string, scores: [number, number, number] | null): StatisticsRow {
+    const row = makeRow(name, { scores, year: 2102 });
+    return {
+      ...row,
+      eventYear: row.eventYear ? { ...row.eventYear, hauntId: "knotts-scary-farm" } : null,
+    };
+  }
+
+  it("averages each haunt over its own reviewed records, with the sample size", () => {
+    const rows = [
+      hhnRow("A", [4, 4, 4]),
+      hhnRow("B", [2, 2, 2]),
+      hhnRow("C", null),
+      knottsRow("D", [5, 5, 5]),
+      knottsRow("E", [3, 3, 3]),
+    ];
+
+    const [hhn, knotts] = compareHaunts(rows, HAUNTS);
+
+    expect(hhn).toMatchObject({ hauntId: "hhn", reviewedCount: 2, attractionCount: 3 });
+    expect(hhn.averages).toEqual({ total: 9, theme: 3, fun: 3, fear: 3 });
+    expect(knotts).toMatchObject({ reviewedCount: 2, attractionCount: 2 });
+    expect(knotts.averages?.total).toBe(12);
+  });
+
+  it("refuses to average a haunt too thinly reviewed to mean anything", () => {
+    const [hhn] = compareHaunts([hhnRow("A", [5, 5, 5]), hhnRow("B", null)], HAUNTS);
+
+    // One review is not an average of a collection, however tempting.
+    expect(hhn.reviewedCount).toBe(1);
+    expect(hhn.averages).toBeNull();
+  });
+
+  it("lists every haunt in a fixed order, never ordered by score", () => {
+    const rows = [knottsRow("D", [5, 5, 5]), knottsRow("E", [5, 5, 5]), hhnRow("A", [1, 1, 1])];
+
+    // Knott's would top a ranking here; the comparison is not a ranking.
+    expect(compareHaunts(rows, HAUNTS).map((row) => row.hauntId)).toEqual([
+      "hhn",
+      "knotts-scary-farm",
+    ]);
+  });
+
+  it("reports a haunt with nothing in the slice rather than omitting it", () => {
+    const [hhn, knotts] = compareHaunts([hhnRow("A", [3, 3, 3]), hhnRow("B", [3, 3, 3])], HAUNTS);
+
+    expect(hhn.averages).not.toBeNull();
+    expect(knotts).toMatchObject({ attractionCount: 0, reviewedCount: 0, averages: null });
   });
 });

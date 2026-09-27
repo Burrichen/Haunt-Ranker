@@ -3,6 +3,7 @@ import { MemoryRouter } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { Attraction } from "../../models/attraction";
 import { AttractionHoverPreview } from "./AttractionHoverPreview";
+import { TestHaunts } from "../../test/hauntRegistry";
 
 function makeAttraction(overrides: Partial<Attraction> = {}): Attraction {
   return {
@@ -23,6 +24,7 @@ function makeAttraction(overrides: Partial<Attraction> = {}): Attraction {
     closingDate: null,
     locationNotes: null,
     debutYear: null,
+    experienceTypeId: null,
     parkIds: ["hollywood"],
     isSample: true,
     createdAt: "2026-01-01T00:00:00.000Z",
@@ -33,11 +35,13 @@ function makeAttraction(overrides: Partial<Attraction> = {}): Attraction {
 
 function renderPreview() {
   const result = render(
-    <MemoryRouter>
-      <AttractionHoverPreview attraction={makeAttraction()} eventYear={null} rating={null}>
-        <a href="/somewhere">Moonlight Manor</a>
-      </AttractionHoverPreview>
-    </MemoryRouter>,
+    <TestHaunts>
+      <MemoryRouter>
+        <AttractionHoverPreview attraction={makeAttraction()} eventYear={null} rating={null}>
+          <a href="/somewhere">Moonlight Manor</a>
+        </AttractionHoverPreview>
+      </MemoryRouter>
+    </TestHaunts>,
   );
   // The popup is `role="presentation"` — deliberately hidden from the
   // accessibility tree since it's decorative — so tests check for it

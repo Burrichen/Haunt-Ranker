@@ -1,6 +1,7 @@
 import { BarChart3, CircleAlert } from "lucide-react";
 import {
   CoveragePanel,
+  HauntComparison,
   HighlightCards,
   ScoreDistributionChart,
   StatisticsFilterBar,
@@ -8,6 +9,7 @@ import {
   YearPerformanceChart,
 } from "../components/statistics";
 import { EmptyState, LoadingState } from "../components/ui";
+import { useHauntScope } from "../hooks/useHauntScope";
 import { useStatistics } from "../hooks/useStatistics";
 import "./Statistics.css";
 
@@ -29,9 +31,11 @@ export function StatisticsDashboard() {
     yearPerformance,
     distribution,
     coverage,
+    hauntComparison,
     topAttractions,
     attractionCount,
   } = useStatistics();
+  const { isAllHaunts } = useHauntScope();
 
   if (isLoading) {
     return <LoadingState label="Loading statistics…" />;
@@ -81,6 +85,10 @@ export function StatisticsDashboard() {
             <YearPerformanceChart points={yearPerformance} metric={metric} />
             <ScoreDistributionChart buckets={distribution} reviewedCount={coverage.all.reviewed} />
           </div>
+
+          {/* Only where the haunts are actually on screen together does
+              comparing them mean anything. */}
+          {isAllHaunts && <HauntComparison rows={hauntComparison} />}
 
           <div className="statistics__lower">
             <CoveragePanel coverage={coverage} />

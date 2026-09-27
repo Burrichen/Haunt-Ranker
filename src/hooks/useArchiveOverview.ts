@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { getDatabase } from "../database/client";
+import { isInHauntScope } from "../models/haunt";
+import { useHauntScope } from "./useHauntScope";
+import { useHauntRegistry } from "./useHauntRegistry";
 import type { Attraction } from "../models/attraction";
 import type { EventYear } from "../models/eventYear";
-import { HAUNT_IDS, type HauntId } from "../models/haunt";
+import { EMPTY_HAUNT_SUMMARIES, summarizeHaunts, type HauntArchiveSummary } from "../utils/haunts";
 import type { Rating } from "../models/rating";
 import { createAttractionRepository } from "../repositories/attractionRepository";
 import { createEventYearRepository } from "../repositories/eventYearRepository";
@@ -30,17 +33,7 @@ export interface ArchiveSummary {
   reviewed: number;
 }
 
-/** What one haunt's archive holds — the figures its entry point shows. */
-export interface HauntArchiveSummary {
-  hauntId: HauntId;
-  attractions: number;
-  seasons: number;
-  /** Attractions with a rating. Never inferred from a rating of 0. */
-  reviewed: number;
-  /** The span of seasons on file, e.g. 2010–2026, or null when there are none. */
-  firstYear: number | null;
-  lastYear: number | null;
-}
+export type { HauntArchiveSummary };
 
 export interface ArchiveOverview {
   isLoading: boolean;
@@ -59,15 +52,6 @@ const EMPTY_SUMMARY: ArchiveSummary = {
   reviewed: 0,
 };
 
-const EMPTY_HAUNTS: HauntArchiveSummary[] = [HAUNT_IDS.hhn, HAUNT_IDS.knotts].map((hauntId) => ({
-  hauntId,
-  attractions: 0,
-  seasons: 0,
-  reviewed: 0,
-  firstYear: null,
-  lastYear: null,
-}));
-
 /**
  * Loads a light overview of the archive for the Home page: totals, and a
  * semi-random spotlight selection. Deliberately picks the spotlight once
@@ -75,11 +59,13 @@ const EMPTY_HAUNTS: HauntArchiveSummary[] = [HAUNT_IDS.hhn, HAUNT_IDS.knotts].ma
  * open — see `pickRandomSample`.
  */
 export function useArchiveOverview(): ArchiveOverview {
+  const { scope } = useHauntScope();
+  const { haunts: registryHaunts } = useHauntRegistry();
   const [state, setState] = useState<ArchiveOverview>({
     isLoading: true,
     error: null,
     summary: EMPTY_SUMMARY,
-    haunts: EMPTY_HAUNTS,
+    haunts: EMPTY_HAUNT_SUMMARIES,
     spotlight: [],
   });
 
@@ -122,22 +108,12 @@ export function useArchiveOverview(): ArchiveOverview {
           return;
         }
 
-        const rated = new Set(ratedIds);
-        const haunts: HauntArchiveSummary[] = [HAUNT_IDS.hhn, HAUNT_IDS.knotts].map((hauntId) => {
-          const seasons = years.filter((year) => year.hauntId === hauntId);
-          const ownAttractions = attractions.filter(
-            (attraction) => yearsById.get(attraction.eventYearId)?.hauntId === hauntId,
-          );
-          const calendarYears = seasons.map((season) => season.calendarYear);
-          return {
-            hauntId,
-            attractions: ownAttractions.length,
-            seasons: seasons.length,
-            reviewed: ownAttractions.filter((attraction) => rated.has(attraction.id)).length,
-            firstYear: calendarYears.length > 0 ? Math.min(...calendarYears) : null,
-            lastYear: calendarYears.length > 0 ? Math.max(...calendarYears) : null,
-          };
-        });
+        const haunts = summarizeHaunts(
+          attractions,
+          years,
+          ratedIds,
+          registryHaunts.map((haunt) => haunt.id),
+        );
 
         setState({
           isLoading: false,
@@ -169,7 +145,30 @@ export function useArchiveOverview(): ArchiveOverview {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [registryHaunts]);
 
-  return state;
+  // The haunts themselves are always all of them — Home offers every
+  // collection — but what the page says about "the archive" follows the
+  // haunt in view, so the spotlight and the totals describe one thing.
+  const spotlight = useMemo(
+    () => state.spotlight.filter((item) => isInHauntScope(item.eventYear?.hauntId, scope)),
+    [state.spotlight, scope],
+  );
+
+  const summary = useMemo(() => {
+    if (scope === "all") {
+      return state.summary;
+    }
+    const own = state.haunts.find((haunt) => haunt.hauntId === scope);
+    return own
+      ? {
+          totalAttractions: own.attractions,
+          houses: own.walkthroughs,
+          scareZones: own.scareZones,
+          reviewed: own.reviewed,
+        }
+      : state.summary;
+  }, [scope, state.haunts, state.summary]);
+
+  return { ...state, summary, spotlight };
 }

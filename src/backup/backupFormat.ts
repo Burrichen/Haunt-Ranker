@@ -109,7 +109,144 @@ const upgradeV1ToV2: BackupUpgrade = (raw) => {
   return { ...raw, data };
 };
 
-export const BACKUP_UPGRADES: Record<number, BackupUpgrade> = { 1: upgradeV1ToV2 };
+/**
+ * Version 2 → 3: haunts stop being something the app knows and become
+ * something it holds.
+ *
+ * A version 2 backup was written when Halloween Horror Nights and Knott's
+ * Scary Farm were the only haunts there could be, so their presentation and
+ * their vocabulary lived in the source code. Both are restated here exactly
+ * as the migration seeds them — which is reconstruction of what version 2
+ * meant, not invention. Nothing else is guessed: provenance columns arrive
+ * null, because a version 2 file genuinely has nothing to say about which
+ * pack wrote what.
+ */
+const upgradeV2ToV3: BackupUpgrade = (raw) => {
+  const data = isRecord(raw.data) ? { ...raw.data } : {};
+  const stamp = typeof raw.exportedAt === "string" ? raw.exportedAt : new Date().toISOString();
+
+  const presentation: Record<
+    string,
+    { accent: string; tagline: string; venues: string; order: number }
+  > = {
+    hhn: {
+      accent: "orange",
+      tagline: "Universal's Halloween event, at Hollywood and Orlando.",
+      venues: "Hollywood and Orlando",
+      order: 0,
+    },
+    "knotts-scary-farm": {
+      accent: "purple",
+      tagline: "The Halloween event at Knott's Berry Farm, Buena Park.",
+      venues: "Knott's Berry Farm",
+      order: 10,
+    },
+  };
+
+  data.haunts = rowsOf(data, "haunts").map((row) => {
+    const known = presentation[String(row.id)];
+    return {
+      ...row,
+      tagline: known?.tagline ?? null,
+      accent: known?.accent ?? "orange",
+      venues_label: known?.venues ?? null,
+      sort_order: known?.order ?? 100,
+      pack_id: null,
+      pack_version: null,
+      pack_updated_at: null,
+    };
+  });
+
+  // The words those two haunts used, as rows rather than as a lookup
+  // compiled into the app.
+  const labels: Array<[string, string, string, string, string, number]> = [
+    ["hhn:type:house", "hhn", "walkthrough", "House", "Houses", 0],
+    ["hhn:type:scare-zone", "hhn", "scare_zone", "Scare Zone", "Scare Zones", 10],
+    ["knotts-scary-farm:type:maze", "knotts-scary-farm", "walkthrough", "Maze", "Mazes", 0],
+    [
+      "knotts-scary-farm:type:scare-zone",
+      "knotts-scary-farm",
+      "scare_zone",
+      "Scare Zone",
+      "Scare Zones",
+      10,
+    ],
+  ];
+  const hauntIds = new Set(rowsOf(data, "haunts").map((row) => String(row.id)));
+  data.experienceTypes = labels
+    .filter(([, hauntId]) => hauntIds.has(hauntId))
+    .map(([id, haunt_id, category, label_one, label_many, sort_order]) => ({
+      id,
+      haunt_id,
+      category,
+      label_one,
+      label_many,
+      description: null,
+      sort_order,
+      pack_id: null,
+      created_at: stamp,
+      updated_at: stamp,
+    }));
+
+  const icons: Record<string, string> = {
+    hollywood: "star",
+    orlando: "palm",
+    "knotts-berry-farm": "ferris-wheel",
+  };
+  data.venues = rowsOf(data, "venues").map((row, index) => ({
+    ...row,
+    icon: icons[String(row.id)] ?? "pin",
+    sort_order: index * 10,
+    pack_id: null,
+  }));
+
+  data.eventYears = rowsOf(data, "eventYears").map((row) => ({
+    ...row,
+    pack_id: null,
+    pack_version: null,
+    pack_updated_at: null,
+  }));
+
+  const typeForCategory: Record<string, Record<string, string>> = {
+    hhn: { house: "hhn:type:house", scare_zone: "hhn:type:scare-zone" },
+    "knotts-scary-farm": {
+      house: "knotts-scary-farm:type:maze",
+      scare_zone: "knotts-scary-farm:type:scare-zone",
+    },
+  };
+  const hauntOfSeason = new Map(
+    rowsOf(data, "eventYears").map((row) => [String(row.id), String(row.haunt_id ?? "hhn")]),
+  );
+  data.attractions = rowsOf(data, "attractions").map((row) => {
+    const haunt = hauntOfSeason.get(String(row.event_year_id)) ?? "hhn";
+    return {
+      ...row,
+      experience_type_id: typeForCategory[haunt]?.[String(row.attraction_type)] ?? null,
+      source_pack_id: null,
+      source_pack_version: null,
+      pack_updated_at: null,
+      manual_edit_at: null,
+    };
+  });
+
+  data.sources = rowsOf(data, "sources").map((row) => ({
+    ...row,
+    source_pack_id: null,
+    source_pack_version: null,
+    pack_updated_at: null,
+    manual_edit_at: null,
+  }));
+
+  // Nothing had been imported as a pack when a version 2 file was written.
+  data.hauntPacks = [];
+
+  return { ...raw, data };
+};
+
+export const BACKUP_UPGRADES: Record<number, BackupUpgrade> = {
+  1: upgradeV1ToV2,
+  2: upgradeV2ToV3,
+};
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);

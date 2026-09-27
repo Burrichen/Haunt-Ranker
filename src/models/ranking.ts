@@ -1,6 +1,6 @@
 import type { EntityId, Timestamped } from "./common";
 import type { AttractionType } from "./attraction";
-import { HAUNT_IDS, type HauntId } from "./haunt";
+import type { HauntId } from "./haunt";
 
 /**
  * A manually-ranked position within a `scope` — a free-form key
@@ -16,9 +16,16 @@ export interface RankingEntry extends Timestamped {
   position: number;
 }
 
+/**
+ * The scope key each category saves its manual order under. `houses` and
+ * `scare_zones` are the stored names every existing ranking already uses,
+ * whatever the haunt in question calls them.
+ */
 const ATTRACTION_TYPE_SCOPE: Record<AttractionType, string> = {
   house: "houses",
   scare_zone: "scare_zones",
+  show: "shows",
+  other: "other",
 };
 
 /** The lists the Rankings page can rank. Each keeps its own independent manual order. */
@@ -30,12 +37,6 @@ export type RankingGroup = "houses" | "scare_zones" | "all";
  * per-haunt lists neither feed nor are fed by.
  */
 export type RankingHauntScope = HauntId | "all";
-
-export const RANKING_HAUNT_SCOPES: readonly RankingHauntScope[] = [
-  "all",
-  HAUNT_IDS.hhn,
-  HAUNT_IDS.knotts,
-];
 
 /**
  * Prefixes a scope with the haunt it belongs to.

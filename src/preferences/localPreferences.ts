@@ -13,7 +13,10 @@ export const PREFERENCE_KEYS = {
   motion: "haunt-ranker:motion",
   attractionViewMode: "haunt-ranker:attraction-view-mode",
   adminMode: "haunt-ranker:admin-mode",
+  /** The haunt last looked at, so a relaunch returns to it. */
   hauntScope: "haunt-ranker:haunt-scope",
+  /** The haunt a fresh start uses, chosen in Settings. */
+  defaultHauntScope: "haunt-ranker:default-haunt-scope",
 } as const;
 
 export type PreferenceKey = keyof typeof PREFERENCE_KEYS;

@@ -20,92 +20,97 @@
   font-size: 1rem;
 }
 
-/* The two archives sit side by side at the same size: same padding, same
-   type scale, same figures. Only the accent differs. */
-.home__haunts {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-5);
-}
-
-@media (max-width: 860px) {
-  .home__haunts {
-    grid-template-columns: 1fr;
-  }
-}
-
-.home__haunt-link {
+.home__hero-link {
   display: block;
   color: inherit;
   text-decoration: none;
   border-radius: var(--radius-lg);
 }
 
-.home__haunt {
-  height: 100%;
-  transition:
-    transform var(--duration-base) var(--ease-standard),
-    border-color var(--duration-base) var(--ease-standard);
-}
-
-.home__haunt-link:hover .home__haunt {
-  transform: translateY(-2px);
+.home__hero-link:hover .home__hero {
   border-color: var(--color-border-strong);
 }
 
-.home__haunt-eyebrow {
+.home__hero-eyebrow {
   display: block;
   font-size: 0.6875rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--color-text-tertiary);
+  margin-bottom: var(--space-3);
 }
 
-.home__haunt-name {
-  margin-top: var(--space-2);
-  font-size: clamp(1.25rem, 2vw, 1.625rem);
-  line-height: 1.2;
+/* A row, not a grid of brands: secondary collections are offered plainly
+   and without competing with the home one above them. */
+.home__others {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
 }
 
-.home__haunt--orange .home__haunt-name {
+.home__others-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.home__others-all {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+}
+
+.home__others-all:hover {
   color: var(--color-orange-strong);
 }
 
-.home__haunt--purple .home__haunt-name {
-  color: var(--color-purple-strong);
+.home__others-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-4);
 }
 
-.home__haunt-tagline {
+.home__other-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  border-radius: var(--radius-lg);
+}
+
+.home__other {
+  height: 100%;
+  border-left: 2px solid var(--color-border-subtle);
+  transition: border-color var(--duration-fast) var(--ease-standard);
+}
+
+.home__other--purple {
+  border-left-color: var(--color-purple);
+}
+
+.home__other--orange {
+  border-left-color: var(--color-orange);
+}
+
+.home__other-link:hover .home__other {
+  border-color: var(--color-border-strong);
+}
+
+.home__other-name {
+  font-size: 1.0625rem;
+}
+
+.home__other-tagline {
   margin-top: var(--space-2);
-  color: var(--color-text-secondary);
-  font-size: 0.875rem;
-  line-height: 1.5;
-}
-
-.home__haunt-figures {
-  display: flex;
-  gap: var(--space-5);
-  margin: var(--space-5) 0 0;
-}
-
-.home__haunt-figures dt {
-  font-size: 0.6875rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-text-tertiary);
-}
-
-.home__haunt-figures dd {
-  margin: var(--space-1) 0 0;
-  font-family: var(--font-display);
-  font-size: 1.375rem;
-}
-
-.home__haunt-empty,
-.home__haunt-span {
-  margin: var(--space-4) 0 0;
   font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.home__other-figures {
+  margin-top: var(--space-3);
+  font-size: 0.75rem;
   color: var(--color-text-tertiary);
 }
 

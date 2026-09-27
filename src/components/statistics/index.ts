@@ -8,6 +8,8 @@ export { ExplorerControls } from "./ExplorerControls";
 export type { ExplorerControlsProps } from "./ExplorerControls";
 export { ExplorerYearTable } from "./ExplorerYearTable";
 export type { ExplorerYearTableProps } from "./ExplorerYearTable";
+export { HauntComparison } from "./HauntComparison";
+export type { HauntComparisonProps } from "./HauntComparison";
 export { HighlightCards } from "./HighlightCards";
 export type { HighlightCardsProps } from "./HighlightCards";
 export { ScoreDistributionChart } from "./ScoreDistributionChart";

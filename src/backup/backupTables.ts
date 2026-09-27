@@ -1,5 +1,4 @@
 import type { BackupTableKey } from "../models/backup";
-import { PARK_IDS } from "../models/park";
 import { isValidRatingValue } from "../models/rating";
 
 /**
@@ -50,8 +49,6 @@ const TIMESTAMPS: Record<string, BackupColumn> = {
   updated_at: { kind: "text" },
 };
 
-const PARK_ID_VALUES = Object.values(PARK_IDS);
-
 /**
  * Foreign-key-safe order: every table comes after the tables it points at.
  * The import inserts in this order and deletes in reverse, so neither
@@ -69,6 +66,32 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
       name: { kind: "text" },
       short_name: { kind: "text" },
       description: { kind: "text", nullable: true },
+      tagline: { kind: "text", nullable: true },
+      accent: { kind: "text" },
+      venues_label: { kind: "text", nullable: true },
+      sort_order: { kind: "int" },
+      // Which pack last described this haunt, where one did.
+      pack_id: { kind: "text", nullable: true },
+      pack_version: { kind: "text", nullable: true },
+      pack_updated_at: { kind: "text", nullable: true },
+      ...TIMESTAMPS,
+    },
+  },
+  {
+    key: "experienceTypes",
+    table: "experience_types",
+    label: "Experience types",
+    orderBy: "haunt_id, sort_order",
+    columns: {
+      id: { kind: "text" },
+      haunt_id: { kind: "text", references: "haunts" },
+      // What the app reasons about; the labels are what a reader sees.
+      category: { kind: "text", values: ["walkthrough", "scare_zone", "show", "other"] },
+      label_one: { kind: "text" },
+      label_many: { kind: "text" },
+      description: { kind: "text", nullable: true },
+      sort_order: { kind: "int" },
+      pack_id: { kind: "text", nullable: true },
       ...TIMESTAMPS,
     },
   },
@@ -82,6 +105,9 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
       id: { kind: "text" },
       name: { kind: "text" },
       haunt_id: { kind: "text", references: "haunts" },
+      icon: { kind: "text", nullable: true },
+      sort_order: { kind: "int" },
+      pack_id: { kind: "text", nullable: true },
     },
   },
   {
@@ -98,6 +124,9 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
       source_notes: { kind: "text", nullable: true },
       starts_on: { kind: "text", nullable: true },
       ends_on: { kind: "text", nullable: true },
+      pack_id: { kind: "text", nullable: true },
+      pack_version: { kind: "text", nullable: true },
+      pack_updated_at: { kind: "text", nullable: true },
       is_sample: { kind: "flag" },
       ...TIMESTAMPS,
     },
@@ -110,7 +139,9 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
     columns: {
       id: { kind: "text" },
       event_year_id: { kind: "text", references: "eventYears" },
-      attraction_type: { kind: "text", values: ["house", "scare_zone"] },
+      attraction_type: { kind: "text", values: ["house", "scare_zone", "show", "other"] },
+      // The haunt's own name for this kind of experience, where it named one.
+      experience_type_id: { kind: "text", nullable: true, references: "experienceTypes" },
       name: { kind: "text" },
       slug: { kind: "text" },
       variant_name: { kind: "text", nullable: true },
@@ -128,6 +159,12 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
       // from the archive's own earliest year, so it stays null far more
       // often than not.
       debut_year: { kind: "int", nullable: true },
+      // Which pack last wrote this record, and when someone last edited it
+      // by hand — the two dates a later pack compares before overwriting.
+      source_pack_id: { kind: "text", nullable: true },
+      source_pack_version: { kind: "text", nullable: true },
+      pack_updated_at: { kind: "text", nullable: true },
+      manual_edit_at: { kind: "text", nullable: true },
       is_sample: { kind: "flag" },
       ...TIMESTAMPS,
     },
@@ -139,9 +176,9 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
     orderBy: "attraction_id, park_id",
     columns: {
       attraction_id: { kind: "text", references: "attractions" },
-      // Venues are reference data seeded by a migration, so the known ids are
-      // most of the validation — a backup naming some other venue is corrupt.
-      park_id: { kind: "text", values: PARK_ID_VALUES, references: "venues" },
+      // A pack brings its own venues, so the check is that the backup
+      // contains the venue rather than that the app knows its name.
+      park_id: { kind: "text", references: "venues" },
     },
   },
   {
@@ -220,6 +257,10 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
       published_at: { kind: "text", nullable: true },
       notes: { kind: "text", nullable: true },
       is_sample: { kind: "flag" },
+      source_pack_id: { kind: "text", nullable: true },
+      source_pack_version: { kind: "text", nullable: true },
+      pack_updated_at: { kind: "text", nullable: true },
+      manual_edit_at: { kind: "text", nullable: true },
       ...TIMESTAMPS,
     },
   },
@@ -233,7 +274,7 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
       source_id: { kind: "text", references: "sources" },
       // Set when a source speaks for one venue's version of a merged
       // attraction rather than for the record as a whole.
-      venue_id: { kind: "text", nullable: true, values: PARK_ID_VALUES, references: "venues" },
+      venue_id: { kind: "text", nullable: true, references: "venues" },
     },
   },
   {
@@ -288,7 +329,7 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
     orderBy: "attraction_id, venue_id",
     columns: {
       attraction_id: { kind: "text", references: "attractions" },
-      venue_id: { kind: "text", values: PARK_ID_VALUES, references: "venues" },
+      venue_id: { kind: "text", references: "venues" },
       overview: { kind: "text", nullable: true },
       story_lore: { kind: "text", nullable: true },
       experience_description: { kind: "text", nullable: true },
@@ -350,6 +391,24 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
       key: { kind: "text" },
       value: { kind: "text" },
       updated_at: { kind: "text" },
+    },
+  },
+  {
+    key: "hauntPacks",
+    table: "haunt_packs",
+    label: "Haunt Pack imports",
+    orderBy: "imported_at, id",
+    columns: {
+      id: { kind: "text" },
+      pack_id: { kind: "text" },
+      pack_version: { kind: "text" },
+      schema_id: { kind: "text" },
+      haunt_id: { kind: "text" },
+      haunt_name: { kind: "text" },
+      generated_at: { kind: "text", nullable: true },
+      imported_at: { kind: "text" },
+      summary: { kind: "text" },
+      provenance_notes: { kind: "text", nullable: true },
     },
   },
   {

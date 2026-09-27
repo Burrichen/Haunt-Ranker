@@ -1,7 +1,16 @@
 import type { EntityId, Timestamped } from "./common";
 import type { ParkId } from "./park";
 
-export type AttractionType = "house" | "scare_zone";
+/**
+ * The kind of experience, as the app reasons about it — not as a reader
+ * sees it. What a haunt calls each of these lives in `experience_types`
+ * (see `ExperienceType`), so `house` may read as "House", "Maze" or
+ * "Trail" depending on whose it is.
+ *
+ * `house` is the walk-through category's stored name, kept because every
+ * row, backup and saved ranking scope already uses it.
+ */
+export type AttractionType = "house" | "scare_zone" | "show" | "other";
 export type IpType = "original" | "licensed";
 
 /**
@@ -26,6 +35,8 @@ export interface Attraction extends Timestamped {
   openingDate: string | null;
   closingDate: string | null;
   locationNotes: string | null;
+  /** The haunt's own name for this kind of experience, where it named one. */
+  experienceTypeId: string | null;
   /**
    * The year this attraction genuinely first ran — a fact, not a
    * calculation. It is NOT the earliest year the archive happens to hold,
@@ -55,6 +66,7 @@ export interface AttractionInput {
   openingDate?: string | null;
   closingDate?: string | null;
   locationNotes?: string | null;
+  experienceTypeId?: string | null;
   /** Only where a source establishes it. Never inferred from the archive. */
   debutYear?: number | null;
   /** Defaults to false. Only the dev sample seed should ever pass true. */

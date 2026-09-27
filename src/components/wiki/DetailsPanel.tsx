@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { AttractionHoverPreview, PARK_ICONS, PARK_NAMES } from "../archive";
+import { AttractionHoverPreview, venueIconComponent } from "../archive";
+import { useHauntRegistry } from "../../hooks/useHauntRegistry";
 import type { Attraction } from "../../models/attraction";
 import type { EventYear } from "../../models/eventYear";
-import { attractionTypeLabel, HAUNT_NAMES } from "../../models/haunt";
 import { formatDisplayDate } from "../../utils/formatDate";
 import type { RelatedAttractionItem } from "../../hooks/useAttractionWiki";
 import { Panel } from "../ui";
@@ -45,6 +45,7 @@ export function DetailsPanel({
   appearances = [],
   relatedItems,
 }: DetailsPanelProps) {
+  const registry = useHauntRegistry();
   const hauntId = eventYear?.hauntId ?? null;
   const knownAppearances = appearances.length > 1 ? appearances : [];
 
@@ -52,8 +53,8 @@ export function DetailsPanel({
     <Panel elevated padding="md" className="details-panel" aria-label="Details">
       <h2 className="details-panel__title">Details</h2>
       <dl className="details-panel__list">
-        <DetailsRow label="Haunt">{hauntId ? HAUNT_NAMES[hauntId].name : null}</DetailsRow>
-        <DetailsRow label="Event">{eventYear?.name ?? null}</DetailsRow>
+        <DetailsRow label="Haunt">{registry.hauntName(hauntId)}</DetailsRow>
+        <DetailsRow label="Season">{eventYear?.name ?? null}</DetailsRow>
         <DetailsRow label="Year">{eventYear?.calendarYear ?? null}</DetailsRow>
         {/* Only where a source established it — never the archive's own
             earliest year wearing a factual label. */}
@@ -63,18 +64,16 @@ export function DetailsPanel({
             ? knownAppearances.map((season) => season.calendarYear).join(" • ")
             : null}
         </DetailsRow>
-        <DetailsRow label="Type">
-          {attractionTypeLabel(attraction.attractionType, hauntId)}
-        </DetailsRow>
-        <DetailsRow label="Park(s)">
+        <DetailsRow label="Type">{registry.label(attraction.attractionType, hauntId)}</DetailsRow>
+        <DetailsRow label="Venue(s)">
           {attraction.parkIds.length > 0 ? (
             <span className="details-panel__parks">
               {attraction.parkIds.map((parkId) => {
-                const Icon = PARK_ICONS[parkId];
+                const Icon = venueIconComponent(registry.venueIcon(parkId));
                 return (
                   <span key={parkId} className="details-panel__park">
                     <Icon size={13} strokeWidth={1.75} />
-                    {PARK_NAMES[parkId]}
+                    {registry.venueName(parkId)}
                   </span>
                 );
               })}

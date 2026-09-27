@@ -69,7 +69,7 @@ Run these from the repository root.
 
 ```
 src/
-  pages/         One component per top-level section (Home, Houses, Scare
+  pages/         One component per top-level section (Home, Haunts, Houses, Scare
                  Zones, Years, Rankings, Statistics, Settings, Admin Mode),
                  plus `AttractionWiki` (the `/attractions/:id` detail page
                  every attraction card/row links to — now a full article
@@ -1333,53 +1333,62 @@ end to end: 416 split records became 367 canonical ones with 49 merge reports
 and no conflicts, after which importing the dataset created nothing new and the
 rating on a merged-away record was found on the canonical one.
 
-### The haunt in view
+### Choosing a haunt
 
-One choice runs through the whole app: which haunt is being looked at. It
-lives in `HauntScopeProvider` above the shell, is read by every page through
-`useHauntScope`, and is **remembered in local storage** — relaunching lands
-where the user left off rather than resetting to one haunt's archive. The
-default is All Haunts, because neither archive is the app's real subject with
-the other bolted on.
+The app opens on **Halloween Horror Nights**. That is a default, not a
+hierarchy: it is the collection Haunt Ranker was built around, and Settings →
+Haunts changes it for anyone it doesn't suit. The selector in the sidebar —
+All Haunts, HHN, Knott's — changes what is being looked at now and is
+remembered, so a relaunch returns to it rather than re-asserting the default.
 
-The selector sits in the sidebar as three equal rows, not a dropdown. What the
-choice changes:
+`HauntScopeProvider` holds both values (`hauntScope`, the last one looked at;
+`defaultHauntScope`, the Settings one) and every page reads them through
+`useHauntScope`. What the choice changes:
 
-| Where               | Under a haunt        | Under All Haunts                 |
-| ------------------- | -------------------- | -------------------------------- |
-| Nav and page titles | Houses / Mazes       | Houses & Mazes                   |
-| Attraction browser  | that haunt's records | both haunts' records             |
-| Years               | that haunt's seasons | both, each card naming its haunt |
-| Statistics          | that haunt's figures | both, with a Haunt facet         |
-| Rankings            | that haunt's lists   | the All Haunts lists             |
-| Cards and rows      | no haunt line        | the haunt named on each record   |
+| Where               | Under a haunt        | Under All Haunts                        |
+| ------------------- | -------------------- | --------------------------------------- |
+| Nav and page titles | Houses / Mazes       | Houses & Mazes                          |
+| Attraction browser  | that haunt's records | every haunt's, each card naming its own |
+| Years               | that haunt's seasons | grouped under a heading per haunt       |
+| Statistics          | that haunt's figures | plus a **By haunt** comparison          |
+| Rankings            | that haunt's lists   | the All Haunts lists                    |
 
-Home is the exception: it always offers **both archives as equal entry
-points** — same size, same figures, same weight, differing only in accent —
-alongside a whole-archive search and the Rankings, Statistics and Years links.
-Choosing one sets the haunt in view, so the archive it opens already speaks
-that haunt's vocabulary. No artwork is generated for either: the entry points
-are typographic, like every other fallback in the app.
+### The Haunts pages
 
-A record is dated by its **verified debut** where one exists ("Debut 2024") and
-by its season otherwise. A wiki page names its haunt, and lists **Known
-appearances** only when the archive has verified more than one — a single
-appearance says nothing the season hasn't already said. A Knott's season page
-reads as **New This Year** and **Returning**, and where the archive can't place
-a record it says "Returning attraction archive not yet complete" rather than
-guessing (`src/utils/seasonLineage.ts`).
+`/haunts` lists the collections: Halloween Horror Nights leads as the home
+collection, and the others follow under **Other Haunts** — the same card, the
+same figures, the same way in, set below it rather than beside it. Each card
+carries seasons, walk-throughs, scare zones and review coverage, in that
+haunt's own vocabulary, and a haunt with nothing entered says exactly that
+instead of showing zeroes as though they were data.
 
-A merged HHN attraction is one card carrying **both venue icons**, never two
-cards; each icon's tooltip says where it ran.
+`/haunts/:hauntId` is one haunt's overview: what it is, what the archive holds
+of it, its review coverage, its ratings and its seasons. Opening it sets the
+haunt in view. Each haunt has an accent (HHN orange, Knott's purple) and
+nothing else of its own — same panels, same type scale, same spacing — so a
+second collection reads as part of Haunt Ranker rather than as another site
+behind the same window.
+
+### Comparing haunts
+
+Under All Haunts the Statistics dashboard adds a **By haunt** table: reviewed
+averages for Total, Theme, Fun and Fear, with the sample size beside every
+row. It is deliberately not a ranking — fixed order, no highlight, no winner —
+and a haunt too thinly reviewed to average says so rather than showing a
+number that would read as a verdict. With only one haunt in the slice the
+panel doesn't render at all, because that is not a comparison.
 
 ### Vocabulary
 
 HHN has **Houses**; Knott's has **Mazes**; both have **Scare Zones**. The
-database calls the type `house` for both, and `attractionTypeLabel(type,
-hauntId)` in `src/models/haunt.ts` is the only place that decides what a reader
-sees. A list spanning both haunts says **"Houses & Mazes"**, because either
-haunt's own word would be wrong there. Internal terms like `walkthrough` never
-reach the UI.
+database calls the type `house` for both, and no source file decides what a
+reader sees: the words live in the `experience_types` table, are read once into
+the haunt registry (`src/hooks/useHauntRegistry.ts`), and reach the interface
+through `registry.label(type, hauntId)`. That is what lets a Haunt Pack arrive
+with **Trails**, or anything else, and be called that everywhere. A list
+spanning every haunt reads them all out — **"Houses & Mazes"**, or "Houses,
+Mazes & Trails" — because any one haunt's word would be wrong there. Internal
+terms like `walkthrough` never reach the UI.
 
 ### Rankings
 
@@ -1400,13 +1409,133 @@ figures.
 
 ### Backups
 
-The backup format is at **version 2**, carrying haunts, venues, seasons,
-appearances, venue-specific wiki sections, debut years, ranking scopes and the
-migration conflict log alongside everything version 1 held. **Version 1
-backups still import**, through a registered upgrade rather than a special
-case: their seasons are read as HHN (all that existed when they were written),
+The backup format is at **version 3**, carrying each haunt's vocabulary and
+pack provenance alongside the haunts, venues, seasons, appearances,
+venue-specific wiki sections, debut years, ranking scopes and migration
+conflict log that version 2 added to version 1. **Version 1 and version 2
+backups still import**, through registered upgrades rather than special
+cases: a version 1 file's seasons are read as HHN (all that existed when it
+was written),
 each attraction's appearance is recovered from the season it belonged to, and
 nothing is invented — debut years and venue sections arrive empty because a
 version 1 file genuinely says nothing about them. Haunts and venues are
 carried in the file for completeness but are never deleted by an import, so a
 restore can't leave an app with no haunts.
+
+## Haunt Packs
+
+A **Haunt Pack** is one JSON file that describes a whole event: the haunt
+itself, what it calls its experiences, where they happen, which seasons it has
+run, and every experience in them. Importing one adds a haunt this build has
+never heard of, **without changing a line of source code**. Halloween Horror
+Nights and Knott's Scary Farm are not special — they are simply the two haunts
+that arrive seeded.
+
+The format is versioned and declares itself:
+
+```json
+{
+  "schema": "haunt-ranker.haunt-pack/v1",
+  "pack": {
+    "id": "moonlight-fright-festival",
+    "version": "2026.1.0",
+    "generatedAt": "2026-09-01T00:00:00.000Z",
+    "description": "Moonlight Fright Festival, 2026 season.",
+    "provenance": "Compiled from the festival's own programme and press pages.",
+    "seasons": [2026],
+    "sourceCount": 3
+  },
+  "haunt": { "id": "…", "name": "…", "shortName": "…", "accent": "green" },
+  "experienceTypes": [ … ],
+  "venues": [ … ],
+  "seasons": [ … ],
+  "experiences": [ … ],
+  "sources": [ … ],
+  "media": [ … ]
+}
+```
+
+`src/packs/hauntPack.ts` is the definition, and it is the documentation of
+record; `src/test/fixtures/moonlight-fright-festival.hauntpack.json` is a
+complete, valid example.
+
+### Three rules the format is built on
+
+**Stable ids, never display names.** Every record in a pack is identified by an
+explicit, namespaced id — `ksf:2024:walkthrough:widows`,
+`moonlight-fright-festival:2026:trail:hollow-road`. A later version of the pack
+corrects a record by naming that id, so a maze can be renamed, re-themed or
+recategorised and every rating, note and ranking attached to it stays attached.
+Ids that don't begin with the haunt's own namespace are a warning, not an
+error — packs describing a joint event have to be able to say so — but a pack
+that claims an id already filed under a _different_ haunt is refused outright.
+
+**A pack is an archive, never personal data.** There is no field anywhere in
+the schema for a Theme, Fun or Fear rating, a personal note or a ranking
+position, and the planner has no operation that writes to those tables.
+Archive Packs and backups are different things: a backup is your data, a pack
+is the public record of an event. This is enforced at compile time by the
+archive/personal table split in `src/archive/archiveTables.ts`.
+
+**Data, not assets.** A pack carries media _records_ — a title, a kind, a
+credit, a licence note, a URL — and never image bytes. Nothing is downloaded
+during an import, and no artwork is generated. What a pack contributes to a
+wiki page is facts and citations.
+
+### Importing one
+
+**Admin Mode → Haunt Packs.** Open a `.json` file or paste the whole pack into
+the box. Then:
+
+1. **Check this pack** validates it completely — on its own terms first
+   (structure, required fields, id shapes, internal references), then against
+   what the archive already holds. Nothing has been written at this point, and
+   nothing will be if either check fails; the refusal lists every problem
+   rather than the first one.
+2. The preview says exactly what importing would do: the haunt and whether it
+   is new, seasons, experiences, venues, vocabulary, characters and sources
+   each as **new / updated / unchanged**, media references, citations to be
+   added, every **warning**, and every **conflict**.
+3. **Import** applies it. The writes go through the archive importer's undo
+   log, so a failure part way through puts everything back — an import either
+   lands completely or leaves the archive exactly as it was.
+
+`npm run pack:import -- <file> [--dry-run]` does the same thing from the
+command line, through the same `preparePackImport` / `applyPackImport` code the
+interface calls, and checks afterwards that no personal row moved.
+`npm run pack:remove -- <haunt-id>` withdraws a haunt a pack brought in, and
+refuses if any rating, note or ranking points at its records.
+
+### Re-importing, and edits made by hand
+
+Importing the same pack twice changes nothing: every record compares equal and
+the preview says so. A later _version_ of a pack corrects what it wrote before
+— and only what it wrote before.
+
+Admin Mode edits stamp `manual_edit_at` on the record. A pack writes
+`source_pack_id`, `source_pack_version` and `pack_updated_at`. When a record
+has been edited by hand since the last pack touched it, the pack does not
+overwrite it: every field where the two disagree is reported as a **conflict**,
+showing what is kept and what was not written, and fields the record says
+nothing about are still filled in. Bumping a pack's version number on its own
+counts as unchanged — provenance columns are excluded from the comparison, so
+a re-issued pack doesn't report the whole archive as updated.
+
+Every import is recorded in `haunt_packs`: which pack, which version, which
+schema, when, what it did and the provenance notes the pack carried. Admin
+Mode lists them under the paste box.
+
+### Proving it works on a haunt nobody wrote code for
+
+`src/packs/hauntPackImport.test.ts` imports a fictional festival —
+**Moonlight Fright Festival**, 2026, whose walk-throughs are **Trails** — into
+a real database through the production path, and checks that the archive comes
+out with its haunt, its venue, its vocabulary, its show (a kind of experience
+neither shipped haunt has), and its provenance. It also covers the parts that
+matter more than the happy path: a rating, a note and a ranking surviving an
+update; a hand-edited field being flagged instead of overwritten; a schema this
+build can't read being refused; a pack reaching for another haunt's record
+being refused; and a failed write leaving the archive byte for byte as it was.
+
+The fixture stays in the test suite. The fictional festival is **not** in the
+shipped archive.

@@ -1,11 +1,11 @@
-import { Calendar, DoorOpen, TreePine } from "lucide-react";
+import { Calendar, Drama, DoorOpen, TreePine } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { ArchiveCard } from "../components/archive";
 import { EmptyState, LoadingState, PageHeader } from "../components/ui";
 import { YearHeader, YearStatsPanel } from "../components/years";
 import { useYearArchive } from "../hooks/useYearArchive";
 import type { EventYear } from "../models/eventYear";
-import { attractionTypeLabel, HAUNT_IDS } from "../models/haunt";
+import { useHauntRegistry } from "../hooks/useHauntRegistry";
 import type { SeasonLineage } from "../utils/seasonLineage";
 import type { YearAttraction } from "../utils/years";
 import "./YearArchive.css";
@@ -110,8 +110,19 @@ function SeasonLineageSections({ lineage }: { lineage: SeasonLineage<YearAttract
 
 export function YearArchive() {
   const { eventYearId } = useParams<{ eventYearId: string }>();
-  const { isLoading, error, notFound, eventYear, artworkUrl, houses, scareZones, lineage, stats } =
-    useYearArchive(eventYearId);
+  const {
+    isLoading,
+    error,
+    notFound,
+    eventYear,
+    artworkUrl,
+    houses,
+    scareZones,
+    otherKinds,
+    lineage,
+    stats,
+  } = useYearArchive(eventYearId);
+  const registry = useHauntRegistry();
 
   if (isLoading) {
     return <LoadingState label="Loading year…" />;
@@ -130,6 +141,19 @@ export function YearArchive() {
     );
   }
 
+  // One section per remaining kind, in the order this haunt lists its own
+  // vocabulary — so a pack decides what appears here, not this file.
+  const hauntId = eventYear.hauntId;
+  const otherSections = registry
+    .categories(hauntId)
+    .filter((category) => category !== "house" && category !== "scare_zone")
+    .map((category) => ({
+      category,
+      title: registry.label(category, hauntId, "many"),
+      items: otherKinds.filter((item) => item.attraction.attractionType === category),
+    }))
+    .filter((section) => section.items.length > 0);
+
   return (
     <div className="year-archive">
       <YearHeader
@@ -137,29 +161,53 @@ export function YearArchive() {
         artworkUrl={artworkUrl}
         houseCount={houses.length}
         scareZoneCount={scareZones.length}
+        otherCounts={otherSections.map((section) => ({
+          label: registry.label(
+            section.category,
+            hauntId,
+            section.items.length === 1 ? "one" : "many",
+          ),
+          count: section.items.length,
+        }))}
       />
 
       <YearStatsPanel stats={stats} eventYear={eventYear} />
 
       {/* Knott's attractions return year after year, so a season is read as
           what was new and what came back. */}
-      {eventYear.hauntId === HAUNT_IDS.knotts && <SeasonLineageSections lineage={lineage} />}
+      {lineage.tracksReturning && <SeasonLineageSections lineage={lineage} />}
 
       <AttractionSection
-        title={attractionTypeLabel("house", eventYear.hauntId, "many")}
+        title={registry.label("house", eventYear.hauntId, "many")}
         icon={<DoorOpen size={18} strokeWidth={1.5} />}
         items={houses}
         eventYear={eventYear}
-        emptyLabel={`No ${attractionTypeLabel("house", eventYear.hauntId, "many").toLowerCase()} on file for this year yet.`}
+        emptyLabel={`No ${registry.label("house", eventYear.hauntId, "many").toLowerCase()} on file for this year yet.`}
       />
 
       <AttractionSection
-        title={attractionTypeLabel("scare_zone", eventYear.hauntId, "many")}
+        title={registry.label("scare_zone", eventYear.hauntId, "many")}
         icon={<TreePine size={18} strokeWidth={1.5} />}
         items={scareZones}
         eventYear={eventYear}
         emptyLabel="No scare zones on file for this year yet."
       />
+
+      {/* A haunt can hold kinds of thing neither shipped haunt has — a stage
+          show, a ride, whatever a Haunt Pack declares. Each gets its own
+          section, in the haunt's own words, and only when it has something
+          in it: an empty "Shows" heading would be a claim about a season
+          rather than a fact about it. */}
+      {otherSections.map((section) => (
+        <AttractionSection
+          key={section.category}
+          title={section.title}
+          icon={<Drama size={18} strokeWidth={1.5} />}
+          items={section.items}
+          eventYear={eventYear}
+          emptyLabel=""
+        />
+      ))}
     </div>
   );
 }

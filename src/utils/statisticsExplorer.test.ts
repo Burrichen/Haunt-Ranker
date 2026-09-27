@@ -66,6 +66,7 @@ function makeRow(name: string, options: RowOptions = {}): StatisticsRow {
     closingDate: null,
     locationNotes: null,
     debutYear: null,
+    experienceTypeId: null,
     parkIds,
     isSample: true,
     ...TIMESTAMPS,

@@ -1,20 +1,15 @@
-import { DoorOpen, Star, TreePine } from "lucide-react";
+import { Star } from "lucide-react";
 import { Link } from "react-router-dom";
-import type { AttractionType } from "../../models/attraction";
-import { HAUNT_NAMES } from "../../models/haunt";
 import { RATING_TOTAL_MAX } from "../../models/rating";
 import { useHauntScope } from "../../hooks/useHauntScope";
+import { useHauntRegistry } from "../../hooks/useHauntRegistry";
 import { formatScore } from "../../utils/formatScore";
 import { attractionDateLabel } from "../../utils/hauntDisplay";
 import { ParkBadgeRow } from "../archive";
+import { attractionTypeIcon } from "../archive/typeIcons";
 import { Badge } from "../ui";
 import type { AttractionBrowserRow } from "../../utils/attractionBrowser";
 import "./AttractionRow.css";
-
-const TYPE_ICON: Record<AttractionType, typeof DoorOpen> = {
-  house: DoorOpen,
-  scare_zone: TreePine,
-};
 
 const IP_LABEL: Record<"original" | "licensed", string> = {
   original: "Original",
@@ -29,18 +24,20 @@ export interface AttractionRowProps {
 export function AttractionRow({ row }: AttractionRowProps) {
   const { attraction, eventYear, rating } = row;
   const { isAllHaunts } = useHauntScope();
-  const TypeIcon = TYPE_ICON[attraction.attractionType];
+  const registry = useHauntRegistry();
   const hauntId = eventYear?.hauntId ?? null;
 
   return (
     <Link to={`/attractions/${attraction.id}`} className="attraction-row">
       <span className="attraction-row__icon" aria-hidden="true">
-        <TypeIcon size={16} strokeWidth={1.5} />
+        {attractionTypeIcon(attraction.attractionType, { size: 16, strokeWidth: 1.5 })}
       </span>
       <span className="attraction-row__name">
         {attraction.name}
         {isAllHaunts && hauntId && (
-          <span className="attraction-row__haunt">{HAUNT_NAMES[hauntId].shortName}</span>
+          <span className="attraction-row__haunt">
+            {registry.haunt(hauntId)?.shortName ?? registry.hauntName(hauntId)}
+          </span>
         )}
       </span>
       <span className="attraction-row__year">

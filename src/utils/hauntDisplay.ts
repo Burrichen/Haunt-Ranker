@@ -1,6 +1,5 @@
 import type { Attraction } from "../models/attraction";
 import type { EventYear } from "../models/eventYear";
-import { HAUNT_NAMES, type HauntId } from "../models/haunt";
 
 /**
  * How a card, row or header dates an attraction.
@@ -19,9 +18,4 @@ export function attractionDateLabel(
     return `Debut ${attraction.debutYear}`;
   }
   return eventYear ? String(eventYear.calendarYear) : null;
-}
-
-/** The haunt's full name, for the places a record has to say which archive it is from. */
-export function hauntNameOf(hauntId: HauntId | null | undefined): string | null {
-  return hauntId ? HAUNT_NAMES[hauntId].name : null;
 }

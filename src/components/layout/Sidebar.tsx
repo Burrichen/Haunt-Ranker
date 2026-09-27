@@ -2,6 +2,7 @@ import {
   BarChart3,
   Calendar,
   DoorOpen,
+  Ghost,
   Home,
   Moon,
   Settings,
@@ -13,7 +14,7 @@ import type { ComponentType } from "react";
 import { NavLink } from "react-router-dom";
 import { useAdminMode } from "../../hooks/useAdminMode";
 import { useHauntScope } from "../../hooks/useHauntScope";
-import { attractionTypeLabel } from "../../models/haunt";
+import { useHauntRegistry } from "../../hooks/useHauntRegistry";
 import { cn } from "../../utils/cn";
 import { HauntSelector } from "./HauntSelector";
 import "./Sidebar.css";
@@ -46,16 +47,18 @@ function NavRow({ item }: { item: NavItem }) {
 export function Sidebar() {
   const [adminMode] = useAdminMode();
   const { hauntId } = useHauntScope();
+  const registry = useHauntRegistry();
 
   // The walk-through section is called whatever the haunt in view calls it:
   // Houses at HHN, Mazes at Knott's, and "Houses & Mazes" where both are on
   // screen. Nothing here ever shows the database's own word for it.
   const primaryNavItems: NavItem[] = [
     { to: "/", label: "Home", icon: Home },
-    { to: "/houses", label: attractionTypeLabel("house", hauntId, "many"), icon: DoorOpen },
+    { to: "/haunts", label: "Haunts", icon: Ghost },
+    { to: "/houses", label: registry.label("house", hauntId, "many"), icon: DoorOpen },
     {
       to: "/scare-zones",
-      label: attractionTypeLabel("scare_zone", hauntId, "many"),
+      label: registry.label("scare_zone", hauntId, "many"),
       icon: TreePine,
     },
     { to: "/years", label: "Years", icon: Calendar },

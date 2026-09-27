@@ -13,6 +13,7 @@ import {
   type AttractionWiki as AttractionWikiState,
 } from "../hooks/useAttractionWiki";
 import { AttractionWiki } from "./AttractionWiki";
+import { TestHaunts } from "../test/hauntRegistry";
 
 vi.mock("../hooks/useAttractionWiki");
 vi.mock("@tauri-apps/plugin-opener", () => ({ openUrl: vi.fn() }));
@@ -38,6 +39,7 @@ function makeAttraction(overrides: Partial<Attraction> = {}): Attraction {
     closingDate: null,
     locationNotes: null,
     debutYear: null,
+    experienceTypeId: null,
     parkIds: ["hollywood"],
     isSample: true,
     createdAt: "2026-01-01T00:00:00.000Z",
@@ -100,11 +102,13 @@ function makeWikiData(overrides: Partial<AttractionWikiState> = {}): AttractionW
 
 function renderWiki() {
   return render(
-    <MemoryRouter initialEntries={["/attractions/a1"]}>
-      <Routes>
-        <Route path="/attractions/:attractionId" element={<AttractionWiki />} />
-      </Routes>
-    </MemoryRouter>,
+    <TestHaunts>
+      <MemoryRouter initialEntries={["/attractions/a1"]}>
+        <Routes>
+          <Route path="/attractions/:attractionId" element={<AttractionWiki />} />
+        </Routes>
+      </MemoryRouter>
+    </TestHaunts>,
   );
 }
 

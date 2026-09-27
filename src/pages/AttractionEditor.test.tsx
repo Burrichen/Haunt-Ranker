@@ -9,6 +9,7 @@ import {
   type AttractionEditor as EditorState,
 } from "../hooks/useAttractionEditor";
 import { AttractionEditor } from "./AttractionEditor";
+import { TestHaunts } from "../test/hauntRegistry";
 
 vi.mock("../hooks/useAttractionEditor");
 
@@ -59,6 +60,7 @@ function makeAttraction(overrides: Partial<Attraction> = {}): Attraction {
     closingDate: null,
     locationNotes: null,
     debutYear: null,
+    experienceTypeId: null,
     parkIds: ["hollywood"],
     isSample: true,
     ...TIMESTAMPS,
@@ -111,12 +113,14 @@ function renderEditor(overrides: Partial<EditorState> = {}, path = "/admin/attra
   const editor = makeEditor(overrides);
   mockedUseEditor.mockReturnValue(editor);
   render(
-    <MemoryRouter initialEntries={[path]}>
-      <Routes>
-        <Route path="/admin/attractions/new" element={<AttractionEditor />} />
-        <Route path="/admin/attractions/:attractionId" element={<AttractionEditor />} />
-      </Routes>
-    </MemoryRouter>,
+    <TestHaunts>
+      <MemoryRouter initialEntries={[path]}>
+        <Routes>
+          <Route path="/admin/attractions/new" element={<AttractionEditor />} />
+          <Route path="/admin/attractions/:attractionId" element={<AttractionEditor />} />
+        </Routes>
+      </MemoryRouter>
+    </TestHaunts>,
   );
   return editor;
 }

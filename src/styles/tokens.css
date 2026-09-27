@@ -30,6 +30,14 @@
   --color-purple: #7c6a9c;
   --color-purple-strong: #9481b7;
   --color-purple-subtle: rgba(124, 106, 156, 0.14);
+
+  /* Accents a Haunt Pack can choose from, beside the two the app uses. */
+  --color-green: #5c8060;
+  --color-green-strong: #7ba07f;
+  --color-green-subtle: rgba(92, 128, 96, 0.14);
+  --color-blue: #586e96;
+  --color-blue-strong: #7789b0;
+  --color-blue-subtle: rgba(88, 110, 150, 0.14);
   --color-on-purple: #fbf3ec;
 
   /* Deep red — danger, used sparingly */
@@ -72,6 +80,8 @@
   --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.5);
   --shadow-glow-orange: 0 0 24px rgba(193, 98, 47, 0.22);
   --shadow-glow-purple: 0 0 24px rgba(124, 106, 156, 0.18);
+  --shadow-glow-green: 0 0 24px rgba(92, 128, 96, 0.18);
+  --shadow-glow-blue: 0 0 24px rgba(88, 110, 150, 0.18);
 
   /* Motion */
   --duration-fast: 120ms;

@@ -1,5 +1,5 @@
 import type { AttractionVenueWiki } from "../../models/attractionVenueWiki";
-import { PARK_NAMES } from "../archive/parkConstants";
+import { useHauntRegistry } from "../../hooks/useHauntRegistry";
 import "./VenueDifferences.css";
 
 export interface VenueDifferencesProps {
@@ -25,6 +25,8 @@ const FIELD_LABELS: Array<{ key: keyof AttractionVenueWiki; label: string }> = [
  * field with nothing in it is simply absent.
  */
 export function VenueDifferences({ sections }: VenueDifferencesProps) {
+  const registry = useHauntRegistry();
+
   if (sections.length === 0) {
     return null;
   }
@@ -39,7 +41,7 @@ export function VenueDifferences({ sections }: VenueDifferencesProps) {
 
         return (
           <div key={section.venueId} className="venue-differences__venue">
-            <h3 className="venue-differences__name">{PARK_NAMES[section.venueId]}</h3>
+            <h3 className="venue-differences__name">{registry.venueName(section.venueId)}</h3>
             <dl className="venue-differences__fields">
               {written.map(({ key, label }) => (
                 <div key={key} className="venue-differences__field">

@@ -11,7 +11,7 @@ import {
   type SortOption,
 } from "./attractionBrowser";
 
-const PARK_FACETS: readonly ParkFacet[] = ["hollywood", "orlando", "both"];
+const PARK_FACETS: readonly ParkFacet[] = ["hollywood", "orlando", "knotts-berry-farm", "both"];
 const IP_TYPES: readonly IpType[] = ["original", "licensed"];
 const RATED_FACETS: readonly RatedFacet[] = ["rated", "unrated"];
 const SORT_VALUES = new Set<string>(SORT_OPTIONS.map((option) => option.value));

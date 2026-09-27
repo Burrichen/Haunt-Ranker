@@ -3,6 +3,7 @@ import {
   AboutSettings,
   AppearanceSettings,
   DataSettings,
+  HauntSettings,
   SampleDataSettings,
 } from "../components/settings";
 import { PageHeader, Panel, Toggle } from "../components/ui";
@@ -19,6 +20,7 @@ export function Settings() {
         subtitle="How the app looks, what it stores, and how to take your data with you."
       />
 
+      <HauntSettings />
       <AppearanceSettings />
       <DataSettings />
       <SampleDataSettings />

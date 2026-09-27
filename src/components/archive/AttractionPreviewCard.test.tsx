@@ -5,6 +5,7 @@ import type { Attraction } from "../../models/attraction";
 import type { EventYear } from "../../models/eventYear";
 import type { Rating } from "../../models/rating";
 import { AttractionPreviewCard } from "./AttractionPreviewCard";
+import { TestHaunts } from "../../test/hauntRegistry";
 
 function makeAttraction(overrides: Partial<Attraction> = {}): Attraction {
   return {
@@ -25,6 +26,7 @@ function makeAttraction(overrides: Partial<Attraction> = {}): Attraction {
     closingDate: null,
     locationNotes: null,
     debutYear: null,
+    experienceTypeId: null,
     parkIds: ["hollywood"],
     isSample: true,
     createdAt: "2026-01-01T00:00:00.000Z",
@@ -66,14 +68,16 @@ function makeRating(overrides: Partial<Rating> = {}): Rating {
 
 function renderCard(props: Partial<Parameters<typeof AttractionPreviewCard>[0]> = {}) {
   return render(
-    <MemoryRouter>
-      <AttractionPreviewCard
-        attraction={makeAttraction()}
-        eventYear={makeEventYear()}
-        rating={null}
-        {...props}
-      />
-    </MemoryRouter>,
+    <TestHaunts>
+      <MemoryRouter>
+        <AttractionPreviewCard
+          attraction={makeAttraction()}
+          eventYear={makeEventYear()}
+          rating={null}
+          {...props}
+        />
+      </MemoryRouter>
+    </TestHaunts>,
   );
 }
 

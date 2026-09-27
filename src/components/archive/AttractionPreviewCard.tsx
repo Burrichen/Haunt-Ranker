@@ -1,15 +1,15 @@
-import { DoorOpen, TreePine } from "lucide-react";
 import { Link } from "react-router-dom";
-import type { Attraction, AttractionType } from "../../models/attraction";
+import type { Attraction } from "../../models/attraction";
 import type { EventYear } from "../../models/eventYear";
-import { attractionTypeLabel } from "../../models/haunt";
+import { useHauntRegistry } from "../../hooks/useHauntRegistry";
 import type { Rating } from "../../models/rating";
 import { cn } from "../../utils/cn";
 import { formatScore } from "../../utils/formatScore";
-import { attractionDateLabel, hauntNameOf } from "../../utils/hauntDisplay";
+import { attractionDateLabel } from "../../utils/hauntDisplay";
 import { useHauntScope } from "../../hooks/useHauntScope";
 import { Badge, Panel } from "../ui";
 import { ParkBadgeRow } from "./ParkBadge";
+import { attractionTypeIcon, attractionTypeVariant } from "./typeIcons";
 import "./AttractionPreviewCard.css";
 
 export interface AttractionPreviewCardProps {
@@ -19,11 +19,6 @@ export interface AttractionPreviewCardProps {
   rating: Rating | null;
   className?: string;
 }
-
-const TYPE_ICON: Record<AttractionType, typeof DoorOpen> = {
-  house: DoorOpen,
-  scare_zone: TreePine,
-};
 
 const IP_LABEL: Record<NonNullable<Attraction["ipType"]>, string> = {
   original: "Original",
@@ -43,9 +38,9 @@ export function AttractionPreviewCard({
   rating,
   className,
 }: AttractionPreviewCardProps) {
-  const TypeIcon = TYPE_ICON[attraction.attractionType];
   const { isAllHaunts } = useHauntScope();
-  const hauntName = hauntNameOf(eventYear?.hauntId);
+  const registry = useHauntRegistry();
+  const hauntName = registry.hauntName(eventYear?.hauntId);
   const dateLabel = attractionDateLabel(attraction, eventYear);
 
   return (
@@ -56,7 +51,7 @@ export function AttractionPreviewCard({
       <Panel elevated padding="sm" className="attraction-preview-card">
         <div className="attraction-preview-card__header">
           <span className="attraction-preview-card__icon" aria-hidden="true">
-            <TypeIcon size={15} strokeWidth={1.5} />
+            {attractionTypeIcon(attraction.attractionType, { size: 15, strokeWidth: 1.5 })}
           </span>
           <h4 className="attraction-preview-card__name">{attraction.name}</h4>
         </div>
@@ -66,8 +61,8 @@ export function AttractionPreviewCard({
           {isAllHaunts && hauntName && (
             <span className="attraction-preview-card__haunt">{hauntName}</span>
           )}
-          <Badge variant={attraction.attractionType === "house" ? "orange" : "purple"}>
-            {attractionTypeLabel(attraction.attractionType, eventYear?.hauntId ?? null)}
+          <Badge variant={attractionTypeVariant(attraction.attractionType)}>
+            {registry.label(attraction.attractionType, eventYear?.hauntId)}
           </Badge>
           {attraction.ipType && <Badge variant="neutral">{IP_LABEL[attraction.ipType]}</Badge>}
         </div>

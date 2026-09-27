@@ -18,6 +18,15 @@ export interface SeasonLineage<T> {
   unclassified: T[];
   /** True when something could not be placed, so the page must say the record is incomplete. */
   isIncomplete: boolean;
+  /**
+   * Whether this haunt's attractions are known to return at all.
+   *
+   * Asked of the data — a verified debut year, or a record appearing in
+   * more than one season — rather than of the haunt's name, so a haunt
+   * imported tomorrow gets the same treatment as one the app shipped with.
+   * Where nothing returns, the question isn't worth a section.
+   */
+  tracksReturning: boolean;
 }
 
 export type LineagePlacement = "new" | "returning" | "unknown";
@@ -46,6 +55,15 @@ export function placeInSeason(
   return ranEarlier ? "returning" : "unknown";
 }
 
+/** How many seasons each attraction is known to have appeared in. */
+function appearanceCounts(appearances: SeasonAppearance[]): number[] {
+  const byAttraction = new Map<string, number>();
+  for (const appearance of appearances) {
+    byAttraction.set(appearance.attractionId, (byAttraction.get(appearance.attractionId) ?? 0) + 1);
+  }
+  return [...byAttraction.values()];
+}
+
 export function classifySeasonLineage<
   T extends { attraction: Pick<Attraction, "id" | "debutYear"> },
 >(
@@ -59,6 +77,7 @@ export function classifySeasonLineage<
     returning: [],
     unclassified: [],
     isIncomplete: false,
+    tracksReturning: false,
   };
 
   for (const item of items) {
@@ -73,5 +92,9 @@ export function classifySeasonLineage<
   }
 
   lineage.isIncomplete = lineage.unclassified.length > 0;
+  lineage.tracksReturning =
+    items.some(
+      (item) => item.attraction.debutYear !== null && item.attraction.debutYear !== undefined,
+    ) || appearanceCounts(appearances).some((count) => count > 1);
   return lineage;
 }

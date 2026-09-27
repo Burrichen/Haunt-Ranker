@@ -1,14 +1,9 @@
 import type { AttractionType, IpType } from "../../models/attraction";
 import { useHauntScope } from "../../hooks/useHauntScope";
-import {
-  attractionTypeLabel,
-  HAUNT_SCOPES,
-  hauntScopeLabel,
-  type HauntScope,
-} from "../../models/haunt";
-import { HAUNT_VENUES, PARK_IDS, type ParkId } from "../../models/park";
+import { useHauntRegistry } from "../../hooks/useHauntRegistry";
+import type { HauntScope } from "../../models/haunt";
+import type { ParkId } from "../../models/park";
 import type { StatisticsFilters } from "../../utils/statistics";
-import { PARK_NAMES } from "../archive";
 import { Button, Dropdown, SegmentedControl, type DropdownItem } from "../ui";
 
 export interface StatisticsFacetsProps {
@@ -19,23 +14,6 @@ export interface StatisticsFacetsProps {
 
 /** "all" stands in for null in the segmented controls, which need a string value. */
 const ALL = "all";
-
-const HAUNT_OPTIONS = HAUNT_SCOPES.map((option: HauntScope) => ({
-  value: option,
-  label: hauntScopeLabel(option, option === "all" ? "full" : "short"),
-}));
-
-/** Only the venues the haunt in view actually runs at. */
-function venueOptions(scope: HauntScope) {
-  const venues =
-    scope === "all"
-      ? [PARK_IDS.hollywood, PARK_IDS.orlando, PARK_IDS.knottsBerryFarm]
-      : HAUNT_VENUES[scope];
-  return [
-    { value: ALL, label: "All" },
-    ...venues.map((venue) => ({ value: venue, label: PARK_NAMES[venue] })),
-  ];
-}
 
 const IP_OPTIONS = [
   { value: ALL, label: "All" },
@@ -54,11 +32,25 @@ function toNullable<T extends string>(value: string): T | null {
  */
 export function StatisticsFacets({ filters, onChange, availableYears }: StatisticsFacetsProps) {
   const { scope, setScope, hauntId } = useHauntScope();
+  const registry = useHauntRegistry();
+
+  const hauntOptions = registry.scopes().map((option: HauntScope) => ({
+    value: option,
+    label: registry.scopeLabel(option, option === "all" ? "full" : "short"),
+  }));
+
+  // Only the venues the haunt in view actually runs at.
+  const venueOptions = [
+    { value: ALL, label: "All" },
+    ...registry
+      .venuesFor(hauntId)
+      .map((venue: { id: string; name: string }) => ({ value: venue.id, label: venue.name })),
+  ];
 
   const typeOptions = [
     { value: ALL, label: "All" },
-    { value: "house", label: attractionTypeLabel("house", hauntId, "many") },
-    { value: "scare_zone", label: attractionTypeLabel("scare_zone", hauntId, "many") },
+    { value: "house", label: registry.label("house", hauntId, "many") },
+    { value: "scare_zone", label: registry.label("scare_zone", hauntId, "many") },
   ];
 
   const yearItems: DropdownItem[] = [
@@ -74,7 +66,7 @@ export function StatisticsFacets({ filters, onChange, availableYears }: Statisti
       <div className="statistics-filters__group">
         <span className="statistics-filters__label">Haunt</span>
         <SegmentedControl
-          options={HAUNT_OPTIONS}
+          options={hauntOptions}
           value={scope}
           onChange={(value: HauntScope) => {
             // Venues belong to a haunt, so a venue filter from the other one
@@ -111,7 +103,7 @@ export function StatisticsFacets({ filters, onChange, availableYears }: Statisti
       <div className="statistics-filters__group">
         <span className="statistics-filters__label">Venue</span>
         <SegmentedControl
-          options={venueOptions(scope)}
+          options={venueOptions}
           value={filters.park ?? ALL}
           onChange={(value) => onChange({ ...filters, park: toNullable<ParkId>(value) })}
           aria-label="Venue"

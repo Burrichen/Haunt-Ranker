@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CircleAlert, DoorOpen, Pencil, Plus, ShieldOff, Trash2, TreePine } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { ConfirmDialog } from "../components/admin";
+import { ConfirmDialog, HauntPackImport } from "../components/admin";
 import {
   Badge,
   Button,
@@ -15,7 +15,8 @@ import {
 import { useAdminArchive, type AdminAttractionRow } from "../hooks/useAdminArchive";
 import { useAdminMode } from "../hooks/useAdminMode";
 import type { EventYear } from "../models/eventYear";
-import { HAUNT_IDS, HAUNT_NAMES, type HauntId } from "../models/haunt";
+import { useHauntRegistry } from "../hooks/useHauntRegistry";
+import type { HauntId } from "../models/haunt";
 import { formatScore } from "../utils/formatScore";
 import "./AdminMode.css";
 
@@ -137,13 +138,15 @@ export function AdminMode() {
     createYear,
     deleteYear,
     deleteAttraction,
+    reload,
   } = useAdminArchive();
+  const registry = useHauntRegistry();
 
   const [newYearName, setNewYearName] = useState("");
   const [newYearNumber, setNewYearNumber] = useState("");
   // Two haunts can both hold a 2024 season, so which one this is has to be
   // said rather than assumed.
-  const [newYearHaunt, setNewYearHaunt] = useState<HauntId>(HAUNT_IDS.hhn);
+  const [newYearHaunt, setNewYearHaunt] = useState<HauntId | null>(null);
   const [yearError, setYearError] = useState<string | null>(null);
   const [deletingYear, setDeletingYear] = useState<EventYear | null>(null);
   const [deletingAttraction, setDeletingAttraction] = useState<AdminAttractionRow | null>(null);
@@ -156,7 +159,7 @@ export function AdminMode() {
     setYearError(null);
     try {
       await createYear({
-        hauntId: newYearHaunt,
+        hauntId: newYearHaunt ?? registry.haunts[0]?.id,
         calendarYear: Number(newYearNumber),
         name: newYearName.trim(),
       });
@@ -204,6 +207,15 @@ export function AdminMode() {
         />
       ) : (
         <>
+          <HauntPackImport
+            onImported={async () => {
+              // A pack can bring a haunt, a venue and a vocabulary that did not
+              // exist a second ago, so both the registry and this page reread.
+              await registry.refresh();
+              reload();
+            }}
+          />
+
           <Panel elevated padding="lg" className="admin__section">
             <h2 className="admin__section-title">Event years</h2>
 
@@ -224,12 +236,12 @@ export function AdminMode() {
             <div className="admin__form">
               <SegmentedControl
                 aria-label="Haunt"
-                value={newYearHaunt}
+                value={newYearHaunt ?? registry.haunts[0]?.id ?? ""}
                 onChange={setNewYearHaunt}
-                options={[
-                  { value: HAUNT_IDS.hhn, label: HAUNT_NAMES[HAUNT_IDS.hhn].shortName },
-                  { value: HAUNT_IDS.knotts, label: HAUNT_NAMES[HAUNT_IDS.knotts].shortName },
-                ]}
+                options={registry.haunts.map((haunt: { id: string; shortName: string }) => ({
+                  value: haunt.id,
+                  label: haunt.shortName,
+                }))}
               />
               <Input
                 label="Year"

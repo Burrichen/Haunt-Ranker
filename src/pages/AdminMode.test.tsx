@@ -9,6 +9,7 @@ import {
   type AdminAttractionRow,
 } from "../hooks/useAdminArchive";
 import { AdminMode } from "./AdminMode";
+import { TestHaunts } from "../test/hauntRegistry";
 
 vi.mock("../hooks/useAdminArchive");
 
@@ -62,6 +63,7 @@ function makeAttraction(name: string): Attraction {
     closingDate: null,
     locationNotes: null,
     debutYear: null,
+    experienceTypeId: null,
     parkIds: ["hollywood"],
     isSample: true,
     ...TIMESTAMPS,
@@ -89,6 +91,7 @@ function makeArchive(overrides: Partial<AdminArchive> = {}): AdminArchive {
     updateYear: vi.fn().mockResolvedValue(undefined),
     deleteYear: vi.fn().mockResolvedValue(undefined),
     deleteAttraction: vi.fn().mockResolvedValue(undefined),
+    reload: vi.fn(),
     ...overrides,
   };
 }
@@ -97,9 +100,11 @@ function renderAdmin(overrides: Partial<AdminArchive> = {}) {
   const archive = makeArchive(overrides);
   mockedUseAdminArchive.mockReturnValue(archive);
   render(
-    <MemoryRouter>
-      <AdminMode />
-    </MemoryRouter>,
+    <TestHaunts>
+      <MemoryRouter>
+        <AdminMode />
+      </MemoryRouter>
+    </TestHaunts>,
   );
   return archive;
 }

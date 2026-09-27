@@ -17,6 +17,7 @@ import type { BackupTableKey } from "../models/backup";
  */
 export const ARCHIVE_TABLE_KEYS = [
   "haunts",
+  "experienceTypes",
   "venues",
   "eventYears",
   "attractions",
@@ -43,7 +44,10 @@ export const PERSONAL_TABLE_KEYS = [
  * they describe this installation's own history. An import must not write to
  * them either, so they're named rather than left to fall through.
  */
-export const LOCAL_TABLE_KEYS = ["migrationConflicts"] as const satisfies readonly BackupTableKey[];
+export const LOCAL_TABLE_KEYS = [
+  "hauntPacks",
+  "migrationConflicts",
+] as const satisfies readonly BackupTableKey[];
 
 export type ArchiveTableKey = (typeof ARCHIVE_TABLE_KEYS)[number];
 export type PersonalTableKey = (typeof PERSONAL_TABLE_KEYS)[number];

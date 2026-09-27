@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { useHauntScope } from "../../hooks/useHauntScope";
+import { useHauntRegistry } from "../../hooks/useHauntRegistry";
 import { RATING_MAX, RATING_TOTAL_MAX } from "../../models/rating";
 import { cn } from "../../utils/cn";
 import { formatScore } from "../../utils/formatScore";
@@ -36,6 +38,9 @@ function SampleSize({ summary }: { summary: YearSummary }) {
  * though the two numbers meant the same thing.
  */
 export function YearRankingList({ ranking, sort }: YearRankingListProps) {
+  const { isAllHaunts } = useHauntScope();
+  const registry = useHauntRegistry();
+
   return (
     <div className="year-ranking">
       <ol className="year-ranking__list" aria-label="Year ranking">
@@ -43,7 +48,16 @@ export function YearRankingList({ ranking, sort }: YearRankingListProps) {
           <li key={summary.eventYear.id} className="year-ranking-row">
             <Link to={`/years/${summary.eventYear.id}`} className="year-ranking-row__link">
               <span className="year-ranking-row__position">{index + 1}</span>
-              <span className="year-ranking-row__name">{summary.eventYear.name}</span>
+              <span className="year-ranking-row__name">
+                {/* One list, two haunts: a row has to say whose season it
+                    is, because 2024 alone names two different events. */}
+                {isAllHaunts && (
+                  <span className="year-ranking-row__haunt">
+                    {registry.hauntName(summary.eventYear.hauntId)} —{" "}
+                  </span>
+                )}
+                {summary.eventYear.name}
+              </span>
               <SampleSize summary={summary} />
               <span className="year-ranking-row__metrics">
                 {METRICS.map(({ key, label, outOf }) => (

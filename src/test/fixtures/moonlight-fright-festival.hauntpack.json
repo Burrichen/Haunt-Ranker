@@ -1,0 +1,172 @@
+{
+  "schema": "haunt-ranker.haunt-pack/v1",
+  "pack": {
+    "id": "moonlight-fright-festival",
+    "version": "2026.1.0",
+    "generatedAt": "2026-09-27T00:00:00.000Z",
+    "provenance": "Fictional development pack. Every record below is invented to exercise the Haunt Pack path end to end; none of it describes a real event.",
+    "notes": "A haunt the application has no code for: its own vocabulary (Trail), its own venues, and a kind of experience — a show — that neither shipped haunt has.",
+    "counts": {
+      "seasons": 1,
+      "experiences": 4,
+      "sources": 3,
+      "media": 0
+    }
+  },
+  "haunt": {
+    "id": "moonlight-fright-festival",
+    "name": "Moonlight Fright Festival",
+    "shortName": "Moonlight",
+    "description": "A fictional autumn festival held over three weekends in a working orchard. Its walk-throughs are called Trails, it runs a single scare zone through the parking meadow, and it closes each night with a stage show.",
+    "tagline": "A fictional festival in an orchard, three weekends every October.",
+    "venuesLabel": "Harrow Orchard",
+    "accent": "green",
+    "sortOrder": 200
+  },
+  "experienceTypes": [
+    {
+      "id": "moonlight-fright-festival:type:trail",
+      "category": "house",
+      "labelOne": "Trail",
+      "labelMany": "Trails",
+      "description": "A walk-through route through the orchard.",
+      "sortOrder": 0
+    },
+    {
+      "id": "moonlight-fright-festival:type:scare-zone",
+      "category": "scare_zone",
+      "labelOne": "Scare Zone",
+      "labelMany": "Scare Zones",
+      "sortOrder": 10
+    },
+    {
+      "id": "moonlight-fright-festival:type:show",
+      "category": "show",
+      "labelOne": "Show",
+      "labelMany": "Shows",
+      "sortOrder": 20
+    }
+  ],
+  "venues": [
+    {
+      "id": "moonlight-fright-festival:harrow-orchard",
+      "name": "Harrow Orchard",
+      "icon": "trees",
+      "sortOrder": 0
+    }
+  ],
+  "seasons": [
+    {
+      "id": "moonlight-fright-festival:2026",
+      "calendarYear": 2026,
+      "name": "Moonlight Fright Festival 2026",
+      "description": "The festival's fictional inaugural season.",
+      "sourceNotes": "Invented for development. No real source exists or is claimed.",
+      "dates": { "start": "2026-10-09", "end": "2026-10-25" },
+      "sourceIds": ["moonlight-fright-festival:source:programme-2026"]
+    }
+  ],
+  "experiences": [
+    {
+      "id": "moonlight-fright-festival:2026:trail:hollow-road",
+      "seasonId": "moonlight-fright-festival:2026",
+      "typeId": "moonlight-fright-festival:type:trail",
+      "name": "Hollow Road",
+      "slug": "moonlight-2026-hollow-road",
+      "venues": ["moonlight-fright-festival:harrow-orchard"],
+      "ip": { "type": "original" },
+      "summary": "A lantern-lit walk along the orchard's oldest track.",
+      "wiki": {
+        "overview": "Hollow Road runs the length of the orchard's original cart track, lit by lanterns hung in the trees.",
+        "experience": "Roughly eight minutes on foot, entirely outdoors, with the scares worked into the rows of trees rather than into built sets."
+      },
+      "location": "The old cart track",
+      "debutYear": 2026,
+      "characters": [
+        {
+          "id": "moonlight-fright-festival:2026:character:the-orchardist",
+          "name": "The Orchardist",
+          "description": "The figure who walks the rows with a lantern."
+        }
+      ],
+      "sourceIds": ["moonlight-fright-festival:source:programme-2026"]
+    },
+    {
+      "id": "moonlight-fright-festival:2026:trail:the-cider-house",
+      "seasonId": "moonlight-fright-festival:2026",
+      "typeId": "moonlight-fright-festival:type:trail",
+      "name": "The Cider House",
+      "slug": "moonlight-2026-the-cider-house",
+      "venues": ["moonlight-fright-festival:harrow-orchard"],
+      "ip": { "type": "original" },
+      "summary": "The pressing shed, after dark.",
+      "wiki": {
+        "story": "The festival's programme frames the shed as still working, and still owed."
+      },
+      "location": "The pressing shed",
+      "debutYear": 2026,
+      "related": [
+        {
+          "experienceId": "moonlight-fright-festival:2026:trail:hollow-road",
+          "type": "related_concept",
+          "notes": "Both are presented as part of the orchard's own story."
+        }
+      ],
+      "sourceIds": ["moonlight-fright-festival:source:programme-2026"]
+    },
+    {
+      "id": "moonlight-fright-festival:2026:zone:the-meadow",
+      "seasonId": "moonlight-fright-festival:2026",
+      "typeId": "moonlight-fright-festival:type:scare-zone",
+      "name": "The Meadow",
+      "slug": "moonlight-2026-the-meadow",
+      "venues": ["moonlight-fright-festival:harrow-orchard"],
+      "ip": { "type": "original" },
+      "summary": "The parking meadow, worked by roaming performers.",
+      "location": "Parking meadow",
+      "debutYear": 2026,
+      "sourceIds": ["moonlight-fright-festival:source:local-listing-2026"]
+    },
+    {
+      "id": "moonlight-fright-festival:2026:show:the-last-pressing",
+      "seasonId": "moonlight-fright-festival:2026",
+      "typeId": "moonlight-fright-festival:type:show",
+      "name": "The Last Pressing",
+      "slug": "moonlight-2026-the-last-pressing",
+      "venues": ["moonlight-fright-festival:harrow-orchard"],
+      "ip": { "type": "original" },
+      "summary": "A twenty-minute closing show on the barn stage.",
+      "wiki": {
+        "experience": "Seated, on the hour, twice a night."
+      },
+      "location": "Barn stage",
+      "debutYear": 2026,
+      "sourceIds": ["moonlight-fright-festival:source:programme-2026"]
+    }
+  ],
+  "sources": [
+    {
+      "id": "moonlight-fright-festival:source:programme-2026",
+      "type": "official_site",
+      "title": "Moonlight Fright Festival 2026 programme",
+      "publisher": "Moonlight Fright Festival",
+      "publishedAt": "2026-09-01",
+      "notes": "Fictional. Stands in for the event's own published material."
+    },
+    {
+      "id": "moonlight-fright-festival:source:local-listing-2026",
+      "type": "article",
+      "title": "What's on at Harrow Orchard this October",
+      "publisher": "The Harrow Gazette",
+      "publishedAt": "2026-09-20",
+      "notes": "Fictional local listing, used here to show a second kind of source."
+    },
+    {
+      "id": "moonlight-fright-festival:source:walkthrough-2026",
+      "type": "youtube",
+      "title": "Moonlight Fright Festival 2026 — full walkthrough",
+      "publisher": "A Fictional Channel",
+      "notes": "Fictional. Referenced only; nothing is downloaded or repackaged."
+    }
+  ]
+}

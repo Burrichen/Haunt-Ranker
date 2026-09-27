@@ -143,6 +143,31 @@ describe("AttractionRepository", () => {
     expect(updated.parkIds?.slice().sort()).toEqual(["hollywood", "orlando"]);
   });
 
+  it("stamps an edit made here, so a Haunt Pack can tell it apart from its own writing", async () => {
+    const created = await attractions.create({
+      eventYearId,
+      attractionType: "house",
+      name: "The Deed",
+      slug: "the-deed",
+      parkIds: ["orlando"],
+    });
+
+    const [fresh] = await db.select<Array<{ manual_edit_at: string | null }>>(
+      "SELECT manual_edit_at FROM attractions WHERE id = ?",
+      [created.id],
+    );
+    // Nothing has been edited yet — a pack may write this record freely.
+    expect(fresh.manual_edit_at).toBeNull();
+
+    await attractions.update(created.id, { shortSummary: "Corrected by hand." });
+
+    const [edited] = await db.select<Array<{ manual_edit_at: string | null }>>(
+      "SELECT manual_edit_at FROM attractions WHERE id = ?",
+      [created.id],
+    );
+    expect(edited.manual_edit_at).not.toBeNull();
+  });
+
   it("rejects an invalid attraction_type at the database level", async () => {
     const error = await attractions
       .create({

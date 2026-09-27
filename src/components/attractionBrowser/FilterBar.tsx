@@ -1,4 +1,7 @@
-import { Palmtree, Star, X } from "lucide-react";
+import { X } from "lucide-react";
+import { useHauntScope } from "../../hooks/useHauntScope";
+import { useHauntRegistry } from "../../hooks/useHauntRegistry";
+import type { HauntScope } from "../../models/haunt";
 import type { IpType } from "../../models/attraction";
 import { RATING_RANGE_MAX, RATING_RANGE_MIN } from "../../utils/attractionBrowser";
 import type {
@@ -6,6 +9,7 @@ import type {
   ParkFacet,
   RatedFacet,
 } from "../../utils/attractionBrowser";
+import { venueIconComponent } from "../archive";
 import { Button, FilterChip, Input } from "../ui";
 import "./FilterBar.css";
 
@@ -28,6 +32,10 @@ export function FilterBar({
   isActive,
   onClear,
 }: FilterBarProps) {
+  const { scope, setScope } = useHauntScope();
+  const registry = useHauntRegistry();
+  // The venues on offer are the ones the haunt in view actually runs at.
+  const venues = registry.venuesFor(scope === "all" ? null : scope);
   const toggleYear = (year: number) => onChange({ ...filters, years: toggle(filters.years, year) });
   const toggleParkFacet = (facet: ParkFacet) =>
     onChange({ ...filters, parks: toggle(filters.parks, facet) });
@@ -47,6 +55,20 @@ export function FilterBar({
 
   return (
     <div className="filter-bar">
+      {/* Haunt is a filter like any other here, but it is the app-wide
+          choice underneath: narrowing the archive to one haunt is the same
+          act as looking at that haunt, so there is only ever one of it. */}
+      <div className="filter-bar__group">
+        <span className="filter-bar__label">Haunt</span>
+        <div className="filter-bar__chips">
+          {registry.scopes().map((option: HauntScope) => (
+            <FilterChip key={option} active={scope === option} onClick={() => setScope(option)}>
+              {registry.scopeLabel(option, option === "all" ? "full" : "short")}
+            </FilterChip>
+          ))}
+        </div>
+      </div>
+
       {availableYears.length > 0 && (
         <div className="filter-bar__group">
           <span className="filter-bar__label">Year</span>
@@ -65,28 +87,33 @@ export function FilterBar({
       )}
 
       <div className="filter-bar__group">
-        <span className="filter-bar__label">Park</span>
+        <span className="filter-bar__label">Venue</span>
         <div className="filter-bar__chips">
-          <FilterChip
-            active={filters.parks.includes("hollywood")}
-            onClick={() => toggleParkFacet("hollywood")}
-            icon={<Star size={12} strokeWidth={1.75} />}
-          >
-            Hollywood
-          </FilterChip>
-          <FilterChip
-            active={filters.parks.includes("orlando")}
-            onClick={() => toggleParkFacet("orlando")}
-            icon={<Palmtree size={12} strokeWidth={1.75} />}
-          >
-            Orlando
-          </FilterChip>
-          <FilterChip
-            active={filters.parks.includes("both")}
-            onClick={() => toggleParkFacet("both")}
-          >
-            Both Parks
-          </FilterChip>
+          {/* One chip per venue the haunt in view actually runs at — read
+              from the venues themselves, so an imported haunt's venues
+              appear here without this file knowing their names. */}
+          {venues.map((venue) => {
+            const Icon = venueIconComponent(venue.icon);
+            return (
+              <FilterChip
+                key={venue.id}
+                active={filters.parks.includes(venue.id)}
+                onClick={() => toggleParkFacet(venue.id)}
+                icon={<Icon size={12} strokeWidth={1.75} />}
+              >
+                {venue.name}
+              </FilterChip>
+            );
+          })}
+          {/* "Both" only means something where there are two to be at. */}
+          {venues.length > 1 && (
+            <FilterChip
+              active={filters.parks.includes("both")}
+              onClick={() => toggleParkFacet("both")}
+            >
+              More than one
+            </FilterChip>
+          )}
         </div>
       </div>
 

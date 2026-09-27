@@ -6,4 +6,4 @@ export { AttractionPreviewCard } from "./AttractionPreviewCard";
 export type { AttractionPreviewCardProps } from "./AttractionPreviewCard";
 export { ParkBadgeRow } from "./ParkBadge";
 export type { ParkBadgeRowProps } from "./ParkBadge";
-export { PARK_ICONS, PARK_NAMES } from "./parkConstants";
+export { venueIconComponent, VENUE_ICON_COMPONENTS } from "./parkConstants";

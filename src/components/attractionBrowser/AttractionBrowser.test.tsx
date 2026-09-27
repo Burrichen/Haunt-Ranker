@@ -10,6 +10,7 @@ import type { Attraction } from "../../models/attraction";
 import { DEFAULT_FILTERS, DEFAULT_SORT } from "../../utils/attractionBrowser";
 import type { AttractionBrowserRow } from "../../utils/attractionBrowser";
 import { AttractionBrowser } from "./AttractionBrowser";
+import { TestHaunts } from "../../test/hauntRegistry";
 
 vi.mock("../../hooks/useAttractionBrowser");
 vi.mock("../../hooks/useAttractionViewMode");
@@ -36,6 +37,7 @@ function makeAttraction(overrides: Partial<Attraction> = {}): Attraction {
     closingDate: null,
     locationNotes: null,
     debutYear: null,
+    experienceTypeId: null,
     parkIds: ["hollywood"],
     isSample: true,
     createdAt: "2026-01-01T00:00:00.000Z",
@@ -74,9 +76,11 @@ function makeBrowserState(overrides: Partial<AttractionBrowserState> = {}): Attr
 
 function renderBrowser() {
   return render(
-    <MemoryRouter>
-      <AttractionBrowser attractionType="house" />
-    </MemoryRouter>,
+    <TestHaunts>
+      <MemoryRouter>
+        <AttractionBrowser attractionType="house" />
+      </MemoryRouter>
+    </TestHaunts>,
   );
 }
 
@@ -94,7 +98,8 @@ describe("AttractionBrowser", () => {
     expect(screen.getByPlaceholderText("Search by name or franchise…")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Name \(A–Z\)/i })).toBeInTheDocument();
     expect(screen.getByRole("radiogroup", { name: "View mode" })).toBeInTheDocument();
-    expect(screen.getByText("Park")).toBeInTheDocument();
+    expect(screen.getByText("Venue")).toBeInTheDocument();
+    expect(screen.getByText("Haunt")).toBeInTheDocument();
     expect(screen.getByText("Hollywood")).toBeInTheDocument();
   });
 
@@ -102,7 +107,7 @@ describe("AttractionBrowser", () => {
     mockedUseAttractionBrowser.mockReturnValue(makeBrowserState({ isLoading: true }));
     renderBrowser();
 
-    expect(screen.getByText("Loading houses & mazes…")).toBeInTheDocument();
+    expect(screen.getByText("Loading houses…")).toBeInTheDocument();
   });
 
   it("shows an error state instead of the toolbar's results", () => {
@@ -117,7 +122,7 @@ describe("AttractionBrowser", () => {
     mockedUseAttractionBrowser.mockReturnValue(makeBrowserState({ rows: [] }));
     renderBrowser();
 
-    expect(screen.getByText("No houses & mazes yet")).toBeInTheDocument();
+    expect(screen.getByText("No houses yet")).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Clear filters" })).not.toBeInTheDocument();
   });
 

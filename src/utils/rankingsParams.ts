@@ -1,5 +1,5 @@
 import type { AttractionType, IpType } from "../models/attraction";
-import { RANKING_HAUNT_SCOPES, type RankingGroup, type RankingHauntScope } from "../models/ranking";
+import type { RankingGroup, RankingHauntScope } from "../models/ranking";
 import type { ParkFacet } from "./attractionBrowser";
 import {
   DEFAULT_RANKING_FILTERS,
@@ -67,9 +67,9 @@ export function parseRankingsParams(params: URLSearchParams): RankingsParams {
 
   return {
     group: parseOne<RankingGroup>(params.get("group"), GROUPS) ?? DEFAULT_RANKING_GROUP,
-    haunt:
-      parseOne<RankingHauntScope>(params.get("haunt"), RANKING_HAUNT_SCOPES) ??
-      DEFAULT_RANKING_HAUNT,
+    // Any haunt id is allowed here: which haunts exist is data, and a link
+    // naming one this install doesn't have simply finds nothing.
+    haunt: (params.get("haunt") as RankingHauntScope | null) ?? DEFAULT_RANKING_HAUNT,
     mode: parseOne<RankingMode>(params.get("mode"), MODES),
     filters: {
       years: parseYearList(params.get("year")),

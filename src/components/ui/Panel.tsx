@@ -3,7 +3,7 @@ import { cn } from "../../utils/cn";
 import "./Panel.css";
 
 export type PanelPadding = "none" | "sm" | "md" | "lg";
-export type PanelGlow = "none" | "orange" | "purple";
+export type PanelGlow = "none" | "orange" | "purple" | "green" | "blue";
 
 export interface PanelProps extends HTMLAttributes<HTMLDivElement> {
   elevated?: boolean;

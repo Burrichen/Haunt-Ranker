@@ -5,6 +5,7 @@ import type { Attraction } from "../models/attraction";
 import type { EventYear } from "../models/eventYear";
 import { useArchiveOverview } from "../hooks/useArchiveOverview";
 import { Home } from "./Home";
+import { TestHaunts } from "../test/hauntRegistry";
 
 vi.mock("../hooks/useArchiveOverview");
 
@@ -29,6 +30,7 @@ function makeAttraction(overrides: Partial<Attraction> = {}): Attraction {
     closingDate: null,
     locationNotes: null,
     debutYear: null,
+    experienceTypeId: null,
     parkIds: ["hollywood", "orlando"],
     isSample: true,
     createdAt: "2026-01-01T00:00:00.000Z",
@@ -61,6 +63,8 @@ function hauntSummaries() {
       hauntId: "hhn" as const,
       attractions: 7,
       seasons: 2,
+      walkthroughs: 4,
+      scareZones: 3,
       reviewed: 4,
       firstYear: 2101,
       lastYear: 2102,
@@ -69,6 +73,8 @@ function hauntSummaries() {
       hauntId: "knotts-scary-farm" as const,
       attractions: 0,
       seasons: 0,
+      walkthroughs: 0,
+      scareZones: 0,
       reviewed: 0,
       firstYear: null,
       lastYear: null,
@@ -78,9 +84,11 @@ function hauntSummaries() {
 
 function renderHome() {
   return render(
-    <MemoryRouter>
-      <Home />
-    </MemoryRouter>,
+    <TestHaunts>
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>
+    </TestHaunts>,
   );
 }
 
@@ -100,15 +108,21 @@ describe("Home", () => {
 
     renderHome();
 
-    expect(screen.getByRole("heading", { name: "Haunt Ranker" })).toBeInTheDocument();
+    // The home collection leads the page by name.
+    expect(
+      screen.getByRole("heading", { level: 1, name: "Halloween Horror Nights" }),
+    ).toBeInTheDocument();
     // Both archives are offered as equals, and neither is hidden behind the other.
     expect(
       screen.getByRole("link", { name: /Open the Halloween Horror Nights archive/i }),
     ).toBeInTheDocument();
+    // A second collection is offered, under its own restrained heading,
+    // without being made to look like a rival brand.
+    expect(screen.getByRole("heading", { name: "Other Haunts" })).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: /Open the Knott's Scary Farm archive/i }),
     ).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Search the whole archive/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Search every haunt/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Years/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Rankings/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Statistics/i })).toBeInTheDocument();

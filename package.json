@@ -22,7 +22,9 @@
     "db:reset": "tsx scripts/dev-db.ts reset",
     "data:validate": "tsx scripts/validate-dataset.ts",
     "data:import": "tsx scripts/import-dataset.ts",
-    "data:verify": "tsx scripts/verify-archive.ts"
+    "data:verify": "tsx scripts/verify-archive.ts",
+    "pack:import": "tsx scripts/haunt-pack.ts import",
+    "pack:remove": "tsx scripts/haunt-pack.ts remove"
   },
   "dependencies": {
     "@tauri-apps/api": "^2",

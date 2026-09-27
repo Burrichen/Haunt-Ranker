@@ -8,10 +8,12 @@ import {
   computeHighlights,
   computeScoreDistribution,
   computeTopAttractions,
+  compareHaunts,
   computeYearPerformance,
   DEFAULT_STATISTICS_FILTERS,
   filterStatisticsRows,
   type Coverage,
+  type HauntComparisonRow,
   type DistributionBucket,
   type Highlight,
   type HighlightMode,
@@ -25,6 +27,7 @@ import {
   type StatisticsView,
 } from "../utils/statisticsParams";
 import { useArchiveRows } from "./useArchiveRows";
+import { useHauntRegistry } from "./useHauntRegistry";
 
 /**
  * Just the dashboard/explorer switch, so the page shell can flip views
@@ -66,6 +69,8 @@ export interface Statistics {
   yearPerformance: YearPerformancePoint[];
   distribution: DistributionBucket[];
   coverage: Coverage;
+  /** The haunts side by side — only meaningful, and only shown, under All Haunts. */
+  hauntComparison: HauntComparisonRow[];
   topAttractions: TopAttraction[];
   /** How many attractions the current slice contains at all, reviewed or not. */
   attractionCount: number;
@@ -86,6 +91,7 @@ const EMPTY_COVERAGE: Coverage = {
 export function useStatistics(): Statistics {
   const [searchParams, setSearchParams] = useSearchParams();
   const data = useArchiveRows();
+  const { haunts: registryHaunts } = useHauntRegistry();
 
   const params = useMemo(() => parseStatisticsParams(searchParams), [searchParams]);
   const { filters, metric, highlightMode } = params;
@@ -133,6 +139,14 @@ export function useStatistics(): Statistics {
     () => computeTopAttractions(visibleRows, metric),
     [visibleRows, metric],
   );
+  const hauntComparison = useMemo(
+    () =>
+      compareHaunts(
+        visibleRows,
+        registryHaunts.map((haunt) => haunt.id),
+      ),
+    [visibleRows, registryHaunts],
+  );
   const availableYears = useMemo(() => computeAvailableYears(data.rows), [data.rows]);
 
   return {
@@ -151,6 +165,7 @@ export function useStatistics(): Statistics {
     yearPerformance,
     distribution,
     coverage,
+    hauntComparison,
     topAttractions,
     attractionCount: visibleRows.length,
   };

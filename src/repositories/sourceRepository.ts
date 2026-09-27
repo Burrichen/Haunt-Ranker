@@ -166,7 +166,10 @@ export function createSourceRepository(db: SqlExecutor): SourceRepository {
       db.execute(
         `UPDATE sources
          SET source_type = ?, title = ?, url = ?, publisher = ?, published_at = ?, notes = ?,
-             is_sample = ?, updated_at = strftime('%Y-%m-%dT%H:%M:%fZ', 'now')
+             is_sample = ?, updated_at = strftime('%Y-%m-%dT%H:%M:%fZ', 'now'),
+             -- Edited here, not by a pack: a later pack reports a conflict
+             -- on this row rather than writing over the change.
+             manual_edit_at = strftime('%Y-%m-%dT%H:%M:%fZ', 'now')
          WHERE id = ?`,
         [
           next.sourceType,

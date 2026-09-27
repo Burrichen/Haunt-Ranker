@@ -7,6 +7,7 @@ import type { Rating } from "../models/rating";
 import { useRankings, type Rankings as RankingsState } from "../hooks/useRankings";
 import { DEFAULT_RANKING_FILTERS, DEFAULT_RANKING_SORT, type RankingRow } from "../utils/rankings";
 import { Rankings } from "./Rankings";
+import { TestHaunts } from "../test/hauntRegistry";
 
 vi.mock("../hooks/useRankings");
 
@@ -37,6 +38,7 @@ function makeRow(name: string, scores: [number, number, number] | null): Ranking
     closingDate: null,
     locationNotes: null,
     debutYear: null,
+    experienceTypeId: null,
     parkIds: ["hollywood"],
     isSample: true,
     ...TIMESTAMPS,
@@ -102,9 +104,11 @@ function renderRankings(overrides: Partial<RankingsState> = {}) {
   const state = makeState(overrides);
   mockedUseRankings.mockReturnValue(state);
   render(
-    <MemoryRouter>
-      <Rankings />
-    </MemoryRouter>,
+    <TestHaunts>
+      <MemoryRouter>
+        <Rankings />
+      </MemoryRouter>
+    </TestHaunts>,
   );
   return state;
 }

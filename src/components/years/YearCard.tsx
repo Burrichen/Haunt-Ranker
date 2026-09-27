@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CalendarDays } from "lucide-react";
 import { Link } from "react-router-dom";
-import { attractionTypeLabel, HAUNT_NAMES } from "../../models/haunt";
+import { useHauntRegistry } from "../../hooks/useHauntRegistry";
 import { useHauntScope } from "../../hooks/useHauntScope";
 import { RATING_TOTAL_MAX } from "../../models/rating";
 import { formatScore } from "../../utils/formatScore";
@@ -11,6 +11,11 @@ import "./YearCard.css";
 
 export interface YearCardProps {
   summary: YearSummary;
+  /**
+   * Whether the card names its haunt. False where the list is already
+   * grouped under a haunt heading, so it isn't said twice.
+   */
+  showHaunt?: boolean;
 }
 
 /**
@@ -19,9 +24,10 @@ export interface YearCardProps {
  * and states its average only when enough of the year has been reviewed to
  * mean anything.
  */
-export function YearCard({ summary }: YearCardProps) {
+export function YearCard({ summary, showHaunt = true }: YearCardProps) {
   const [imageFailed, setImageFailed] = useState(false);
   const { isAllHaunts } = useHauntScope();
+  const registry = useHauntRegistry();
   const { eventYear, artworkUrl, houseCount, scareZoneCount, reviewedCount, averages } = summary;
   const showImage = Boolean(artworkUrl) && !imageFailed;
 
@@ -47,19 +53,19 @@ export function YearCard({ summary }: YearCardProps) {
         <div className="year-card__body">
           {/* Two haunts both hold a 2024, so a mixed list names the haunt
               before the year. */}
-          {isAllHaunts && (
-            <span className="year-card__haunt">{HAUNT_NAMES[eventYear.hauntId].name}</span>
+          {isAllHaunts && showHaunt && (
+            <span className="year-card__haunt">{registry.hauntName(eventYear.hauntId)}</span>
           )}
           <span className="year-card__year">{eventYear.calendarYear}</span>
           <h3 className="year-card__name">{eventYear.name}</h3>
 
           <dl className="year-card__counts">
             <div className="year-card__count">
-              <dt>{attractionTypeLabel("house", eventYear.hauntId, "many")}</dt>
+              <dt>{registry.label("house", eventYear.hauntId, "many")}</dt>
               <dd>{houseCount}</dd>
             </div>
             <div className="year-card__count">
-              <dt>{attractionTypeLabel("scare_zone", eventYear.hauntId, "many")}</dt>
+              <dt>{registry.label("scare_zone", eventYear.hauntId, "many")}</dt>
               <dd>{scareZoneCount}</dd>
             </div>
             <div className="year-card__count">

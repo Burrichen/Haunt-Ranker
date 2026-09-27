@@ -3,9 +3,11 @@ import type { ComponentType } from "react";
 import { Link } from "react-router-dom";
 import { ArchiveCard } from "../components/archive";
 import { EmptyState, LoadingState, Panel } from "../components/ui";
-import { useArchiveOverview, type HauntArchiveSummary } from "../hooks/useArchiveOverview";
+import { useArchiveOverview } from "../hooks/useArchiveOverview";
 import { useHauntScope } from "../hooks/useHauntScope";
-import { attractionTypeLabel, HAUNT_IDS, HAUNT_NAMES, type HauntId } from "../models/haunt";
+import { useHauntRegistry } from "../hooks/useHauntRegistry";
+import type { HauntId } from "../models/haunt";
+import { seasonSpanLabel, type HauntArchiveSummary } from "../utils/haunts";
 import "./Home.css";
 
 interface NavTile {
@@ -14,23 +16,6 @@ interface NavTile {
   description: string;
   icon: ComponentType<{ size?: number; strokeWidth?: number }>;
 }
-
-/**
- * What each haunt's entry point says about itself, beyond its figures.
- *
- * Written rather than generated, and deliberately the same weight for both:
- * one archive is not the subject with the other appended to it.
- */
-const HAUNT_ENTRIES: Record<HauntId, { tagline: string; accent: "orange" | "purple" }> = {
-  [HAUNT_IDS.hhn]: {
-    tagline: "Universal's Halloween event, at Hollywood and Orlando.",
-    accent: "orange",
-  },
-  [HAUNT_IDS.knotts]: {
-    tagline: "The Halloween event at Knott's Berry Farm, Buena Park.",
-    accent: "purple",
-  },
-};
 
 const NAV_TILES: NavTile[] = [
   {
@@ -63,54 +48,37 @@ function ProgressStat({ value, label }: { value: number; label: string }) {
 }
 
 /**
- * One haunt's way in. Choosing it sets the haunt the rest of the app is
- * looking at, so the archive it opens keeps its own vocabulary — Houses at
- * HHN, Mazes at Knott's — rather than the reader having to set that twice.
+ * A secondary collection, offered without ceremony.
+ *
+ * Small, factual and in the app's own language — not a brand tile. Opening
+ * it makes that haunt the one in view, so the archive it leads to already
+ * calls its attractions what that haunt calls them.
  */
-function HauntEntry({ summary }: { summary: HauntArchiveSummary }) {
+function OtherHauntRow({ summary }: { summary: HauntArchiveSummary }) {
   const { setScope } = useHauntScope();
-  const { hauntId, attractions, seasons, reviewed, firstYear, lastYear } = summary;
-  const { tagline, accent } = HAUNT_ENTRIES[hauntId];
-  const isEmpty = attractions === 0;
+  const registry = useHauntRegistry();
+  const hauntId: HauntId = summary.hauntId;
+  const haunt = registry.haunt(hauntId);
+  const tagline = haunt?.tagline ?? null;
+  const accent = haunt?.accent ?? "purple";
+  const name = haunt?.name ?? hauntId;
+  const span = seasonSpanLabel(summary);
 
   return (
     <Link
-      to="/houses"
-      className="home__haunt-link"
+      to={`/haunts/${hauntId}`}
+      className="home__other-link"
       onClick={() => setScope(hauntId)}
-      aria-label={`Open the ${HAUNT_NAMES[hauntId].name} archive`}
+      aria-label={`Open the ${name} archive`}
     >
-      <Panel elevated padding="lg" glow={accent} className={`home__haunt home__haunt--${accent}`}>
-        <span className="home__haunt-eyebrow">Archive</span>
-        <h2 className="home__haunt-name">{HAUNT_NAMES[hauntId].name}</h2>
-        <p className="home__haunt-tagline">{tagline}</p>
-
-        {isEmpty ? (
-          // Said plainly rather than dressed up: an archive nobody has
-          // entered yet is a fact about the data, not a smaller haunt.
-          <p className="home__haunt-empty">Archive not yet entered.</p>
-        ) : (
-          <dl className="home__haunt-figures">
-            <div>
-              <dt>Attractions</dt>
-              <dd>{attractions}</dd>
-            </div>
-            <div>
-              <dt>Seasons</dt>
-              <dd>{seasons}</dd>
-            </div>
-            <div>
-              <dt>Reviewed</dt>
-              <dd>{reviewed}</dd>
-            </div>
-          </dl>
-        )}
-
-        {firstYear !== null && lastYear !== null && (
-          <p className="home__haunt-span">
-            {firstYear === lastYear ? firstYear : `${firstYear}–${lastYear}`}
-          </p>
-        )}
+      <Panel elevated padding="md" className={`home__other home__other--${accent}`}>
+        <h3 className="home__other-name">{name}</h3>
+        {tagline && <p className="home__other-tagline">{tagline}</p>}
+        <p className="home__other-figures">
+          {summary.attractions === 0
+            ? "Archive not yet entered."
+            : `${summary.attractions} attractions · ${summary.seasons} seasons${span ? ` · ${span}` : ""}`}
+        </p>
       </Panel>
     </Link>
   );
@@ -119,22 +87,57 @@ function HauntEntry({ summary }: { summary: HauntArchiveSummary }) {
 export function Home() {
   const { isLoading, error, summary, haunts, spotlight } = useArchiveOverview();
   const { setScope, hauntId } = useHauntScope();
+  const registry = useHauntRegistry();
+
+  // The home collection is whichever haunt sorts first — the app's own
+  // by default, and still a data decision rather than a hard-coded one.
+  const homeHauntId = registry.haunts[0]?.id ?? haunts[0]?.hauntId ?? null;
+  const home = haunts.find((haunt) => haunt.hauntId === homeHauntId);
+  const others = haunts.filter((haunt) => haunt.hauntId !== homeHauntId);
+  const homeName = registry.hauntName(homeHauntId) ?? "Haunt Ranker";
+  const homeSpan = home ? seasonSpanLabel(home) : null;
 
   return (
     <div className="home">
-      <Panel elevated glow="orange" padding="lg" className="home__hero">
-        <h1 className="home__hero-title">Haunt Ranker</h1>
-        <p className="home__hero-subtitle">
-          Two Halloween archives — Halloween Horror Nights and Knott's Scary Farm — to browse,
-          review and rank.
-        </p>
-      </Panel>
+      {/* Halloween Horror Nights leads, because it is what Haunt Ranker is
+          for. The other collections follow it rather than crowding it. */}
+      <Link
+        to={homeHauntId ? `/haunts/${homeHauntId}` : "/haunts"}
+        className="home__hero-link"
+        onClick={() => homeHauntId && setScope(homeHauntId)}
+        aria-label={`Open the ${homeName} archive`}
+      >
+        <Panel elevated glow="orange" padding="lg" className="home__hero">
+          <span className="home__hero-eyebrow">Haunt Ranker</span>
+          <h1 className="home__hero-title">{homeName}</h1>
+          <p className="home__hero-subtitle">
+            {registry.haunt(homeHauntId)?.tagline}
+            {home && home.attractions > 0 && (
+              <>
+                {" "}
+                {home.attractions} attractions across {home.seasons} seasons
+                {homeSpan ? `, ${homeSpan}` : ""}.
+              </>
+            )}
+          </p>
+        </Panel>
+      </Link>
 
-      <section className="home__haunts" aria-label="Haunts">
-        {haunts.map((haunt) => (
-          <HauntEntry key={haunt.hauntId} summary={haunt} />
-        ))}
-      </section>
+      {others.length > 0 && (
+        <section className="home__others" aria-label="Other haunts">
+          <div className="home__others-head">
+            <h2 className="home__section-title">Other Haunts</h2>
+            <Link to="/haunts" className="home__others-all">
+              All haunts
+            </Link>
+          </div>
+          <div className="home__others-grid">
+            {others.map((haunt) => (
+              <OtherHauntRow key={haunt.hauntId} summary={haunt} />
+            ))}
+          </div>
+        </section>
+      )}
 
       <nav className="home__nav-grid" aria-label="Primary sections">
         <Link
@@ -147,10 +150,10 @@ export function Home() {
             <div className="home__nav-tile-icon">
               <Search size={26} strokeWidth={1.5} />
             </div>
-            <h2 className="home__nav-tile-title">Search the whole archive</h2>
+            <h2 className="home__nav-tile-title">Search every haunt</h2>
             <p className="home__nav-tile-description">
-              {attractionTypeLabel("house", null, "many")} and{" "}
-              {attractionTypeLabel("scare_zone", null, "many").toLowerCase()} from both haunts.
+              {registry.label("house", null, "many")} and{" "}
+              {registry.label("scare_zone", null, "many").toLowerCase()} from every collection.
             </p>
           </Panel>
         </Link>
@@ -190,6 +193,8 @@ function ArchiveBody({
 }: Pick<ReturnType<typeof useArchiveOverview>, "isLoading" | "error" | "summary" | "spotlight"> & {
   hauntId: HauntId | null;
 }) {
+  const registry = useHauntRegistry();
+
   if (error) {
     return (
       <EmptyState
@@ -233,13 +238,10 @@ function ArchiveBody({
 
       <section className="home__progress" aria-label="Archive progress">
         <ProgressStat value={summary.totalAttractions} label="Attractions" />
-        <ProgressStat
-          value={summary.houses}
-          label={attractionTypeLabel("house", hauntId, "many")}
-        />
+        <ProgressStat value={summary.houses} label={registry.label("house", hauntId, "many")} />
         <ProgressStat
           value={summary.scareZones}
-          label={attractionTypeLabel("scare_zone", hauntId, "many")}
+          label={registry.label("scare_zone", hauntId, "many")}
         />
         <ProgressStat value={summary.reviewed} label="Reviewed" />
       </section>

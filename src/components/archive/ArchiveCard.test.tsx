@@ -7,6 +7,7 @@ import type { EventYear } from "../../models/eventYear";
 import { PREFERENCE_KEYS } from "../../preferences/localPreferences";
 import { HauntSelector } from "../layout/HauntSelector";
 import { ArchiveCard } from "./ArchiveCard";
+import { TestHaunts } from "../../test/hauntRegistry";
 
 const TIMESTAMPS = {
   createdAt: "2026-01-01T00:00:00.000Z",
@@ -32,6 +33,7 @@ function makeAttraction(overrides: Partial<Attraction> = {}): Attraction {
     closingDate: null,
     locationNotes: null,
     debutYear: null,
+    experienceTypeId: null,
     parkIds: ["orlando"],
     isSample: false,
     ...TIMESTAMPS,
@@ -57,12 +59,19 @@ function makeEventYear(overrides: Partial<EventYear> = {}): EventYear {
 
 function renderCard(attraction: Attraction, eventYear: EventYear) {
   return render(
-    <MemoryRouter>
-      <HauntScopeProvider>
-        <HauntSelector />
-        <ArchiveCard attraction={attraction} eventYear={eventYear} posterUrl={null} rating={null} />
-      </HauntScopeProvider>
-    </MemoryRouter>,
+    <TestHaunts>
+      <MemoryRouter>
+        <HauntScopeProvider>
+          <HauntSelector />
+          <ArchiveCard
+            attraction={attraction}
+            eventYear={eventYear}
+            posterUrl={null}
+            rating={null}
+          />
+        </HauntScopeProvider>
+      </MemoryRouter>
+    </TestHaunts>,
   );
 }
 
@@ -78,6 +87,7 @@ describe("ArchiveCard", () => {
 
   it("names the haunt when both archives are on screen together", () => {
     renderCard(makeAttraction(), makeEventYear());
+    fireEvent.click(screen.getByRole("radio", { name: "All Haunts" }));
 
     expect(card().getByText("Halloween Horror Nights")).toBeInTheDocument();
     expect(card().getByText("2018")).toBeInTheDocument();
@@ -85,8 +95,9 @@ describe("ArchiveCard", () => {
   });
 
   it("drops the haunt line inside that haunt's own archive, where it's obvious", () => {
+    // Halloween Horror Nights is where the app opens, so this is the
+    // ordinary case rather than a chosen one.
     renderCard(makeAttraction(), makeEventYear());
-    fireEvent.click(screen.getByRole("radio", { name: "Halloween Horror Nights" }));
 
     // The selector still says which archive this is; the card stops
     // repeating it on every record.
@@ -103,6 +114,7 @@ describe("ArchiveCard", () => {
         name: "Knott's Scary Farm 2024",
       }),
     );
+    fireEvent.click(screen.getByRole("radio", { name: "All Haunts" }));
 
     expect(card().getByText("Knott's Scary Farm")).toBeInTheDocument();
     expect(card().getByText("Debut 2024")).toBeInTheDocument();
@@ -114,7 +126,7 @@ describe("ArchiveCard", () => {
 
     // One record, one card, one rating identity — two venues on it.
     expect(screen.getAllByRole("heading", { name: "Dead Exposure" })).toHaveLength(1);
-    expect(screen.getByTitle("Ran at Universal Studios Hollywood")).toBeInTheDocument();
-    expect(screen.getByTitle("Ran at Universal Orlando Resort")).toBeInTheDocument();
+    expect(screen.getByTitle("Ran at Hollywood")).toBeInTheDocument();
+    expect(screen.getByTitle("Ran at Orlando")).toBeInTheDocument();
   });
 });

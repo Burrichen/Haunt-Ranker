@@ -59,6 +59,18 @@ fn migrations() -> Vec<Migration> {
             sql: include_str!("../migrations/0009_merge_hhn_cross_park.sql"),
             kind: MigrationKind::Up,
         },
+        Migration {
+            version: 10,
+            description: "haunt packs: haunts, venues and terminology as data",
+            sql: include_str!("../migrations/0010_haunt_packs.sql"),
+            kind: MigrationKind::Up,
+        },
+        Migration {
+            version: 11,
+            description: "record which pack a source came from",
+            sql: include_str!("../migrations/0011_source_provenance.sql"),
+            kind: MigrationKind::Up,
+        },
     ]
 }
 

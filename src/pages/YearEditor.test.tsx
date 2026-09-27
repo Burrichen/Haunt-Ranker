@@ -5,6 +5,7 @@ import type { EventYear } from "../models/eventYear";
 import type { Source } from "../models/source";
 import { useYearEditor, type YearEditor as YearEditorState } from "../hooks/useYearEditor";
 import { YearEditor } from "./YearEditor";
+import { TestHaunts } from "../test/hauntRegistry";
 
 vi.mock("../hooks/useYearEditor");
 vi.mock("@tauri-apps/plugin-opener", () => ({ openUrl: vi.fn() }));
@@ -74,11 +75,13 @@ function renderYearEditor(overrides: Partial<YearEditorState> = {}) {
   const editor = makeEditor(overrides);
   mockedUseYearEditor.mockReturnValue(editor);
   render(
-    <MemoryRouter initialEntries={["/admin/years/y2101"]}>
-      <Routes>
-        <Route path="/admin/years/:eventYearId" element={<YearEditor />} />
-      </Routes>
-    </MemoryRouter>,
+    <TestHaunts>
+      <MemoryRouter initialEntries={["/admin/years/y2101"]}>
+        <Routes>
+          <Route path="/admin/years/:eventYearId" element={<YearEditor />} />
+        </Routes>
+      </MemoryRouter>
+    </TestHaunts>,
   );
   return editor;
 }

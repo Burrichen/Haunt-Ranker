@@ -28,6 +28,8 @@ export interface AdminArchive {
   updateYear: (id: EntityId, input: Partial<EventYearInput>) => Promise<void>;
   deleteYear: (id: EntityId) => Promise<void>;
   deleteAttraction: (id: EntityId) => Promise<void>;
+  /** Reads the archive again, after something outside these methods changed it. */
+  reload: () => void;
 }
 
 /**
@@ -148,5 +150,6 @@ export function useAdminArchive(): AdminArchive {
     updateYear,
     deleteYear,
     deleteAttraction,
+    reload,
   };
 }

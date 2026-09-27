@@ -232,6 +232,7 @@ describe("backupRepository", () => {
           buildBackupFile({
             data: {
               haunts: [],
+              experienceTypes: [],
               venues: [],
               eventYears: [],
               attractions: [],
@@ -248,6 +249,7 @@ describe("backupRepository", () => {
               notes: [],
               rankings: [],
               settings: [],
+              hauntPacks: [],
               migrationConflicts: [],
             },
             preferences: {},

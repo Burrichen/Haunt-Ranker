@@ -1,32 +1,32 @@
-import { FerrisWheel, Palmtree, Star } from "lucide-react";
+import { FerrisWheel, MapPin, Palmtree, Star, Tent, Trees } from "lucide-react";
 import type { ComponentType } from "react";
-import type { ParkId } from "../../models/park";
+import { DEFAULT_VENUE_ICON, type VenueIcon } from "../../models/park";
 
 /**
- * Professional, non-emoji icons standing in for each venue — a star for
- * Hollywood, a palm tree for Orlando, a fairground wheel for Knott's Berry
- * Farm. The icon is how a card says where something ran, which is why an
+ * The marks a venue can be drawn with.
+ *
+ * Professional, non-emoji, and the app's own: a Haunt Pack chooses a name
+ * from this set rather than shipping artwork, so a venue nobody has written
+ * code for still gets a mark that belongs to the rest of the interface. An
+ * unrecognised name falls back to a plain pin rather than to nothing.
+ *
+ * The icon is how a card says where something ran, which is why an
  * exclusive attraction needs no "exclusive" label: it simply shows one venue.
  */
-export const PARK_ICONS: Record<ParkId, ComponentType<{ size?: number; strokeWidth?: number }>> = {
-  hollywood: Star,
-  orlando: Palmtree,
-  "knotts-berry-farm": FerrisWheel,
+export const VENUE_ICON_COMPONENTS: Record<
+  VenueIcon,
+  ComponentType<{ size?: number; strokeWidth?: number }>
+> = {
+  star: Star,
+  palm: Palmtree,
+  "ferris-wheel": FerrisWheel,
+  tent: Tent,
+  trees: Trees,
+  pin: MapPin,
 };
 
-export const PARK_NAMES: Record<ParkId, string> = {
-  hollywood: "Hollywood",
-  orlando: "Orlando",
-  "knotts-berry-farm": "Knott's Berry Farm",
-};
-
-/**
- * What the icon means, spelled out. A single card can carry two of these —
- * one attraction that ran at both parks is still one record — so the
- * tooltip says where it ran rather than leaving the icon to be guessed at.
- */
-export const PARK_VENUE_NAMES: Record<ParkId, string> = {
-  hollywood: "Universal Studios Hollywood",
-  orlando: "Universal Orlando Resort",
-  "knotts-berry-farm": "Knott's Berry Farm, Buena Park",
-};
+export function venueIconComponent(
+  icon: VenueIcon | null | undefined,
+): ComponentType<{ size?: number; strokeWidth?: number }> {
+  return VENUE_ICON_COMPONENTS[icon ?? DEFAULT_VENUE_ICON] ?? VENUE_ICON_COMPONENTS.pin;
+}
