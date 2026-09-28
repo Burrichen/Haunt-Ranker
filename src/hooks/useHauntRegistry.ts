@@ -3,6 +3,7 @@ import type { AttractionType } from "../models/attraction";
 import type { ExperienceType } from "../models/experienceType";
 import {
   ALL_HAUNTS,
+  ATTRACTION_CATEGORIES,
   combineLabels,
   genericTypeLabel,
   type Haunt,
@@ -16,9 +17,9 @@ import { DEFAULT_VENUE_ICON, type Venue, type VenueIcon, type VenueId } from "..
  * their names, their accents, their venues and their vocabulary — loaded
  * once from the database rather than compiled into the app.
  *
- * This is what makes a Haunt Pack work. A haunt nobody wrote code for
- * arrives as rows; the registry reads those rows; and every label, filter
- * and heading follows, because none of them name a haunt directly.
+ * Haunt Ranker supports exactly two haunts, HHN and Knott's Scary Farm, but
+ * their names, venues and vocabulary ("House" vs "Maze") still come from
+ * rows rather than from branches in each screen.
  */
 export interface HauntRegistry {
   isLoading: boolean;
@@ -52,7 +53,7 @@ export interface HauntRegistry {
   typesFor(hauntId: string | null | undefined): ExperienceType[];
   /** The categories in use across the app, for filters and headings. */
   categories(hauntId: string | null | undefined): AttractionType[];
-  /** Re-reads the haunts, for when an import has just added one. */
+  /** Re-reads the haunts, for when a backup restore has just replaced them. */
   refresh(): void;
 }
 
@@ -79,7 +80,7 @@ export const EMPTY_REGISTRY: HauntRegistry = {
   venueIcon: () => DEFAULT_VENUE_ICON,
   label: (type, _hauntId, form = "one") => genericTypeLabel(type, form),
   typesFor: () => [],
-  categories: () => ["house", "scare_zone"],
+  categories: () => [...ATTRACTION_CATEGORIES],
   refresh: () => {},
 };
 
@@ -158,14 +159,9 @@ export function buildRegistry(options: {
 
     label,
     typesFor,
-    categories: (hauntId) => {
-      const present = typesFor(hauntId).map((type) => type.category);
-      const ordered: AttractionType[] = ["house", "scare_zone", "show", "other"];
-      const inUse = ordered.filter((category) => present.includes(category));
-      // A haunt with no types recorded still browses as houses and zones,
-      // which is what every record in the archive already is.
-      return inUse.length > 0 ? inUse : ["house", "scare_zone"];
-    },
+    // Walk-throughs are the only category in the product, whatever types
+    // a haunt happens to have recorded.
+    categories: () => [...ATTRACTION_CATEGORIES],
     refresh: () => {},
   };
 }

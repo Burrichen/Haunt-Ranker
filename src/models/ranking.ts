@@ -5,7 +5,7 @@ import type { HauntId } from "./haunt";
 /**
  * A manually-ranked position within a `scope` — a free-form key
  * identifying which list this ordering applies to (e.g. "houses:all",
- * "scare_zones:year:2024"), so filtered/year views can introduce new
+ * "hhn:houses:all"), so filtered/year views can introduce new
  * scopes without a schema change. Manual ranking always takes precedence
  * over the calculated (score-based) ordering.
  */
@@ -17,19 +17,23 @@ export interface RankingEntry extends Timestamped {
 }
 
 /**
- * The scope key each category saves its manual order under. `houses` and
- * `scare_zones` are the stored names every existing ranking already uses,
- * whatever the haunt in question calls them.
+ * The scope key each category saves its manual order under. `houses` is the
+ * stored name every existing ranking already uses, whatever the haunt in
+ * question calls them (Houses at HHN, Mazes at Knott's).
  */
 const ATTRACTION_TYPE_SCOPE: Record<AttractionType, string> = {
   house: "houses",
-  scare_zone: "scare_zones",
-  show: "shows",
-  other: "other",
 };
 
-/** The lists the Rankings page can rank. Each keeps its own independent manual order. */
-export type RankingGroup = "houses" | "scare_zones" | "all";
+/**
+ * The list the Rankings page ranks: walk-throughs, per haunt or across both.
+ *
+ * Scare zone and "All Attractions" lists (`scare_zones:all`,
+ * `attractions:all`) were retired with those categories. Migration 0014
+ * gave each All Attractions order a walk-through-only copy under
+ * `houses:all` where none existed, and left the old rows where they were.
+ */
+export type RankingGroup = "houses";
 
 /**
  * Which haunt a ranking covers. `all` ranks across both, and is not a
@@ -58,13 +62,12 @@ export function allTimeScope(
 }
 
 /**
- * The scope a Rankings group saves its manual order under. The houses and
- * scare_zones groups deliberately resolve to the same scopes as
- * `allTimeScope`, so a manual order made on the Rankings page is the same
- * one the browser's "Personal Ranking" sort reads.
+ * The scope a Rankings group saves its manual order under. Deliberately the
+ * same scope as `allTimeScope("house")`, so a manual order made on the
+ * Rankings page is the same one the browser's "Personal Ranking" sort reads.
  */
 export function rankingGroupScope(group: RankingGroup, haunt: RankingHauntScope = "all"): string {
-  return scopedTo(haunt, group === "all" ? "attractions:all" : `${group}:all`);
+  return scopedTo(haunt, `${group}:all`);
 }
 
 /** The scope covering every attraction of a type within a single event year. */

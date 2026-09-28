@@ -49,7 +49,7 @@ function emptyData(): BackupData {
     notes: [],
     rankings: [],
     settings: [],
-    hauntPacks: [],
+    legacyPersonalData: [],
     migrationConflicts: [],
   };
 }

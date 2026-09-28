@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
-import type { Attraction, AttractionInput, AttractionType, IpType } from "../../models/attraction";
+import type { Attraction, AttractionInput, IpType } from "../../models/attraction";
 import type { EventYear } from "../../models/eventYear";
 import type { ParkId } from "../../models/park";
 import { Button, FilterChip, Input, Panel, SegmentedControl, Textarea } from "../ui";
@@ -9,16 +9,10 @@ import "./AttractionForm.css";
 export interface AttractionFormProps {
   /** `null` when creating. */
   attraction: Attraction | null;
-  attractionType: AttractionType;
   years: EventYear[];
   onSave: (input: AttractionInput) => Promise<void>;
   onCancel: () => void;
 }
-
-const TYPE_OPTIONS = [
-  { value: "house", label: "House" },
-  { value: "scare_zone", label: "Scare Zone" },
-];
 
 const IP_OPTIONS = [
   { value: "unknown", label: "Unknown" },
@@ -65,14 +59,7 @@ function optional(value: string): string | null {
  * required — everything else is knowledge the archive may simply not have
  * yet, and a half-documented attraction is still worth recording.
  */
-export function AttractionForm({
-  attraction,
-  attractionType: initialType,
-  years,
-  onSave,
-  onCancel,
-}: AttractionFormProps) {
-  const [type, setType] = useState<AttractionType>(attraction?.attractionType ?? initialType);
+export function AttractionForm({ attraction, years, onSave, onCancel }: AttractionFormProps) {
   const [name, setName] = useState(attraction?.name ?? "");
   const [variantName, setVariantName] = useState(attraction?.variantName ?? "");
   const [eventYearId, setEventYearId] = useState(attraction?.eventYearId ?? years[0]?.id ?? "");
@@ -113,7 +100,9 @@ export function AttractionForm({
     try {
       await onSave({
         eventYearId,
-        attractionType: type,
+        // Walk-throughs — HHN houses and Knott's mazes — are the only
+        // category the archive records.
+        attractionType: "house",
         name: name.trim(),
         slug: attraction?.slug ?? slugify(name),
         parkIds,
@@ -149,16 +138,6 @@ export function AttractionForm({
         <h2 className="attraction-form__section-title">The basics</h2>
 
         <div className="attraction-form__row">
-          <div className="attraction-form__field">
-            <span className="attraction-form__label">Type</span>
-            <SegmentedControl
-              options={TYPE_OPTIONS}
-              value={type}
-              onChange={(value) => setType(value as AttractionType)}
-              aria-label="Attraction type"
-            />
-          </div>
-
           <div className="attraction-form__field">
             <label htmlFor="attraction-year" className="attraction-form__label">
               Event year

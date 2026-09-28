@@ -2,7 +2,7 @@
  * Exercises the app's own browsing, filtering and year logic against the real
  * imported archive.
  *
- * The Houses and Scare Zones browsers, the Years pages and the wiki links are
+ * The Houses browser, the Years pages and the wiki links are
  * built on these functions, so running them over the real rows checks the same
  * behaviour those screens show — and can be run without taking the keyboard
  * away from whoever is using the machine.
@@ -66,11 +66,9 @@ const rows: AttractionBrowserRow[] = attractions.map((attraction) => ({
 }));
 
 const houses = rows.filter((row) => row.attraction.attractionType === "house");
-const zones = rows.filter((row) => row.attraction.attractionType === "scare_zone");
 
 console.log("Browsers");
 console.log(`  Houses      ${houses.length} rows`);
-console.log(`  Scare Zones ${zones.length} rows`);
 console.log(`  Years       ${years.length}`);
 
 console.log("\nSearch");
@@ -104,7 +102,7 @@ for (const year of years.slice(-3)) {
     .map((row) => ({ attraction: row.attraction, rating: row.rating, posterUrl: row.posterUrl }));
   const summary = summarizeYear(year, items, null);
   console.log(
-    `  ${year.calendarYear}: ${summary.houseCount} houses, ${summary.scareZoneCount} zones, ` +
+    `  ${year.calendarYear}: ${summary.houseCount} houses, ` +
       `${summary.reviewedCount}/${summary.attractionCount} reviewed, ` +
       `average ${summary.averages ? summary.averages.total.toFixed(1) : "none (too few reviews)"}`,
   );

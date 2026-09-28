@@ -1,14 +1,13 @@
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import type { Attraction, AttractionType } from "../models/attraction";
+import type { Attraction } from "../models/attraction";
 import type { EventYear } from "../models/eventYear";
 import type { Rating } from "../models/rating";
 import { useYearArchive, type YearArchive as YearArchiveState } from "../hooks/useYearArchive";
 import { computeYearStats, type YearAttraction } from "../utils/years";
 import { YearArchive } from "./YearArchive";
 import { TestHaunts } from "../test/hauntRegistry";
-import { buildRegistry, HauntRegistryContext } from "../hooks/useHauntRegistry";
 
 vi.mock("../hooks/useYearArchive");
 
@@ -35,16 +34,12 @@ function makeEventYear(overrides: Partial<EventYear> = {}): EventYear {
   };
 }
 
-function makeItem(
-  name: string,
-  scores: [number, number, number] | null,
-  attractionType: AttractionType = "house",
-): YearAttraction {
+function makeItem(name: string, scores: [number, number, number] | null): YearAttraction {
   const id = name.toLowerCase().replace(/\s+/g, "-");
   const attraction: Attraction = {
     id,
     eventYearId: "y2101",
-    attractionType,
+    attractionType: "house",
     name,
     slug: id,
     variantName: null,
@@ -83,8 +78,8 @@ function makeState(overrides: Partial<YearArchiveState> = {}): YearArchiveState 
   const houses = overrides.houses ?? [
     makeItem("Moonlight Manor", [5, 4, 3]),
     makeItem("Radioactive Crypt", [2, 2, 2]),
+    makeItem("Pumpkin Pier", null),
   ];
-  const scareZones = overrides.scareZones ?? [makeItem("Pumpkin Pier", null, "scare_zone")];
 
   return {
     isLoading: false,
@@ -93,8 +88,6 @@ function makeState(overrides: Partial<YearArchiveState> = {}): YearArchiveState 
     eventYear: makeEventYear(),
     artworkUrl: null,
     houses,
-    scareZones,
-    otherKinds: overrides.otherKinds ?? [],
     lineage: {
       newThisYear: [],
       returning: [],
@@ -102,7 +95,7 @@ function makeState(overrides: Partial<YearArchiveState> = {}): YearArchiveState 
       isIncomplete: false,
       tracksReturning: false,
     },
-    stats: computeYearStats([...houses, ...scareZones]),
+    stats: computeYearStats(houses),
     ...overrides,
   };
 }
@@ -129,8 +122,9 @@ describe("YearArchive", () => {
     renderYear();
 
     expect(screen.getByRole("heading", { name: "Shadowfest 2101" })).toBeInTheDocument();
-    expect(screen.getByText("2 Houses")).toBeInTheDocument();
-    expect(screen.getByText("1 Scare Zone")).toBeInTheDocument();
+    expect(screen.getByText("3 Houses")).toBeInTheDocument();
+    // Only walk-throughs are archived, so there is nothing else to count.
+    expect(screen.queryByText(/Scare Zone/)).not.toBeInTheDocument();
   });
 
   it("shows the event description when there is one", () => {
@@ -146,7 +140,7 @@ describe("YearArchive", () => {
     expect(screen.getByRole("img", { name: /Shadowfest 2101 artwork/ })).toBeInTheDocument();
   });
 
-  it("lists houses and scare zones as archive cards linking to their wiki pages", () => {
+  it("lists houses as archive cards linking to their wiki pages, and nothing else", () => {
     renderYear();
 
     const houses = screen.getByRole("region", { name: "Houses" });
@@ -156,13 +150,13 @@ describe("YearArchive", () => {
       "/attractions/moonlight-manor",
     );
 
-    const zones = screen.getByRole("region", { name: "Scare Zones" });
-    expect(within(zones).getByRole("heading", { name: "Pumpkin Pier" })).toBeInTheDocument();
+    expect(within(houses).getByRole("heading", { name: "Pumpkin Pier" })).toBeInTheDocument();
+    expect(screen.queryByRole("region", { name: "Scare Zones" })).not.toBeInTheDocument();
   });
 
   it("says when a section has nothing in it", () => {
-    renderYear({ scareZones: [] });
-    expect(screen.getByText("No scare zones on file for this year yet.")).toBeInTheDocument();
+    renderYear({ houses: [] });
+    expect(screen.getByText("No houses on file for this year yet.")).toBeInTheDocument();
   });
 
   describe("statistics", () => {
@@ -203,8 +197,7 @@ describe("YearArchive", () => {
 
     it("says it hasn't enough data rather than inventing values", () => {
       renderYear({
-        houses: [makeItem("Only Rated One", [5, 5, 5])],
-        scareZones: [makeItem("Unrated Zone", null, "scare_zone")],
+        houses: [makeItem("Only Rated One", [5, 5, 5]), makeItem("Unrated One", null)],
       });
 
       expect(screen.getByText(/Not enough reviewed attractions/)).toBeInTheDocument();
@@ -312,100 +305,5 @@ describe("YearArchive", () => {
   it("shows an error state", () => {
     renderYear({ error: "Database unavailable", eventYear: null, stats: null });
     expect(screen.getByText("Database unavailable")).toBeInTheDocument();
-  });
-});
-
-/**
- * A haunt that arrived by Haunt Pack, with its own vocabulary and a kind of
- * experience neither shipped haunt has. Built here rather than taken from
- * the seeded test registry, because the point is that nothing in the page
- * knows this haunt exists.
- */
-const IMPORTED_REGISTRY = buildRegistry({
-  haunts: [
-    {
-      id: "moonlight-fright-festival",
-      name: "Moonlight Fright Festival",
-      shortName: "Moonlight",
-      description: null,
-      tagline: null,
-      accent: "green",
-      venuesLabel: "Harrow Orchard",
-      sortOrder: 200,
-      packId: "moonlight-fright-festival",
-      packVersion: "2026.1.0",
-      packUpdatedAt: null,
-      ...TIMESTAMPS,
-    },
-  ],
-  venues: [],
-  experienceTypes: (
-    [
-      ["trail", "house", "Trail", "Trails", 0],
-      ["scare-zone", "scare_zone", "Scare Zone", "Scare Zones", 10],
-      ["show", "show", "Show", "Shows", 20],
-    ] as const
-  ).map(([slug, category, labelOne, labelMany, sortOrder]) => ({
-    id: `moonlight-fright-festival:type:${slug}`,
-    hauntId: "moonlight-fright-festival",
-    category,
-    labelOne,
-    labelMany,
-    description: null,
-    sortOrder,
-    packId: "moonlight-fright-festival",
-    ...TIMESTAMPS,
-  })),
-});
-
-describe("a haunt that arrived as a Haunt Pack", () => {
-  it("lists its shows, in its own words, with no code naming them", () => {
-    mockedUseYearArchive.mockReturnValue(
-      makeState({
-        eventYear: makeEventYear({
-          hauntId: "moonlight-fright-festival",
-          name: "Moonlight Fright Festival 2026",
-        }),
-        houses: [makeItem("Hollow Road", null), makeItem("The Cider House", null)],
-        scareZones: [makeItem("The Meadow", null, "scare_zone")],
-        otherKinds: [makeItem("The Last Pressing", null, "show")],
-      }),
-    );
-
-    render(
-      <HauntRegistryContext.Provider value={IMPORTED_REGISTRY}>
-        <MemoryRouter initialEntries={["/years/y2101"]}>
-          <Routes>
-            <Route path="/years/:eventYearId" element={<YearArchive />} />
-          </Routes>
-        </MemoryRouter>
-      </HauntRegistryContext.Provider>,
-    );
-
-    expect(screen.getByRole("region", { name: "Trails" })).toBeInTheDocument();
-    const shows = screen.getByRole("region", { name: "Shows" });
-    expect(within(shows).getByText("The Last Pressing")).toBeInTheDocument();
-    expect(screen.getByText("1 Show")).toBeInTheDocument();
-  });
-
-  it("says nothing about a kind the season doesn't hold", () => {
-    mockedUseYearArchive.mockReturnValue(
-      makeState({
-        eventYear: makeEventYear({ hauntId: "moonlight-fright-festival" }),
-        otherKinds: [],
-      }),
-    );
-
-    render(
-      <HauntRegistryContext.Provider value={IMPORTED_REGISTRY}>
-        <MemoryRouter initialEntries={["/years/y2101"]}>
-          <Routes>
-            <Route path="/years/:eventYearId" element={<YearArchive />} />
-          </Routes>
-        </MemoryRouter>
-      </HauntRegistryContext.Provider>,
-    );
-
-    expect(screen.queryByRole("region", { name: "Shows" })).not.toBeInTheDocument();
   });
 });

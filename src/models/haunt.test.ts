@@ -77,10 +77,8 @@ const REGISTRY = buildRegistry({
   ],
   experienceTypes: [
     type("hhn:type:house", HAUNT_IDS.hhn, "house", "House", "Houses"),
-    type("hhn:type:zone", HAUNT_IDS.hhn, "scare_zone", "Scare Zone", "Scare Zones"),
     type("knotts:type:maze", HAUNT_IDS.knotts, "house", "Maze", "Mazes"),
     type("mff:type:trail", "mff", "house", "Trail", "Trails"),
-    type("mff:type:show", "mff", "show", "Show", "Shows"),
   ],
 });
 
@@ -112,23 +110,55 @@ describe("a haunt's own words", () => {
     expect(many.label("house", null, "many")).toBe("Walk-throughs");
   });
 
-  it("uses the generic word where a haunt has no type of that kind", () => {
-    expect(REGISTRY.label("scare_zone", HAUNT_IDS.knotts)).toBe("Scare Zone");
-    expect(REGISTRY.label("show", HAUNT_IDS.hhn)).toBe("Show");
+  it("joins the two haunts' words where a list spans both", () => {
+    const pair = buildRegistry({
+      haunts: [],
+      venues: [],
+      experienceTypes: [
+        type("hhn:type:house", HAUNT_IDS.hhn, "house", "House", "Houses"),
+        type("knotts:type:maze", HAUNT_IDS.knotts, "house", "Maze", "Mazes"),
+      ],
+    });
+
+    expect(pair.label("house", HAUNT_IDS.knotts)).toBe("Maze");
+    expect(pair.label("house", null, "many")).toBe("Houses & Mazes");
+  });
+
+  it("uses the generic word where a haunt has no walk-through type recorded", () => {
+    expect(REGISTRY.label("house", "unknown-haunt")).toBe("Walk-through");
+    expect(REGISTRY.label("house", "unknown-haunt", "many")).toBe("Walk-throughs");
   });
 
   it("never exposes the database's own word for a category", () => {
-    for (const hauntId of [HAUNT_IDS.hhn, "mff", null]) {
+    for (const hauntId of [HAUNT_IDS.hhn, "mff", "unknown-haunt", null]) {
       for (const form of ["one", "many"] as const) {
         expect(REGISTRY.label("house", hauntId, form)).not.toMatch(/walkthrough|house_/i);
-        expect(REGISTRY.label("scare_zone", hauntId, form)).not.toMatch(/_/);
       }
     }
   });
 
-  it("offers each haunt only the categories it actually has", () => {
-    expect(REGISTRY.categories(HAUNT_IDS.hhn)).toEqual(["house", "scare_zone"]);
-    expect(REGISTRY.categories("mff")).toEqual(["house", "show"]);
+  it("offers only walk-throughs, whatever types a haunt has recorded", () => {
+    // Older data can still hold a retired category; it never becomes one
+    // the app offers, and it doesn't disturb the walk-through's word.
+    const legacy = buildRegistry({
+      haunts: [],
+      venues: [],
+      experienceTypes: [
+        type("hhn:type:house", HAUNT_IDS.hhn, "house", "House", "Houses"),
+        type(
+          "hhn:type:zone",
+          HAUNT_IDS.hhn,
+          "scare_zone" as ExperienceType["category"],
+          "Scare Zone",
+          "Scare Zones",
+        ),
+      ],
+    });
+
+    expect(legacy.categories(HAUNT_IDS.hhn)).toEqual(["house"]);
+    expect(legacy.categories(null)).toEqual(["house"]);
+    expect(REGISTRY.categories(HAUNT_IDS.knotts)).toEqual(["house"]);
+    expect(legacy.label("house", HAUNT_IDS.hhn, "many")).toBe("Houses");
   });
 });
 

@@ -7,7 +7,6 @@ import {
   Moon,
   Settings,
   ShieldCheck,
-  TreePine,
   Trophy,
 } from "lucide-react";
 import type { ComponentType } from "react";
@@ -56,11 +55,6 @@ export function Sidebar() {
     { to: "/", label: "Home", icon: Home },
     { to: "/haunts", label: "Haunts", icon: Ghost },
     { to: "/houses", label: registry.label("house", hauntId, "many"), icon: DoorOpen },
-    {
-      to: "/scare-zones",
-      label: registry.label("scare_zone", hauntId, "many"),
-      icon: TreePine,
-    },
     { to: "/years", label: "Years", icon: Calendar },
     { to: "/rankings", label: "Rankings", icon: Trophy },
     { to: "/statistics", label: "Statistics", icon: BarChart3 },

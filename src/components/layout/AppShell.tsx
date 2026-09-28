@@ -13,8 +13,8 @@ export function AppShell() {
 
   return (
     // Which haunts exist, and what they call things, is read once here: the
-    // scope below it, the nav and every page all work from those rows, which
-    // is what lets an imported Haunt Pack appear throughout the app.
+    // scope below it, the nav and every page all work from those rows rather
+    // than naming HHN or Knott's in each screen.
     <HauntRegistryProvider>
       {/* The haunt in view is shared by the nav and every page under it, so
           it is held above both rather than read separately in each. */}

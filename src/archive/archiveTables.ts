@@ -5,7 +5,7 @@ import type { BackupTableKey } from "../models/backup";
  * than only in prose.
  *
  * Everything in `ARCHIVE_TABLE_KEYS` describes the event: facts about houses,
- * scare zones, years, sources and media, which a dataset update is allowed to
+ * years, sources and media, which a dataset update is allowed to
  * add to and correct. Everything in `PERSONAL_TABLE_KEYS` is the user's own —
  * what they thought of an attraction, what they wrote about it, and the order
  * they put them in — and no import writes to those tables at all.
@@ -37,6 +37,7 @@ export const PERSONAL_TABLE_KEYS = [
   "notes",
   "rankings",
   "settings",
+  "legacyPersonalData",
 ] as const satisfies readonly BackupTableKey[];
 
 /**
@@ -44,10 +45,7 @@ export const PERSONAL_TABLE_KEYS = [
  * they describe this installation's own history. An import must not write to
  * them either, so they're named rather than left to fall through.
  */
-export const LOCAL_TABLE_KEYS = [
-  "hauntPacks",
-  "migrationConflicts",
-] as const satisfies readonly BackupTableKey[];
+export const LOCAL_TABLE_KEYS = ["migrationConflicts"] as const satisfies readonly BackupTableKey[];
 
 export type ArchiveTableKey = (typeof ARCHIVE_TABLE_KEYS)[number];
 export type PersonalTableKey = (typeof PERSONAL_TABLE_KEYS)[number];

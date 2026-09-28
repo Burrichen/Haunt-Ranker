@@ -4,13 +4,12 @@
  * has none.
  *
  * Provenance comes from the data the archive is built from — the HHN dataset
- * and each Haunt Pack in data/ — so the manifest describes the archive, not
- * one machine. Where a database is given (HAUNT_RANKER_DB_PATH), it also says
+ * in data/ — so the manifest describes the archive, not one machine. Where a database is given (HAUNT_RANKER_DB_PATH), it also says
  * which images this installation holds an offline copy of.
  *
  * Usage: npx tsx scripts/media-manifest.ts
  */
-import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { DatabaseSync } from "node:sqlite";
@@ -127,50 +126,6 @@ for (const attraction of hhn.attractions) {
       id: attraction.id,
       type: attraction.type,
     });
-  }
-}
-
-// --- Every Haunt Pack in data/ ------------------------------------------------
-for (const file of readdirSync(join(ROOT, "data"))
-  .filter((f) => f.endsWith(".hauntpack.json"))
-  .sort()) {
-  const pack = JSON.parse(readFileSync(join(ROOT, "data", file), "utf8"));
-  const haunt = pack.haunt.name as string;
-  const sources = new Map<string, Source>((pack.sources ?? []).map((s: Source) => [s.id, s]));
-  const seasonName = new Map<string, string>(
-    pack.seasons.map((s: { id: string; name: string }) => [s.id, s.name]),
-  );
-  const ranked = new Set(
-    pack.experienceTypes
-      .filter((t: { category: string }) => t.category === "house" || t.category === "scare_zone")
-      .map((t: { id: string }) => t.id),
-  );
-  for (const season of pack.seasons) {
-    const media: Media[] = season.media ?? [];
-    media.forEach((m) => add(haunt, season.name, null, m, sources));
-    if (!media.some((m) => m.kind !== "map")) {
-      unresolved.push({
-        haunt,
-        season: season.name,
-        experience: null,
-        id: season.id,
-        type: "season",
-      });
-    }
-  }
-  for (const experience of pack.experiences) {
-    const media: Media[] = experience.media ?? [];
-    const season = seasonName.get(experience.seasonId) ?? experience.seasonId;
-    media.forEach((m) => add(haunt, season, experience, m, sources));
-    if (media.length === 0) {
-      unresolved.push({
-        haunt,
-        season,
-        experience: experience.name,
-        id: experience.id,
-        type: ranked.has(experience.typeId) ? "ranked" : "special experience",
-      });
-    }
   }
 }
 

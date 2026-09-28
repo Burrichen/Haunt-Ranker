@@ -63,8 +63,7 @@ function hauntSummaries() {
       hauntId: "hhn" as const,
       attractions: 7,
       seasons: 2,
-      walkthroughs: 4,
-      scareZones: 3,
+      walkthroughs: 7,
       reviewed: 4,
       firstYear: 2101,
       lastYear: 2102,
@@ -74,7 +73,6 @@ function hauntSummaries() {
       attractions: 0,
       seasons: 0,
       walkthroughs: 0,
-      scareZones: 0,
       reviewed: 0,
       firstYear: null,
       lastYear: null,
@@ -101,7 +99,7 @@ describe("Home", () => {
     mockedUseArchiveOverview.mockReturnValue({
       isLoading: true,
       error: null,
-      summary: { totalAttractions: 0, houses: 0, scareZones: 0, reviewed: 0 },
+      summary: { totalAttractions: 0, houses: 0, seasons: 0, reviewed: 0 },
       haunts: hauntSummaries(),
       spotlight: [],
     });
@@ -133,7 +131,7 @@ describe("Home", () => {
     mockedUseArchiveOverview.mockReturnValue({
       isLoading: false,
       error: null,
-      summary: { totalAttractions: 7, houses: 4, scareZones: 3, reviewed: 4 },
+      summary: { totalAttractions: 7, houses: 7, seasons: 2, reviewed: 4 },
       haunts: hauntSummaries(),
       spotlight: [
         {
@@ -146,7 +144,6 @@ describe("Home", () => {
           attraction: makeAttraction({
             id: "a2",
             name: "Pumpkin Pier",
-            attractionType: "scare_zone",
             parkIds: ["orlando"],
           }),
           eventYear: makeEventYear(),
@@ -161,7 +158,9 @@ describe("Home", () => {
     expect(screen.getByText("From the Archive")).toBeInTheDocument();
     const progress = within(screen.getByRole("region", { name: "Archive progress" }));
     expect(progress.getByText("7")).toBeInTheDocument();
-    expect(progress.getByText("Attractions")).toBeInTheDocument();
+    expect(progress.getByText("Houses")).toBeInTheDocument();
+    expect(progress.getByText("2")).toBeInTheDocument();
+    expect(progress.getByText("Seasons")).toBeInTheDocument();
     expect(progress.getByText("Reviewed")).toBeInTheDocument();
 
     // No posterUrl on either spotlight item — both should render the
@@ -169,8 +168,7 @@ describe("Home", () => {
     expect(screen.getByRole("heading", { name: "Moonlight Manor" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Pumpkin Pier" })).toBeInTheDocument();
     expect(screen.getAllByText("2101").length).toBe(2);
-    expect(screen.getByText("House")).toBeInTheDocument();
-    expect(screen.getByText("Scare Zone")).toBeInTheDocument();
+    expect(screen.getAllByText("House").length).toBe(2);
     expect(screen.getAllByTitle(/Orlando/).length).toBe(2);
     expect(screen.queryByRole("img")).not.toBeInTheDocument();
   });
@@ -179,7 +177,7 @@ describe("Home", () => {
     mockedUseArchiveOverview.mockReturnValue({
       isLoading: false,
       error: null,
-      summary: { totalAttractions: 0, houses: 0, scareZones: 0, reviewed: 0 },
+      summary: { totalAttractions: 0, houses: 0, seasons: 0, reviewed: 0 },
       haunts: hauntSummaries(),
       spotlight: [],
     });
@@ -193,7 +191,7 @@ describe("Home", () => {
     mockedUseArchiveOverview.mockReturnValue({
       isLoading: false,
       error: "Database unavailable",
-      summary: { totalAttractions: 0, houses: 0, scareZones: 0, reviewed: 0 },
+      summary: { totalAttractions: 0, houses: 0, seasons: 0, reviewed: 0 },
       haunts: hauntSummaries(),
       spotlight: [],
     });

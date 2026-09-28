@@ -130,21 +130,20 @@ describe("AdminMode", () => {
       renderAdmin();
 
       expect(screen.getByText("Admin Mode is off")).toBeInTheDocument();
-      expect(screen.queryByRole("button", { name: /Add House/ })).not.toBeInTheDocument();
+      expect(screen.queryByRole("button", { name: /Add attraction/ })).not.toBeInTheDocument();
       expect(screen.queryByRole("button", { name: /Delete/ })).not.toBeInTheDocument();
       expect(screen.queryByRole("button", { name: /Add year/ })).not.toBeInTheDocument();
     });
   });
 
   describe("attractions", () => {
-    it("offers a way to add each kind of attraction", () => {
+    it("offers one way to add an attraction, with no scare zone option", () => {
       renderAdmin();
 
-      fireEvent.click(screen.getByRole("button", { name: /Add House/ }));
-      expect(navigate).toHaveBeenCalledWith("/admin/attractions/new?type=house");
+      fireEvent.click(screen.getByRole("button", { name: /Add attraction/ }));
+      expect(navigate).toHaveBeenCalledWith("/admin/attractions/new");
 
-      fireEvent.click(screen.getByRole("button", { name: /Add Scare Zone/ }));
-      expect(navigate).toHaveBeenCalledWith("/admin/attractions/new?type=scare_zone");
+      expect(screen.queryByRole("button", { name: /Add Scare Zone/ })).not.toBeInTheDocument();
     });
 
     it("opens the editor for an existing attraction", () => {

@@ -40,19 +40,22 @@ import { buildYearRanking, summarizeYear, type YearAttraction } from "../utils/y
 /**
  * Everything Halloween Horror Nights shows a person, reduced to plain data.
  *
- * This file is run twice, against two different builds: once by the
- * pre-multi-haunt app (commit 475b8cd, schema 7) to record what HHN looked
- * like before there was a second haunt, and once by the current app after
- * migrating that same database. The migration regression test compares the
- * two. So it may only use APIs both builds have, and it goes through the
- * same repositories and the same pure functions the screens use — the
- * Houses and Scare Zones browsers, Years, Rankings, Statistics and the
- * explorer — rather than re-deriving any of it.
+ * The migration regression test compares two of these. The recorded half
+ * was taken by the pre-multi-haunt app (commit 475b8cd, schema 7), running
+ * this file as it was at commit 2dc68f1 — when the archive still held scare
+ * zones — see `scripts/make-hhn-v7-fixture.ts`. This half is taken by the
+ * current app after migrating that same database, and it goes through the
+ * same repositories and pure functions the screens use — the Houses browser,
+ * Years, Rankings, Statistics and the explorer — rather than re-deriving any
+ * of it.
  *
- * `scripts/make-hhn-v7-fixture.ts` regenerates the recorded half.
+ * Houses only, since migration 0014. Every view recorded here has a
+ * houses-only counterpart in the recorded half with the same key: the
+ * Houses browser (`house|…`), the Houses ranking (`houses|…`), and the
+ * statistics filtered to houses (`houses`, `orlando-houses`).
  */
 
-type RankingGroup = "houses" | "scare_zones" | "all";
+type RankingGroup = "houses";
 
 export interface SnapshotOptions {
   /**
@@ -98,8 +101,11 @@ export interface HhnSnapshot {
   relations: Array<Record<string, unknown>>;
   ratings: Record<string, { theme: number; fun: number; fear: number; total: number }>;
   notes: Record<string, string>;
-  /** What the Rankings page reads for each group, in saved order. */
-  manualOrders: Record<RankingGroup, string[]>;
+  /**
+   * What the Rankings page reads for each group, in saved order. The
+   * recorded half also has `scare_zones` and `all`.
+   */
+  manualOrders: Record<string, string[]>;
   settings: Record<string, string>;
   /** The Years page. */
   years: Record<string, Record<string, unknown>>;
@@ -108,7 +114,7 @@ export interface HhnSnapshot {
   statistics: Record<string, Record<string, unknown>>;
   /** The explorer, per filter set. */
   explorer: Record<string, Record<string, unknown>>;
-  /** The Houses and Scare Zones browsers: `type|filters|sort` → ids in order. */
+  /** The Houses browser (and, in the recorded half, Scare Zones): `type|filters|sort` → ids in order. */
   browser: Record<string, string[]>;
   /** The Rankings page: `group|mode|filters|sort` → ids in order. */
   rankings: Record<string, Record<string, string[]>>;
@@ -181,15 +187,13 @@ const BROWSER_SORTS: SortOption[] = [
   "manual",
 ];
 
+/**
+ * Named after the recorded half's houses-only filters, which is what these
+ * now are: with only houses in the archive, "no filter" is "houses".
+ */
 const STATISTICS_FILTERS: Record<string, Partial<StatisticsFilters>> = {
-  none: {},
-  "year-2019": { year: 2019 },
-  houses: { type: "house" },
-  "scare-zones": { type: "scare_zone" },
-  hollywood: { park: "hollywood" },
-  orlando: { park: "orlando" },
-  licensed: { ipType: "licensed" },
-  "orlando-houses": { park: "orlando", type: "house" },
+  houses: {},
+  "orlando-houses": { park: "orlando" },
 };
 
 const RANKING_FILTERS: Record<string, Partial<RankingFilters>> = {
@@ -216,8 +220,8 @@ export async function takeHhnSnapshot(
   const ratingByAttraction = new Map(ratings.map((rating) => [rating.attractionId, rating]));
 
   const rankingRepo = createRankingRepository(db);
-  const manualOrders = {} as Record<RankingGroup, string[]>;
-  for (const group of ["houses", "scare_zones", "all"] as const) {
+  const manualOrders: Record<string, string[]> = {};
+  for (const group of ["houses"] as const) {
     manualOrders[group] = (await rankingRepo.getScope(rankingScope(group))).map(
       (entry) => entry.attractionId,
     );
@@ -321,7 +325,6 @@ export async function takeHhnSnapshot(
   for (const summary of summaries) {
     snapshot.years[summary.eventYear.id] = {
       houseCount: summary.houseCount,
-      scareZoneCount: summary.scareZoneCount,
       reviewedCount: summary.reviewedCount,
       attractionCount: summary.attractionCount,
       averages: summary.averages,
@@ -368,9 +371,9 @@ export async function takeHhnSnapshot(
     };
   }
 
-  // --- The Houses and Scare Zones browsers -----------------------------------
-  for (const type of ["house", "scare_zone"] as AttractionType[]) {
-    const scope = rankingScope(type === "house" ? "houses" : "scare_zones");
+  // --- The Houses browser ----------------------------------------------------
+  for (const type of ["house"] as AttractionType[]) {
+    const scope = rankingScope("houses");
     const positions = new Map(
       (await rankingRepo.getScope(scope)).map((entry) => [entry.attractionId, entry.position]),
     );
@@ -391,7 +394,7 @@ export async function takeHhnSnapshot(
   }
 
   // --- Rankings ---------------------------------------------------------------
-  for (const group of ["houses", "scare_zones", "all"] as const) {
+  for (const group of ["houses"] as const) {
     const types = groupAttractionTypes(group);
     const groupRows: RankingRow[] = statisticsRows.filter((row) =>
       types.includes(row.attraction.attractionType),

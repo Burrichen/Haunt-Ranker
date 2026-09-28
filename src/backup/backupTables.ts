@@ -86,7 +86,9 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
       id: { kind: "text" },
       haunt_id: { kind: "text", references: "haunts" },
       // What the app reasons about; the labels are what a reader sees.
-      category: { kind: "text", values: ["walkthrough", "scare_zone", "show", "other"] },
+      // Walk-throughs only: an older file's scare zone and show vocabulary
+      // is dropped by the format 4 → 5 upgrade before it gets here.
+      category: { kind: "text", values: ["walkthrough"] },
       label_one: { kind: "text" },
       label_many: { kind: "text" },
       description: { kind: "text", nullable: true },
@@ -139,7 +141,10 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
     columns: {
       id: { kind: "text" },
       event_year_id: { kind: "text", references: "eventYears" },
-      attraction_type: { kind: "text", values: ["house", "scare_zone", "show", "other"] },
+      // Houses and mazes only. An older file's scare zones and shows are
+      // diverted by the format 4 → 5 upgrade, their personal rows kept in
+      // legacyPersonalData, so a restore can't bring them back into view.
+      attraction_type: { kind: "text", values: ["house"] },
       // The haunt's own name for this kind of experience, where it named one.
       experience_type_id: { kind: "text", nullable: true, references: "experienceTypes" },
       name: { kind: "text" },
@@ -176,8 +181,8 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
     orderBy: "attraction_id, park_id",
     columns: {
       attraction_id: { kind: "text", references: "attractions" },
-      // A pack brings its own venues, so the check is that the backup
-      // contains the venue rather than that the app knows its name.
+      // The check is that the backup contains the venue rather than that
+      // the app knows its name.
       park_id: { kind: "text", references: "venues" },
     },
   },
@@ -373,8 +378,7 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
     orderBy: "scope, position",
     columns: {
       id: { kind: "text" },
-      // One list per scope — a haunt's houses, its scare zones, or the same
-      // across all haunts. Deliberately free text: a scope a build doesn't
+      // One list per scope — a haunt's walk-throughs, or all haunts'. Deliberately free text: a scope a build doesn't
       // know about is carried through a backup rather than dropped.
       scope: { kind: "text" },
       attraction_id: { kind: "text", references: "attractions" },
@@ -394,21 +398,25 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
     },
   },
   {
-    key: "hauntPacks",
-    table: "haunt_packs",
-    label: "Haunt Pack imports",
-    orderBy: "imported_at, id",
+    key: "legacyPersonalData",
+    table: "legacy_personal_data",
+    label: "Preserved ratings and notes on retired records",
+    orderBy: "id",
     columns: {
       id: { kind: "text" },
-      pack_id: { kind: "text" },
-      pack_version: { kind: "text" },
-      schema_id: { kind: "text" },
-      haunt_id: { kind: "text" },
-      haunt_name: { kind: "text" },
-      generated_at: { kind: "text", nullable: true },
-      imported_at: { kind: "text" },
-      summary: { kind: "text" },
-      provenance_notes: { kind: "text", nullable: true },
+      kind: { kind: "text", values: ["rating", "note", "ranking"] },
+      original_id: { kind: "text" },
+      // Ids, but not foreign keys: the record these were written about is
+      // no longer in the archive, which is the whole reason they're here.
+      attraction_id: { kind: "text" },
+      attraction_name: { kind: "text", nullable: true },
+      attraction_type: { kind: "text", nullable: true },
+      haunt_id: { kind: "text", nullable: true },
+      season_id: { kind: "text", nullable: true },
+      calendar_year: { kind: "int", nullable: true },
+      payload: { kind: "text" },
+      reason: { kind: "text" },
+      preserved_at: { kind: "text" },
     },
   },
   {

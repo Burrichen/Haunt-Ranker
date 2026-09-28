@@ -53,7 +53,7 @@ shape of the format.
 | `notes`          | no       | Scope, gaps and caveats for this revision                                    |
 | `sources`        | no       | Shared source records, cited by id from anywhere                             |
 | `events`         | yes      | Event years                                                                  |
-| `attractions`    | yes      | Houses and scare zones                                                       |
+| `attractions`    | yes      | Houses (walk-throughs) — the only category Haunt Ranker archives             |
 
 ### `events[]`
 
@@ -84,7 +84,7 @@ ran at is recorded on the attraction, because that's where it differs.
 | `id`          | yes      | Stable id                                                           |
 | `previousIds` | no       | See "Renaming"                                                      |
 | `eventId`     | yes      | An `id` from `events`                                               |
-| `type`        | yes      | `house` or `scare_zone`                                             |
+| `type`        | yes      | `house` (scare zones and shows are out of scope and are refused)    |
 | `name`        | yes      | Display name                                                        |
 | `slug`        | no       | URL segment; defaults to the id. Addressing, not identity           |
 | `variantName` | no       | What distinguishes this record from another of the same name        |

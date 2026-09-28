@@ -18,8 +18,8 @@ function readStoredViewMode(): AttractionViewMode {
 }
 
 /**
- * The user's preferred way to browse attraction lists — shared by Houses
- * and Scare Zones (and any future attraction listing) so choosing a view
+ * The user's preferred way to browse attraction lists — shared by every
+ * attraction listing so choosing a view
  * once applies everywhere, and persists across app restarts.
  */
 export function useAttractionViewMode(): [AttractionViewMode, (mode: AttractionViewMode) => void] {

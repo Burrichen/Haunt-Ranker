@@ -79,7 +79,6 @@ export interface Statistics {
 const EMPTY_COVERAGE: Coverage = {
   all: { reviewed: 0, total: 0 },
   houses: { reviewed: 0, total: 0 },
-  scareZones: { reviewed: 0, total: 0 },
 };
 
 /**

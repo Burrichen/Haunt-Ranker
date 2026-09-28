@@ -30,7 +30,7 @@ describe("backupRepository", () => {
     );
     await db.execute(
       `INSERT INTO attractions (id, event_year_id, attraction_type, name, slug)
-       VALUES ('a2', 'y1', 'scare_zone', 'Pumpkin Pier', 'pumpkin-pier')`,
+       VALUES ('a2', 'y1', 'house', 'Pumpkin Pier', 'pumpkin-pier')`,
     );
     await db.execute(
       "INSERT INTO attraction_parks (attraction_id, park_id) VALUES ('a1', 'hollywood')",
@@ -90,6 +90,15 @@ describe("backupRepository", () => {
     await db.execute(
       "INSERT INTO user_settings (key, value) VALUES ('last-visited', '\"/years\"')",
     );
+    // A rating on a scare zone, preserved by migration 0014 when zones left
+    // the archive. It belongs to the person, so a backup carries it.
+    await db.execute(
+      `INSERT INTO legacy_personal_data
+         (id, kind, original_id, attraction_id, attraction_name, attraction_type,
+          haunt_id, season_id, calendar_year, payload, reason)
+       VALUES ('rating:rt9', 'rating', 'rt9', 'z9', 'Fog Row', 'scare_zone',
+               'hhn', 'y1', 2101, '{"theme":1,"fun":2,"fear":3}', 'retired-category')`,
+    );
   }
 
   async function clearEverything(): Promise<void> {
@@ -100,6 +109,7 @@ describe("backupRepository", () => {
     await db.execute("DELETE FROM event_years");
     await db.execute("DELETE FROM sources");
     await db.execute("DELETE FROM user_settings");
+    await db.execute("DELETE FROM legacy_personal_data");
   }
 
   beforeEach(async () => {
@@ -249,7 +259,7 @@ describe("backupRepository", () => {
               notes: [],
               rankings: [],
               settings: [],
-              hauntPacks: [],
+              legacyPersonalData: [],
               migrationConflicts: [],
             },
             preferences: {},

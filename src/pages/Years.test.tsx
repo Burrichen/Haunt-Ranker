@@ -33,8 +33,7 @@ function makeSummary(calendarYear: number, overrides: Partial<YearSummary> = {})
   return {
     eventYear: makeEventYear(calendarYear),
     artworkUrl: null,
-    houseCount: 2,
-    scareZoneCount: 1,
+    houseCount: 3,
     reviewedCount: 2,
     attractionCount: 3,
     averages,
@@ -81,7 +80,7 @@ describe("Years", () => {
 
       const card = screen.getByRole("link", { name: /Shadowfest 2101/ });
       expect(within(card).getByText("Houses")).toBeInTheDocument();
-      expect(within(card).getByText("Scare Zones")).toBeInTheDocument();
+      expect(within(card).queryByText("Scare Zones")).not.toBeInTheDocument();
       expect(within(card).getByText("Reviewed")).toBeInTheDocument();
       expect(within(card).getByText("Avg 10.5 / 15")).toBeInTheDocument();
       expect(card).toHaveAttribute("href", "/years/y2101");

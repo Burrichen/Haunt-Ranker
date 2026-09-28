@@ -30,7 +30,8 @@ export interface ArchiveSpotlightItem {
 export interface ArchiveSummary {
   totalAttractions: number;
   houses: number;
-  scareZones: number;
+  /** Seasons on file in the scope. */
+  seasons: number;
   /** Attractions with a rating — never inferred from a rating of 0. */
   reviewed: number;
 }
@@ -50,7 +51,7 @@ export interface ArchiveOverview {
 const EMPTY_SUMMARY: ArchiveSummary = {
   totalAttractions: 0,
   houses: 0,
-  scareZones: 0,
+  seasons: 0,
   reviewed: 0,
 };
 
@@ -123,7 +124,7 @@ export function useArchiveOverview(): ArchiveOverview {
           summary: {
             totalAttractions: attractions.length,
             houses: attractions.filter((a) => a.attractionType === "house").length,
-            scareZones: attractions.filter((a) => a.attractionType === "scare_zone").length,
+            seasons: years.length,
             reviewed: ratedIds.length,
           },
           haunts,
@@ -166,7 +167,7 @@ export function useArchiveOverview(): ArchiveOverview {
       ? {
           totalAttractions: own.attractions,
           houses: own.walkthroughs,
-          scareZones: own.scareZones,
+          seasons: own.seasons,
           reviewed: own.reviewed,
         }
       : state.summary;

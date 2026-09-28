@@ -90,8 +90,7 @@ export function FilterBar({
         <span className="filter-bar__label">Venue</span>
         <div className="filter-bar__chips">
           {/* One chip per venue the haunt in view actually runs at — read
-              from the venues themselves, so an imported haunt's venues
-              appear here without this file knowing their names. */}
+              from the venue rows, so this file never names them. */}
           {venues.map((venue) => {
             const Icon = venueIconComponent(venue.icon);
             return (

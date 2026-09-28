@@ -17,7 +17,7 @@ export interface AttractionBrowserProps {
 }
 
 /**
- * Shared browsing UI for both Houses and Scare Zones: search, filters,
+ * The browsing UI for houses and mazes: search, filters,
  * sort, a saved view mode, and either a poster grid or a compact list —
  * driven by `useAttractionBrowser`, which owns the data and keeps
  * filter/sort state in the URL.

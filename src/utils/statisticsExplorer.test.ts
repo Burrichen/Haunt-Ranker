@@ -102,7 +102,7 @@ function filters(overrides: Partial<StatisticsFilters>): StatisticsFilters {
 }
 
 /**
- * A small archive spanning both parks, both types, both IP classifications
+ * A small archive spanning both parks, both IP classifications
  * and three years — enough for every combination the explorer is meant to
  * answer.
  */
@@ -121,17 +121,17 @@ const ARCHIVE: StatisticsRow[] = [
     parkIds: ["orlando"],
     ipType: "licensed",
   }),
-  makeRow("Carnival Zone", {
+  makeRow("Carnival House", {
     scores: [5, 4.5, 2], // total 11.5
     year: 2102,
-    type: "scare_zone",
+    type: "house",
     parkIds: ["orlando"],
     ipType: "original",
   }),
-  makeRow("Fog Zone", {
+  makeRow("Fog House", {
     scores: [1, 1, 4], // total 6
     year: 2102,
-    type: "scare_zone",
+    type: "house",
     parkIds: ["hollywood", "orlando"],
     ipType: "licensed",
   }),
@@ -150,7 +150,7 @@ describe("runAttractionQuery", () => {
   it("ranks by total, highest first, numbering from 1", () => {
     const { ranked } = runAttractionQuery(ARCHIVE, query());
 
-    expect(names(ranked)).toEqual(["Carnival Zone", "Gentle House", "Terror House", "Fog Zone"]);
+    expect(names(ranked)).toEqual(["Carnival House", "Gentle House", "Terror House", "Fog House"]);
     expect(ranked.map((row) => row.rank)).toEqual([1, 2, 3, 4]);
   });
 
@@ -188,33 +188,32 @@ describe("runAttractionQuery", () => {
   describe("the questions the interface is meant to answer, from the generic query alone", () => {
     it("scariest attractions ever", () => {
       const { ranked } = runAttractionQuery(ARCHIVE, query({ metric: "fear" }));
-      expect(names(ranked)).toEqual(["Terror House", "Fog Zone", "Carnival Zone", "Gentle House"]);
+      expect(names(ranked)).toEqual([
+        "Terror House",
+        "Fog House",
+        "Carnival House",
+        "Gentle House",
+      ]);
     });
 
     it("least scary Houses", () => {
-      const { ranked } = runAttractionQuery(
-        ARCHIVE,
-        query({ metric: "fear", direction: "asc", filters: filters({ type: "house" }) }),
-      );
-      expect(names(ranked)).toEqual(["Gentle House", "Terror House"]);
-    });
-
-    it("most fun Scare Zones", () => {
-      const { ranked } = runAttractionQuery(
-        ARCHIVE,
-        query({ metric: "fun", filters: filters({ type: "scare_zone" }) }),
-      );
-      expect(names(ranked)).toEqual(["Carnival Zone", "Fog Zone"]);
+      const { ranked } = runAttractionQuery(ARCHIVE, query({ metric: "fear", direction: "asc" }));
+      expect(names(ranked)).toEqual([
+        "Gentle House",
+        "Carnival House",
+        "Fog House",
+        "Terror House",
+      ]);
     });
 
     it("lowest Theme scores", () => {
       const { ranked } = runAttractionQuery(ARCHIVE, query({ metric: "theme", direction: "asc" }));
-      expect(names(ranked)[0]).toBe("Fog Zone");
+      expect(names(ranked)[0]).toBe("Fog House");
     });
 
     it("highest scoring attractions in a specific year", () => {
       const { ranked } = runAttractionQuery(ARCHIVE, query({ filters: filters({ year: 2102 }) }));
-      expect(names(ranked)).toEqual(["Carnival Zone", "Fog Zone"]);
+      expect(names(ranked)).toEqual(["Carnival House", "Fog House"]);
     });
 
     it("most fun Orlando attractions", () => {
@@ -222,8 +221,8 @@ describe("runAttractionQuery", () => {
         ARCHIVE,
         query({ metric: "fun", filters: filters({ park: "orlando" }) }),
       );
-      // Fog Zone ran at both parks, so it counts as an Orlando attraction too.
-      expect(names(ranked)).toEqual(["Gentle House", "Carnival Zone", "Fog Zone"]);
+      // Fog House ran at both parks, so it counts as an Orlando attraction too.
+      expect(names(ranked)).toEqual(["Gentle House", "Carnival House", "Fog House"]);
     });
 
     it("best-scoring Originals", () => {
@@ -231,18 +230,17 @@ describe("runAttractionQuery", () => {
         ARCHIVE,
         query({ filters: filters({ ipType: "original" }) }),
       );
-      expect(names(ranked)).toEqual(["Carnival Zone", "Terror House"]);
+      expect(names(ranked)).toEqual(["Carnival House", "Terror House"]);
     });
   });
 
   describe("combinations nobody listed", () => {
-    it("stacks year, type, park and IP together", () => {
+    it("stacks year, park and IP together", () => {
       const { ranked, matchCount } = runAttractionQuery(
         ARCHIVE,
         query({
           filters: filters({
             year: 2102,
-            type: "scare_zone",
             park: "orlando",
             ipType: "original",
           }),
@@ -250,13 +248,14 @@ describe("runAttractionQuery", () => {
       );
 
       expect(matchCount).toBe(1);
-      expect(names(ranked)).toEqual(["Carnival Zone"]);
+      expect(names(ranked)).toEqual(["Carnival House"]);
     });
 
     it("returns an empty ranking when a combination matches nothing", () => {
       const result = runAttractionQuery(
         ARCHIVE,
-        query({ filters: filters({ year: 2101, type: "scare_zone" }) }),
+        // 2101's only Orlando house is licensed.
+        query({ filters: filters({ year: 2101, park: "orlando", ipType: "original" }) }),
       );
 
       expect(result.matchCount).toBe(0);
@@ -280,7 +279,7 @@ describe("runAttractionQuery", () => {
         ARCHIVE,
         query({ metric: "fun", direction: "asc", filters: filters({ park: "orlando" }) }),
       );
-      expect(names(ranked)).toEqual(["Fog Zone", "Carnival Zone", "Gentle House"]);
+      expect(names(ranked)).toEqual(["Fog House", "Carnival House", "Gentle House"]);
     });
   });
 });

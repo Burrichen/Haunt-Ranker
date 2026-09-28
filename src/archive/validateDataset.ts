@@ -18,7 +18,12 @@ const MAX_REPORTED_ERRORS = 15;
 export const ID_PATTERN = /^[a-z0-9][a-z0-9-]{1,79}$/;
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 
-const ATTRACTION_TYPES = ["house", "scare_zone"];
+/**
+ * Houses (and mazes) only. Scare zones, shows and other experiences are out
+ * of Haunt Ranker's scope, so a dataset carrying one is refused outright
+ * rather than half-imported.
+ */
+const ATTRACTION_TYPES = ["house"];
 const IP_TYPES = ["original", "licensed"];
 const RELATION_TYPES = ["sequel", "previous_version", "same_franchise", "related_concept"];
 const MEDIA_KINDS = ["poster", "promotional_image", "logo", "event_artwork", "map", "local_image"];

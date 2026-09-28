@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CircleAlert, ShieldOff, Trash2 } from "lucide-react";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   AttractionForm,
   CharacterEditor,
@@ -12,12 +12,10 @@ import {
 import { Button, EmptyState, LoadingState, PageHeader, Panel } from "../components/ui";
 import { useAdminMode } from "../hooks/useAdminMode";
 import { useAttractionEditor } from "../hooks/useAttractionEditor";
-import type { AttractionType } from "../models/attraction";
 import "./AttractionEditor.css";
 
 export function AttractionEditor() {
   const { attractionId } = useParams<{ attractionId: string }>();
-  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const [adminMode] = useAdminMode();
   const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
@@ -73,8 +71,6 @@ export function AttractionEditor() {
     );
   }
 
-  const requestedType = searchParams.get("type");
-  const initialType: AttractionType = requestedType === "scare_zone" ? "scare_zone" : "house";
   const isNew = !attractionId;
 
   if (years.length === 0) {
@@ -98,9 +94,7 @@ export function AttractionEditor() {
   return (
     <div className="attraction-editor">
       <PageHeader
-        title={
-          isNew ? `Add ${initialType === "house" ? "house" : "scare zone"}` : "Edit attraction"
-        }
+        title={isNew ? "Add attraction" : "Edit attraction"}
         subtitle={attraction?.name}
         backTo="/admin"
         actions={
@@ -119,7 +113,6 @@ export function AttractionEditor() {
 
       <AttractionForm
         attraction={attraction}
-        attractionType={initialType}
         years={years}
         onCancel={() => navigate("/admin")}
         onSave={async (input) => {

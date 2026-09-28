@@ -18,7 +18,7 @@ import {
 } from "../components/ui";
 import { useRankings } from "../hooks/useRankings";
 import { useHauntRegistry } from "../hooks/useHauntRegistry";
-import type { RankingGroup, RankingHauntScope } from "../models/ranking";
+import type { RankingHauntScope } from "../models/ranking";
 import type { RankingMode } from "../utils/rankings";
 import "./Rankings.css";
 
@@ -34,8 +34,6 @@ export function Rankings() {
   const {
     isLoading,
     error,
-    group,
-    setGroup,
     haunt,
     setHaunt,
     mode,
@@ -64,21 +62,10 @@ export function Rankings() {
     label: registry.scopeLabel(option, option === "all" ? "full" : "short"),
   }));
 
-  // The group labels are the vocabulary of whichever haunt is being
-  // ranked: houses here, mazes there, and wording that fits both across
-  // All Haunts.
+  // The vocabulary of whichever haunt is being ranked: houses here, mazes
+  // there, and "houses & mazes" across All Haunts.
   const rankedHaunt = haunt === "all" ? null : haunt;
-  const groupOptions: Array<{ value: RankingGroup; label: string }> = [
-    { value: "houses", label: registry.label("house", rankedHaunt, "many") },
-    { value: "scare_zones", label: registry.label("scare_zone", rankedHaunt, "many") },
-    { value: "all", label: "All Attractions" },
-  ];
-  const noun =
-    group === "all"
-      ? "attractions"
-      : registry
-          .label(group === "houses" ? "house" : "scare_zone", rankedHaunt, "many")
-          .toLowerCase();
+  const noun = registry.label("house", rankedHaunt, "many").toLowerCase();
 
   const handleReset = async () => {
     await resetToCalculated();
@@ -99,12 +86,6 @@ export function Rankings() {
           onChange={(next: RankingHauntScope) => setHaunt(next)}
           aria-label="Haunt"
         />
-        <SegmentedControl
-          options={groupOptions}
-          value={group}
-          onChange={(next: RankingGroup) => setGroup(next)}
-          aria-label="Ranking group"
-        />
         <div className="rankings__toolbar-end">
           <SegmentedControl
             options={MODE_OPTIONS}
@@ -120,7 +101,6 @@ export function Rankings() {
         filters={filters}
         onChange={setFilters}
         availableYears={availableYears}
-        showTypeFilter={group === "all"}
         isActive={areFiltersActive}
         onClear={clearFilters}
       />

@@ -75,7 +75,6 @@ function makeState(overrides: Partial<RankingsState> = {}): RankingsState {
     isLoading: false,
     error: null,
     group: "houses",
-    setGroup: vi.fn(),
     haunt: "all",
     setHaunt: vi.fn(),
     mode: "calculated",
@@ -178,19 +177,11 @@ describe("Rankings", () => {
     expect(state.resetToCalculated).not.toHaveBeenCalled();
   });
 
-  it("switches ranking group", () => {
-    const state = renderRankings();
-    fireEvent.click(screen.getByRole("radio", { name: "All Attractions" }));
-    expect(state.setGroup).toHaveBeenCalledWith("all");
-  });
-
-  it("only offers the House/Scare Zone filter on the All Attractions group", () => {
-    renderRankings({ group: "houses" });
+  it("ranks walk-throughs only, with no group switcher or type filter", () => {
+    renderRankings();
+    expect(screen.queryByLabelText("Ranking group")).not.toBeInTheDocument();
+    expect(screen.queryByRole("radio", { name: "All Attractions" })).not.toBeInTheDocument();
     expect(screen.queryByText("Type")).not.toBeInTheDocument();
-
-    mockedUseRankings.mockReset();
-    renderRankings({ group: "all" });
-    expect(screen.getByText("Type")).toBeInTheDocument();
   });
 
   it("filters by park", () => {

@@ -41,8 +41,8 @@ const DIRECTION_OPTIONS = [
 
 /**
  * The whole query in one row: what to rank, how to rank it, and what to
- * count. There is no per-question control here — "scariest scare zones of
- * 2103" is Fear + Highest→Lowest + two facets, assembled by the user.
+ * count. There is no per-question control here — "scariest Orlando
+ * houses of 2023" is Fear + Highest→Lowest + two facets, assembled by the user.
  */
 export function ExplorerControls({
   subject,

@@ -152,8 +152,7 @@ export function Home() {
             </div>
             <h2 className="home__nav-tile-title">Search every haunt</h2>
             <p className="home__nav-tile-description">
-              {registry.label("house", null, "many")} and{" "}
-              {registry.label("scare_zone", null, "many").toLowerCase()} from every collection.
+              {registry.label("house", null, "many")} from every collection.
             </p>
           </Panel>
         </Link>
@@ -238,12 +237,8 @@ function ArchiveBody({
       </section>
 
       <section className="home__progress" aria-label="Archive progress">
-        <ProgressStat value={summary.totalAttractions} label="Attractions" />
         <ProgressStat value={summary.houses} label={registry.label("house", hauntId, "many")} />
-        <ProgressStat
-          value={summary.scareZones}
-          label={registry.label("scare_zone", hauntId, "many")}
-        />
+        <ProgressStat value={summary.seasons} label="Seasons" />
         <ProgressStat value={summary.reviewed} label="Reviewed" />
       </section>
     </>

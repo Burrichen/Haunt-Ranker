@@ -35,7 +35,7 @@ function emptyData(): BackupData {
     notes: [],
     rankings: [],
     settings: [],
-    hauntPacks: [],
+    legacyPersonalData: [],
     migrationConflicts: [],
   };
 }
@@ -229,9 +229,16 @@ describe("validateBackup", () => {
     const data = populatedData();
     (data.attractions[0] as unknown as Record<string, unknown>).attraction_type = "maze";
 
-    expect(errorsOf(makeFile({ data }))[0]).toMatch(
-      /attraction_type should be one of house, scare_zone, show, other/,
-    );
+    expect(errorsOf(makeFile({ data }))[0]).toMatch(/attraction_type should be one of house/);
+  });
+
+  it("refuses a current-format file that holds a scare zone", () => {
+    // Only an older file's zones are diverted, by the upgrade. A file that
+    // claims to be current and still holds one has been edited by hand.
+    const data = populatedData();
+    (data.attractions[0] as unknown as Record<string, unknown>).attraction_type = "scare_zone";
+
+    expect(errorsOf(makeFile({ data }))[0]).toMatch(/attraction_type should be one of house/);
   });
 
   it("refuses a venue the backup doesn't contain", () => {
@@ -470,7 +477,6 @@ function version1File(): Record<string, unknown> {
       notes: [{ id: "n1", attraction_id: "a1", note: "Best of the year.", ...TIMESTAMPS }],
       rankings: [{ id: "rk1", scope: "house", attraction_id: "a1", position: 1, ...TIMESTAMPS }],
       settings: [],
-      hauntPacks: [],
     },
     preferences: { ambientEffects: true },
   };
@@ -483,6 +489,7 @@ describe("upgradeBackup", () => {
       1: (raw) => ({ ...raw, wasUpgradedAgain: true }),
       2: (raw) => raw,
       3: (raw) => raw,
+      4: (raw) => raw,
     };
 
     const result = upgradeBackup({ formatVersion: 0 }, upgrades);
@@ -583,6 +590,212 @@ describe("a version 1 backup", () => {
     expect(result.backup.data.attractions[0].debut_year).toBeNull();
     expect(result.backup.data.attractionVenueWiki).toEqual([]);
     expect(result.backup.data.migrationConflicts).toEqual([]);
+  });
+});
+
+/**
+ * A version 4 file: HHN with one house and one rated, noted, ranked scare
+ * zone — the shape every backup had before migration 0014.
+ */
+function version4File(): Record<string, unknown> {
+  const data = populatedData() as unknown as Record<string, Array<Record<string, unknown>>>;
+  const zone = {
+    ...data.attractions[0],
+    id: "z1",
+    attraction_type: "scare_zone",
+    name: "Fog Row",
+    slug: "fog-row",
+  };
+  return {
+    formatVersion: 4,
+    appVersion: "0.4.0",
+    schemaVersion: 13,
+    exportedAt: "2026-09-20T12:00:00.000Z",
+    data: {
+      ...data,
+      experienceTypes: [
+        {
+          id: "hhn:type:house",
+          haunt_id: "hhn",
+          category: "walkthrough",
+          label_one: "House",
+          label_many: "Houses",
+          description: null,
+          sort_order: 0,
+          pack_id: null,
+          ...TIMESTAMPS,
+        },
+        {
+          id: "hhn:type:scare-zone",
+          haunt_id: "hhn",
+          category: "scare_zone",
+          label_one: "Scare Zone",
+          label_many: "Scare Zones",
+          description: null,
+          sort_order: 10,
+          pack_id: null,
+          ...TIMESTAMPS,
+        },
+      ],
+      attractions: [...data.attractions, zone],
+      attractionParks: [...data.attractionParks, { attraction_id: "z1", park_id: "orlando" }],
+      seasonAppearances: [
+        ...data.seasonAppearances,
+        { attraction_id: "z1", season_id: "y1", notes: null, created_at: TIMESTAMPS.created_at },
+      ],
+      sources: [
+        {
+          id: "s-shared",
+          source_type: "article",
+          title: "Both",
+          url: null,
+          publisher: null,
+          published_at: null,
+          notes: null,
+          is_sample: 0,
+          ...TIMESTAMPS,
+        },
+        {
+          id: "s-zone",
+          source_type: "article",
+          title: "Zone only",
+          url: null,
+          publisher: null,
+          published_at: null,
+          notes: null,
+          is_sample: 0,
+          ...TIMESTAMPS,
+        },
+      ],
+      attractionSources: [
+        { attraction_id: "a1", source_id: "s-shared", venue_id: null },
+        { attraction_id: "z1", source_id: "s-shared", venue_id: null },
+        { attraction_id: "z1", source_id: "s-zone", venue_id: null },
+      ],
+      attractionRelations: [
+        {
+          id: "r1",
+          attraction_id: "a1",
+          related_attraction_id: "z1",
+          relation_type: "related_concept",
+          notes: null,
+          ...TIMESTAMPS,
+        },
+      ],
+      ratings: [
+        ...data.ratings,
+        { id: "rt-z", attraction_id: "z1", theme: 1, fun: 2.5, fear: 3, ...TIMESTAMPS },
+      ],
+      notes: [{ id: "n-z", attraction_id: "z1", note: "Foggy.", ...TIMESTAMPS }],
+      rankings: [
+        {
+          id: "k-z",
+          scope: "hhn:scare_zones:all",
+          attraction_id: "z1",
+          position: 0,
+          ...TIMESTAMPS,
+        },
+        {
+          id: "k-all-z",
+          scope: "attractions:all",
+          attraction_id: "z1",
+          position: 0,
+          ...TIMESTAMPS,
+        },
+        {
+          id: "k-all-a",
+          scope: "attractions:all",
+          attraction_id: "a1",
+          position: 1,
+          ...TIMESTAMPS,
+        },
+      ],
+      hauntPacks: [],
+    },
+    preferences: {},
+  };
+}
+
+describe("a version 4 backup", () => {
+  function upgraded() {
+    const result = validateBackup(version4File());
+    expect(result.ok ? [] : result.errors).toEqual([]);
+    if (!result.ok) {
+      throw new Error("expected the version 4 file to upgrade");
+    }
+    return result.backup.data;
+  }
+
+  it("imports, with its scare zone and everything that belonged to it taken out", () => {
+    const data = upgraded();
+    expect(data.attractions.map((row) => row.id)).toEqual(["a1"]);
+    expect(data.attractionParks.map((row) => row.attraction_id)).toEqual(["a1"]);
+    expect(data.seasonAppearances.map((row) => row.attraction_id)).toEqual(["a1"]);
+    expect(data.attractionRelations).toEqual([]);
+    expect(data.attractionSources.map((row) => row.source_id)).toEqual(["s-shared"]);
+    expect(data.experienceTypes.map((row) => row.id)).toEqual(["hhn:type:house"]);
+  });
+
+  it("drops a source only the zone cited, and keeps one a house still cites", () => {
+    expect(upgraded().sources.map((row) => row.id)).toEqual(["s-shared"]);
+  });
+
+  it("keeps the house's rating exactly where it was", () => {
+    expect(upgraded().ratings).toEqual([
+      { id: "rt1", attraction_id: "a1", theme: 4.5, fun: 3, fear: 5, ...TIMESTAMPS },
+    ]);
+  });
+
+  it("keeps the zone's rating, note and ranking positions whole, out of sight", () => {
+    const data = upgraded();
+    expect(data.notes).toEqual([]);
+    expect(data.legacyPersonalData.map((row) => row.id).sort()).toEqual([
+      "note:n-z",
+      "ranking:k-all-z",
+      "ranking:k-z",
+      "rating:rt-z",
+    ]);
+    const rating = data.legacyPersonalData.find((row) => row.id === "rating:rt-z")!;
+    expect(rating).toMatchObject({
+      kind: "rating",
+      original_id: "rt-z",
+      attraction_id: "z1",
+      attraction_name: "Fog Row",
+      attraction_type: "scare_zone",
+      haunt_id: "hhn",
+      season_id: "y1",
+      calendar_year: 2101,
+      reason: "retired-category",
+    });
+    expect(JSON.parse(rating.payload)).toEqual({
+      id: "rt-z",
+      attraction_id: "z1",
+      theme: 1,
+      fun: 2.5,
+      fear: 3,
+      ...TIMESTAMPS,
+    });
+  });
+
+  it("carries an All Attractions order into the house list, houses only", () => {
+    const rankings = upgraded().rankings;
+    expect(rankings.filter((row) => row.scope === "houses:all")).toEqual([
+      {
+        id: "walkthrough:k-all-a",
+        scope: "houses:all",
+        attraction_id: "a1",
+        position: 0,
+        ...TIMESTAMPS,
+      },
+    ]);
+    // The All Attractions list itself keeps its house, where it was.
+    expect(rankings.filter((row) => row.scope === "attractions:all")).toEqual([
+      { id: "k-all-a", scope: "attractions:all", attraction_id: "a1", position: 1, ...TIMESTAMPS },
+    ]);
+  });
+
+  it("no longer carries Haunt Pack import history", () => {
+    expect("hauntPacks" in upgraded()).toBe(false);
   });
 });
 

@@ -22,7 +22,6 @@ describe("Sidebar", () => {
       // Halloween Horror Nights is the default collection, so the
       // walkthrough link carries its word for them.
       "Houses",
-      "Scare Zones",
       "Years",
       "Rankings",
       "Statistics",
@@ -30,6 +29,8 @@ describe("Sidebar", () => {
     ].forEach((label) => {
       expect(screen.getByRole("link", { name: label })).toBeInTheDocument();
     });
+    // Haunt Ranker only rates walk-throughs, so scare zones have no page.
+    expect(screen.queryByRole("link", { name: "Scare Zones" })).not.toBeInTheDocument();
     expect(nav).toBeInTheDocument();
   });
 });

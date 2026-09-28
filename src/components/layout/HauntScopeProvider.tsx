@@ -37,8 +37,8 @@ export function HauntScopeProvider({ children }: { children: ReactNode }) {
     [setScope],
   );
 
-  // A remembered haunt can stop existing: a Haunt Pack withdrawn, or a
-  // backup restored from a machine that never had it. Rather than leaving
+  // A remembered scope can name a haunt this install doesn't hold — a
+  // value left by an older build, or a backup from another machine. Rather than leaving
   // the app pointed at a haunt-shaped hole — empty lists, generic wording,
   // no way back — it reads as the default, or as All Haunts if that has
   // gone too. What is stored is left alone, so a haunt that comes back is

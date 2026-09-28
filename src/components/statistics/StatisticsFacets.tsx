@@ -1,4 +1,4 @@
-import type { AttractionType, IpType } from "../../models/attraction";
+import type { IpType } from "../../models/attraction";
 import { useHauntScope } from "../../hooks/useHauntScope";
 import { useHauntRegistry } from "../../hooks/useHauntRegistry";
 import type { HauntScope } from "../../models/haunt";
@@ -47,12 +47,6 @@ export function StatisticsFacets({ filters, onChange, availableYears }: Statisti
       .map((venue: { id: string; name: string }) => ({ value: venue.id, label: venue.name })),
   ];
 
-  const typeOptions = [
-    { value: ALL, label: "All" },
-    { value: "house", label: registry.label("house", hauntId, "many") },
-    { value: "scare_zone", label: registry.label("scare_zone", hauntId, "many") },
-  ];
-
   const yearItems: DropdownItem[] = [
     { label: "All years", onSelect: () => onChange({ ...filters, year: null }) },
     ...availableYears.map((year) => ({
@@ -87,16 +81,6 @@ export function StatisticsFacets({ filters, onChange, availableYears }: Statisti
               {filters.year === null ? "All years" : String(filters.year)}
             </Button>
           }
-        />
-      </div>
-
-      <div className="statistics-filters__group">
-        <span className="statistics-filters__label">Type</span>
-        <SegmentedControl
-          options={typeOptions}
-          value={filters.type ?? ALL}
-          onChange={(value) => onChange({ ...filters, type: toNullable<AttractionType>(value) })}
-          aria-label="Attraction type"
         />
       </div>
 

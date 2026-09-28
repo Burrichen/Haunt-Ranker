@@ -13,6 +13,10 @@ import { createParkRepository } from "../repositories/parkRepository";
 import { createRankingRepository } from "../repositories/rankingRepository";
 import { createTestDatabase, createTestDatabaseFromDump } from "../test/createTestDatabase";
 import { takeHhnSnapshot, type AttractionFacts, type HhnSnapshot } from "../test/hhnSnapshot";
+import type { Attraction } from "../models/attraction";
+import type { EventYear } from "../models/eventYear";
+import type { Rating } from "../models/rating";
+import { buildYearRanking, summarizeYear } from "../utils/years";
 import type { SqlExecutor } from "./types";
 
 /**
@@ -27,15 +31,70 @@ import type { SqlExecutor } from "./types";
  * The "after" half is that exact database, taken through every migration
  * since (0008 onwards) and read back by the current code, looking at HHN.
  *
- * One change is intended and nothing else is: 0009 folds an Orlando record
- * and a Hollywood record of the same attraction in the same season into one
- * canonical record, carrying both venues. So every check below maps a
- * merged-away id onto the record it merged into, and otherwise demands the
- * two halves agree exactly.
+ * Two changes are intended and nothing else is:
+ *
+ * - 0009 folds an Orlando record and a Hollywood record of the same
+ *   attraction in the same season into one canonical record, carrying both
+ *   venues. So every check below maps a merged-away id onto the record it
+ *   merged into.
+ * - 0014 takes scare zones out of the archive, and moves every rating, note
+ *   and ranking position on them into `legacy_personal_data`. So the
+ *   recorded half is compared as `BEFORE_HOUSES` — itself, less its zones —
+ *   and the zones' personal data is checked for separately.
+ *
+ * Otherwise the two halves must agree exactly.
  */
 
 const FIXTURE = join(import.meta.dirname, "..", "test", "fixtures", "hhn-v7");
 const BEFORE = JSON.parse(readFileSync(join(FIXTURE, "snapshot.json"), "utf8")) as HhnSnapshot;
+
+const houseIds = new Set(
+  Object.entries(BEFORE.attractions)
+    .filter(([, facts]) => facts.attractionType === "house")
+    .map(([id]) => id),
+);
+const zoneIds = new Set(Object.keys(BEFORE.attractions).filter((id) => !houseIds.has(id)));
+const isHouse = (id: unknown) => houseIds.has(String(id));
+const onlyHouses = <T>(record: Record<string, T>) =>
+  Object.fromEntries(Object.entries(record).filter(([id]) => isHouse(id)));
+
+/**
+ * The recorded half as 0014 leaves it: no zones, nothing that belonged to a
+ * zone, and no source that only a zone cited.
+ */
+const BEFORE_HOUSES: HhnSnapshot = (() => {
+  const media = BEFORE.media.filter(
+    (row) => row.attraction_id === null || isHouse(row.attraction_id),
+  );
+  const zoneOnlyCandidates = new Set(
+    Object.entries(BEFORE.citations)
+      .filter(([id]) => zoneIds.has(id))
+      .flatMap(([, sources]) => sources),
+  );
+  const stillCited = new Set([
+    ...Object.entries(BEFORE.citations)
+      .filter(([id]) => isHouse(id))
+      .flatMap(([, sources]) => sources),
+    ...Object.values(BEFORE.seasonCitations).flat(),
+    ...media.filter((row) => row.source_id !== null).map((row) => String(row.source_id)),
+  ]);
+  return {
+    ...BEFORE,
+    attractions: onlyHouses(BEFORE.attractions),
+    citations: onlyHouses(BEFORE.citations),
+    sources: BEFORE.sources.filter(
+      (row) => !zoneOnlyCandidates.has(String(row.id)) || stillCited.has(String(row.id)),
+    ),
+    media,
+    characters: BEFORE.characters.filter((row) => isHouse(row.attraction_id)),
+    relations: BEFORE.relations.filter(
+      (row) => isHouse(row.attraction_id) && isHouse(row.related_attraction_id),
+    ),
+    ratings: onlyHouses(BEFORE.ratings),
+    notes: onlyHouses(BEFORE.notes),
+    manualOrders: { houses: BEFORE.manualOrders.houses },
+  };
+})();
 
 let db: SqlExecutor;
 let after: HhnSnapshot;
@@ -90,13 +149,14 @@ describe("HHN after the multi-haunt migrations", () => {
     });
   });
 
-  describe("houses and scare zones", () => {
+  describe("houses", () => {
     it("merges only split Orlando/Hollywood pairs, and nothing else goes", () => {
-      const beforeIds = Object.keys(BEFORE.attractions);
+      const beforeIds = Object.keys(BEFORE_HOUSES.attractions);
       const afterIds = Object.keys(after.attractions);
+      const mergedHouses = [...mergedInto.keys()].filter(isHouse);
 
       expect(afterIds.sort()).toEqual(beforeIds.filter((id) => !mergedInto.has(id)).sort());
-      expect(afterIds.length).toBe(beforeIds.length - mergedInto.size);
+      expect(afterIds.length).toBe(beforeIds.length - mergedHouses.length);
 
       for (const [from, to] of mergedInto) {
         const a = BEFORE.attractions[from];
@@ -127,8 +187,8 @@ describe("HHN after the multi-haunt migrations", () => {
       expect(conflicts).toHaveLength(2);
     });
 
-    it("keeps every attraction nobody merged exactly as it was", () => {
-      for (const [id, facts] of Object.entries(BEFORE.attractions)) {
+    it("keeps every house nobody merged exactly as it was", () => {
+      for (const [id, facts] of Object.entries(BEFORE_HOUSES.attractions)) {
         if (!involved.has(id)) {
           expect(after.attractions[id], id).toEqual(facts);
         }
@@ -146,6 +206,9 @@ describe("HHN after the multi-haunt migrations", () => {
         "franchiseName",
       ];
       for (const [to, members] of groups) {
+        if (!isHouse(to)) {
+          continue; // a merged pair of zones, which 0014 then removed
+        }
         const survivor = BEFORE.attractions[to];
         const merged = after.attractions[to];
         const others = members.filter((id) => id !== to).map((id) => BEFORE.attractions[id]);
@@ -201,11 +264,11 @@ describe("HHN after the multi-haunt migrations", () => {
     it("keeps every Orlando and every Hollywood assignment", () => {
       // A merge turns two single-venue records into one with both venues, so
       // per venue the count of attractions that ran there cannot move.
-      expect(venueCounts(after)).toEqual(venueCounts(BEFORE));
+      expect(venueCounts(after)).toEqual(venueCounts(BEFORE_HOUSES));
     });
 
     it("keeps the entries that were already shared by both parks", () => {
-      for (const [id, facts] of Object.entries(BEFORE.attractions)) {
+      for (const [id, facts] of Object.entries(BEFORE_HOUSES.attractions)) {
         if (facts.parkIds.length === 2) {
           expect(after.attractions[id].parkIds, id).toEqual(["hollywood", "orlando"]);
         }
@@ -214,13 +277,14 @@ describe("HHN after the multi-haunt migrations", () => {
   });
 
   describe("wiki content, sources and media", () => {
-    it("keeps every source exactly as it was", () => {
-      expect(after.sources).toEqual(BEFORE.sources);
+    it("keeps every source exactly as it was, less those only a scare zone cited", () => {
+      expect(after.sources).toEqual(BEFORE_HOUSES.sources);
+      expect(after.sources.length).toBeLessThan(BEFORE.sources.length);
     });
 
     it("keeps every citation, carried to the canonical record", () => {
       const expected: Record<string, string[]> = {};
-      for (const [id, sources] of Object.entries(BEFORE.citations)) {
+      for (const [id, sources] of Object.entries(BEFORE_HOUSES.citations)) {
         expected[map(id)] = dedupe([...(expected[map(id)] ?? []), ...sources]).sort();
       }
       expect(after.citations).toEqual(expected);
@@ -229,7 +293,7 @@ describe("HHN after the multi-haunt migrations", () => {
 
     it("keeps every media record's metadata, pointing at the canonical record", () => {
       expect(after.media).toEqual(
-        BEFORE.media.map((row) => ({
+        BEFORE_HOUSES.media.map((row) => ({
           ...row,
           attraction_id: row.attraction_id === null ? null : map(String(row.attraction_id)),
         })),
@@ -239,10 +303,13 @@ describe("HHN after the multi-haunt migrations", () => {
 
     it("keeps every character and relation", () => {
       expect(after.characters).toEqual(
-        BEFORE.characters.map((row) => ({ ...row, attraction_id: map(String(row.attraction_id)) })),
+        BEFORE_HOUSES.characters.map((row) => ({
+          ...row,
+          attraction_id: map(String(row.attraction_id)),
+        })),
       );
       expect(after.relations).toEqual(
-        BEFORE.relations
+        BEFORE_HOUSES.relations
           .map((row) => ({
             ...row,
             attraction_id: map(String(row.attraction_id)),
@@ -254,24 +321,24 @@ describe("HHN after the multi-haunt migrations", () => {
   });
 
   describe("personal data", () => {
-    it("keeps every rating, on the same attraction id or the one it merged into", () => {
+    it("keeps every house rating, on the same attraction id or the one it merged into", () => {
       const expected = Object.fromEntries(
-        Object.entries(BEFORE.ratings).map(([id, rating]) => [map(id), rating]),
+        Object.entries(BEFORE_HOUSES.ratings).map(([id, rating]) => [map(id), rating]),
       );
       expect(after.ratings).toEqual(expected);
-      expect(Object.keys(after.ratings)).toHaveLength(Object.keys(BEFORE.ratings).length);
+      expect(Object.keys(after.ratings)).toHaveLength(Object.keys(BEFORE_HOUSES.ratings).length);
     });
 
-    it("keeps every note the same way", () => {
+    it("keeps every house note the same way", () => {
       const expected = Object.fromEntries(
-        Object.entries(BEFORE.notes).map(([id, note]) => [map(id), note]),
+        Object.entries(BEFORE_HOUSES.notes).map(([id, note]) => [map(id), note]),
       );
       expect(after.notes).toEqual(expected);
-      expect(Object.keys(after.notes)).toHaveLength(Object.keys(BEFORE.notes).length);
+      expect(Object.keys(after.notes)).toHaveLength(Object.keys(BEFORE_HOUSES.notes).length);
     });
 
     it("keeps unmerged personal data on exactly the id it was written against", () => {
-      for (const id of Object.keys(BEFORE.ratings)) {
+      for (const id of Object.keys(BEFORE_HOUSES.ratings)) {
         if (!mergedInto.has(id)) {
           expect(after.ratings[id], id).toEqual(BEFORE.ratings[id]);
         }
@@ -286,21 +353,25 @@ describe("HHN after the multi-haunt migrations", () => {
         .map(map);
     }
 
-    it("shows the same manual rankings when HHN is the haunt in view", () => {
-      for (const group of ["houses", "scare_zones", "all"] as const) {
-        expect(after.manualOrders[group], group).toEqual(carried(BEFORE.manualOrders[group]));
-        expect(after.manualOrders[group].length, group).toBeGreaterThan(0);
-      }
+    it("shows the same manual house ranking when HHN is the haunt in view", () => {
+      expect(after.manualOrders.houses).toEqual(carried(BEFORE.manualOrders.houses));
+      expect(after.manualOrders.houses.length).toBeGreaterThan(0);
     });
 
-    it("keeps the same manual rankings under All Haunts, where they were saved", async () => {
+    it("keeps the same manual house ranking under All Haunts, where it was saved", async () => {
       const rankings = createRankingRepository(db);
-      for (const group of ["houses", "scare_zones", "all"] as const) {
-        const order = (await rankings.getScope(rankingGroupScope(group, "all"))).map(
-          (entry) => entry.attractionId,
-        );
-        expect(order, group).toEqual(carried(BEFORE.manualOrders[group]));
-      }
+      const order = (await rankings.getScope(rankingGroupScope("houses", "all"))).map(
+        (entry) => entry.attractionId,
+      );
+      expect(order).toEqual(carried(BEFORE.manualOrders.houses));
+
+      // The retired All Attractions list keeps its houses, in order; its
+      // zones went to legacy_personal_data with everything else about them.
+      const everything = (await rankings.getScope("attractions:all")).map(
+        (entry) => entry.attractionId,
+      );
+      expect(everything).toEqual(carried(BEFORE.manualOrders.all).filter(isHouse));
+
       const yearly = await rankings.getScope("houses:year:2024");
       expect(yearly).toHaveLength(5);
     });
@@ -311,23 +382,52 @@ describe("HHN after the multi-haunt migrations", () => {
   });
 
   describe("what the screens show", () => {
-    it("Years: the same reviews and the same averages, less the merged duplicates", () => {
-      for (const [seasonId, summary] of Object.entries(BEFORE.years)) {
-        const mergedHere = [...mergedInto.keys()].filter(
-          (id) => BEFORE.attractions[id].eventYearId === seasonId,
-        );
-        const mergedHouses = mergedHere.filter(
-          (id) => BEFORE.attractions[id].attractionType === "house",
-        ).length;
+    /**
+     * The recorded Years figures counted zones, which are gone, so they are
+     * recomputed here — by the unchanged pure functions, over the recorded
+     * houses and the recorded house ratings (carried through the merge), not
+     * over anything read back from the migrated database.
+     */
+    it("Years: the recorded houses and reviews, less zones and merged duplicates", () => {
+      const carriedRatings = new Map(
+        Object.entries(BEFORE_HOUSES.ratings).map(([id, rating]) => [map(id), rating]),
+      );
+      const summaries = BEFORE.seasons.map((season) => {
+        const items = Object.entries(BEFORE_HOUSES.attractions)
+          .filter(([id, facts]) => facts.eventYearId === season.id && !mergedInto.has(id))
+          .map(([id, facts]) => ({
+            attraction: { id, attractionType: facts.attractionType } as Attraction,
+            rating: (carriedRatings.get(id) ?? null) as Rating | null,
+            posterUrl: null,
+          }));
+        return summarizeYear(season as unknown as EventYear, items, null);
+      });
 
+      for (const summary of summaries) {
+        const seasonId = summary.eventYear.id;
+        const mergedHouses = [...mergedInto.keys()].filter(
+          (id) => isHouse(id) && BEFORE.attractions[id].eventYearId === seasonId,
+        ).length;
+        expect(summary.houseCount, seasonId).toBe(
+          Number(BEFORE.years[seasonId].houseCount) - mergedHouses,
+        );
         expect(after.years[seasonId], seasonId).toEqual({
-          ...summary,
-          attractionCount: Number(summary.attractionCount) - mergedHere.length,
-          houseCount: Number(summary.houseCount) - mergedHouses,
-          scareZoneCount: Number(summary.scareZoneCount) - (mergedHere.length - mergedHouses),
+          houseCount: summary.houseCount,
+          reviewedCount: summary.reviewedCount,
+          attractionCount: summary.attractionCount,
+          averages: summary.averages,
         });
       }
-      expect(after.yearRanking).toEqual(BEFORE.yearRanking);
+      for (const [key, sort] of [
+        ["total-desc", { metric: "total", direction: "desc" }],
+        ["fear-asc", { metric: "fear", direction: "asc" }],
+      ] as const) {
+        const ranking = buildYearRanking(summaries, sort);
+        expect(after.yearRanking[key], key).toEqual({
+          ranked: ranking.ranked.map((summary) => summary.eventYear.id),
+          insufficient: ranking.insufficient.map((summary) => summary.eventYear.id),
+        });
+      }
     });
 
     /**
@@ -362,11 +462,14 @@ describe("HHN after the multi-haunt migrations", () => {
           ),
         );
 
-      for (const [key, before] of Object.entries(BEFORE.statistics)) {
+      // The current snapshot records only the houses-only filters, under the
+      // recorded half's own keys for them.
+      expect(Object.keys(after.statistics).sort()).toEqual(["houses", "orlando-houses"]);
+      for (const [key, now] of Object.entries(after.statistics)) {
         if (!NEUTRAL.has(key)) {
           continue; // covered, record by record, by the explorer check below
         }
-        const now = after.statistics[key];
+        const before = BEFORE.statistics[key];
         expect(now.distribution, `${key}.distribution`).toEqual(before.distribution);
         expect(now.yearPerformance, `${key}.yearPerformance`).toEqual(before.yearPerformance);
         expect(now.top, `${key}.top`).toEqual(remap(before.top));
@@ -375,15 +478,15 @@ describe("HHN after the multi-haunt migrations", () => {
 
         const coverage = before.coverage as Record<string, { reviewed: number }>;
         const nowCoverage = now.coverage as Record<string, { reviewed: number }>;
-        for (const slice of ["all", "houses", "scareZones"]) {
-          expect(nowCoverage[slice].reviewed, `${key}.${slice}`).toBe(coverage[slice].reviewed);
+        for (const slice of ["all", "houses"]) {
+          expect(nowCoverage[slice].reviewed, `${key}.${slice}`).toBe(coverage.houses.reviewed);
         }
       }
     });
 
     it("Statistics explorer: the same answers, over the same attractions", () => {
-      for (const [key, before] of Object.entries(BEFORE.explorer)) {
-        const now = after.explorer[key];
+      for (const [key, now] of Object.entries(after.explorer)) {
+        const before = BEFORE.explorer[key];
         const beforeRanked = before.ranked as Array<[string, number]>;
         const nowRanked = now.ranked as Array<[string, number]>;
         const beforeIds = [...beforeRanked.map(([id]) => id), ...(before.unrated as string[])];
@@ -407,9 +510,15 @@ describe("HHN after the multi-haunt migrations", () => {
       }
     });
 
-    it("Houses and Scare Zones browsers: every filter and sort finds the same attractions", () => {
-      for (const [key, before] of Object.entries(BEFORE.browser)) {
-        const now = after.browser[key];
+    it("Houses browser: every filter and sort finds the same attractions", () => {
+      expect(Object.keys(after.browser).every((key) => key.startsWith("house|"))).toBe(true);
+      expect(Object.keys(after.browser).sort()).toEqual(
+        Object.keys(BEFORE.browser)
+          .filter((key) => key.startsWith("house|"))
+          .sort(),
+      );
+      for (const [key, now] of Object.entries(after.browser)) {
+        const before = BEFORE.browser[key];
         expect(withoutMerged(now), `${key} order`).toEqual(withoutMerged(before));
         if (NEUTRAL.has(filterOf(key))) {
           expect([...now].sort(), `${key} members`).toEqual(expectedMembers(before));
@@ -423,8 +532,13 @@ describe("HHN after the multi-haunt migrations", () => {
       const all = (lists: Record<string, string[]>, names: string[]) =>
         names.flatMap((name) => lists[name]);
 
-      for (const [key, before] of Object.entries(BEFORE.rankings)) {
-        const now = after.rankings[key];
+      expect(Object.keys(after.rankings).sort()).toEqual(
+        Object.keys(BEFORE.rankings)
+          .filter((key) => key.startsWith("houses|"))
+          .sort(),
+      );
+      for (const [key, now] of Object.entries(after.rankings)) {
+        const before = BEFORE.rankings[key];
         for (const [list, ids] of Object.entries(before)) {
           expect(withoutMerged(now[list]), `${key}.${list} order`).toEqual(withoutMerged(ids));
         }
@@ -444,7 +558,7 @@ describe("HHN after the multi-haunt migrations", () => {
   });
 
   describe("House is walkthrough underneath, and still House on screen", () => {
-    it("files every HHN house under the walk-through category, and every zone as a zone", async () => {
+    it("files every HHN house under the walk-through category, and holds nothing else", async () => {
       expect(
         await db.select(
           `SELECT a.attraction_type, a.experience_type_id, t.category, COUNT(*) AS count
@@ -460,20 +574,15 @@ describe("HHN after the multi-haunt migrations", () => {
           attraction_type: "house",
           experience_type_id: "hhn:type:house",
           category: "walkthrough",
-          count: Object.values(after.attractions).filter((a) => a.attractionType === "house")
-            .length,
-        },
-        {
-          attraction_type: "scare_zone",
-          experience_type_id: "hhn:type:scare-zone",
-          category: "scare_zone",
-          count: Object.values(after.attractions).filter((a) => a.attractionType === "scare_zone")
-            .length,
+          count: Object.values(after.attractions).length,
         },
       ]);
+      expect(
+        await db.select("SELECT id, category FROM experience_types WHERE haunt_id = 'hhn'"),
+      ).toEqual([{ id: "hhn:type:house", category: "walkthrough" }]);
     });
 
-    it("still says House and Houses for HHN, and Scare Zone and Scare Zones", async () => {
+    it("still says House and Houses for HHN", async () => {
       const registry = buildRegistry({
         haunts: await createHauntRepository(db).getAll(),
         venues: await createParkRepository(db).getAll(),
@@ -482,8 +591,6 @@ describe("HHN after the multi-haunt migrations", () => {
 
       expect(registry.label("house", "hhn", "one")).toBe("House");
       expect(registry.label("house", "hhn", "many")).toBe("Houses");
-      expect(registry.label("scare_zone", "hhn", "one")).toBe("Scare Zone");
-      expect(registry.label("scare_zone", "hhn", "many")).toBe("Scare Zones");
       expect(registry.venueName("orlando")).toBe("Orlando");
       expect(registry.venueName("hollywood")).toBe("Hollywood");
     });
@@ -494,6 +601,83 @@ describe("HHN after the multi-haunt migrations", () => {
         inScope: (season) => isInHauntScope(season?.hauntId, "knotts-scary-farm"),
       });
       expect(Object.keys(knotts.attractions)).toEqual([]);
+    });
+  });
+
+  describe("scare zones leave, and what the person wrote about them stays", () => {
+    interface LegacyRow {
+      kind: string;
+      attraction_id: string;
+      attraction_type: string;
+      haunt_id: string;
+      payload: string;
+    }
+    let legacy: LegacyRow[];
+    beforeAll(async () => {
+      legacy = await db.select<LegacyRow[]>(
+        `SELECT kind, attraction_id, attraction_type, haunt_id, payload
+         FROM legacy_personal_data ORDER BY id`,
+      );
+    });
+
+    it("leaves no zone in the archive", async () => {
+      expect(
+        await db.select(
+          "SELECT COUNT(*) AS count FROM attractions WHERE attraction_type <> 'house'",
+        ),
+      ).toEqual([{ count: 0 }]);
+      expect(zoneIds.size).toBeGreaterThan(100);
+    });
+
+    it("keeps every zone rating whole, where the app no longer shows it", () => {
+      const zoneRatings = Object.entries(BEFORE.ratings).filter(([id]) => zoneIds.has(id));
+      expect(zoneRatings.length).toBeGreaterThan(0);
+
+      for (const [id, rating] of zoneRatings) {
+        const row = legacy.find(
+          (entry) => entry.kind === "rating" && entry.attraction_id === map(id),
+        );
+        expect(row, id).toBeDefined();
+        expect(row!.attraction_type).toBe("scare_zone");
+        expect(row!.haunt_id).toBe("hhn");
+        const payload = JSON.parse(row!.payload);
+        expect({ theme: payload.theme, fun: payload.fun, fear: payload.fear }, id).toEqual({
+          theme: rating.theme,
+          fun: rating.fun,
+          fear: rating.fear,
+        });
+      }
+      expect(legacy.filter((row) => row.kind === "rating")).toHaveLength(zoneRatings.length);
+    });
+
+    it("keeps every zone note whole", () => {
+      const zoneNotes = Object.entries(BEFORE.notes).filter(([id]) => zoneIds.has(id));
+      for (const [id, note] of zoneNotes) {
+        const row = legacy.find(
+          (entry) => entry.kind === "note" && entry.attraction_id === map(id),
+        );
+        expect(JSON.parse(row!.payload).note, id).toBe(note);
+      }
+      expect(legacy.filter((row) => row.kind === "note")).toHaveLength(zoneNotes.length);
+    });
+
+    it("keeps every zone's place in a manual ranking", async () => {
+      const scopes = new Set(
+        legacy.filter((row) => row.kind === "ranking").map((row) => JSON.parse(row.payload).scope),
+      );
+      expect([...scopes].sort()).toEqual([
+        "attractions:all",
+        "hhn:attractions:all",
+        "hhn:scare_zones:all",
+        "scare_zones:all",
+      ]);
+      expect(
+        await db.select(
+          `SELECT COUNT(*) AS count FROM user_rankings r
+           JOIN attractions a ON a.id = r.attraction_id
+           WHERE a.attraction_type <> 'house'`,
+        ),
+      ).toEqual([{ count: 0 }]);
     });
   });
 
@@ -556,6 +740,19 @@ describe("HHN after the multi-haunt migrations", () => {
       for (const key of Object.keys(migratedView) as Array<keyof HhnSnapshot>) {
         expect(restoredView[key], key).toEqual(migratedView[key]);
       }
+
+      // And the zones' personal data lands in the same place by either road.
+      const preserved = async (source: SqlExecutor) =>
+        (
+          await source.select<Array<Record<string, unknown>>>(
+            `SELECT id, kind, original_id, attraction_id, attraction_name, attraction_type,
+                    haunt_id, season_id, calendar_year, payload, reason
+             FROM legacy_personal_data ORDER BY id`,
+          )
+        ).map((row) => ({ ...row, payload: JSON.parse(String(row.payload)) }));
+      const migratedLegacy = await preserved(db);
+      expect(migratedLegacy.length).toBeGreaterThan(0);
+      expect(await preserved(restored)).toEqual(migratedLegacy);
     });
   });
 });

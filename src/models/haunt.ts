@@ -4,10 +4,10 @@ import type { AttractionType } from "./attraction";
 /**
  * A haunt is a Halloween event with its own seasons, venues and vocabulary.
  *
- * Haunts are **data**. The two the app ships with are seeded by a
- * migration, and any other arrives as a Haunt Pack — so nothing here may
- * assume a fixed set of them. `HauntId` is a plain string for exactly that
- * reason: the ids below are the seeded ones, not the possible ones.
+ * Haunt Ranker supports two haunts as equals — Halloween Horror Nights and
+ * Knott's Scary Farm — both seeded by a migration. They are still read from
+ * the database rather than hard-coded into each screen, so `HauntId` stays
+ * a plain string; there is no mechanism for adding a third.
  */
 export const HAUNT_IDS = {
   hhn: "hhn",
@@ -16,7 +16,7 @@ export const HAUNT_IDS = {
 
 export type HauntId = string;
 
-/** The accents a haunt may use. A pack chooses from the app's palette, not its own. */
+/** The accents a haunt may use, from the app's own palette. */
 export const HAUNT_ACCENTS = ["orange", "purple", "green", "blue"] as const;
 export type HauntAccent = (typeof HAUNT_ACCENTS)[number];
 export const DEFAULT_HAUNT_ACCENT: HauntAccent = "orange";
@@ -38,7 +38,7 @@ export interface Haunt extends Timestamped {
   venuesLabel: string | null;
   /** Lower sorts first. The collection the app opens on leads. */
   sortOrder: number;
-  /** Which pack last described this haunt, where one did. */
+  /** Dormant: written by the retired Haunt Pack importer. Never shown. */
   packId: string | null;
   packVersion: string | null;
   packUpdatedAt: string | null;
@@ -61,8 +61,7 @@ export interface HauntInput {
  * Which haunt the app is currently looking at.
  *
  * `all` is a context in its own right rather than "no choice made": it is
- * where the archives sit side by side. The rest are haunt ids, so the set
- * grows with the data rather than with the source code.
+ * where the two archives sit side by side. The rest are haunt ids.
  */
 export const ALL_HAUNTS = "all";
 export type HauntScope = typeof ALL_HAUNTS | HauntId;
@@ -90,36 +89,26 @@ export function isInHauntScope(hauntId: string | null | undefined, scope: HauntS
 /**
  * The attraction categories the app reasons about.
  *
- * Closed, because the app genuinely behaves differently for each: a
- * walk-through is ranked and rated, a scare zone is a place, a show has a
- * running time. What each haunt *calls* them is open, and lives in
- * `experience_types` — see `ExperienceType`.
+ * One: the walk-through — Houses at HHN, Mazes at Knott's. Scare zones,
+ * shows and other experiences are out of Haunt Ranker's scope; the
+ * database can still hold the retired categories only so that older data
+ * can be read and its personal rows preserved (see `StoredAttractionType`).
  *
  * `house` is the walk-through category's stored name, kept because every
  * row, backup and saved ranking scope already uses it.
  */
-export const ATTRACTION_CATEGORIES: AttractionType[] = ["house", "scare_zone", "show", "other"];
+export const ATTRACTION_CATEGORIES: AttractionType[] = ["house"];
 
-/**
- * The categories a person rates and ranks: walk-throughs and scare zones.
- *
- * Shows, ride overlays and exhibits are archive and wiki content. They sit
- * in the season's line-up and have pages of their own, but they take no
- * Theme / Fun / Fear review and count toward no average, coverage figure or
- * ranking — so importing a haunt's shows can't dilute its statistics.
- */
-export const RANKED_CATEGORIES: readonly AttractionType[] = ["house", "scare_zone"];
+/** The categories a person rates and ranks — every category the app shows. */
+export const RANKED_CATEGORIES: readonly AttractionType[] = ATTRACTION_CATEGORIES;
 
-export function isRankedCategory(type: AttractionType): boolean {
-  return RANKED_CATEGORIES.includes(type);
+export function isRankedCategory(type: string): type is AttractionType {
+  return (RANKED_CATEGORIES as readonly string[]).includes(type);
 }
 
 /** The word to fall back to when no haunt has named this kind of experience. */
 const GENERIC_LABELS: Record<AttractionType, { one: string; many: string }> = {
   house: { one: "Walk-through", many: "Walk-throughs" },
-  scare_zone: { one: "Scare Zone", many: "Scare Zones" },
-  show: { one: "Show", many: "Shows" },
-  other: { one: "Experience", many: "Experiences" },
 };
 
 export function genericTypeLabel(type: AttractionType, form: "one" | "many" = "one"): string {

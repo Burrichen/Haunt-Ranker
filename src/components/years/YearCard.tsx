@@ -29,8 +29,7 @@ export function YearCard({ summary, showHaunt = true }: YearCardProps) {
   const [imageFailed, setImageFailed] = useState(false);
   const { isAllHaunts } = useHauntScope();
   const registry = useHauntRegistry();
-  const { eventYear, artworkUrl, artworkFit, houseCount, scareZoneCount, reviewedCount, averages } =
-    summary;
+  const { eventYear, artworkUrl, artworkFit, houseCount, reviewedCount, averages } = summary;
   const showImage = Boolean(artworkUrl) && !imageFailed;
 
   return (
@@ -68,10 +67,6 @@ export function YearCard({ summary, showHaunt = true }: YearCardProps) {
             <div className="year-card__count">
               <dt>{registry.label("house", eventYear.hauntId, "many")}</dt>
               <dd>{houseCount}</dd>
-            </div>
-            <div className="year-card__count">
-              <dt>{registry.label("scare_zone", eventYear.hauntId, "many")}</dt>
-              <dd>{scareZoneCount}</dd>
             </div>
             <div className="year-card__count">
               <dt>Reviewed</dt>

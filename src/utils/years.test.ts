@@ -165,19 +165,18 @@ describe("computeYearStats", () => {
 });
 
 describe("summarizeYear", () => {
-  it("counts houses, scare zones and reviews, and carries the artwork through", () => {
+  it("counts houses and reviews, and carries the artwork through", () => {
     const summary = summarizeYear(
       makeEventYear(2101),
       [
         makeItem("House One", [3, 3, 3], "house"),
         makeItem("House Two", null, "house"),
-        makeItem("Zone One", [4, 4, 4], "scare_zone"),
+        makeItem("House Three", [4, 4, 4], "house"),
       ],
       "https://example.invalid/art.jpg",
     );
 
-    expect(summary.houseCount).toBe(2);
-    expect(summary.scareZoneCount).toBe(1);
+    expect(summary.houseCount).toBe(3);
     expect(summary.reviewedCount).toBe(2);
     expect(summary.attractionCount).toBe(3);
     expect(summary.artworkUrl).toBe("https://example.invalid/art.jpg");

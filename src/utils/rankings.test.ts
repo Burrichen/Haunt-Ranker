@@ -284,11 +284,6 @@ describe("matchesRankingFilters", () => {
     expect(matchesRankingFilters(row, filters({ years: [2102] }))).toBe(false);
   });
 
-  it("filters by attraction type", () => {
-    expect(matchesRankingFilters(row, filters({ types: ["house"] }))).toBe(true);
-    expect(matchesRankingFilters(row, filters({ types: ["scare_zone"] }))).toBe(false);
-  });
-
   it("filters by park, where 'both' means it ran at two parks", () => {
     const dual = makeRow("Dual", [3, 3, 3], { parkIds: ["hollywood", "orlando"] });
 
@@ -318,10 +313,8 @@ describe("areRankingFiltersActive", () => {
 });
 
 describe("groupAttractionTypes", () => {
-  it("maps each group to the types it contains", () => {
+  it("maps the one group to walk-throughs", () => {
     expect(groupAttractionTypes("houses")).toEqual(["house"]);
-    expect(groupAttractionTypes("scare_zones")).toEqual(["scare_zone"]);
-    expect(groupAttractionTypes("all")).toEqual(["house", "scare_zone"]);
   });
 });
 

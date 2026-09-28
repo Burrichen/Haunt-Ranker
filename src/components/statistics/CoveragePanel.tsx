@@ -49,12 +49,7 @@ export function CoveragePanel({ coverage }: CoveragePanelProps) {
   return (
     <Panel elevated padding="lg" className="coverage">
       <h2 className="coverage__title">Review coverage</h2>
-      <CoverageMeter label="All attractions" slice={coverage.all} />
       <CoverageMeter label={registry.label("house", hauntId, "many")} slice={coverage.houses} />
-      <CoverageMeter
-        label={registry.label("scare_zone", hauntId, "many")}
-        slice={coverage.scareZones}
-      />
     </Panel>
   );
 }

@@ -153,8 +153,12 @@ describe("validateDataset", () => {
       );
     });
 
-    it("only accepts the two kinds of attraction", () => {
-      expect(errorsOf(withAttraction({ type: "maze" }))[0]).toMatch(/house, scare_zone/);
+    it("only accepts houses", () => {
+      expect(errorsOf(withAttraction({ type: "maze" }))[0]).toMatch(/should be one of house/);
+    });
+
+    it("refuses a scare zone — out of scope, not half-imported", () => {
+      expect(errorsOf(withAttraction({ type: "scare_zone" }))[0]).toMatch(/should be one of house/);
     });
 
     it("only accepts original or licensed IP", () => {

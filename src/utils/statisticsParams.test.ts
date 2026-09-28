@@ -12,7 +12,6 @@ describe("statistics URL params", () => {
 
     expect(parsed).toEqual(DEFAULT_STATISTICS_PARAMS);
     expect(parsed.filters.year).toBeNull();
-    expect(parsed.filters.type).toBeNull();
   });
 
   it("writes nothing for a default view", () => {
@@ -22,7 +21,7 @@ describe("statistics URL params", () => {
   it("round-trips a fully specified dashboard", () => {
     const params: StatisticsParams = {
       view: "explorer",
-      filters: { year: 2101, type: "scare_zone", park: "orlando", ipType: "licensed" },
+      filters: { year: 2101, park: "orlando", ipType: "licensed" },
       metric: "fear",
       highlightMode: "lowest",
       subject: "years",
@@ -37,13 +36,12 @@ describe("statistics URL params", () => {
     const sliced = statisticsParamsToSearchParams({
       ...DEFAULT_STATISTICS_PARAMS,
       view: "explorer",
-      filters: { year: 2103, type: "house", park: "hollywood", ipType: "original" },
+      filters: { year: 2103, park: "hollywood", ipType: "original" },
     });
 
     // The facets are written once and read the same way by either view.
     expect(parseStatisticsParams(sliced).filters).toEqual({
       year: 2103,
-      type: "house",
       park: "hollywood",
       ipType: "original",
     });
@@ -55,5 +53,12 @@ describe("statistics URL params", () => {
     );
 
     expect(parsed).toEqual(DEFAULT_STATISTICS_PARAMS);
+  });
+
+  it("ignores the retired type param from an old link", () => {
+    const parsed = parseStatisticsParams(new URLSearchParams("type=scare_zone"));
+
+    expect(parsed).toEqual(DEFAULT_STATISTICS_PARAMS);
+    expect(statisticsParamsToSearchParams(parsed).toString()).toBe("");
   });
 });

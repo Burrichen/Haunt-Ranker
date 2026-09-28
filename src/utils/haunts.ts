@@ -9,7 +9,6 @@ export interface HauntArchiveSummary {
   seasons: number;
   /** Walk-throughs — houses at HHN, mazes at Knott's. */
   walkthroughs: number;
-  scareZones: number;
   /** Attractions with a rating. Never inferred from a rating of 0. */
   reviewed: number;
   /** The span of seasons on file, e.g. 2010–2026, or null when there are none. */
@@ -23,7 +22,6 @@ export function emptyHauntSummary(hauntId: HauntId): HauntArchiveSummary {
     attractions: 0,
     seasons: 0,
     walkthroughs: 0,
-    scareZones: 0,
     reviewed: 0,
     firstYear: null,
     lastYear: null,
@@ -61,7 +59,6 @@ export function summarizeHaunts(
       attractions: own.length,
       seasons: ownSeasons.length,
       walkthroughs: own.filter((attraction) => attraction.attractionType === "house").length,
-      scareZones: own.filter((attraction) => attraction.attractionType === "scare_zone").length,
       reviewed: own.filter((attraction) => rated.has(attraction.id)).length,
       firstYear: calendarYears.length > 0 ? Math.min(...calendarYears) : null,
       lastYear: calendarYears.length > 0 ? Math.max(...calendarYears) : null,

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { BarChart3, CalendarDays, CircleAlert, DoorOpen, Trophy, TreePine } from "lucide-react";
+import { BarChart3, CalendarDays, CircleAlert, DoorOpen, Trophy } from "lucide-react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Badge, Button, EmptyState, LoadingState, PageHeader, Panel } from "../components/ui";
 import { useHauntLanding } from "../hooks/useHaunts";
@@ -154,11 +154,7 @@ export function HauntLanding() {
                 label={registry.label("house", resolved, "many")}
                 value={summary.walkthroughs}
               />
-              <Figure
-                label={registry.label("scare_zone", resolved, "many")}
-                value={summary.scareZones}
-              />
-              <Figure label="Attractions" value={summary.attractions} />
+              <Figure label="Reviewed" value={summary.reviewed} />
             </dl>
 
             <div
@@ -188,14 +184,6 @@ export function HauntLanding() {
                 onClick={() => navigate("/houses")}
               >
                 {registry.label("house", resolved, "many")}
-              </Button>
-              <Button
-                variant="secondary"
-                size="sm"
-                leadingIcon={<TreePine size={15} strokeWidth={1.75} />}
-                onClick={() => navigate("/scare-zones")}
-              >
-                {registry.label("scare_zone", resolved, "many")}
               </Button>
               <Button
                 variant="secondary"

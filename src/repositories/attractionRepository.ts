@@ -2,6 +2,7 @@ import { ConstraintViolationError, NotFoundError, withDatabaseErrors } from "../
 import type { SqlExecutor } from "../database/types";
 import type { Attraction, AttractionInput, AttractionType } from "../models/attraction";
 import type { EntityId } from "../models/common";
+import { isRankedCategory } from "../models/haunt";
 import type { ParkId } from "../models/park";
 import { generateId } from "./id";
 import type { Repository } from "./types";
@@ -84,6 +85,28 @@ function assertEventYear(eventYearId: EntityId): void {
   }
 }
 
+/**
+ * Walk-throughs are the only category Haunt Ranker records. The type system
+ * already says so; this is the runtime rule behind it, for anything that
+ * reaches a repository without passing through the compiler.
+ */
+function assertWalkthrough(attractionType: string): void {
+  if (!isRankedCategory(attractionType)) {
+    throw new ConstraintViolationError(
+      `Haunt Ranker records houses and mazes only, not "${attractionType}"`,
+      "check",
+    );
+  }
+}
+
+/**
+ * Every read is limited to walk-throughs. Migration 0014 removed the retired
+ * categories, and backups and dataset imports divert them, so this should
+ * never filter anything — it is here so that if a stray row ever did get in,
+ * it could not reach the interface.
+ */
+const ACTIVE_TYPES = "attraction_type = 'house'";
+
 function assertParks(parkIds: ParkId[]): void {
   if (parkIds.length === 0) {
     throw new ConstraintViolationError(
@@ -120,14 +143,19 @@ export function createAttractionRepository(db: SqlExecutor): AttractionRepositor
 
   async function getAll(): Promise<Attraction[]> {
     return withDatabaseErrors(async () => {
-      const rows = await db.select<AttractionRow[]>("SELECT * FROM attractions ORDER BY name ASC");
+      const rows = await db.select<AttractionRow[]>(
+        `SELECT * FROM attractions WHERE ${ACTIVE_TYPES} ORDER BY name ASC`,
+      );
       return attachParkIds(rows);
     });
   }
 
   async function getById(id: EntityId): Promise<Attraction | null> {
     return withDatabaseErrors(async () => {
-      const rows = await db.select<AttractionRow[]>("SELECT * FROM attractions WHERE id = ?", [id]);
+      const rows = await db.select<AttractionRow[]>(
+        `SELECT * FROM attractions WHERE id = ? AND ${ACTIVE_TYPES}`,
+        [id],
+      );
       if (rows.length === 0) {
         return null;
       }
@@ -139,7 +167,7 @@ export function createAttractionRepository(db: SqlExecutor): AttractionRepositor
   async function getByEventYear(eventYearId: EntityId): Promise<Attraction[]> {
     return withDatabaseErrors(async () => {
       const rows = await db.select<AttractionRow[]>(
-        "SELECT * FROM attractions WHERE event_year_id = ? ORDER BY name ASC",
+        `SELECT * FROM attractions WHERE event_year_id = ? AND ${ACTIVE_TYPES} ORDER BY name ASC`,
         [eventYearId],
       );
       return attachParkIds(rows);
@@ -181,6 +209,7 @@ export function createAttractionRepository(db: SqlExecutor): AttractionRepositor
     assertName(input.name);
     assertEventYear(input.eventYearId);
     assertParks(input.parkIds);
+    assertWalkthrough(input.attractionType);
 
     const id = generateId();
     await withDatabaseErrors(() =>
@@ -236,11 +265,9 @@ export function createAttractionRepository(db: SqlExecutor): AttractionRepositor
   /**
    * Edits a record by hand.
    *
-   * This is the only path that stamps `manual_edit_at`: a Haunt Pack writes
-   * through the archive importer instead, and compares the two dates to
-   * decide whether it may correct a field or has to report a conflict and
-   * leave the edit alone. So the stamp means precisely "a person changed
-   * this here", which is what the pack rule needs it to mean.
+   * This is the only path that stamps `manual_edit_at`, so the stamp means
+   * precisely "a person changed this here" — the archive importer never
+   * sets it.
    */
   async function update(id: EntityId, input: Partial<AttractionInput>): Promise<Attraction> {
     if (input.name !== undefined) {
@@ -251,6 +278,9 @@ export function createAttractionRepository(db: SqlExecutor): AttractionRepositor
     }
     if (input.parkIds !== undefined) {
       assertParks(input.parkIds);
+    }
+    if (input.attractionType !== undefined) {
+      assertWalkthrough(input.attractionType);
     }
 
     const existing = await getById(id);

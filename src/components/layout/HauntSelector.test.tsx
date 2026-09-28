@@ -117,7 +117,7 @@ describe("navigation vocabulary", () => {
     fireEvent.click(screen.getAllByRole("radio", { name: "All Haunts" })[0]);
 
     expect(screen.getByRole("link", { name: "Houses & Mazes" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Scare Zones" })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Scare Zones" })).not.toBeInTheDocument();
   });
 
   it("says Houses at Halloween Horror Nights", () => {
@@ -134,8 +134,6 @@ describe("navigation vocabulary", () => {
 
     expect(screen.getByRole("link", { name: "Mazes" })).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: "Houses" })).not.toBeInTheDocument();
-    // Scare Zones are called that at both.
-    expect(screen.getByRole("link", { name: "Scare Zones" })).toBeInTheDocument();
   });
 
   it("never shows the database's own word for a walk-through", () => {

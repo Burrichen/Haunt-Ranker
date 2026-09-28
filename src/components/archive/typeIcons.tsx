@@ -1,23 +1,19 @@
-import { DoorOpen, Drama, Sparkles, TreePine } from "lucide-react";
+import { DoorOpen } from "lucide-react";
 import type { ComponentType, ReactElement } from "react";
 import type { AttractionType } from "../../models/attraction";
 
 /**
- * A mark per category of experience — a door for a walk-through, a tree for
- * a zone, masks for a show.
+ * A mark per category of experience — a door for a walk-through, which is
+ * the only category the app shows.
  *
- * Per *category*, not per haunt: a haunt names its experiences whatever it
- * likes, and the icon follows what kind of thing it is. That keeps an
- * imported haunt looking like part of the app rather than like an import.
+ * Per *category*, not per haunt: HHN's Houses and Knott's Mazes are the same
+ * kind of thing, so they share a mark.
  */
 export const ATTRACTION_TYPE_ICONS: Record<
   AttractionType,
   ComponentType<{ size?: number; strokeWidth?: number }>
 > = {
   house: DoorOpen,
-  scare_zone: TreePine,
-  show: Drama,
-  other: Sparkles,
 };
 
 /**
@@ -31,17 +27,11 @@ export function attractionTypeIcon(
   type: AttractionType,
   props: { size?: number; strokeWidth?: number } = {},
 ): ReactElement {
-  const Icon = ATTRACTION_TYPE_ICONS[type] ?? ATTRACTION_TYPE_ICONS.other;
+  const Icon = ATTRACTION_TYPE_ICONS[type] ?? DoorOpen;
   return <Icon {...props} />;
 }
 
-/** The accent a category reads in: walk-throughs orange, zones purple. */
+/** The accent a category reads in: walk-throughs orange. */
 export function attractionTypeVariant(type: AttractionType): "orange" | "purple" | "neutral" {
-  if (type === "house") {
-    return "orange";
-  }
-  if (type === "scare_zone") {
-    return "purple";
-  }
-  return "neutral";
+  return type === "house" ? "orange" : "neutral";
 }

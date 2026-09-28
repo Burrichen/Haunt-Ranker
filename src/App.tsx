@@ -8,7 +8,6 @@ import { Haunts } from "./pages/Haunts";
 import { Home } from "./pages/Home";
 import { Houses } from "./pages/Houses";
 import { Rankings } from "./pages/Rankings";
-import { ScareZones } from "./pages/ScareZones";
 import { Settings } from "./pages/Settings";
 import { Statistics } from "./pages/Statistics";
 import { YearArchive } from "./pages/YearArchive";
@@ -24,7 +23,6 @@ function App() {
           <Route path="haunts" element={<Haunts />} />
           <Route path="haunts/:hauntId" element={<HauntLanding />} />
           <Route path="houses" element={<Houses />} />
-          <Route path="scare-zones" element={<ScareZones />} />
           <Route path="years" element={<Years />} />
           <Route path="years/:eventYearId" element={<YearArchive />} />
           <Route path="rankings" element={<Rankings />} />

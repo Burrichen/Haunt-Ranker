@@ -111,7 +111,6 @@ export interface YearSummary {
   /** How the artwork sits in its frame. Cover when omitted. */
   artworkFit?: ArtworkFit;
   houseCount: number;
-  scareZoneCount: number;
   reviewedCount: number;
   attractionCount: number;
   /** `null` when the year hasn't enough reviews to average — see `MIN_REVIEWED_FOR_STATS`. */
@@ -131,7 +130,6 @@ export function summarizeYear(
     artworkUrl,
     artworkFit,
     houseCount: items.filter((item) => item.attraction.attractionType === "house").length,
-    scareZoneCount: items.filter((item) => item.attraction.attractionType === "scare_zone").length,
     reviewedCount: stats.reviewedCount,
     attractionCount: stats.attractionCount,
     averages: stats.averages,

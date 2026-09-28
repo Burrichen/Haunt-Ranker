@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { CircleAlert, DoorOpen, Pencil, Plus, ShieldOff, Trash2, TreePine } from "lucide-react";
+import { CircleAlert, DoorOpen, Pencil, Plus, ShieldOff, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { AddHaunt, ConfirmDialog } from "../components/admin";
+import { ConfirmDialog } from "../components/admin";
 import {
   Badge,
   Button,
@@ -97,12 +97,10 @@ function AttractionRow({
   onDelete: () => void;
 }) {
   const { attraction, eventYear, ratingTotal } = row;
-  const Icon = attraction.attractionType === "house" ? DoorOpen : TreePine;
-
   return (
     <li className="admin-row">
       <span className="admin-row__icon" aria-hidden="true">
-        <Icon size={16} strokeWidth={1.5} />
+        <DoorOpen size={16} strokeWidth={1.5} />
       </span>
       <div className="admin-row__text">
         <span className="admin-row__title">{attraction.name}</span>
@@ -138,7 +136,6 @@ export function AdminMode() {
     createYear,
     deleteYear,
     deleteAttraction,
-    reload,
   } = useAdminArchive();
   const registry = useHauntRegistry();
 
@@ -181,17 +178,9 @@ export function AdminMode() {
               variant="primary"
               size="sm"
               leadingIcon={<Plus size={14} />}
-              onClick={() => navigate("/admin/attractions/new?type=house")}
+              onClick={() => navigate("/admin/attractions/new")}
             >
-              Add House
-            </Button>
-            <Button
-              variant="primary"
-              size="sm"
-              leadingIcon={<Plus size={14} />}
-              onClick={() => navigate("/admin/attractions/new?type=scare_zone")}
-            >
-              Add Scare Zone
+              Add attraction
             </Button>
           </div>
         }
@@ -207,15 +196,6 @@ export function AdminMode() {
         />
       ) : (
         <>
-          <AddHaunt
-            onImported={async () => {
-              // A pack can bring a haunt, a venue and a vocabulary that did not
-              // exist a second ago, so both the registry and this page reread.
-              await registry.refresh();
-              reload();
-            }}
-          />
-
           <Panel elevated padding="lg" className="admin__section" id="admin-event-years">
             <h2 className="admin__section-title">Event years</h2>
 
@@ -276,7 +256,7 @@ export function AdminMode() {
             <h2 className="admin__section-title">Attractions</h2>
             {attractions.length === 0 ? (
               <p className="admin__empty">
-                Nothing in the archive yet — add a house or a scare zone to start.
+                Nothing in the archive yet — add a house or maze to start.
               </p>
             ) : (
               <ul className="admin__list">

@@ -13,10 +13,8 @@ const TIMESTAMPS = {
  * The haunts a migration seeds, as a component test sees them.
  *
  * The app loads these from the database at startup; a component rendered on
- * its own has no database, so tests hand it the same rows. Deliberately the
- * seeded two and nothing more — a test that needs a third haunt builds its
- * own registry, which is also how the pack tests prove the interface can
- * hold one.
+ * its own has no database, so tests hand it the same rows: the two haunts
+ * Haunt Ranker supports, and nothing more.
  */
 export const TEST_HAUNTS: Haunt[] = [
   {
@@ -89,17 +87,6 @@ export const TEST_EXPERIENCE_TYPES: ExperienceType[] = [
     ...TIMESTAMPS,
   },
   {
-    id: "hhn:type:scare-zone",
-    hauntId: HAUNT_IDS.hhn,
-    category: "scare_zone",
-    labelOne: "Scare Zone",
-    labelMany: "Scare Zones",
-    description: null,
-    sortOrder: 10,
-    packId: null,
-    ...TIMESTAMPS,
-  },
-  {
     id: "knotts-scary-farm:type:maze",
     hauntId: HAUNT_IDS.knotts,
     category: "house",
@@ -107,17 +94,6 @@ export const TEST_EXPERIENCE_TYPES: ExperienceType[] = [
     labelMany: "Mazes",
     description: null,
     sortOrder: 0,
-    packId: null,
-    ...TIMESTAMPS,
-  },
-  {
-    id: "knotts-scary-farm:type:scare-zone",
-    hauntId: HAUNT_IDS.knotts,
-    category: "scare_zone",
-    labelOne: "Scare Zone",
-    labelMany: "Scare Zones",
-    description: null,
-    sortOrder: 10,
     packId: null,
     ...TIMESTAMPS,
   },

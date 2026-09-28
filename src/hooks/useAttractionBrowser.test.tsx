@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { renderHook, waitFor } from "@testing-library/react";
 import type { ReactNode } from "react";
 import { MemoryRouter } from "react-router-dom";
@@ -7,6 +8,15 @@ import type { HauntScope } from "../models/haunt";
 import { createTestDatabase } from "../test/createTestDatabase";
 import { useAttractionBrowser } from "./useAttractionBrowser";
 import { HauntScopeContext } from "./useHauntScope";
+
+// This test opens a real `node:sqlite` database, which Vitest's jsdom
+// environment refuses to bundle (it treats the file as browser code). So the
+// file runs under `node`, and a jsdom window is installed here — before React
+// and Testing Library load — for the hook to render into.
+await vi.hoisted(async () => {
+  const { builtinEnvironments } = await import("vitest/runtime");
+  await builtinEnvironments.jsdom.setup(globalThis, { jsdom: { url: "http://localhost/" } });
+});
 
 const database = vi.hoisted(() => ({ current: null as SqlExecutor | null }));
 

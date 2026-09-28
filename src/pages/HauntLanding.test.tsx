@@ -61,8 +61,7 @@ describe("HauntLanding", () => {
         hauntId: "hhn",
         attractions: 367,
         seasons: 2,
-        walkthroughs: 300,
-        scareZones: 67,
+        walkthroughs: 367,
         reviewed: 40,
         firstYear: 2025,
         lastYear: 2026,
@@ -85,11 +84,14 @@ describe("HauntLanding", () => {
     expect(screen.getByText(/Universal's Halloween event/)).toBeInTheDocument();
     // Its own word for a walk-through, on the figure and on the way in.
     expect(screen.getAllByText("Houses").length).toBeGreaterThan(0);
-    expect(screen.getByText("300")).toBeInTheDocument();
+    expect(screen.getByText("367")).toBeInTheDocument();
     expect(screen.getByRole("progressbar", { name: "Review coverage" })).toHaveAttribute(
       "aria-valuetext",
       "40 of 367 reviewed",
     );
+    // Only walk-throughs are archived, so there is no way in to scare zones.
+    expect(screen.queryByRole("link", { name: /Scare Zones/ })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /Scare Zones/ })).not.toBeInTheDocument();
   });
 
   it("lists the haunt's seasons, newest first, each linking to its own page", () => {
@@ -132,8 +134,7 @@ describe("the haunt selector on a haunt's page", () => {
         hauntId: "hhn",
         attractions: 10,
         seasons: 1,
-        walkthroughs: 8,
-        scareZones: 2,
+        walkthroughs: 10,
         reviewed: 0,
         firstYear: 2026,
         lastYear: 2026,

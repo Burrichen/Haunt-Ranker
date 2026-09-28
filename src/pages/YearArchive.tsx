@@ -1,4 +1,4 @@
-import { Calendar, Drama, DoorOpen, TreePine } from "lucide-react";
+import { Calendar, DoorOpen } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { ArchiveCard } from "../components/archive";
 import { EmptyState, LoadingState, PageHeader } from "../components/ui";
@@ -111,19 +111,8 @@ function SeasonLineageSections({ lineage }: { lineage: SeasonLineage<YearAttract
 
 export function YearArchive() {
   const { eventYearId } = useParams<{ eventYearId: string }>();
-  const {
-    isLoading,
-    error,
-    notFound,
-    eventYear,
-    artworkUrl,
-    artworkFit,
-    houses,
-    scareZones,
-    otherKinds,
-    lineage,
-    stats,
-  } = useYearArchive(eventYearId);
+  const { isLoading, error, notFound, eventYear, artworkUrl, artworkFit, houses, lineage, stats } =
+    useYearArchive(eventYearId);
   const registry = useHauntRegistry();
 
   if (isLoading) {
@@ -143,19 +132,6 @@ export function YearArchive() {
     );
   }
 
-  // One section per remaining kind, in the order this haunt lists its own
-  // vocabulary — so a pack decides what appears here, not this file.
-  const hauntId = eventYear.hauntId;
-  const otherSections = registry
-    .categories(hauntId)
-    .filter((category) => category !== "house" && category !== "scare_zone")
-    .map((category) => ({
-      category,
-      title: registry.label(category, hauntId, "many"),
-      items: otherKinds.filter((item) => item.attraction.attractionType === category),
-    }))
-    .filter((section) => section.items.length > 0);
-
   return (
     <div className="year-archive">
       <YearHeader
@@ -163,15 +139,6 @@ export function YearArchive() {
         artworkUrl={artworkUrl}
         artworkFit={artworkFit}
         houseCount={houses.length}
-        scareZoneCount={scareZones.length}
-        otherCounts={otherSections.map((section) => ({
-          label: registry.label(
-            section.category,
-            hauntId,
-            section.items.length === 1 ? "one" : "many",
-          ),
-          count: section.items.length,
-        }))}
       />
 
       <YearStatsPanel stats={stats} eventYear={eventYear} />
@@ -187,30 +154,6 @@ export function YearArchive() {
         eventYear={eventYear}
         emptyLabel={`No ${registry.label("house", eventYear.hauntId, "many").toLowerCase()} on file for this year yet.`}
       />
-
-      <AttractionSection
-        title={registry.label("scare_zone", eventYear.hauntId, "many")}
-        icon={<TreePine size={18} strokeWidth={1.5} />}
-        items={scareZones}
-        eventYear={eventYear}
-        emptyLabel="No scare zones on file for this year yet."
-      />
-
-      {/* A haunt can hold kinds of thing neither shipped haunt has — a stage
-          show, a ride, whatever a Haunt Pack declares. Each gets its own
-          section, in the haunt's own words, and only when it has something
-          in it: an empty "Shows" heading would be a claim about a season
-          rather than a fact about it. */}
-      {otherSections.map((section) => (
-        <AttractionSection
-          key={section.category}
-          title={section.title}
-          icon={<Drama size={18} strokeWidth={1.5} />}
-          items={section.items}
-          eventYear={eventYear}
-          emptyLabel=""
-        />
-      ))}
     </div>
   );
 }

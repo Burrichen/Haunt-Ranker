@@ -60,14 +60,7 @@ export function AttractionWiki() {
     );
   }
 
-  // Walk-throughs and zones have browsers of their own; anything else is
-  // found through its season, so that is where "back" goes.
-  const backTo =
-    attraction.attractionType === "house"
-      ? "/houses"
-      : attraction.attractionType === "scare_zone"
-        ? "/scare-zones"
-        : `/years/${attraction.eventYearId}`;
+  const backTo = "/houses";
   // The header shows the one image the app may display for this slot; the
   // Media section lists everything else on record, including references it
   // links to rather than loads.

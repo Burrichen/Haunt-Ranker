@@ -1,4 +1,4 @@
-import type { AttractionType, IpType } from "../models/attraction";
+import type { IpType } from "../models/attraction";
 import type { ParkId } from "../models/park";
 import {
   RANKING_DIRECTIONS,
@@ -13,7 +13,6 @@ import {
 } from "./statistics";
 import type { ExplorerSubject } from "./statisticsExplorer";
 
-const ATTRACTION_TYPES: readonly AttractionType[] = ["house", "scare_zone"];
 const PARK_IDS: readonly ParkId[] = ["hollywood", "orlando"];
 const IP_TYPES: readonly IpType[] = ["original", "licensed"];
 const HIGHLIGHT_MODES: readonly HighlightMode[] = ["best", "lowest"];
@@ -70,7 +69,6 @@ export function parseStatisticsParams(params: URLSearchParams): StatisticsParams
     view: parseOne<StatisticsView>(params.get("view"), VIEWS) ?? DEFAULT_STATISTICS_VIEW,
     filters: {
       year: parseYear(params.get("year")),
-      type: parseOne<AttractionType>(params.get("type"), ATTRACTION_TYPES),
       park: parseOne<ParkId>(params.get("park"), PARK_IDS),
       ipType: parseOne<IpType>(params.get("ip"), IP_TYPES),
     },
@@ -112,9 +110,6 @@ export function statisticsParamsToSearchParams({
   }
   if (filters.year !== null) {
     params.set("year", String(filters.year));
-  }
-  if (filters.type !== null) {
-    params.set("type", filters.type);
   }
   if (filters.park !== null) {
     params.set("park", filters.park);

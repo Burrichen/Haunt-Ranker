@@ -7,6 +7,7 @@ import {
 } from "../models/backup";
 import { BACKUP_TABLES, type BackupColumn, type BackupTableSpec } from "./backupTables";
 import { copyHhnRankingScopes, mergeCrossParkHhn } from "./hhnBackupUpgrades";
+import { retireNonWalkthroughs } from "./walkthroughBackupUpgrade";
 
 /** How many problems to report before it stops being useful to read. */
 const MAX_REPORTED_ERRORS = 12;
@@ -262,10 +263,27 @@ const upgradeV3ToV4: BackupUpgrade = (raw) => {
   return { ...raw, data: copyHhnRankingScopes(data) };
 };
 
+/**
+ * Version 4 → 5: walk-throughs only.
+ *
+ * Haunt Ranker stopped archiving scare zones, shows and other experiences in
+ * migration 0014. A version 4 file can still hold them, so they are taken
+ * out here exactly as that migration takes them out — and every rating,
+ * note and ranking position on them moves to `legacyPersonalData` rather
+ * than being lost. Haunt Pack import history is no longer carried.
+ */
+const upgradeV4ToV5: BackupUpgrade = (raw) => {
+  const data = isRecord(raw.data) ? { ...raw.data } : {};
+  const stamp = typeof raw.exportedAt === "string" ? raw.exportedAt : new Date().toISOString();
+  delete data.hauntPacks;
+  return { ...raw, data: retireNonWalkthroughs(data, stamp) };
+};
+
 export const BACKUP_UPGRADES: Record<number, BackupUpgrade> = {
   1: upgradeV1ToV2,
   2: upgradeV2ToV3,
   3: upgradeV3ToV4,
+  4: upgradeV4ToV5,
 };
 
 function isRecord(value: unknown): value is Record<string, unknown> {

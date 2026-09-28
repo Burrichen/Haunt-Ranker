@@ -49,7 +49,7 @@ function mapRow(row: ExperienceTypeRow): ExperienceType {
 export interface ExperienceTypeRepository {
   getAll(): Promise<ExperienceType[]>;
   getByHaunt(hauntId: HauntId): Promise<ExperienceType[]>;
-  /** Writes a type a pack declares, creating it or correcting its wording. */
+  /** Writes a type row. Unused by the app — the vocabulary is seeded by migrations. */
   save(input: ExperienceTypeInput): Promise<ExperienceType>;
 }
 

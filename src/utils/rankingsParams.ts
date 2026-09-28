@@ -1,4 +1,4 @@
-import type { AttractionType, IpType } from "../models/attraction";
+import type { IpType } from "../models/attraction";
 import type { RankingGroup, RankingHauntScope } from "../models/ranking";
 import type { ParkFacet } from "./attractionBrowser";
 import {
@@ -13,11 +13,10 @@ import {
   type RankingSort,
 } from "./rankings";
 
-const GROUPS: readonly RankingGroup[] = ["houses", "scare_zones", "all"];
+const GROUPS: readonly RankingGroup[] = ["houses"];
 const MODES: readonly RankingMode[] = ["calculated", "manual"];
 const PARK_FACETS: readonly ParkFacet[] = ["hollywood", "orlando", "both"];
 const IP_TYPES: readonly IpType[] = ["original", "licensed"];
-const ATTRACTION_TYPES: readonly AttractionType[] = ["house", "scare_zone"];
 
 export const DEFAULT_RANKING_GROUP: RankingGroup = "houses";
 export const DEFAULT_RANKING_HAUNT: RankingHauntScope = "all";
@@ -73,7 +72,6 @@ export function parseRankingsParams(params: URLSearchParams): RankingsParams {
     mode: parseOne<RankingMode>(params.get("mode"), MODES),
     filters: {
       years: parseYearList(params.get("year")),
-      types: parseStringList(params.get("type"), ATTRACTION_TYPES),
       parks: parseStringList(params.get("park"), PARK_FACETS),
       ipTypes: parseStringList(params.get("ip"), IP_TYPES),
     },
@@ -105,9 +103,6 @@ export function rankingsParamsToSearchParams({
   }
   if (filters.years.length > 0) {
     params.set("year", filters.years.join(","));
-  }
-  if (filters.types.length > 0) {
-    params.set("type", filters.types.join(","));
   }
   if (filters.parks.length > 0) {
     params.set("park", filters.parks.join(","));

@@ -46,7 +46,6 @@ export interface Rankings {
   error: string | null;
 
   group: RankingGroup;
-  setGroup: (group: RankingGroup) => void;
 
   /** Whose list this is: one haunt's, or the All Haunts list. */
   haunt: RankingHauntScope;
@@ -178,14 +177,6 @@ export function useRankings(): Rankings {
     [params, setSearchParams],
   );
 
-  const setGroup = useCallback(
-    (nextGroup: RankingGroup) => {
-      // Mode is deliberately unpinned when switching groups, so each group
-      // falls back to its own default rather than inheriting the last one's.
-      updateParams({ group: nextGroup, mode: null, filters: DEFAULT_RANKING_FILTERS });
-    },
-    [updateParams],
-  );
   const setHaunt = useCallback(
     (nextHaunt: RankingHauntScope) => {
       // Each list keeps its own order, so switching haunts only changes
@@ -306,7 +297,6 @@ export function useRankings(): Rankings {
     isLoading: data.isLoading,
     error: data.error,
     group,
-    setGroup,
     haunt,
     setHaunt,
     mode,

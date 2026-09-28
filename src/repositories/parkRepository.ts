@@ -32,14 +32,13 @@ function mapRow(row: ParkRow): Park {
 export interface ParkRepository {
   getAll(): Promise<Park[]>;
   getByHaunt(hauntId: HauntId): Promise<Park[]>;
-  /** Writes a venue a pack describes. The only way a new one appears. */
+  /** Writes a venue row. Unused by the app — venues are seeded by migrations. */
   save(input: ParkInput): Promise<Park>;
 }
 
 /**
- * Venues. Seeded for the haunts the app ships with, and otherwise written
- * by a Haunt Pack — never by hand, because a venue with no haunt and no
- * attractions is not something a reader can do anything with.
+ * Venues — Hollywood, Orlando and Knott's Berry Farm — seeded by
+ * migrations for the two haunts Haunt Ranker supports.
  */
 export function createParkRepository(db: SqlExecutor): ParkRepository {
   async function getAll(): Promise<Park[]> {

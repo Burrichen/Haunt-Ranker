@@ -274,9 +274,7 @@ describe("filterAndSortRows", () => {
     const rows = [
       makeRow({ attraction: makeAttraction({ id: "1", name: "Zebra House" }) }),
       makeRow({ attraction: makeAttraction({ id: "2", name: "Apple House" }) }),
-      makeRow({
-        attraction: makeAttraction({ id: "3", name: "Excluded", attractionType: "scare_zone" }),
-      }),
+      makeRow({ attraction: makeAttraction({ id: "3", name: "Excluded" }) }),
     ];
     const original = rows.slice();
 

@@ -12,7 +12,7 @@ import type { ParkId } from "./park";
  * when an older file can no longer be read correctly — a renamed or removed
  * column, a changed meaning, a new required field.
  */
-export const BACKUP_FORMAT_VERSION = 4;
+export const BACKUP_FORMAT_VERSION = 5;
 
 /**
  * A backup is a table-level dump rather than a dump of the domain models.
@@ -180,18 +180,25 @@ export interface AttractionVenueWikiRow {
   updated_at: string;
 }
 
-/** One Haunt Pack import: what arrived, from where, and when. */
-export interface HauntPackRow {
+/**
+ * A rating, note or ranking position the user made about a record Haunt
+ * Ranker no longer archives — a scare zone, a show — kept whole rather than
+ * deleted with it (migration 0014, backup format 5). Never shown in the app.
+ */
+export interface LegacyPersonalDataRow {
   id: string;
-  pack_id: string;
-  pack_version: string;
-  schema_id: string;
-  haunt_id: string;
-  haunt_name: string;
-  generated_at: string | null;
-  imported_at: string;
-  summary: string;
-  provenance_notes: string | null;
+  kind: string;
+  original_id: string;
+  attraction_id: string;
+  attraction_name: string | null;
+  attraction_type: string | null;
+  haunt_id: string | null;
+  season_id: string | null;
+  calendar_year: number | null;
+  /** The original row, every column, as JSON. */
+  payload: string;
+  reason: string;
+  preserved_at: string;
 }
 
 /**
@@ -286,7 +293,7 @@ export interface BackupData {
   notes: NoteRow[];
   rankings: RankingRow[];
   settings: SettingRow[];
-  hauntPacks: HauntPackRow[];
+  legacyPersonalData: LegacyPersonalDataRow[];
   migrationConflicts: MigrationConflictRow[];
 }
 

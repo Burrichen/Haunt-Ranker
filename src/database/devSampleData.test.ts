@@ -44,7 +44,7 @@ describe("dev sample data", () => {
       relations: 4,
       ratings: 4,
       notes: 1,
-      rankingScopes: 2,
+      rankingScopes: 1,
     });
   });
 
@@ -92,10 +92,9 @@ describe("dev sample data", () => {
     it("filters attractions by type and by event year", async () => {
       const attractions = createAttractionRepository(db);
 
+      // Houses only: the sample set's old scare zones are houses now too.
       const houses = await attractions.getByType("house");
-      const scareZones = await attractions.getByType("scare_zone");
-      expect(houses).toHaveLength(4);
-      expect(scareZones).toHaveLength(3);
+      expect(houses).toHaveLength(7);
 
       const years = await createEventYearRepository(db).getAll();
       const year2101 = years.find((y) => y.calendarYear === 2101);

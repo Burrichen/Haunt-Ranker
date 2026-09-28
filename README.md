@@ -1,13 +1,13 @@
 # Haunt Ranker
 
 A local-first Windows desktop app for browsing, reviewing and ranking Halloween
-haunt attractions — houses, mazes, scare zones and seasons, across Halloween
-Horror Nights and Knott's Scary Farm — built with Tauri, React, TypeScript and
+haunt walk-throughs — Halloween Horror Nights' Houses and Knott's Scary Farm's
+Mazes, season by season — built with Tauri, React, TypeScript and
 SQLite.
 
 This repository has the application shell, design system, a fully
 migrated/tested SQLite data layer, and every browsing page built on top of
-it — Home, Houses, Scare Zones, Attraction Wiki, Rankings, Years and
+it — Home, Houses, Attraction Wiki, Rankings, Years and
 Statistics — plus a working review system (rate, edit, clear, notes — see
 "Reviews" below), calculated and manual rankings (see "Rankings"), the year
 archive and its statistics (see "Years"), a dashboard (see "Statistics
@@ -16,9 +16,12 @@ Admin Mode for editing the archive itself (see "Admin Mode"), and a complete
 Settings page with a portable export/import backup (see "Settings and
 backups"). It packages as a per-user Windows installer (see "Windows
 release"), and carries the real Halloween Horror Nights dataset for 2010-2026
-(see "The archive dataset"). It holds two haunts as equals — Halloween Horror
+(see "The archive dataset"). It holds exactly two haunts as equals — Halloween Horror
 Nights and Knott's Scary Farm — throughout the schema and the interface (see
-"Two haunts"); the Knott's archive itself has not been entered yet.
+"Two haunts"); the Knott's archive itself has not been entered yet. It is not a
+generic haunt platform, and it archives walk-throughs only: scare zones, shows,
+ride overlays and other experiences are out of scope (see "Walk-throughs
+only").
 
 ## Stack
 
@@ -69,8 +72,8 @@ Run these from the repository root.
 
 ```
 src/
-  pages/         One component per top-level section (Home, Haunts, Houses, Scare
-                 Zones, Years, Rankings, Statistics, Settings, Admin Mode),
+  pages/         One component per top-level section (Home, Haunts, Houses,
+                 Years, Rankings, Statistics, Settings, Admin Mode),
                  plus `AttractionWiki` (the `/attractions/:id` detail page
                  every attraction card/row links to — now a full article
                  page, see "Attraction Wiki" below) and `YearArchive` (the
@@ -119,8 +122,8 @@ src/
                  "Attraction Wiki" below). Shared by Home's spotlight, the
                  attraction browser and the wiki page.
     attractionBrowser/  `AttractionBrowser` — the shared search/filter/
-                 sort/view-mode browsing UI Houses and Scare Zones are
-                 both built from (see "Attraction browser" below), plus
+                 sort/view-mode browsing UI the Houses/Mazes page is
+                 built from (see "Attraction browser" below), plus
                  its `FilterBar`, `SortMenu` and `AttractionRow` (the
                  compact-view row) pieces.
     rankings/    The Rankings page's pieces — `RankingList` (the ordered
@@ -200,14 +203,14 @@ src/
                  table, for export and import.
   hooks/         Application-level React hooks: `useAmbientEffectsPreference`,
                  `useArchiveOverview` (Home's summary counts and spotlight),
-                 `useAttractionBrowser` (Houses/Scare Zones' data + URL-backed
+                 `useAttractionBrowser` (Houses/Mazes' data + URL-backed
                  filter/sort state — see "Attraction browser" below),
                  `useAttractionViewMode` (the saved card/compact preference),
                  and `useAttractionWiki` (everything one attraction's wiki
                  page needs, including resolved related-attraction data and
                  the save/clear review mutations — see "Attraction Wiki"
-                 and "Reviews" below), `useRankings` (a ranking group's
-                 data, its URL-backed group/mode/filter/sort state, and
+                 and "Reviews" below), `useRankings` (a ranking scope's
+                 data, its URL-backed mode/filter/sort state, and
                  every write to the saved manual order — see "Rankings"
                  below), `useYearsOverview`/`useYearArchive` (the year
                  list with its summaries, and one year with its statistics
@@ -325,8 +328,10 @@ shadow rasterizes as corrupted jagged shapes instead of a smooth fade).
 
 ### Persistence
 
-**Schema.** The database is defined by three numbered SQL migration files
-in `src-tauri/migrations/`, run automatically (via `tauri-plugin-sql` /
+**Schema.** The database is defined by numbered SQL migration files in
+`src-tauri/migrations/` — fourteen so far; the first four are listed here and
+the later ones in the sections they belong to (0014 under "Walk-throughs
+only") — run automatically (via `tauri-plugin-sql` /
 sqlx's migrator) the first time the app opens its connection:
 
 - `0001_archive_schema.sql` — **archive data**: facts about attractions
@@ -380,8 +385,8 @@ tests). `src/test/fixtures.ts` has shared helpers (`createFixtureEventYear`,
 
 ### Development sample data
 
-> **Everything this creates is 100% fictional** — invented houses, scare
-> zones, event years, characters and sources (Moonlight Manor, Pumpkin
+> **Everything this creates is 100% fictional** — invented houses, event
+> years, characters and sources (Moonlight Manor, Pumpkin
 > Pier, Radioactive Crypt, Midnight Carnival, Graveyard Radio, ...), never
 > real Halloween Horror Nights facts. It exists purely so the UI can be
 > built and tested against realistic-looking records before any real data
@@ -404,8 +409,9 @@ directly (resolved from `%APPDATA%\<tauri identifier>\haunt-ranker.db`, or
 `HAUNT_RANKER_DB_PATH` to override), never a test database.
 
 The dataset (`src/database/devSampleData.ts`) deliberately covers every
-combination the UI needs: 3 fictional "Shadowfest" event years; 4 houses
-and 3 scare zones; Hollywood-only, Orlando-only and dual-park attractions;
+combination the UI needs: 3 fictional "Shadowfest" event years; 7 houses
+(Pumpkin Pier, Midnight Carnival and Graveyard Radio were scare zones until
+walk-throughs became the only category); one saved manual ranking; Hollywood-only, Orlando-only and dual-park attractions;
 original and fictional-licensed IP; rated and genuinely-unrated
 attractions; attractions with and without characters, sources and media;
 and related-attraction examples covering all four relation types. Media
@@ -426,8 +432,8 @@ Before importing real data, run `npm run db:clear` first.
 
 Home (`src/pages/Home.tsx`) is the archive's entrance, not the Statistics
 dashboard — it deliberately stays light on data. `useArchiveOverview`
-(`src/hooks/`) loads everything it needs in one pass: total/house/scare-zone/
-reviewed counts, and a spotlight of up to 6 random attractions. The
+(`src/hooks/`) loads everything it needs in one pass: house/season/reviewed
+counts, and a spotlight of up to 6 random attractions. The
 spotlight is picked once per mount (`pickRandomSample`, in a `useEffect`
 with an empty dependency array) — it does not reshuffle while the page
 stays open, per spec.
@@ -442,12 +448,12 @@ generates or fetches placeholder artwork.
 
 ### Attraction browser
 
-Houses and Scare Zones (`src/pages/Houses.tsx` / `ScareZones.tsx`) are both
-a `PageHeader` plus one shared component, `<AttractionBrowser
-attractionType="house" | "scare_zone" />` — there is no separate
-implementation per type. Everything type-specific is just that one prop;
-adding a third browsable attraction type would mean adding a value to
-`AttractionType`, not building a new browser.
+The Houses page (`src/pages/Houses.tsx` — titled Houses, Mazes or "Houses &
+Mazes" depending on the haunt in view) is a `PageHeader` plus one shared
+component, `<AttractionBrowser attractionType="house" />`. Walk-throughs are
+the only category the app archives (see "Walk-throughs only"), so `house` is
+the only value that prop ever takes; the browser itself holds nothing
+type-specific beyond it.
 
 **Data.** `useAttractionBrowser` loads every attraction of that type once
 (via `attractionRepo.getByType`), plus every event year, media row, rating
@@ -608,17 +614,19 @@ sorts are a view, never a write** — sorting cannot touch a saved manual
 ranking.
 
 **My Ranking** is the user's own drag-and-drop order, stored in
-`user_rankings` under a per-group scope. It takes precedence in the literal
-sense: once a group has a saved order, **manual is the mode the page opens
+`user_rankings` under a per-haunt scope. It takes precedence in the literal
+sense: once a list has a saved order, **manual is the mode the page opens
 in**, and the calculated view becomes the opt-in one — with a notice saying
 the saved ranking is still there and untouched. A score change reorders the
 calculated view and never the manual one; `Reset to Calculated Ranking`
 (behind a confirmation) is the only thing that deletes it.
 
-**Three groups** — Houses, Scare Zones and All Attractions — each keep an
-independent manual order. Houses and Scare Zones deliberately resolve to
-the same scopes as `allTimeScope`, so an order made here is the same one
-the attraction browser's "Personal Ranking" sort reads.
+**One list per haunt scope.** There is no group switcher: the page ranks
+the walk-throughs of whichever haunt is in view (HHN Houses, Knott's Mazes,
+or the All Haunts list), each with its own independent manual order. That
+list deliberately resolves to the same scope as `allTimeScope("house")`, so
+an order made here is the same one the attraction browser's "Personal
+Ranking" sort reads.
 
 **Unrated attractions are never mixed into the ranking**, and never scored
 as zero. They sit in their own collapsed section with a count, alongside a
@@ -629,7 +637,7 @@ deliberately ranked it last. (A deliberate 0/0/0 review is a real score and
 does rank; only the absence of a rating is excluded.)
 
 **Reordering under a filter is safe.** The list can be filtered by year,
-type (on All Attractions), park and Original/Licensed IP while still being
+park and Original/Licensed IP while still being
 reorderable, so `applyVisibleOrder` drops the visible rows back into the
 slots they already occupied and leaves every hidden row's absolute position
 alone. Saving just the visible ids instead would quietly delete the rest of
@@ -644,11 +652,11 @@ icons, the per-dimension breakdown (dropped on narrow windows) and the
 total — hovering anywhere on one shows the shared `AttractionPreviewCard`,
 and the row body links through to the wiki article.
 
-Group, mode, filters and sort all live in the URL, like the attraction
+Mode, filters and sort all live in the URL, like the attraction
 browser, so leaving for a wiki article and coming back restores the view.
 `rankingPersistence.test.ts` covers the rest by closing and reopening the
 database file: an order survives a restart, survives the scores under it
-changing, stays cleared once reset, and stays independent per group.
+changing, stays cleared once reset, and stays independent per scope.
 
 ### Years
 
@@ -669,12 +677,12 @@ it.
 
 **Year cards** show the event name and year, real artwork when the year has
 some on file (a plain fallback otherwise — never a generated stand-in), the
-house/scare-zone/reviewed counts, and the average total or a "Not enough
+house and reviewed counts, and the average total or a "Not enough
 reviews" badge.
 
 **The year page** is the header (artwork, name, counts, description if
-there is one), the statistics panel, then Houses and Scare Zones as
-`ArchiveCard` grids — the same card Home and the attraction browser use.
+there is one), the statistics panel, then the season's Houses (or Mazes) as
+an `ArchiveCard` grid — the same card Home and the attraction browser use.
 The statistics panel names eight highlights — Highest/Lowest Rated, Best/
 Lowest Theme, Most/Least Fun, Scariest/Least Scary — each linking to its
 wiki article and showing the shared `AttractionPreviewCard` on hover, like
@@ -696,7 +704,7 @@ stays, because an average without it is the misleading half.
 `src/utils/statistics.ts`. Reviewed entries only, everywhere — an unrated
 attraction is never the least scary thing in the archive, it's unknown.
 
-**One filter row scopes the whole page.** Year, Houses/Scare Zones, park and
+**One filter row scopes the whole page.** Haunt, year, venue and
 Original/Licensed are single-select facets, and the **metric lives in that
 same row** rather than inside a chart card, because the year chart and the
 Top 10 both read it — the page can't disagree with itself about what it's
@@ -730,7 +738,7 @@ buckets total scores into five half-open bands across 0–15, with the top
 band closing on 15 so a perfect score has a home.
 
 **Review coverage** is the honest denominator behind the rest of the page:
-reviewed out of total, overall and per type, as plain meters whose unfilled
+reviewed out of total, as a plain meter whose unfilled
 track is a lighter step of the fill's own hue. Every empty and low-data
 state says what's missing in words instead of rendering a blank plot.
 
@@ -745,15 +753,14 @@ dashboard doesn't have a card for can still be answered.
 direction, reviewed-only — and every example the feature is meant to
 support is that struct with different values:
 
-| Question                     | The query                                 |
-| ---------------------------- | ----------------------------------------- |
-| Scariest attractions ever    | Fear · Highest→Lowest                     |
-| Least scary Houses           | Fear · Lowest→Highest · type = Houses     |
-| Most fun Scare Zones         | Fun · Highest→Lowest · type = Scare Zones |
-| Lowest Theme scores          | Theme · Lowest→Highest                    |
-| Highest scoring in a year    | Total · Highest→Lowest · year = N         |
-| Most fun Orlando attractions | Fun · Highest→Lowest · park = Orlando     |
-| Best-scoring Originals       | Total · Highest→Lowest · IP = Original    |
+| Question                     | The query                              |
+| ---------------------------- | -------------------------------------- |
+| Scariest attractions ever    | Fear · Highest→Lowest                  |
+| Least scary Houses           | Fear · Lowest→Highest                  |
+| Lowest Theme scores          | Theme · Lowest→Highest                 |
+| Highest scoring in a year    | Total · Highest→Lowest · year = N      |
+| Most fun Orlando attractions | Fun · Highest→Lowest · park = Orlando  |
+| Best-scoring Originals       | Total · Highest→Lowest · IP = Original |
 
 `statisticsExplorer.test.ts` asserts each of those rows, plus combinations
 nobody listed (all four facets at once, a combination matching nothing, a
@@ -798,9 +805,9 @@ forms check the same things for the sake of good messages, but they have no
 privileged path: `attractionRepository.setParks(id, [])` is rejected too, so
 the last park can't be stripped by going around `update`.
 
-**`/admin`** lists event years and attractions with Add House / Add Scare
-Zone, edit and delete. **`/admin/attractions/:id`** is the editor: type,
-year, name, variant, parks, Original/Licensed, franchise, every wiki field,
+**`/admin`** lists event years and attractions with Add attraction, edit and
+delete. **`/admin/attractions/:id`** is the editor — there is no type
+selector, because every attraction is a walk-through: year, name, variant, parks, Original/Licensed, franchise, every wiki field,
 location and opening/closing, plus four sub-record editors — characters,
 related attractions, sources and media metadata. Sub-records save on add and
 remove rather than being staged with the main form: they're separate rows in
@@ -891,7 +898,7 @@ rendition where one exists (WordPress's resized copies, Sanity's on-request
 resizing), so the archive's artwork is about 20 MB rather than 100. It skips
 PDFs and anything over the size cap (`--max-mb`, default 8), backs the
 database up first, and refuses to finish if personal data moved; `--check`
-verifies every held copy exists at a safe path. Re-importing a pack or the
+verifies every held copy exists at a safe path. Re-importing the
 dataset corrects a record's URL and credit and leaves this machine's copy
 alone. The copies belong to the installation — never committed, never
 bundled — so run it once on each machine.
@@ -979,7 +986,8 @@ The order is the design:
    is the state an import must never leave behind. Unknown columns are
    dropped rather than passed to SQL. A file from a newer format version is
    refused rather than guessed at; an older one goes through
-   `upgradeBackup`'s chain, which today is empty and says so.
+   `upgradeBackup`'s chain of registered upgrades, one version at a time (see
+   "Backups" under "Two haunts").
 2. **Show what it contains, beside what's already here** — per table, because
    "1,204 rows" is not something anyone can consent to.
 3. **Write a safety copy first.** `$APPDATA/backups/before-import-<stamp>.json`,
@@ -1197,7 +1205,8 @@ and **fails to compile** if a new table is added without that decision being
 made. The archive side — event years, attractions, park assignments,
 characters, relations, sources, citations and media metadata — is what a
 dataset may add to and correct. The personal side — `user_ratings`,
-`user_notes`, `user_rankings`, `user_settings` — is never written by an import.
+`user_notes`, `user_rankings`, `user_settings`, and `legacy_personal_data` (see
+"Walk-throughs only") — is never written by an import.
 
 The one exception exists so personal data _survives_ a correction: when a
 dataset declares an id change, the importer **moves** the record and everything
@@ -1255,16 +1264,20 @@ existed. The importer now appends relations last, and
 
 ### What's in it, and what deliberately isn't
 
-The dataset covers **2010–2026** at both parks (367 canonical attractions) — the scope cap, not the limit of
-what exists; the [research](docs/research/) established that usable material
-goes back to Orlando 1991.
+The dataset (version `2026.09.2`) covers **2010–2026** at both parks — 213
+houses and 331 sources — the scope cap, not the limit of what exists; the
+[research](docs/research/) established that usable material goes back to
+Orlando 1991. It is **houses only**: the 154 scare zones earlier versions
+carried were removed with the category, and the validator
+(`src/archive/validateDataset.ts`, run by `scripts/validate-dataset.ts`) now
+accepts nothing but `type: "house"`.
 
 Every attraction carries what can be sourced: name, event year, type, parks, IP
 classification and franchise, the venue it was housed in, and at least one
 source. **Most records have their IP classified** from each page's own "Based on"
-field; the other 22 are left unclassified rather than guessed.
+field; the other 11 are left unclassified rather than guessed.
 
-**Only 20 attractions have a summary**, and that is the point rather than an
+**Only 10 attractions have a summary**, and that is the point rather than an
 oversight. Prose is written only where an authoritative source describes the
 attraction — currently Universal's own 2026 press material, paraphrased. Every
 other overview, story, experience and development field is **absent, not
@@ -1288,9 +1301,9 @@ Universal's own press release and NBCUniversal's corporate guide as
 research verified, as `youtube`, with the channel as publisher; nothing is
 downloaded or repackaged.
 
-**51 attractions are single records covering both parks.** Two were merged
+**49 attractions are single records covering both parks.** A few were merged
 during the catalogue research, where a source described the two builds as
-essentially the same; the other 49 were merged by the canonical cross-park rule
+essentially the same; the rest were merged by the canonical cross-park rule
 (see "Two haunts"), which makes the same name in the same season one attraction
 whatever the two builds did differently. What each park's version had of its
 own — the venue it stood in, the sources describing it — is kept as a per-venue
@@ -1392,7 +1405,7 @@ remembered, so a relaunch returns to it rather than re-asserting the default.
 `/haunts` lists the collections: Halloween Horror Nights leads as the home
 collection, and the others follow under **Other Haunts** — the same card, the
 same figures, the same way in, set below it rather than beside it. Each card
-carries seasons, walk-throughs, scare zones and review coverage, in that
+carries seasons, walk-throughs and review coverage, in that
 haunt's own vocabulary, and a haunt with nothing entered says exactly that
 instead of showing zeroes as though they were data.
 
@@ -1414,24 +1427,21 @@ panel doesn't render at all, because that is not a comparison.
 
 ### Vocabulary
 
-HHN has **Houses**; Knott's has **Mazes**; both have **Scare Zones**. The
-database calls the type `house` for both, and no source file decides what a
-reader sees: the words live in the `experience_types` table, are read once into
-the haunt registry (`src/hooks/useHauntRegistry.ts`), and reach the interface
-through `registry.label(type, hauntId)`. That is what lets a Haunt Pack arrive
-with **Trails**, or anything else, and be called that everywhere. A list
-spanning every haunt reads them all out — **"Houses & Mazes"**, or "Houses,
-Mazes & Trails" — because any one haunt's word would be wrong there. Internal
-terms like `walkthrough` never reach the UI.
+HHN has **Houses**; Knott's has **Mazes**. The database calls the type
+`house` for both, and no source file decides what a reader sees: the words live
+in the `experience_types` table, are read once into the haunt registry
+(`src/hooks/useHauntRegistry.ts`), and reach the interface through
+`registry.label(type, hauntId)`. A list spanning both haunts reads them both
+out — **"Houses & Mazes"** — because either haunt's word alone would be wrong
+there. Internal terms like `walkthrough` never reach the UI.
 
 ### Rankings
 
-Every ranking scope exists per haunt and across all haunts: HHN Houses, HHN
-Scare Zones, Knott's Mazes, Knott's Scare Zones, and the All Haunts lists.
-They are separate lists and are mutually non-destructive — ordering one never
-writes to another. All Haunts keeps the unprefixed scope keys (`houses:all`,
-`scare_zones:all`, `attractions:all`), so every ranking saved before there was
-a second haunt is still exactly where it was. Those lists were HHN's lists
+Every ranking scope exists per haunt and across all haunts: HHN Houses,
+Knott's Mazes, and the All Haunts "Houses & Mazes" list. They are separate
+lists and are mutually non-destructive — ordering one never writes to another.
+All Haunts keeps the unprefixed scope key (`houses:all`), so every ranking
+saved before there was a second haunt is still exactly where it was. Those lists were HHN's lists
 when they were made, so migration 0012 also gives HHN its own copy
 (`hhn:houses:all`, …) — HHN attractions only, same order — wherever HHN has no
 list of its own yet. Viewing HHN, a person sees the order they made. The
@@ -1448,12 +1458,15 @@ figures.
 
 ### Backups
 
-The backup format is at **version 4**, carrying each haunt's vocabulary and
-pack provenance alongside the haunts, venues, seasons, appearances,
-venue-specific wiki sections, debut years, ranking scopes and migration
-conflict log that version 2 added to version 1. **Versions 1, 2 and 3 still
-import**, through registered upgrades rather than special cases: a version 1
-file's seasons are read as HHN (all that existed when it was written), each
+The backup format is at **version 5**, carrying each haunt's vocabulary and
+the `legacyPersonalData` table (see "Walk-throughs only") alongside the haunts,
+venues, seasons, appearances, venue-specific wiki sections, debut years,
+ranking scopes and migration conflict log that version 2 added to version 1.
+Version 5 validation accepts only `attraction_type = house` and the
+experience-type category `walkthrough`, and Haunt Pack import history
+(`hauntPacks`) is no longer carried. **Versions 1 to 4 still import**,
+through registered upgrades rather than special cases: a version 1 file's
+seasons are read as HHN (all that existed when it was written), each
 attraction's appearance is recovered from the season it belonged to, and
 nothing is invented — debut years and venue sections arrive empty because a
 version 1 file genuinely says nothing about them.
@@ -1463,7 +1476,12 @@ the migrations written after it. Its upgrade does their work instead
 (`src/backup/hhnBackupUpgrades.ts`): a version 1 file gets 0009's cross-park
 merge, and a version 3 file gets 0012's HHN ranking copy. Restoring a backup
 made before multi-haunt support lands on the same HHN as migrating the
-database it came from.
+database it came from. Likewise a version 4 file gets 0014's work
+(`src/backup/walkthroughBackupUpgrade.ts`): its scare zones and other
+non-walk-through records are dropped and every rating, note and ranking
+position on them moves into `legacyPersonalData`, so restoring an old backup
+never brings a retired category back into view and never loses what was
+written about it.
 
 ### The HHN regression fixture
 
@@ -1480,120 +1498,52 @@ the files by hand. Haunts and venues are
 carried in the file for completeness but are never deleted by an import, so a
 restore can't leave an app with no haunts.
 
-## Haunt Packs
+## Walk-throughs only
 
-A **Haunt Pack** is one JSON file that describes a whole event: the haunt
-itself, what it calls its experiences, where they happen, which seasons it has
-run, and every experience in them. Importing one adds a haunt this build has
-never heard of, **without changing a line of source code**. Halloween Horror
-Nights and Knott's Scary Farm are not special — they are simply the two haunts
-that arrive seeded.
+Haunt Ranker archives, rates and ranks one kind of thing: the walk-through —
+a House at Halloween Horror Nights, a Maze at Knott's Scary Farm. It is stored
+as `house` for both haunts. **Scare zones, shows, ride overlays and every other
+kind of experience are out of scope**, and nothing in the interface offers
+them: there is no Scare Zones page, no scare-zone counts or sections on Home,
+the Haunts pages or a year, no group switcher or type filter on Rankings, no
+Type facet on Statistics, and no type selector in the attraction editor.
 
-The format is versioned and declares itself:
+### Migration 0014
 
-```json
-{
-  "schema": "haunt-ranker.haunt-pack/v1",
-  "pack": {
-    "id": "moonlight-fright-festival",
-    "version": "2026.1.0",
-    "generatedAt": "2026-09-01T00:00:00.000Z",
-    "description": "Moonlight Fright Festival, 2026 season.",
-    "provenance": "Compiled from the festival's own programme and press pages.",
-    "seasons": [2026],
-    "sourceCount": 3
-  },
-  "haunt": { "id": "…", "name": "…", "shortName": "…", "accent": "green" },
-  "experienceTypes": [ … ],
-  "venues": [ … ],
-  "seasons": [ … ],
-  "experiences": [ … ],
-  "sources": [ … ],
-  "media": [ … ]
-}
-```
+`0014_walkthroughs_only.sql` takes an existing database there. It removes every
+non-walk-through record together with its park assignments, season
+appearances, venue wiki sections, characters, citations, media and relations,
+any source that only those records cited, and the vocabulary for the retired
+categories.
 
-`src/packs/hauntPack.ts` is the definition, and it is the documentation of
-record; `src/test/fixtures/moonlight-fright-festival.hauntpack.json` is a
-complete, valid example.
+**What the user wrote about them is kept.** Before anything is deleted, every
+rating, note and ranking position on a retired record is copied into a new
+table, `legacy_personal_data` — its kind, the original row id, the attraction's
+id, name and type, its haunt, season and calendar year, the whole original row
+as a JSON `payload`, and the reason (`retired-category`). The app never shows
+it, but it stays in the database and rides along in every backup, so nothing a
+person entered is destroyed by the category going away.
 
-### Three rules the format is built on
+Where a hand-made "All Attractions" order exists (`attractions:all`,
+`hhn:attractions:all`, …) and the matching walk-through list (`houses:all`, …)
+doesn't, the order is copied into the walk-through list — houses only, same
+order. A walk-through list the person already made is never overwritten.
 
-**Stable ids, never display names.** Every record in a pack is identified by an
-explicit, namespaced id — `ksf:2024:walkthrough:widows`,
-`moonlight-fright-festival:2026:trail:hollow-road`. A later version of the pack
-corrects a record by naming that id, so a maze can be renamed, re-themed or
-recategorised and every rating, note and ranking attached to it stays attached.
-Ids that don't begin with the haunt's own namespace are a warning, not an
-error — packs describing a joint event have to be able to say so — but a pack
-that claims an id already filed under a _different_ haunt is refused outright.
+The schema's CHECK constraints still accept the retired values, deliberately:
+rebuilding those tables would rewire every foreign key on a live database, and
+old data has to stay readable. Instead the attraction repository refuses to
+create a non-walk-through record and filters them out of every read, and
+backups and dataset imports refuse or divert them before they reach a table
+(see "Backups" under "Two haunts").
 
-**A pack is an archive, never personal data.** There is no field anywhere in
-the schema for a Theme, Fun or Fear rating, a personal note or a ranking
-position, and the planner has no operation that writes to those tables.
-Archive Packs and backups are different things: a backup is your data, a pack
-is the public record of an event. This is enforced at compile time by the
-archive/personal table split in `src/archive/archiveTables.ts`.
+### No Haunt Packs
 
-**Data, not assets.** A pack carries media _records_ — a title, a kind, a
-credit, a licence note, a URL — and never image bytes. Nothing is downloaded
-during an import, and no artwork is generated. What a pack contributes to a
-wiki page is facts and citations.
-
-### Importing one
-
-**Admin Mode → Haunt Packs.** Open a `.json` file or paste the whole pack into
-the box. Then:
-
-1. **Check this pack** validates it completely — on its own terms first
-   (structure, required fields, id shapes, internal references), then against
-   what the archive already holds. Nothing has been written at this point, and
-   nothing will be if either check fails; the refusal lists every problem
-   rather than the first one.
-2. The preview says exactly what importing would do: the haunt and whether it
-   is new, seasons, experiences, venues, vocabulary, characters and sources
-   each as **new / updated / unchanged**, media references, citations to be
-   added, every **warning**, and every **conflict**.
-3. **Import** applies it. The writes go through the archive importer's undo
-   log, so a failure part way through puts everything back — an import either
-   lands completely or leaves the archive exactly as it was.
-
-`npm run pack:import -- <file> [--dry-run]` does the same thing from the
-command line, through the same `preparePackImport` / `applyPackImport` code the
-interface calls, and checks afterwards that no personal row moved.
-`npm run pack:remove -- <haunt-id>` withdraws a haunt a pack brought in, and
-refuses if any rating, note or ranking points at its records.
-
-### Re-importing, and edits made by hand
-
-Importing the same pack twice changes nothing: every record compares equal and
-the preview says so. A later _version_ of a pack corrects what it wrote before
-— and only what it wrote before.
-
-Admin Mode edits stamp `manual_edit_at` on the record. A pack writes
-`source_pack_id`, `source_pack_version` and `pack_updated_at`. When a record
-has been edited by hand since the last pack touched it, the pack does not
-overwrite it: every field where the two disagree is reported as a **conflict**,
-showing what is kept and what was not written, and fields the record says
-nothing about are still filled in. Bumping a pack's version number on its own
-counts as unchanged — provenance columns are excluded from the comparison, so
-a re-issued pack doesn't report the whole archive as updated.
-
-Every import is recorded in `haunt_packs`: which pack, which version, which
-schema, when, what it did and the provenance notes the pack carried. Admin
-Mode lists them under the paste box.
-
-### Proving it works on a haunt nobody wrote code for
-
-`src/packs/hauntPackImport.test.ts` imports a fictional festival —
-**Moonlight Fright Festival**, 2026, whose walk-throughs are **Trails** — into
-a real database through the production path, and checks that the archive comes
-out with its haunt, its venue, its vocabulary, its show (a kind of experience
-neither shipped haunt has), and its provenance. It also covers the parts that
-matter more than the happy path: a rating, a note and a ranking surviving an
-update; a hand-edited field being flagged instead of overwritten; a schema this
-build can't read being refused; a pack reaching for another haunt's record
-being refused; and a failed write leaving the archive byte for byte as it was.
-
-The fixture stays in the test suite. The fictional festival is **not** in the
-shipped archive.
+The two haunts are the product; there is no generic haunt platform and no way
+to import a third haunt. The Haunt Pack system that briefly existed —
+`src/packs/`, Admin Mode's "Add a Haunt" and pack import panels, the research
+prompt, `npm run pack:import` / `pack:remove` and its fictional test festival —
+has been removed. The Knott's pack file that came with it is now
+[`docs/research/knotts-2024-2026.research.json`](docs/research/knotts-2024-2026.research.json):
+untrusted research material, not data the app reads. The `pack_*` provenance
+columns and the `haunt_packs` table added by migration 0010 remain in the
+schema, dormant; nothing in the product shows them.

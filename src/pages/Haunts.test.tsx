@@ -20,8 +20,7 @@ const HHN: HauntArchiveSummary = {
   hauntId: "hhn",
   attractions: 367,
   seasons: 16,
-  walkthroughs: 300,
-  scareZones: 67,
+  walkthroughs: 367,
   reviewed: 40,
   firstYear: 2010,
   lastYear: 2026,
@@ -32,7 +31,6 @@ const KNOTTS: HauntArchiveSummary = {
   attractions: 0,
   seasons: 0,
   walkthroughs: 0,
-  scareZones: 0,
   reviewed: 0,
   firstYear: null,
   lastYear: null,
@@ -82,8 +80,10 @@ describe("Haunts", () => {
 
     const hhn = within(screen.getByRole("link", { name: /Halloween Horror Nights archive/i }));
     expect(hhn.getByText("Houses")).toBeInTheDocument();
-    expect(hhn.getByText("300")).toBeInTheDocument();
-    expect(hhn.getByText("Scare Zones")).toBeInTheDocument();
+    expect(hhn.getByText("367")).toBeInTheDocument();
+    expect(hhn.getByText("Seasons")).toBeInTheDocument();
+    expect(hhn.getByText("16")).toBeInTheDocument();
+    expect(hhn.queryByText("Scare Zones")).not.toBeInTheDocument();
     expect(hhn.getByText("2010–2026")).toBeInTheDocument();
     expect(
       hhn.getByRole("progressbar", { name: "Halloween Horror Nights reviewed" }),

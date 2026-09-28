@@ -1,8 +1,8 @@
 {
   "formatVersion": 1,
-  "datasetVersion": "2026.09.1",
+  "datasetVersion": "2026.09.2",
   "generatedAt": "2026-09-19T08:31:15.123Z",
-  "notes": "Halloween Horror Nights, 2010–2026, Universal Orlando and Universal Studios Hollywood. Structural facts (name, year, type, parks, IP, venue) are sourced per record; prose is present only where official Universal material describes the attraction, which currently means the 2026 season. Every other narrative field is deliberately absent rather than invented. See docs/research/ for how the catalogue and its year eligibility were established.",
+  "notes": "Halloween Horror Nights, 2010–2026, Universal Orlando and Universal Studios Hollywood. Structural facts (name, year, type, parks, IP, venue) are sourced per record; prose is present only where official Universal material describes the attraction, which currently means the 2026 season. Every other narrative field is deliberately absent rather than invented. See docs/research/ for how the catalogue and its year eligibility were established. Houses only: scare zones were removed from this dataset in 2026.09.2, when Haunt Ranker stopped archiving them.",
   "sources": [
     {
       "id": "press-uo-hhn-2026-overview",
@@ -694,54 +694,6 @@
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
     {
-      "id": "wiki-hhn-20-years-of-fear",
-      "type": "other",
-      "title": "HHN: 20 Years of Fear",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/HHN%3A_20_Years_of_Fear",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-fear-revealed",
-      "type": "other",
-      "title": "Fear Revealed",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Fear_Revealed",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-zombie-gras",
-      "type": "other",
-      "title": "Zombie Gras",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Zombie_Gras",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-esqueleto-muerte",
-      "type": "other",
-      "title": "Esqueleto Muerte",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Esqueleto_Muerte",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-saws-n-steam",
-      "type": "other",
-      "title": "Saws N' Steam",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Saws_N'_Steam",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-the-coven",
-      "type": "other",
-      "title": "The Coven",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/The_Coven",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
       "id": "wiki-nevermore-the-madness-of-poe",
       "type": "other",
       "title": "Nevermore: The Madness of Poe",
@@ -806,54 +758,6 @@
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
     {
-      "id": "wiki-acid-assault",
-      "type": "other",
-      "title": "Acid Assault",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Acid_Assault",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-canyon-of-dark-souls",
-      "type": "other",
-      "title": "Canyon of Dark Souls",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Canyon_of_Dark_Souls",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-grown-evil",
-      "type": "other",
-      "title": "Grown Evil",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Grown_Evil",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-7",
-      "type": "other",
-      "title": "7",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/7",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-nightmaze",
-      "type": "other",
-      "title": "NightMaze",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/NightMaze",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-your-luck-has-run-out",
-      "type": "other",
-      "title": "Your Luck Has Run Out",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Your_Luck_Has_Run_Out",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
       "id": "wiki-dead-end-orlando",
       "type": "other",
       "title": "Dead End (Orlando)",
@@ -906,14 +810,6 @@
       "type": "other",
       "title": "Penn & Teller: New(kd) Vegas",
       "url": "https://halloweenhorrornights.fandom.com/wiki/Penn_%26_Teller%3A_New(kd)_Vegas",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-the-legions-of-horror",
-      "type": "other",
-      "title": "The Legions of Horror",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/The_Legions_of_Horror",
       "publisher": "Halloween Horror Nights Wiki",
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
@@ -982,14 +878,6 @@
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
     {
-      "id": "wiki-the-walking-dead-the-undead-streets",
-      "type": "other",
-      "title": "The Walking Dead: The Undead Streets",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/The_Walking_Dead%3A_The_Undead_Streets",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
       "id": "wiki-avp-alien-vs-predator-orlando",
       "type": "other",
       "title": "AVP: Alien vs. Predator (Orlando)",
@@ -1054,38 +942,6 @@
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
     {
-      "id": "wiki-bayou-of-blood",
-      "type": "other",
-      "title": "Bayou of Blood",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Bayou_of_Blood",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-face-off-in-the-flesh-orlando",
-      "type": "other",
-      "title": "Face Off: In the Flesh (Orlando)",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Face_Off%3A_In_the_Flesh_(Orlando)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-maskerade-unstitched",
-      "type": "other",
-      "title": "MASKerade: Unstitched",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/MASKerade%3A_Unstitched",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-the-purge-anarchy-orlando",
-      "type": "other",
-      "title": "The Purge: Anarchy (Orlando)",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/The_Purge%3A_Anarchy_(Orlando)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
       "id": "wiki-jack-presents-25-years-of-monsters-and-mayhem",
       "type": "other",
       "title": "Jack Presents: 25 Years of Monsters & Mayhem",
@@ -1146,46 +1002,6 @@
       "type": "other",
       "title": "Insidious",
       "url": "https://halloweenhorrornights.fandom.com/wiki/Insidious",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-psychoscareapy-unleashed",
-      "type": "other",
-      "title": "PsychoScareapy: Unleashed",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/PsychoScareapy%3A_Unleashed",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-icons-hhn",
-      "type": "other",
-      "title": "ICONS: HHN",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/ICONS%3A_HHN",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-scary-tales-screampunk",
-      "type": "other",
-      "title": "Scary Tales: Screampunk",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Scary_Tales%3A_Screampunk",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-evil-s-roots",
-      "type": "other",
-      "title": "Evil's Roots",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Evil's_Roots",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-all-nite-die-in-double-feature",
-      "type": "other",
-      "title": "All Nite Die-In: Double Feature",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/All_Nite_Die-In%3A_Double_Feature",
       "publisher": "Halloween Horror Nights Wiki",
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
@@ -1262,46 +1078,6 @@
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
     {
-      "id": "wiki-survive-or-die-apocalypse",
-      "type": "other",
-      "title": "Survive or Die: Apocalypse",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Survive_or_Die%3A_Apocalypse",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-vamp-55",
-      "type": "other",
-      "title": "Vamp '55",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Vamp_'55",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-lair-of-the-banshee",
-      "type": "other",
-      "title": "Lair of the Banshee",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Lair_of_the_Banshee",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-dead-man-s-wharf",
-      "type": "other",
-      "title": "Dead Man's Wharf",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Dead_Man's_Wharf",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-a-chance-in-hell",
-      "type": "other",
-      "title": "A Chance in Hell",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/A_Chance_in_Hell",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
       "id": "wiki-american-horror-story-volume-2",
       "type": "other",
       "title": "American Horror Story: Volume 2",
@@ -1370,46 +1146,6 @@
       "type": "other",
       "title": "Scarecrow: The Reaping (Orlando)",
       "url": "https://halloweenhorrornights.fandom.com/wiki/Scarecrow%3A_The_Reaping_(Orlando)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-altars-of-horror",
-      "type": "other",
-      "title": "Altars of Horror",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Altars_of_Horror",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-festival-of-the-deadliest",
-      "type": "other",
-      "title": "Festival of the Deadliest",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Festival_of_the_Deadliest",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-invasion",
-      "type": "other",
-      "title": "Invasion!",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Invasion!",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-the-purge-2017",
-      "type": "other",
-      "title": "The Purge (2017)",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/The_Purge_(2017)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-trick-r-treat-scarezone-orlando",
-      "type": "other",
-      "title": "Trick 'r Treat (Scarezone Orlando)",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Trick_'r_Treat_(Scarezone_Orlando)",
       "publisher": "Halloween Horror Nights Wiki",
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
@@ -1494,46 +1230,6 @@
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
     {
-      "id": "wiki-the-harvest-2018",
-      "type": "other",
-      "title": "The Harvest (2018)",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/The_Harvest_(2018)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-vamp-85-new-year-s-eve",
-      "type": "other",
-      "title": "Vamp '85: New Year's Eve",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Vamp_'85%3A_New_Year's_Eve",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-twisted-tradition-scarezone",
-      "type": "other",
-      "title": "Twisted Tradition (Scarezone)",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Twisted_Tradition_(Scarezone)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-revenge-of-chucky",
-      "type": "other",
-      "title": "Revenge of Chucky",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Revenge_of_Chucky",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-killer-klowns-from-outer-space-scarezone",
-      "type": "other",
-      "title": "Killer Klowns From Outer Space (Scarezone)",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Killer_Klowns_From_Outer_Space_(Scarezone)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
       "id": "wiki-stranger-things-orlando-2019",
       "type": "other",
       "title": "Stranger Things (Orlando 2019)",
@@ -1610,46 +1306,6 @@
       "type": "other",
       "title": "House of 1000 Corpses (Haunted House Orlando)",
       "url": "https://halloweenhorrornights.fandom.com/wiki/House_of_1000_Corpses_(Haunted_House_Orlando)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-zombieland-double-tap",
-      "type": "other",
-      "title": "Zombieland Double Tap",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Zombieland_Double_Tap",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-rob-zombie-hellbilly-deluxe",
-      "type": "other",
-      "title": "Rob Zombie Hellbilly Deluxe",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Rob_Zombie_Hellbilly_Deluxe",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-anarch-cade",
-      "type": "other",
-      "title": "Anarch-Cade",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Anarch-Cade",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-vanity-ball",
-      "type": "other",
-      "title": "Vanity Ball",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Vanity_Ball",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-vikings-undead",
-      "type": "other",
-      "title": "Vikings Undead",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Vikings_Undead",
       "publisher": "Halloween Horror Nights Wiki",
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
@@ -1734,46 +1390,6 @@
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
     {
-      "id": "wiki-crypt-tv",
-      "type": "other",
-      "title": "Crypt TV",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Crypt_TV",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-30-years-30-fears",
-      "type": "other",
-      "title": "30 Years 30 Fears",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/30_Years_30_Fears",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-seek-and-destroy",
-      "type": "other",
-      "title": "Seek and Destroy",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Seek_and_Destroy",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-gorewood-forest-scarezone",
-      "type": "other",
-      "title": "Gorewood Forest (Scarezone)",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Gorewood_Forest_(Scarezone)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-lights-camera-hacktion-eddie-s-revenge",
-      "type": "other",
-      "title": "Lights Camera Hacktion: Eddie's Revenge",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Lights_Camera_Hacktion%3A_Eddie's_Revenge",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
       "id": "wiki-spirits-of-the-coven",
       "type": "other",
       "title": "Spirits of the Coven",
@@ -1850,46 +1466,6 @@
       "type": "other",
       "title": "Bugs: Eaten Alive (Haunted House)",
       "url": "https://halloweenhorrornights.fandom.com/wiki/Bugs%3A_Eaten_Alive_(Haunted_House)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-horrors-of-halloween",
-      "type": "other",
-      "title": "Horrors of Halloween",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Horrors_of_Halloween",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-sweet-revenge-scarezone",
-      "type": "other",
-      "title": "Sweet Revenge (Scarezone)",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Sweet_Revenge_(Scarezone)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-conjure-the-dark",
-      "type": "other",
-      "title": "Conjure the Dark",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Conjure_the_Dark",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-scarecrow-cursed-soil",
-      "type": "other",
-      "title": "Scarecrow: Cursed Soil",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Scarecrow%3A_Cursed_Soil",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-graveyard-deadly-unrest",
-      "type": "other",
-      "title": "Graveyard: Deadly Unrest",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Graveyard%3A_Deadly_Unrest",
       "publisher": "Halloween Horror Nights Wiki",
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
@@ -1982,46 +1558,6 @@
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
     {
-      "id": "wiki-dr-oddfellow-s-collection-of-horror-scarezone",
-      "type": "other",
-      "title": "Dr. Oddfellow's Collection of Horror (Scarezone)",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Dr._Oddfellow's_Collection_of_Horror_(Scarezone)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-dark-zodiac",
-      "type": "other",
-      "title": "Dark Zodiac",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Dark_Zodiac",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-jungle-of-doom-expedition-horror",
-      "type": "other",
-      "title": "Jungle of Doom: Expedition Horror",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Jungle_of_Doom%3A_Expedition_Horror",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-vamp-69-summer-of-blood-scarezone",
-      "type": "other",
-      "title": "Vamp '69: Summer of Blood (Scarezone)",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Vamp_'69%3A_Summer_of_Blood_(Scarezone)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-shipyard-32-horrors-unhinged",
-      "type": "other",
-      "title": "Shipyard 32: Horrors Unhinged",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Shipyard_32%3A_Horrors_Unhinged",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
       "id": "wiki-a-quiet-place-orlando-2024",
       "type": "other",
       "title": "A Quiet Place (Orlando 2024)",
@@ -2098,46 +1634,6 @@
       "type": "other",
       "title": "Goblin’s Feast",
       "url": "https://halloweenhorrornights.fandom.com/wiki/Goblin%E2%80%99s_Feast",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-duality-of-fear",
-      "type": "other",
-      "title": "Duality of Fear",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Duality_of_Fear",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-demon-queens",
-      "type": "other",
-      "title": "Demon Queens",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Demon_Queens",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-swamp-of-the-undead",
-      "type": "other",
-      "title": "Swamp of The Undead",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Swamp_of_The_Undead",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-torture-faire",
-      "type": "other",
-      "title": "Torture Faire",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Torture_Faire",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-enter-the-blumhouse",
-      "type": "other",
-      "title": "Enter the Blumhouse",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Enter_the_Blumhouse",
       "publisher": "Halloween Horror Nights Wiki",
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
@@ -2230,54 +1726,6 @@
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
     {
-      "id": "wiki-the-origins-of-horror",
-      "type": "other",
-      "title": "The Origins of Horror",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/The_Origins_of_Horror",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-masquerade-dance-with-death",
-      "type": "other",
-      "title": "Masquerade: Dance with Death",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Masquerade%3A_Dance_with_Death",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-the-cat-lady-of-crooked-lane-scarezone",
-      "type": "other",
-      "title": "The Cat Lady of Crooked Lane (Scarezone)",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/The_Cat_Lady_of_Crooked_Lane_(Scarezone)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-mutations-toxic-twenties-scarezone",
-      "type": "other",
-      "title": "Mutations: Toxic Twenties (Scarezone)",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Mutations%3A_Toxic_Twenties_(Scarezone)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-mel-s-die-in-zombies",
-      "type": "other",
-      "title": "Mel's Die-In Zombies",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Mel's_Die-In_Zombies",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-club-horror",
-      "type": "other",
-      "title": "Club Horror",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Club_Horror",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
       "id": "wiki-jack-and-oddfellow-chaos-and-control",
       "type": "other",
       "title": "Jack & Oddfellow: Chaos & Control",
@@ -2358,38 +1806,6 @@
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
     {
-      "id": "wiki-infernal-carnival-of-nightmares-scarezone",
-      "type": "other",
-      "title": "Infernal Carnival of Nightmares (Scarezone)",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Infernal_Carnival_of_Nightmares_(Scarezone)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-downtown-clowntown-scarezone",
-      "type": "other",
-      "title": "Downtown Clowntown (Scarezone)",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Downtown_Clowntown_(Scarezone)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-fortnitemares-orlando",
-      "type": "other",
-      "title": "Fortnitemares (Orlando)",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Fortnitemares_(Orlando)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-sideshow-of-decay",
-      "type": "other",
-      "title": "Sideshow of Decay",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Sideshow_of_Decay",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
       "id": "wiki-a-nightmare-on-elm-street-never-sleep-again",
       "type": "other",
       "title": "A Nightmare on Elm Street: Never Sleep Again",
@@ -2430,62 +1846,6 @@
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
     {
-      "id": "wiki-terror-tram-chucky-s-revenge",
-      "type": "other",
-      "title": "Terror Tram: Chucky's Revenge",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Terror_Tram%3A_Chucky's_Revenge",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-la-llorona-scarezone",
-      "type": "other",
-      "title": "La Llorona (Scarezone)",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/La_Llorona_(Scarezone)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-nightmarez",
-      "type": "other",
-      "title": "Nightmarez",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Nightmarez",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-klownz",
-      "type": "other",
-      "title": "Klownz",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Klownz",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-lunaticz",
-      "type": "other",
-      "title": "Lunaticz",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Lunaticz",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-freakz",
-      "type": "other",
-      "title": "Freakz",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Freakz",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-pigz",
-      "type": "other",
-      "title": "Pigz",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Pigz",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
       "id": "wiki-hostel-hunting-season",
       "type": "other",
       "title": "Hostel: Hunting Season",
@@ -2522,38 +1882,6 @@
       "type": "other",
       "title": "La Llorona: Villa de Almas Perdidas",
       "url": "https://halloweenhorrornights.fandom.com/wiki/La_Llorona%3A_Villa_de_Almas_Perdidas",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-terror-tram-scream-4-your-life",
-      "type": "other",
-      "title": "Terror Tram: Scream 4 Your Life",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Terror_Tram%3A_Scream_4_Your_Life",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-scream-scarezone",
-      "type": "other",
-      "title": "Scream (Scarezone)",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Scream_(Scarezone)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-zombieville",
-      "type": "other",
-      "title": "Zombieville",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Zombieville",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-the-reapers",
-      "type": "other",
-      "title": "The Reapers",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/The_Reapers",
       "publisher": "Halloween Horror Nights Wiki",
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
@@ -2606,38 +1934,6 @@
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
     {
-      "id": "wiki-terror-tram-invaded-by-the-walking-dead",
-      "type": "other",
-      "title": "Terror Tram: Invaded by The Walking Dead",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Terror_Tram%3A_Invaded_by_The_Walking_Dead",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-silent-hill-scarezone",
-      "type": "other",
-      "title": "Silent Hill (Scarezone)",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Silent_Hill_(Scarezone)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-toyz",
-      "type": "other",
-      "title": "Toyz",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Toyz",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-witchez",
-      "type": "other",
-      "title": "Witchez",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Witchez",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
       "id": "wiki-black-sabbath-13-3d",
       "type": "other",
       "title": "Black Sabbath: 13-3D",
@@ -2682,46 +1978,6 @@
       "type": "other",
       "title": "The Walking Dead: No Safe Haven (Hollywood)",
       "url": "https://halloweenhorrornights.fandom.com/wiki/The_Walking_Dead%3A_No_Safe_Haven_(Hollywood)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-cirque-du-klownz",
-      "type": "other",
-      "title": "Cirque Du Klownz",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Cirque_Du_Klownz",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-the-curse-of-chucky",
-      "type": "other",
-      "title": "The Curse of Chucky",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/The_Curse_of_Chucky",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-the-purge-survive-the-night",
-      "type": "other",
-      "title": "The Purge: Survive the Night",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/The_Purge%3A_Survive_the_Night",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-scarecrowz",
-      "type": "other",
-      "title": "Scarecrowz",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Scarecrowz",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-the-walking-dead-dead-on-arrival",
-      "type": "other",
-      "title": "The Walking Dead: Dead on Arrival",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/The_Walking_Dead%3A_Dead_on_Arrival",
       "publisher": "Halloween Horror Nights Wiki",
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
@@ -2782,46 +2038,6 @@
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
     {
-      "id": "wiki-dark-christmas",
-      "type": "other",
-      "title": "Dark Christmas",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Dark_Christmas",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-mask-a-raid",
-      "type": "other",
-      "title": "Mask-a-Raid",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Mask-a-Raid",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-the-purge-anarchy-hollywood",
-      "type": "other",
-      "title": "The Purge: Anarchy (Hollywood)",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/The_Purge%3A_Anarchy_(Hollywood)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-skullz",
-      "type": "other",
-      "title": "Skullz",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Skullz",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-the-walking-dead-welcome-to-terminus",
-      "type": "other",
-      "title": "The Walking Dead: Welcome to Terminus",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/The_Walking_Dead%3A_Welcome_to_Terminus",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
       "id": "wiki-crimson-peak-maze-of-madness",
       "type": "other",
       "title": "Crimson Peak: Maze of Madness",
@@ -2858,38 +2074,6 @@
       "type": "other",
       "title": "This is The End 3D",
       "url": "https://halloweenhorrornights.fandom.com/wiki/This_is_The_End_3D",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-terror-tram-survive-the-purge",
-      "type": "other",
-      "title": "Terror Tram: Survive the Purge",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Terror_Tram%3A_Survive_the_Purge",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-exterminatorz",
-      "type": "other",
-      "title": "Exterminatorz",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Exterminatorz",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-corpz",
-      "type": "other",
-      "title": "Corpz",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Corpz",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-the-purge-urban-nightmare",
-      "type": "other",
-      "title": "The Purge: Urban Nightmare",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/The_Purge%3A_Urban_Nightmare",
       "publisher": "Halloween Horror Nights Wiki",
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
@@ -2950,22 +2134,6 @@
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
     {
-      "id": "wiki-eli-roth-presents-terror-tram",
-      "type": "other",
-      "title": "Eli Roth Presents: Terror Tram",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Eli_Roth_Presents%3A_Terror_Tram",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-the-purge-election-year",
-      "type": "other",
-      "title": "The Purge: Election Year",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/The_Purge%3A_Election_Year",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
       "id": "wiki-american-horror-story-roanoke",
       "type": "other",
       "title": "American Horror Story: Roanoke",
@@ -3022,38 +2190,6 @@
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
     {
-      "id": "wiki-titans-of-terror-tram-hosted-by-chucky",
-      "type": "other",
-      "title": "Titans of Terror Tram: Hosted by Chucky",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Titans_of_Terror_Tram%3A_Hosted_by_Chucky",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-hell-o-ween",
-      "type": "other",
-      "title": "Hell-O-Ween",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Hell-O-Ween",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-toxic-tunnel",
-      "type": "other",
-      "title": "Toxic Tunnel",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Toxic_Tunnel",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-urban-inferno",
-      "type": "other",
-      "title": "Urban Inferno",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Urban_Inferno",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
       "id": "wiki-stranger-things-hollywood-2018",
       "type": "other",
       "title": "Stranger Things (Hollywood 2018)",
@@ -3106,54 +2242,6 @@
       "type": "other",
       "title": "Universal Monsters: Music by Slash",
       "url": "https://halloweenhorrornights.fandom.com/wiki/Universal_Monsters%3A_Music_by_Slash",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-hollywood-harry-s-dreadtime-storyz",
-      "type": "other",
-      "title": "Hollywood Harry's: Dreadtime Storyz",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Hollywood_Harry's%3A_Dreadtime_Storyz",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-holidayz-in-hell-scarezone",
-      "type": "other",
-      "title": "Holidayz in Hell (Scarezone)",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Holidayz_in_Hell_(Scarezone)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-trick-r-treat-scarezone-hollywood",
-      "type": "other",
-      "title": "Trick 'r Treat (Scarezone Hollywood)",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Trick_'r_Treat_(Scarezone_Hollywood)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-monster-masquerade",
-      "type": "other",
-      "title": "Monster Masquerade",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Monster_Masquerade",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-hell-s-harvest",
-      "type": "other",
-      "title": "Hell's Harvest",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Hell's_Harvest",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-toxxic-tunnel",
-      "type": "other",
-      "title": "Toxxic Tunnel",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Toxxic_Tunnel",
       "publisher": "Halloween Horror Nights Wiki",
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
@@ -3230,46 +2318,6 @@
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
     {
-      "id": "wiki-fallen-angelz",
-      "type": "other",
-      "title": "Fallen Angelz",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Fallen_Angelz",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-spirits-and-demons-of-the-east",
-      "type": "other",
-      "title": "Spirits & Demons of the East",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Spirits_%26_Demons_of_the_East",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-christmas-in-hell",
-      "type": "other",
-      "title": "Christmas in Hell",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Christmas_in_Hell",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-toxxxic-tunnel",
-      "type": "other",
-      "title": "ToXXXic Tunnel",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/ToXXXic_Tunnel",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-all-hallow-s-evil",
-      "type": "other",
-      "title": "All Hallow's Evil",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/All_Hallow's_Evil",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
       "id": "wiki-the-haunting-of-hill-house-haunted-maze-hollywood",
       "type": "other",
       "title": "The Haunting of Hill House (Haunted Maze Hollywood)",
@@ -3282,38 +2330,6 @@
       "type": "other",
       "title": "The Texas Chainsaw Massacre (Hollywood)",
       "url": "https://halloweenhorrornights.fandom.com/wiki/The_Texas_Chainsaw_Massacre_(Hollywood)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-terror-tram-the-ultimate-purge",
-      "type": "other",
-      "title": "Terror Tram: The Ultimate Purge",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Terror_Tram%3A_The_Ultimate_Purge",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-universal-monsters-silver-scream-queenz",
-      "type": "other",
-      "title": "Universal Monsters: Silver Scream Queenz",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Universal_Monsters%3A_Silver_Scream_Queenz",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-chainsaw-rangers",
-      "type": "other",
-      "title": "Chainsaw Rangers",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Chainsaw_Rangers",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-demon-city",
-      "type": "other",
-      "title": "Demon City",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Demon_City",
       "publisher": "Halloween Horror Nights Wiki",
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
@@ -3374,38 +2390,6 @@
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
     {
-      "id": "wiki-terror-tram-2022",
-      "type": "other",
-      "title": "Terror Tram (2022)",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Terror_Tram_(2022)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-el-pueblo-del-terror",
-      "type": "other",
-      "title": "El Pueblo Del Terror",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/El_Pueblo_Del_Terror",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-sideshow-slaughterhouse",
-      "type": "other",
-      "title": "Sideshow Slaughterhouse",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Sideshow_Slaughterhouse",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-clownsawz",
-      "type": "other",
-      "title": "Clownsawz",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Clownsawz",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
       "id": "wiki-chucky-ultimate-kill-count-hollywood",
       "type": "other",
       "title": "Chucky: Ultimate Kill Count (Hollywood)",
@@ -3450,30 +2434,6 @@
       "type": "other",
       "title": "Evil Dead Rise",
       "url": "https://halloweenhorrornights.fandom.com/wiki/Evil_Dead_Rise",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-terror-tram-the-exterminatorz",
-      "type": "other",
-      "title": "Terror Tram: The Exterminatorz",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Terror_Tram%3A_The_Exterminatorz",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-ghostz",
-      "type": "other",
-      "title": "Ghostz",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Ghostz",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-el-terror-de-las-momias",
-      "type": "other",
-      "title": "El Terror de las Momias",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/El_Terror_de_las_Momias",
       "publisher": "Halloween Horror Nights Wiki",
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
@@ -3542,46 +2502,6 @@
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
     {
-      "id": "wiki-terror-tram-enter-the-blumhouse",
-      "type": "other",
-      "title": "Terror Tram: Enter the Blumhouse",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Terror_Tram%3A_Enter_the_Blumhouse",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-luchadores-monstruosos",
-      "type": "other",
-      "title": "Luchadores Monstruosos",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Luchadores_Monstruosos",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-murder-of-crowz",
-      "type": "other",
-      "title": "Murder of Crowz",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Murder_of_Crowz",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-chainsaw-punkz",
-      "type": "other",
-      "title": "Chainsaw Punkz",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Chainsaw_Punkz",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-skull-lordz",
-      "type": "other",
-      "title": "Skull Lordz",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Skull_Lordz",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
       "id": "wiki-fallout-hollywood",
       "type": "other",
       "title": "Fallout (Hollywood)",
@@ -3618,30 +2538,6 @@
       "type": "other",
       "title": "Terrifier (Hollywood)",
       "url": "https://halloweenhorrornights.fandom.com/wiki/Terrifier_(Hollywood)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-carnival-of-carnage",
-      "type": "other",
-      "title": "Carnival of Carnage",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Carnival_of_Carnage",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-noche-de-brujas",
-      "type": "other",
-      "title": "Noche de Brujas",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Noche_de_Brujas",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-chainsaw-clownz",
-      "type": "other",
-      "title": "Chainsaw Clownz",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Chainsaw_Clownz",
       "publisher": "Halloween Horror Nights Wiki",
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
@@ -3698,54 +2594,6 @@
       "type": "other",
       "title": "Evil Dead Burn (Hollywood)",
       "url": "https://halloweenhorrornights.fandom.com/wiki/Evil_Dead_Burn_(Hollywood)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-terror-tram-starring-art-the-clown",
-      "type": "other",
-      "title": "Terror Tram starring Art the Clown",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Terror_Tram_starring_Art_the_Clown",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-fortnitemares-hollywood",
-      "type": "other",
-      "title": "Fortnitemares (Hollywood)",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Fortnitemares_(Hollywood)",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-el-circo-de-la-muerte",
-      "type": "other",
-      "title": "El Circo de la Muerte",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/El_Circo_de_la_Muerte",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-hackerz",
-      "type": "other",
-      "title": "Hackerz",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Hackerz",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-blood-bog",
-      "type": "other",
-      "title": "Blood Bog",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Blood_Bog",
-      "publisher": "Halloween Horror Nights Wiki",
-      "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
-    },
-    {
-      "id": "wiki-shriek-of-the-banshee",
-      "type": "other",
-      "title": "Shriek of the Banshee",
-      "url": "https://halloweenhorrornights.fandom.com/wiki/Shriek_of_the_Banshee",
       "publisher": "Halloween Horror Nights Wiki",
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
     },
@@ -4551,78 +3399,6 @@
       "sourceIds": ["wiki-legendary-truth-the-wyandot-estate"]
     },
     {
-      "id": "hhn-2010-zone-hhn-20-years-of-fear",
-      "eventId": "hhn-2010",
-      "type": "scare_zone",
-      "name": "HHN: 20 Years of Fear",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Hollywood",
-      "sourceIds": ["wiki-hhn-20-years-of-fear"]
-    },
-    {
-      "id": "hhn-2010-zone-fear-revealed",
-      "eventId": "hhn-2010",
-      "type": "scare_zone",
-      "name": "Fear Revealed",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Mel's Drive-In",
-      "sourceIds": ["wiki-fear-revealed"]
-    },
-    {
-      "id": "hhn-2010-zone-zombie-gras",
-      "eventId": "hhn-2010",
-      "type": "scare_zone",
-      "name": "Zombie Gras",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "San Francisco",
-      "sourceIds": ["wiki-zombie-gras"]
-    },
-    {
-      "id": "hhn-2010-zone-esqueleto-muerte",
-      "eventId": "hhn-2010",
-      "type": "scare_zone",
-      "name": "Esqueleto Muerte",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Plaza of the Stars",
-      "sourceIds": ["wiki-esqueleto-muerte"]
-    },
-    {
-      "id": "hhn-2010-zone-saws-n-steam",
-      "eventId": "hhn-2010",
-      "type": "scare_zone",
-      "name": "Saws N' Steam",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "New York",
-      "sourceIds": ["wiki-saws-n-steam"]
-    },
-    {
-      "id": "hhn-2010-zone-the-coven",
-      "eventId": "hhn-2010",
-      "type": "scare_zone",
-      "name": "The Coven",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Shrek Alley",
-      "sourceIds": ["wiki-the-coven"]
-    },
-    {
       "id": "hhn-2011-house-nevermore-the-madness-of-poe",
       "eventId": "hhn-2011",
       "type": "house",
@@ -4714,78 +3490,6 @@
       "sourceIds": ["wiki-nightingales-blood-prey"]
     },
     {
-      "id": "hhn-2011-zone-acid-assault",
-      "eventId": "hhn-2011",
-      "type": "scare_zone",
-      "name": "Acid Assault",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "New York",
-      "sourceIds": ["wiki-acid-assault"]
-    },
-    {
-      "id": "hhn-2011-zone-canyon-of-dark-souls",
-      "eventId": "hhn-2011",
-      "type": "scare_zone",
-      "name": "Canyon of Dark Souls",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "International Food Bazaar",
-      "sourceIds": ["wiki-canyon-of-dark-souls"]
-    },
-    {
-      "id": "hhn-2011-zone-grown-evil",
-      "eventId": "hhn-2011",
-      "type": "scare_zone",
-      "name": "Grown Evil",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Central Park",
-      "sourceIds": ["wiki-grown-evil"]
-    },
-    {
-      "id": "hhn-2011-zone-7",
-      "eventId": "hhn-2011",
-      "type": "scare_zone",
-      "name": "7",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Hollywood",
-      "sourceIds": ["wiki-7"]
-    },
-    {
-      "id": "hhn-2011-zone-nightmaze",
-      "eventId": "hhn-2011",
-      "type": "scare_zone",
-      "name": "NightMaze",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Shrek Alley",
-      "sourceIds": ["wiki-nightmaze"]
-    },
-    {
-      "id": "hhn-2011-zone-your-luck-has-run-out",
-      "eventId": "hhn-2011",
-      "type": "scare_zone",
-      "name": "Your Luck Has Run Out!",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Sting Alley",
-      "sourceIds": ["wiki-your-luck-has-run-out"]
-    },
-    {
       "id": "hhn-2012-house-dead-end",
       "eventId": "hhn-2012",
       "type": "house",
@@ -4829,15 +3533,6 @@
       "parks": ["orlando"],
       "location": "Sprung Tent 2",
       "sourceIds": ["wiki-penn-and-teller-new-kd-vegas"]
-    },
-    {
-      "id": "hhn-2012-zone-the-legions-of-horror",
-      "eventId": "hhn-2012",
-      "type": "scare_zone",
-      "name": "The Legions of Horror",
-      "parks": ["orlando"],
-      "location": "Park-wide",
-      "sourceIds": ["wiki-the-legions-of-horror"]
     },
     {
       "id": "hhn-2013-house-resident-evil-escape-from-raccoon-city",
@@ -4929,19 +3624,6 @@
       "sourceIds": ["wiki-havoc-derailed"]
     },
     {
-      "id": "hhn-2013-zone-the-walking-dead-the-undead-streets",
-      "eventId": "hhn-2013",
-      "type": "scare_zone",
-      "name": "The Walking Dead: The Undead Streets",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "The Walking Dead"
-      },
-      "location": "Park-wide",
-      "sourceIds": ["wiki-the-walking-dead-the-undead-streets"]
-    },
-    {
       "id": "hhn-2014-house-dollhouse-of-the-damned",
       "eventId": "hhn-2014",
       "type": "house",
@@ -4989,55 +3671,6 @@
       },
       "location": "Parade Warehouse",
       "sourceIds": ["wiki-roanoke-cannibal-colony"]
-    },
-    {
-      "id": "hhn-2014-zone-bayou-of-blood",
-      "eventId": "hhn-2014",
-      "type": "scare_zone",
-      "name": "Bayou of Blood",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Central Park",
-      "sourceIds": ["wiki-bayou-of-blood"]
-    },
-    {
-      "id": "hhn-2014-zone-face-off-in-the-flesh-orlando",
-      "eventId": "hhn-2014",
-      "type": "scare_zone",
-      "name": "Face Off: In the Flesh",
-      "parks": ["orlando"],
-      "variantName": "Orlando version",
-      "location": "Hollywood",
-      "sourceIds": ["wiki-face-off-in-the-flesh-orlando", "discover-universal"],
-      "related": [
-        {
-          "attractionId": "hhn-2014-house-face-off-in-the-flesh-hollywood",
-          "type": "related_concept",
-          "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
-        }
-      ],
-      "media": [
-        {
-          "id": "hhn-2014-zone-face-off-in-the-flesh-orlando-media-1",
-          "kind": "poster",
-          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2014/07/HHN24-Key-Art-Face-Off.jpg",
-          "attribution": "Universal Orlando Resort",
-          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "discover-universal",
-          "distribution": "reference"
-        }
-      ]
-    },
-    {
-      "id": "hhn-2014-zone-maskerade-unstitched",
-      "eventId": "hhn-2014",
-      "type": "scare_zone",
-      "name": "MASKerade: Unstitched",
-      "parks": ["orlando"],
-      "location": "Plaza of the Stars",
-      "sourceIds": ["wiki-maskerade-unstitched"]
     },
     {
       "id": "hhn-2015-house-jack-presents-25-years-of-monsters-and-mayhem",
@@ -5150,68 +3783,6 @@
       "sourceIds": ["wiki-insidious"]
     },
     {
-      "id": "hhn-2015-zone-psychoscareapy-unleashed",
-      "eventId": "hhn-2015",
-      "type": "scare_zone",
-      "name": "PsychoScareapy: Unleashed",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "New York",
-      "sourceIds": ["wiki-psychoscareapy-unleashed"]
-    },
-    {
-      "id": "hhn-2015-zone-icons-hhn",
-      "eventId": "hhn-2015",
-      "type": "scare_zone",
-      "name": "ICONS: HHN",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "Orginal"
-      },
-      "location": "Hollywood",
-      "sourceIds": ["wiki-icons-hhn"]
-    },
-    {
-      "id": "hhn-2015-zone-scary-tales-screampunk",
-      "eventId": "hhn-2015",
-      "type": "scare_zone",
-      "name": "Scary Tales: ScreamPunk",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Plaza of the Stars",
-      "sourceIds": ["wiki-scary-tales-screampunk"]
-    },
-    {
-      "id": "hhn-2015-zone-evil-s-roots",
-      "eventId": "hhn-2015",
-      "type": "scare_zone",
-      "name": "Evil’s Roots",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Central Park",
-      "sourceIds": ["wiki-evil-s-roots"]
-    },
-    {
-      "id": "hhn-2015-zone-all-nite-die-in-double-feature",
-      "eventId": "hhn-2015",
-      "type": "scare_zone",
-      "name": "All Nite Die-In: Double Feature",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "Various horror movies"
-      },
-      "location": "San Francisco",
-      "sourceIds": ["wiki-all-nite-die-in-double-feature"]
-    },
-    {
       "id": "hhn-2016-house-the-walking-dead",
       "eventId": "hhn-2016",
       "type": "house",
@@ -5274,66 +3845,6 @@
       "sourceIds": ["wiki-the-texas-chainsaw-massacre-orlando-2016"]
     },
     {
-      "id": "hhn-2016-zone-survive-or-die-apocalypse",
-      "eventId": "hhn-2016",
-      "type": "scare_zone",
-      "name": "Survive or Die: Apocalypse",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "New York",
-      "sourceIds": ["wiki-survive-or-die-apocalypse"]
-    },
-    {
-      "id": "hhn-2016-zone-vamp-55",
-      "eventId": "hhn-2016",
-      "type": "scare_zone",
-      "name": "Vamp '55",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Hollywood",
-      "sourceIds": ["wiki-vamp-55"]
-    },
-    {
-      "id": "hhn-2016-zone-lair-of-the-banshee",
-      "eventId": "hhn-2016",
-      "type": "scare_zone",
-      "name": "Lair of the Banshee",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Central Park",
-      "sourceIds": ["wiki-lair-of-the-banshee"]
-    },
-    {
-      "id": "hhn-2016-zone-dead-man-s-wharf",
-      "eventId": "hhn-2016",
-      "type": "scare_zone",
-      "name": "Dead Man's Wharf",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "San Francisco",
-      "sourceIds": ["wiki-dead-man-s-wharf"]
-    },
-    {
-      "id": "hhn-2016-zone-a-chance-in-hell",
-      "eventId": "hhn-2016",
-      "type": "scare_zone",
-      "name": "A Chance in Hell",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Plaza of the Stars",
-      "sourceIds": ["wiki-a-chance-in-hell"]
-    },
-    {
       "id": "hhn-2017-house-american-horror-story-volume-2",
       "eventId": "hhn-2017",
       "type": "house",
@@ -5393,65 +3904,6 @@
       },
       "location": "Sprung Tent 1",
       "sourceIds": ["wiki-scarecrow-the-reaping-orlando"]
-    },
-    {
-      "id": "hhn-2017-zone-altars-of-horror",
-      "eventId": "hhn-2017",
-      "type": "scare_zone",
-      "name": "Altars of Horror",
-      "parks": ["orlando"],
-      "location": "Plaza of the Stars",
-      "sourceIds": ["wiki-altars-of-horror"]
-    },
-    {
-      "id": "hhn-2017-zone-festival-of-the-deadliest",
-      "eventId": "hhn-2017",
-      "type": "scare_zone",
-      "name": "Festival of the Deadliest",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Hollywood",
-      "sourceIds": ["wiki-festival-of-the-deadliest"]
-    },
-    {
-      "id": "hhn-2017-zone-invasion",
-      "eventId": "hhn-2017",
-      "type": "scare_zone",
-      "name": "Invasion!",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "San Francisco",
-      "sourceIds": ["wiki-invasion"]
-    },
-    {
-      "id": "hhn-2017-zone-the-purge",
-      "eventId": "hhn-2017",
-      "type": "scare_zone",
-      "name": "The Purge",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "The Purge"
-      },
-      "location": "New York",
-      "sourceIds": ["wiki-the-purge-2017"]
-    },
-    {
-      "id": "hhn-2017-zone-trick-r-treat",
-      "eventId": "hhn-2017",
-      "type": "scare_zone",
-      "name": "Trick 'r Treat",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "Trick 'r Treat"
-      },
-      "location": "Central Park",
-      "sourceIds": ["wiki-trick-r-treat-scarezone-orlando"]
     },
     {
       "id": "hhn-2018-house-dead-exposure-patient-zero",
@@ -5520,68 +3972,6 @@
       "sourceIds": ["wiki-scary-tales-deadly-ever-after"]
     },
     {
-      "id": "hhn-2018-zone-the-harvest",
-      "eventId": "hhn-2018",
-      "type": "scare_zone",
-      "name": "The Harvest",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Plaza of the Stars",
-      "sourceIds": ["wiki-the-harvest-2018"]
-    },
-    {
-      "id": "hhn-2018-zone-vamp-85-new-year-s-eve",
-      "eventId": "hhn-2018",
-      "type": "scare_zone",
-      "name": "Vamp '85: New Year's Eve",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "New York",
-      "sourceIds": ["wiki-vamp-85-new-year-s-eve"]
-    },
-    {
-      "id": "hhn-2018-zone-twisted-tradition",
-      "eventId": "hhn-2018",
-      "type": "scare_zone",
-      "name": "Twisted Tradition",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Central Park",
-      "sourceIds": ["wiki-twisted-tradition-scarezone"]
-    },
-    {
-      "id": "hhn-2018-zone-revenge-of-chucky",
-      "eventId": "hhn-2018",
-      "type": "scare_zone",
-      "name": "Revenge of Chucky",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "Child's Play"
-      },
-      "location": "Hollywood",
-      "sourceIds": ["wiki-revenge-of-chucky"]
-    },
-    {
-      "id": "hhn-2018-zone-killer-klowns-from-outer-space",
-      "eventId": "hhn-2018",
-      "type": "scare_zone",
-      "name": "Killer Klowns From Outer Space",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "Killer Klowns From Outer Space"
-      },
-      "location": "South Street",
-      "sourceIds": ["wiki-killer-klowns-from-outer-space-scarezone"]
-    },
-    {
       "id": "hhn-2019-house-nightingales-blood-pit",
       "eventId": "hhn-2019",
       "type": "house",
@@ -5641,68 +4031,6 @@
       },
       "location": "Parade Warehouse",
       "sourceIds": ["wiki-graveyard-games"]
-    },
-    {
-      "id": "hhn-2019-zone-zombieland-double-tap",
-      "eventId": "hhn-2019",
-      "type": "scare_zone",
-      "name": "Zombieland Double Tap",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "The Zombieland Movie"
-      },
-      "location": "New York",
-      "sourceIds": ["wiki-zombieland-double-tap"]
-    },
-    {
-      "id": "hhn-2019-zone-rob-zombie-hellbilly-deluxe",
-      "eventId": "hhn-2019",
-      "type": "scare_zone",
-      "name": "Rob Zombie Hellbilly Deluxe",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "Rob Zombie's Hellbilly Deluxe"
-      },
-      "location": "San Francisco",
-      "sourceIds": ["wiki-rob-zombie-hellbilly-deluxe"]
-    },
-    {
-      "id": "hhn-2019-zone-anarch-cade",
-      "eventId": "hhn-2019",
-      "type": "scare_zone",
-      "name": "Anarch-Cade",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Plaza of the Stars",
-      "sourceIds": ["wiki-anarch-cade"]
-    },
-    {
-      "id": "hhn-2019-zone-vanity-ball",
-      "eventId": "hhn-2019",
-      "type": "scare_zone",
-      "name": "Vanity Ball",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Hollywood",
-      "sourceIds": ["wiki-vanity-ball"]
-    },
-    {
-      "id": "hhn-2019-zone-vikings-undead",
-      "eventId": "hhn-2019",
-      "type": "scare_zone",
-      "name": "Vikings Undead",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Central Park",
-      "sourceIds": ["wiki-vikings-undead"]
     },
     {
       "id": "hhn-2021-house-case-files-unearthed-legendary-truth",
@@ -5803,67 +4131,6 @@
       "sourceIds": ["wiki-the-haunting-of-hill-house-haunted-house-orlando"]
     },
     {
-      "id": "hhn-2021-zone-crypt-tv",
-      "eventId": "hhn-2021",
-      "type": "scare_zone",
-      "name": "Crypt TV",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "Crypt TV"
-      },
-      "location": "San Francisco",
-      "sourceIds": ["wiki-crypt-tv"]
-    },
-    {
-      "id": "hhn-2021-zone-30-years-30-fears",
-      "eventId": "hhn-2021",
-      "type": "scare_zone",
-      "name": "30 Years 30 Fears",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Plaza of the Stars",
-      "sourceIds": ["wiki-30-years-30-fears"]
-    },
-    {
-      "id": "hhn-2021-zone-seek-and-destroy",
-      "eventId": "hhn-2021",
-      "type": "scare_zone",
-      "name": "Seek and Destroy",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "New York",
-      "sourceIds": ["wiki-seek-and-destroy"]
-    },
-    {
-      "id": "hhn-2021-zone-gorewood-forest-scarezone",
-      "eventId": "hhn-2021",
-      "type": "scare_zone",
-      "name": "Gorewood Forest (Scarezone)",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Central Park",
-      "sourceIds": ["wiki-gorewood-forest-scarezone"]
-    },
-    {
-      "id": "hhn-2021-zone-lights-camera-hacktion-eddie-s-revenge",
-      "eventId": "hhn-2021",
-      "type": "scare_zone",
-      "name": "Lights Camera Hacktion: Eddie's Revenge",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Hollywood",
-      "sourceIds": ["wiki-lights-camera-hacktion-eddie-s-revenge"]
-    },
-    {
       "id": "hhn-2022-house-spirits-of-the-coven",
       "eventId": "hhn-2022",
       "type": "house",
@@ -5934,66 +4201,6 @@
       },
       "location": "Sprung Tent 2",
       "sourceIds": ["wiki-bugs-eaten-alive-haunted-house"]
-    },
-    {
-      "id": "hhn-2022-zone-horrors-of-halloween",
-      "eventId": "hhn-2022",
-      "type": "scare_zone",
-      "name": "Horrors of Halloween",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Plaza of the Stars",
-      "sourceIds": ["wiki-horrors-of-halloween"]
-    },
-    {
-      "id": "hhn-2022-zone-sweet-revenge",
-      "eventId": "hhn-2022",
-      "type": "scare_zone",
-      "name": "Sweet Revenge",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "New York",
-      "sourceIds": ["wiki-sweet-revenge-scarezone"]
-    },
-    {
-      "id": "hhn-2022-zone-conjure-the-dark",
-      "eventId": "hhn-2022",
-      "type": "scare_zone",
-      "name": "Conjure the Dark",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "San Francisco",
-      "sourceIds": ["wiki-conjure-the-dark"]
-    },
-    {
-      "id": "hhn-2022-zone-scarecrow-cursed-soil",
-      "eventId": "hhn-2022",
-      "type": "scare_zone",
-      "name": "Scarecrow: Cursed Soil",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Central Park",
-      "sourceIds": ["wiki-scarecrow-cursed-soil"]
-    },
-    {
-      "id": "hhn-2022-zone-graveyard-deadly-unrest",
-      "eventId": "hhn-2022",
-      "type": "scare_zone",
-      "name": "Graveyard: Deadly Unrest",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Hollywood",
-      "sourceIds": ["wiki-graveyard-deadly-unrest"]
     },
     {
       "id": "hhn-2023-house-the-exorcist-believer",
@@ -6067,66 +4274,6 @@
       },
       "location": "Sprung Tent 2",
       "sourceIds": ["wiki-dr-oddfellow-s-twisted-origins"]
-    },
-    {
-      "id": "hhn-2023-zone-dr-oddfellow-s-collection-of-horror",
-      "eventId": "hhn-2023",
-      "type": "scare_zone",
-      "name": "Dr. Oddfellow's Collection of Horror",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Front Lot",
-      "sourceIds": ["wiki-dr-oddfellow-s-collection-of-horror-scarezone"]
-    },
-    {
-      "id": "hhn-2023-zone-dark-zodiac",
-      "eventId": "hhn-2023",
-      "type": "scare_zone",
-      "name": "Dark Zodiac",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Hollywood",
-      "sourceIds": ["wiki-dark-zodiac"]
-    },
-    {
-      "id": "hhn-2023-zone-jungle-of-doom-expedition-horror",
-      "eventId": "hhn-2023",
-      "type": "scare_zone",
-      "name": "Jungle of Doom: Expedition Horror",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Central Park",
-      "sourceIds": ["wiki-jungle-of-doom-expedition-horror"]
-    },
-    {
-      "id": "hhn-2023-zone-vamp-69-summer-of-blood",
-      "eventId": "hhn-2023",
-      "type": "scare_zone",
-      "name": "Vamp '69: Summer of Blood",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "New York",
-      "sourceIds": ["wiki-vamp-69-summer-of-blood-scarezone"]
-    },
-    {
-      "id": "hhn-2023-zone-shipyard-32-horrors-unhinged",
-      "eventId": "hhn-2023",
-      "type": "scare_zone",
-      "name": "Shipyard 32: Horrors Unhinged",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "San Francisco",
-      "sourceIds": ["wiki-shipyard-32-horrors-unhinged"]
     },
     {
       "id": "hhn-2024-house-monstruos-the-monsters-of-latin-america",
@@ -6283,135 +4430,6 @@
       ]
     },
     {
-      "id": "hhn-2024-zone-duality-of-fear",
-      "eventId": "hhn-2024",
-      "type": "scare_zone",
-      "name": "Duality of Fear",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Front Lot",
-      "sourceIds": ["wiki-duality-of-fear", "discover-universal-hhn-2024-orlando"],
-      "media": [
-        {
-          "id": "hhn-2024-zone-duality-of-fear-media-1",
-          "kind": "poster",
-          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2024/07/Duality-of-Fear.jpg",
-          "attribution": "Universal Orlando Resort",
-          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "discover-universal-hhn-2024-orlando",
-          "distribution": "reference"
-        }
-      ]
-    },
-    {
-      "id": "hhn-2024-zone-demon-queens",
-      "eventId": "hhn-2024",
-      "type": "scare_zone",
-      "name": "Demon Queens",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Hollywood",
-      "sourceIds": [
-        "wiki-demon-queens",
-        "discover-universal-hhn-2024-orlando",
-        "universal-media-site"
-      ],
-      "media": [
-        {
-          "id": "hhn-2024-zone-demon-queens-media-1",
-          "kind": "poster",
-          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2024/07/Demon-Queens.jpg",
-          "attribution": "Universal Orlando Resort",
-          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "discover-universal-hhn-2024-orlando",
-          "distribution": "reference"
-        },
-        {
-          "id": "hhn-2024-zone-demon-queens-media-2",
-          "kind": "promotional_image",
-          "url": "https://media.universalparksusa.com/wp-content/uploads/2024/08/08_Halloween-Horror-Nights-2024-Demon-Queens-Scare-Zone-scaled.jpg",
-          "attribution": "Universal Orlando Resort",
-          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Event photograph. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "universal-media-site",
-          "distribution": "reference"
-        }
-      ]
-    },
-    {
-      "id": "hhn-2024-zone-swamp-of-the-undead",
-      "eventId": "hhn-2024",
-      "type": "scare_zone",
-      "name": "Swamp of The Undead",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Central Park",
-      "sourceIds": ["wiki-swamp-of-the-undead", "discover-universal-hhn-2024-orlando"],
-      "media": [
-        {
-          "id": "hhn-2024-zone-swamp-of-the-undead-media-1",
-          "kind": "poster",
-          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2024/07/Swamp-of-the-Undead.jpg",
-          "attribution": "Universal Orlando Resort",
-          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "discover-universal-hhn-2024-orlando",
-          "distribution": "reference"
-        }
-      ]
-    },
-    {
-      "id": "hhn-2024-zone-torture-faire",
-      "eventId": "hhn-2024",
-      "type": "scare_zone",
-      "name": "Torture Faire",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "New York",
-      "sourceIds": ["wiki-torture-faire", "discover-universal-hhn-2024-orlando"],
-      "media": [
-        {
-          "id": "hhn-2024-zone-torture-faire-media-1",
-          "kind": "poster",
-          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2024/07/Torture-Faire.jpg",
-          "attribution": "Universal Orlando Resort",
-          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "discover-universal-hhn-2024-orlando",
-          "distribution": "reference"
-        }
-      ]
-    },
-    {
-      "id": "hhn-2024-zone-enter-the-blumhouse",
-      "eventId": "hhn-2024",
-      "type": "scare_zone",
-      "name": "Enter the Blumhouse",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "Blumhouse Productions"
-      },
-      "location": "San Francisco",
-      "sourceIds": ["wiki-enter-the-blumhouse", "discover-universal-hhn-2024-orlando"],
-      "media": [
-        {
-          "id": "hhn-2024-zone-enter-the-blumhouse-media-1",
-          "kind": "poster",
-          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2024/07/Enter-the-Blumhouse-UOR.jpg",
-          "attribution": "Universal Orlando Resort",
-          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Includes Blumhouse Productions intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "discover-universal-hhn-2024-orlando",
-          "distribution": "reference"
-        }
-      ]
-    },
-    {
       "id": "hhn-2025-house-el-artista-a-spanish-haunting",
       "eventId": "hhn-2025",
       "type": "house",
@@ -6561,128 +4579,6 @@
       ]
     },
     {
-      "id": "hhn-2025-zone-the-origins-of-horror",
-      "eventId": "hhn-2025",
-      "type": "scare_zone",
-      "name": "The Origins of Horror",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Plaza of the Stars",
-      "sourceIds": ["wiki-the-origins-of-horror", "discover-universal-hhn-2025-orlando"],
-      "media": [
-        {
-          "id": "hhn-2025-zone-the-origins-of-horror-media-1",
-          "kind": "poster",
-          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2025/07/HHN-The-Origins-of-Horror.jpg",
-          "attribution": "Universal Orlando Resort",
-          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "discover-universal-hhn-2025-orlando",
-          "distribution": "reference"
-        }
-      ]
-    },
-    {
-      "id": "hhn-2025-zone-masquerade-dance-with-death",
-      "eventId": "hhn-2025",
-      "type": "scare_zone",
-      "name": "Masquerade: Dance with Death",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Hollywood",
-      "sourceIds": ["wiki-masquerade-dance-with-death", "discover-universal-hhn-2025-orlando"],
-      "media": [
-        {
-          "id": "hhn-2025-zone-masquerade-dance-with-death-media-1",
-          "kind": "poster",
-          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2025/07/Masquerade-Dance-with-Death-HHN-2025.jpg",
-          "attribution": "Universal Orlando Resort",
-          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "discover-universal-hhn-2025-orlando",
-          "distribution": "reference"
-        }
-      ]
-    },
-    {
-      "id": "hhn-2025-zone-the-cat-lady-of-crooked-lane",
-      "eventId": "hhn-2025",
-      "type": "scare_zone",
-      "name": "The Cat Lady of Crooked Lane",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Central Park",
-      "sourceIds": [
-        "wiki-the-cat-lady-of-crooked-lane-scarezone",
-        "discover-universal-hhn-2025-orlando"
-      ],
-      "media": [
-        {
-          "id": "hhn-2025-zone-the-cat-lady-of-crooked-lane-media-1",
-          "kind": "poster",
-          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2025/07/The-Cat-Lady-of-Crooked-Lane-HHN.jpg",
-          "attribution": "Universal Orlando Resort",
-          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "discover-universal-hhn-2025-orlando",
-          "distribution": "reference"
-        }
-      ]
-    },
-    {
-      "id": "hhn-2025-zone-mutations-toxic-twenties",
-      "eventId": "hhn-2025",
-      "type": "scare_zone",
-      "name": "Mutations: Toxic Twenties",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "New York",
-      "sourceIds": [
-        "wiki-mutations-toxic-twenties-scarezone",
-        "discover-universal-hhn-2025-orlando"
-      ],
-      "media": [
-        {
-          "id": "hhn-2025-zone-mutations-toxic-twenties-media-1",
-          "kind": "poster",
-          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2025/07/Mutations-Toxic-Twenties-HHN-2025.jpg",
-          "attribution": "Universal Orlando Resort",
-          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "discover-universal-hhn-2025-orlando",
-          "distribution": "reference"
-        }
-      ]
-    },
-    {
-      "id": "hhn-2025-zone-mel-s-die-in-zombies",
-      "eventId": "hhn-2025",
-      "type": "scare_zone",
-      "name": "Mel's Die-In Zombies",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Mel's Drive-In",
-      "sourceIds": ["wiki-mel-s-die-in-zombies"]
-    },
-    {
-      "id": "hhn-2025-zone-club-horror",
-      "eventId": "hhn-2025",
-      "type": "scare_zone",
-      "name": "Club Horror",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "San Francisco",
-      "sourceIds": ["wiki-club-horror"]
-    },
-    {
       "id": "hhn-2026-house-jack-and-oddfellow-chaos-and-control",
       "eventId": "hhn-2026",
       "type": "house",
@@ -6830,124 +4726,6 @@
       ]
     },
     {
-      "id": "hhn-2026-zone-infernal-carnival-of-nightmares",
-      "eventId": "hhn-2026",
-      "type": "scare_zone",
-      "name": "Infernal Carnival of Nightmares",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "summary": "Jack the Clown and Dr. Oddfellow invite guests into the season's carnival midway.",
-      "location": "Illumination Boulevard",
-      "sourceIds": [
-        "wiki-infernal-carnival-of-nightmares-scarezone",
-        "press-uo-hhn-2026-overview",
-        "discover-universal-hhn-2026-orlando"
-      ],
-      "media": [
-        {
-          "id": "hhn-2026-zone-infernal-carnival-of-nightmares-media-1",
-          "kind": "poster",
-          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2026/06/ICON.jpg",
-          "attribution": "Universal Orlando Resort",
-          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "discover-universal-hhn-2026-orlando",
-          "distribution": "reference"
-        }
-      ]
-    },
-    {
-      "id": "hhn-2026-zone-downtown-clowntown",
-      "eventId": "hhn-2026",
-      "type": "scare_zone",
-      "name": "Downtown Clowntown",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "summary": "A troupe of clowns takes over the city streets.",
-      "location": "New York",
-      "sourceIds": [
-        "wiki-downtown-clowntown-scarezone",
-        "press-uo-hhn-2026-overview",
-        "discover-universal-hhn-2026-orlando",
-        "universal-media-site"
-      ],
-      "media": [
-        {
-          "id": "hhn-2026-zone-downtown-clowntown-media-1",
-          "kind": "poster",
-          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2026/07/QuitClownin.jpg",
-          "attribution": "Universal Orlando Resort",
-          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "discover-universal-hhn-2026-orlando",
-          "distribution": "reference"
-        },
-        {
-          "id": "hhn-2026-zone-downtown-clowntown-media-2",
-          "kind": "promotional_image",
-          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/08/05_Downtown-Clowntown_Killer-Klowns-from-Outer-Space.jpg",
-          "attribution": "Universal Orlando Resort",
-          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Opening photograph. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "universal-media-site",
-          "distribution": "reference"
-        }
-      ]
-    },
-    {
-      "id": "hhn-2026-zone-sideshow-of-decay",
-      "eventId": "hhn-2026",
-      "type": "scare_zone",
-      "name": "Sideshow of Decay",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "summary": "Cindy Caine opens a portal and brings back nightmares from the event's past.",
-      "location": "Hollywood",
-      "sourceIds": [
-        "wiki-sideshow-of-decay",
-        "press-uo-hhn-2026-overview",
-        "discover-universal-hhn-2026-orlando"
-      ],
-      "media": [
-        {
-          "id": "hhn-2026-zone-sideshow-of-decay-media-1",
-          "kind": "poster",
-          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2026/06/SideshowOfDecay.jpg",
-          "attribution": "Universal Orlando Resort",
-          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "discover-universal-hhn-2026-orlando",
-          "distribution": "reference"
-        }
-      ]
-    },
-    {
-      "id": "hhn-2026-zone-mel-s-die-in-zombies",
-      "eventId": "hhn-2026",
-      "type": "scare_zone",
-      "name": "Mel's Die-In Zombies",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Mel's Drive-In",
-      "sourceIds": ["wiki-mel-s-die-in-zombies"]
-    },
-    {
-      "id": "hhn-2026-zone-club-horror",
-      "eventId": "hhn-2026",
-      "type": "scare_zone",
-      "name": "Club Horror",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "San Francisco",
-      "sourceIds": ["wiki-club-horror"]
-    },
-    {
       "id": "hhn-2010-house-a-nightmare-on-elm-street-never-sleep-again",
       "eventId": "hhn-2010",
       "type": "house",
@@ -7010,94 +4788,6 @@
       },
       "location": "Terminator Queue",
       "sourceIds": ["wiki-rob-zombie-s-house-of-1000-corpses-in-3-d-zombievision"]
-    },
-    {
-      "id": "hhn-2010-zone-terror-tram-chucky-s-revenge",
-      "eventId": "hhn-2010",
-      "type": "scare_zone",
-      "name": "Terror Tram: Chucky's Revenge",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "Child's Play"
-      },
-      "location": "Backlot",
-      "sourceIds": ["wiki-terror-tram-chucky-s-revenge"]
-    },
-    {
-      "id": "hhn-2010-zone-la-llorona",
-      "eventId": "hhn-2010",
-      "type": "scare_zone",
-      "name": "La Llorona",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "The Urban Legend of La Llorona"
-      },
-      "location": "Western Street",
-      "sourceIds": ["wiki-la-llorona-scarezone"]
-    },
-    {
-      "id": "hhn-2010-zone-nightmarez",
-      "eventId": "hhn-2010",
-      "type": "scare_zone",
-      "name": "Nightmarez",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "A Nightmare on Elm Street"
-      },
-      "location": "Front Gates",
-      "sourceIds": ["wiki-nightmarez"]
-    },
-    {
-      "id": "hhn-2010-zone-klownz",
-      "eventId": "hhn-2010",
-      "type": "scare_zone",
-      "name": "Klownz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "New York Street",
-      "sourceIds": ["wiki-klownz"]
-    },
-    {
-      "id": "hhn-2010-zone-lunaticz",
-      "eventId": "hhn-2010",
-      "type": "scare_zone",
-      "name": "Lunaticz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Baker Street",
-      "sourceIds": ["wiki-lunaticz"]
-    },
-    {
-      "id": "hhn-2010-zone-freakz",
-      "eventId": "hhn-2010",
-      "type": "scare_zone",
-      "name": "Freakz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "French Street",
-      "sourceIds": ["wiki-freakz"]
-    },
-    {
-      "id": "hhn-2010-zone-pigz",
-      "eventId": "hhn-2010",
-      "type": "scare_zone",
-      "name": "Pigz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "SAW"
-      },
-      "location": "Lower Lot",
-      "sourceIds": ["wiki-pigz"]
     },
     {
       "id": "hhn-2011-house-hostel-hunting-season",
@@ -7176,80 +4866,6 @@
       },
       "location": "Shrek 4D Queue",
       "sourceIds": ["wiki-la-llorona-villa-de-almas-perdidas"]
-    },
-    {
-      "id": "hhn-2011-zone-terror-tram-scream-4-your-life",
-      "eventId": "hhn-2011",
-      "type": "scare_zone",
-      "name": "Terror Tram: Scream 4 Your Life",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "Various Horror Films"
-      },
-      "location": "Backlot",
-      "sourceIds": ["wiki-terror-tram-scream-4-your-life"]
-    },
-    {
-      "id": "hhn-2011-zone-scream",
-      "eventId": "hhn-2011",
-      "type": "scare_zone",
-      "name": "Scream",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "Scream"
-      },
-      "location": "Front Gates",
-      "sourceIds": ["wiki-scream-scarezone"]
-    },
-    {
-      "id": "hhn-2011-zone-zombieville",
-      "eventId": "hhn-2011",
-      "type": "scare_zone",
-      "name": "Zombieville",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Baker Street",
-      "sourceIds": ["wiki-zombieville"]
-    },
-    {
-      "id": "hhn-2011-zone-the-reapers",
-      "eventId": "hhn-2011",
-      "type": "scare_zone",
-      "name": "The Reapers",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Lower Lot",
-      "sourceIds": ["wiki-the-reapers"]
-    },
-    {
-      "id": "hhn-2011-zone-klownz",
-      "eventId": "hhn-2011",
-      "type": "scare_zone",
-      "name": "Klownz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "New York Street",
-      "sourceIds": ["wiki-klownz"]
-    },
-    {
-      "id": "hhn-2011-zone-freakz",
-      "eventId": "hhn-2011",
-      "type": "scare_zone",
-      "name": "Freakz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "French Street",
-      "sourceIds": ["wiki-freakz"]
     },
     {
       "id": "hhn-2012-house-the-walking-dead-dead-inside-hollywood",
@@ -7360,68 +4976,6 @@
       "sourceIds": ["wiki-universal-monsters-remix"]
     },
     {
-      "id": "hhn-2012-zone-terror-tram-invaded-by-the-walking-dead",
-      "eventId": "hhn-2012",
-      "type": "scare_zone",
-      "name": "Terror Tram: Invaded by The Walking Dead",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "The Walking Dead"
-      },
-      "location": "Studio Tour Backlot",
-      "sourceIds": ["wiki-terror-tram-invaded-by-the-walking-dead"]
-    },
-    {
-      "id": "hhn-2012-zone-silent-hill",
-      "eventId": "hhn-2012",
-      "type": "scare_zone",
-      "name": "Silent Hill",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "Silent Hill"
-      },
-      "location": "Lower Lot",
-      "sourceIds": ["wiki-silent-hill-scarezone"]
-    },
-    {
-      "id": "hhn-2012-zone-toyz",
-      "eventId": "hhn-2012",
-      "type": "scare_zone",
-      "name": "Toyz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Baker Street",
-      "sourceIds": ["wiki-toyz"]
-    },
-    {
-      "id": "hhn-2012-zone-witchez",
-      "eventId": "hhn-2012",
-      "type": "scare_zone",
-      "name": "Witchez",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "French Street",
-      "sourceIds": ["wiki-witchez"]
-    },
-    {
-      "id": "hhn-2012-zone-klownz",
-      "eventId": "hhn-2012",
-      "type": "scare_zone",
-      "name": "Klownz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Front Gates",
-      "sourceIds": ["wiki-klownz"]
-    },
-    {
       "id": "hhn-2013-house-black-sabbath-13-3d",
       "eventId": "hhn-2013",
       "type": "house",
@@ -7513,82 +5067,6 @@
           "sourceIds": ["wiki-the-walking-dead-no-safe-haven-orlando"]
         }
       ]
-    },
-    {
-      "id": "hhn-2013-zone-terror-tram-invaded-by-the-walking-dead",
-      "eventId": "hhn-2013",
-      "type": "scare_zone",
-      "name": "Terror Tram: Invaded by The Walking Dead",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "The Walking Dead"
-      },
-      "location": "Backlot",
-      "sourceIds": ["wiki-terror-tram-invaded-by-the-walking-dead"]
-    },
-    {
-      "id": "hhn-2013-zone-cirque-du-klownz",
-      "eventId": "hhn-2013",
-      "type": "scare_zone",
-      "name": "Cirque Du Klownz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "French Street",
-      "sourceIds": ["wiki-cirque-du-klownz"]
-    },
-    {
-      "id": "hhn-2013-zone-the-curse-of-chucky",
-      "eventId": "hhn-2013",
-      "type": "scare_zone",
-      "name": "The Curse of Chucky",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "Curse of Chucky"
-      },
-      "location": "Baker Street",
-      "sourceIds": ["wiki-the-curse-of-chucky"]
-    },
-    {
-      "id": "hhn-2013-zone-the-purge-survive-the-night",
-      "eventId": "hhn-2013",
-      "type": "scare_zone",
-      "name": "The Purge: Survive the Night",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "The Purge"
-      },
-      "location": "Front Gates",
-      "sourceIds": ["wiki-the-purge-survive-the-night"]
-    },
-    {
-      "id": "hhn-2013-zone-scarecrowz",
-      "eventId": "hhn-2013",
-      "type": "scare_zone",
-      "name": "Scarecrowz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Lower Lot",
-      "sourceIds": ["wiki-scarecrowz"]
-    },
-    {
-      "id": "hhn-2013-zone-the-walking-dead-dead-on-arrival",
-      "eventId": "hhn-2013",
-      "type": "scare_zone",
-      "name": "The Walking Dead: Dead on Arrival",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "The Walking Dead"
-      },
-      "location": "Metro Lot",
-      "sourceIds": ["wiki-the-walking-dead-dead-on-arrival"]
     },
     {
       "id": "hhn-2014-house-an-american-werewolf-in-london",
@@ -7742,96 +5220,6 @@
       ]
     },
     {
-      "id": "hhn-2014-zone-terror-tram-invaded-by-the-walking-dead",
-      "eventId": "hhn-2014",
-      "type": "scare_zone",
-      "name": "Terror Tram: Invaded by The Walking Dead",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "The Walking Dead"
-      },
-      "location": "Backlot",
-      "sourceIds": ["wiki-terror-tram-invaded-by-the-walking-dead"]
-    },
-    {
-      "id": "hhn-2014-zone-dark-christmas",
-      "eventId": "hhn-2014",
-      "type": "scare_zone",
-      "name": "Dark Christmas",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Baker Street",
-      "sourceIds": ["wiki-dark-christmas"]
-    },
-    {
-      "id": "hhn-2014-zone-mask-a-raid",
-      "eventId": "hhn-2014",
-      "type": "scare_zone",
-      "name": "Mask-a-Raid",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "French Street",
-      "sourceIds": ["wiki-mask-a-raid"]
-    },
-    {
-      "id": "hhn-2014-zone-the-purge-anarchy-hollywood",
-      "eventId": "hhn-2014",
-      "type": "scare_zone",
-      "name": "The Purge: Anarchy",
-      "parks": ["hollywood", "orlando"],
-      "variantName": null,
-      "ip": {
-        "type": "licensed",
-        "franchise": "The Purge"
-      },
-      "location": null,
-      "slug": "hhn-2014-zone-the-purge-anarchy",
-      "previousIds": ["hhn-2014-zone-the-purge-anarchy-orlando"],
-      "summary": null,
-      "venueWiki": [
-        {
-          "park": "hollywood",
-          "location": "Front Gates",
-          "sourceIds": ["wiki-the-purge-anarchy-hollywood"]
-        },
-        {
-          "park": "orlando",
-          "location": "New York",
-          "sourceIds": ["wiki-the-purge-anarchy-orlando"]
-        }
-      ]
-    },
-    {
-      "id": "hhn-2014-zone-skullz",
-      "eventId": "hhn-2014",
-      "type": "scare_zone",
-      "name": "Skullz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Lower Lot",
-      "sourceIds": ["wiki-skullz"]
-    },
-    {
-      "id": "hhn-2014-zone-the-walking-dead-welcome-to-terminus",
-      "eventId": "hhn-2014",
-      "type": "scare_zone",
-      "name": "The Walking Dead: Welcome to Terminus",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "The Walking Dead"
-      },
-      "location": "Metro Lot",
-      "sourceIds": ["wiki-the-walking-dead-welcome-to-terminus"]
-    },
-    {
       "id": "hhn-2015-house-crimson-peak-maze-of-madness",
       "eventId": "hhn-2015",
       "type": "house",
@@ -7908,67 +5296,6 @@
       },
       "location": "Soundstage 747",
       "sourceIds": ["wiki-avp-alien-vs-predator-hollywood"]
-    },
-    {
-      "id": "hhn-2015-zone-terror-tram-survive-the-purge",
-      "eventId": "hhn-2015",
-      "type": "scare_zone",
-      "name": "Terror Tram: Survive the Purge",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "The Purge"
-      },
-      "sourceIds": ["wiki-terror-tram-survive-the-purge"]
-    },
-    {
-      "id": "hhn-2015-zone-exterminatorz",
-      "eventId": "hhn-2015",
-      "type": "scare_zone",
-      "name": "Exterminatorz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Front Gates",
-      "sourceIds": ["wiki-exterminatorz"]
-    },
-    {
-      "id": "hhn-2015-zone-dark-christmas",
-      "eventId": "hhn-2015",
-      "type": "scare_zone",
-      "name": "Dark Christmas",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Baker Street",
-      "sourceIds": ["wiki-dark-christmas"]
-    },
-    {
-      "id": "hhn-2015-zone-corpz",
-      "eventId": "hhn-2015",
-      "type": "scare_zone",
-      "name": "Corpz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "French Street",
-      "sourceIds": ["wiki-corpz"]
-    },
-    {
-      "id": "hhn-2015-zone-the-purge-urban-nightmare",
-      "eventId": "hhn-2015",
-      "type": "scare_zone",
-      "name": "The Purge: Urban Nightmare",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "The Purge"
-      },
-      "location": "Metro Lot",
-      "sourceIds": ["wiki-the-purge-urban-nightmare"]
     },
     {
       "id": "hhn-2016-house-american-horror-story-hollywood",
@@ -8122,31 +5449,6 @@
       "sourceIds": ["wiki-the-walking-dead-attraction"]
     },
     {
-      "id": "hhn-2016-zone-eli-roth-presents-terror-tram",
-      "eventId": "hhn-2016",
-      "type": "scare_zone",
-      "name": "Eli Roth Presents: Terror Tram",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Backlot",
-      "sourceIds": ["wiki-eli-roth-presents-terror-tram"]
-    },
-    {
-      "id": "hhn-2016-zone-the-purge-election-year",
-      "eventId": "hhn-2016",
-      "type": "scare_zone",
-      "name": "The Purge: Election Year",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "The Purge"
-      },
-      "location": "Park-Wide",
-      "sourceIds": ["wiki-the-purge-election-year"]
-    },
-    {
       "id": "hhn-2017-house-american-horror-story-roanoke",
       "eventId": "hhn-2017",
       "type": "house",
@@ -8298,55 +5600,6 @@
       },
       "location": "UBE Venue",
       "sourceIds": ["wiki-the-walking-dead-attraction"]
-    },
-    {
-      "id": "hhn-2017-zone-titans-of-terror-tram-hosted-by-chucky",
-      "eventId": "hhn-2017",
-      "type": "scare_zone",
-      "name": "Titans of Terror Tram: Hosted by Chucky",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "Friday the 13th"
-      },
-      "location": "Backlot",
-      "sourceIds": ["wiki-titans-of-terror-tram-hosted-by-chucky"]
-    },
-    {
-      "id": "hhn-2017-zone-hell-o-ween",
-      "eventId": "hhn-2017",
-      "type": "scare_zone",
-      "name": "Hell-O-Ween",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Front Gates",
-      "sourceIds": ["wiki-hell-o-ween"]
-    },
-    {
-      "id": "hhn-2017-zone-toxic-tunnel",
-      "eventId": "hhn-2017",
-      "type": "scare_zone",
-      "name": "Toxic Tunnel",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Metro Lot Tunnel",
-      "sourceIds": ["wiki-toxic-tunnel"]
-    },
-    {
-      "id": "hhn-2017-zone-urban-inferno",
-      "eventId": "hhn-2017",
-      "type": "scare_zone",
-      "name": "Urban Inferno",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Metro Lot",
-      "sourceIds": ["wiki-urban-inferno"]
     },
     {
       "id": "hhn-2018-house-stranger-things-hollywood",
@@ -8523,80 +5776,6 @@
       },
       "location": "Parisian Courtyard",
       "sourceIds": ["wiki-universal-monsters-music-by-slash"]
-    },
-    {
-      "id": "hhn-2018-zone-hollywood-harry-s-dreadtime-storyz",
-      "eventId": "hhn-2018",
-      "type": "scare_zone",
-      "name": "Hollywood Harry's: Dreadtime Storyz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Backlot",
-      "sourceIds": ["wiki-hollywood-harry-s-dreadtime-storyz"]
-    },
-    {
-      "id": "hhn-2018-zone-holidayz-in-hell",
-      "eventId": "hhn-2018",
-      "type": "scare_zone",
-      "name": "Holidayz in Hell",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Metro Lot",
-      "sourceIds": ["wiki-holidayz-in-hell-scarezone"]
-    },
-    {
-      "id": "hhn-2018-zone-trick-r-treat-hollywood",
-      "eventId": "hhn-2018",
-      "type": "scare_zone",
-      "name": "Trick 'r Treat",
-      "parks": ["hollywood"],
-      "variantName": "Hollywood version",
-      "ip": {
-        "type": "licensed",
-        "franchise": "Trick 'r Treat"
-      },
-      "location": "New York Street",
-      "sourceIds": ["wiki-trick-r-treat-scarezone-hollywood"]
-    },
-    {
-      "id": "hhn-2018-zone-monster-masquerade",
-      "eventId": "hhn-2018",
-      "type": "scare_zone",
-      "name": "Monster Masquerade",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "French Street",
-      "sourceIds": ["wiki-monster-masquerade"]
-    },
-    {
-      "id": "hhn-2018-zone-hell-s-harvest",
-      "eventId": "hhn-2018",
-      "type": "scare_zone",
-      "name": "Hell's Harvest",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Front Gate",
-      "sourceIds": ["wiki-hell-s-harvest"]
-    },
-    {
-      "id": "hhn-2018-zone-toxxic-tunnel",
-      "eventId": "hhn-2018",
-      "type": "scare_zone",
-      "name": "Toxxic Tunnel",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Metro Lot Tunnel",
-      "sourceIds": ["wiki-toxxic-tunnel"]
     },
     {
       "id": "hhn-2019-house-stranger-things-hollywood",
@@ -8822,66 +6001,6 @@
       "sourceIds": ["wiki-the-curse-of-pandora-s-box"]
     },
     {
-      "id": "hhn-2019-zone-fallen-angelz",
-      "eventId": "hhn-2019",
-      "type": "scare_zone",
-      "name": "Fallen Angelz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Front Gate",
-      "sourceIds": ["wiki-fallen-angelz"]
-    },
-    {
-      "id": "hhn-2019-zone-spirits-and-demons-of-the-east",
-      "eventId": "hhn-2019",
-      "type": "scare_zone",
-      "name": "Spirits & Demons of the East",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "New York Street",
-      "sourceIds": ["wiki-spirits-and-demons-of-the-east"]
-    },
-    {
-      "id": "hhn-2019-zone-christmas-in-hell",
-      "eventId": "hhn-2019",
-      "type": "scare_zone",
-      "name": "Christmas in Hell",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "French Street",
-      "sourceIds": ["wiki-christmas-in-hell"]
-    },
-    {
-      "id": "hhn-2019-zone-toxxxic-tunnel",
-      "eventId": "hhn-2019",
-      "type": "scare_zone",
-      "name": "ToXXXic Tunnel",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Metro Lot Tunnel",
-      "sourceIds": ["wiki-toxxxic-tunnel"]
-    },
-    {
-      "id": "hhn-2019-zone-all-hallow-s-evil",
-      "eventId": "hhn-2019",
-      "type": "scare_zone",
-      "name": "All Hallow's Evil",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Metro Lot",
-      "sourceIds": ["wiki-all-hallow-s-evil"]
-    },
-    {
       "id": "hhn-2021-house-the-haunting-of-hill-house",
       "eventId": "hhn-2021",
       "type": "house",
@@ -9000,67 +6119,6 @@
       },
       "location": "UBE Venue",
       "sourceIds": ["wiki-the-walking-dead-attraction"]
-    },
-    {
-      "id": "hhn-2021-zone-terror-tram-the-ultimate-purge",
-      "eventId": "hhn-2021",
-      "type": "scare_zone",
-      "name": "Terror Tram: The Ultimate Purge",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "The Purge"
-      },
-      "location": "Backlot",
-      "sourceIds": ["wiki-terror-tram-the-ultimate-purge", "universal-media-site"],
-      "media": [
-        {
-          "id": "hhn-2021-zone-terror-tram-the-ultimate-purge-media-1",
-          "kind": "promotional_image",
-          "url": "https://media.universalparksusa.com/wp-content/uploads/2021/08/Terror-Tram-at-USH-HHN-2021-scaled-e1629301566296.jpg",
-          "attribution": "Universal Studios Hollywood",
-          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Includes The Purge intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "universal-media-site",
-          "distribution": "reference"
-        }
-      ]
-    },
-    {
-      "id": "hhn-2021-zone-universal-monsters-silver-scream-queenz",
-      "eventId": "hhn-2021",
-      "type": "scare_zone",
-      "name": "Universal Monsters: Silver Scream Queenz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "Universal Classic Mosnters"
-      },
-      "location": "French Street",
-      "sourceIds": ["wiki-universal-monsters-silver-scream-queenz"]
-    },
-    {
-      "id": "hhn-2021-zone-chainsaw-rangers",
-      "eventId": "hhn-2021",
-      "type": "scare_zone",
-      "name": "Chainsaw Rangers",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Front Gates",
-      "sourceIds": ["wiki-chainsaw-rangers"]
-    },
-    {
-      "id": "hhn-2021-zone-demon-city",
-      "eventId": "hhn-2021",
-      "type": "scare_zone",
-      "name": "Demon City",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "New York Street",
-      "sourceIds": ["wiki-demon-city"]
     },
     {
       "id": "hhn-2022-house-universal-monsters-legends-collide-hollywood",
@@ -9225,55 +6283,6 @@
       "sourceIds": ["wiki-killer-klowns-from-outer-space-hollywood"]
     },
     {
-      "id": "hhn-2022-zone-terror-tram",
-      "eventId": "hhn-2022",
-      "type": "scare_zone",
-      "name": "Terror Tram",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "Us"
-      },
-      "location": "Studio Tour Backlot",
-      "sourceIds": ["wiki-terror-tram-2022"]
-    },
-    {
-      "id": "hhn-2022-zone-el-pueblo-del-terror",
-      "eventId": "hhn-2022",
-      "type": "scare_zone",
-      "name": "El Pueblo Del Terror",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "French Street",
-      "sourceIds": ["wiki-el-pueblo-del-terror"]
-    },
-    {
-      "id": "hhn-2022-zone-sideshow-slaughterhouse",
-      "eventId": "hhn-2022",
-      "type": "scare_zone",
-      "name": "Sideshow Slaughterhouse",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "New York Street",
-      "sourceIds": ["wiki-sideshow-slaughterhouse"]
-    },
-    {
-      "id": "hhn-2022-zone-clownsawz",
-      "eventId": "hhn-2022",
-      "type": "scare_zone",
-      "name": "Clownsawz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Front Gate",
-      "sourceIds": ["wiki-clownsawz"]
-    },
-    {
       "id": "hhn-2023-house-chucky-ultimate-kill-count-hollywood",
       "eventId": "hhn-2023",
       "type": "house",
@@ -9422,54 +6431,6 @@
       },
       "location": "T-Pad",
       "sourceIds": ["wiki-holidayz-in-hell-haunted-maze"]
-    },
-    {
-      "id": "hhn-2023-zone-terror-tram-the-exterminatorz",
-      "eventId": "hhn-2023",
-      "type": "scare_zone",
-      "name": "Terror Tram: The Exterminatorz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Studio Tour Backlot",
-      "sourceIds": ["wiki-terror-tram-the-exterminatorz"]
-    },
-    {
-      "id": "hhn-2023-zone-ghostz",
-      "eventId": "hhn-2023",
-      "type": "scare_zone",
-      "name": "Ghostz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Front Gates",
-      "sourceIds": ["wiki-ghostz"]
-    },
-    {
-      "id": "hhn-2023-zone-toyz",
-      "eventId": "hhn-2023",
-      "type": "scare_zone",
-      "name": "Toyz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "New York Street",
-      "sourceIds": ["wiki-toyz"]
-    },
-    {
-      "id": "hhn-2023-zone-el-terror-de-las-momias",
-      "eventId": "hhn-2023",
-      "type": "scare_zone",
-      "name": "El Terror de las Momias",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "French Street",
-      "sourceIds": ["wiki-el-terror-de-las-momias"]
     },
     {
       "id": "hhn-2024-house-a-quiet-place-hollywood",
@@ -9733,74 +6694,6 @@
       ]
     },
     {
-      "id": "hhn-2024-zone-terror-tram-enter-the-blumhouse",
-      "eventId": "hhn-2024",
-      "type": "scare_zone",
-      "name": "Terror Tram: Enter the Blumhouse",
-      "parks": ["hollywood"],
-      "location": "Studio Tour Backlot",
-      "sourceIds": ["wiki-terror-tram-enter-the-blumhouse", "universal-media-site"],
-      "media": [
-        {
-          "id": "hhn-2024-zone-terror-tram-enter-the-blumhouse-media-1",
-          "kind": "promotional_image",
-          "url": "https://media.universalparksusa.com/wp-content/uploads/2024/08/Terror-Tram-at-USH-HHN-2024-scaled.jpg",
-          "attribution": "Universal Studios Hollywood",
-          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "universal-media-site",
-          "distribution": "reference"
-        }
-      ]
-    },
-    {
-      "id": "hhn-2024-zone-luchadores-monstruosos",
-      "eventId": "hhn-2024",
-      "type": "scare_zone",
-      "name": "Luchadores Monstruosos",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "French Street",
-      "sourceIds": ["wiki-luchadores-monstruosos"]
-    },
-    {
-      "id": "hhn-2024-zone-murder-of-crowz",
-      "eventId": "hhn-2024",
-      "type": "scare_zone",
-      "name": "Murder of Crowz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Decision Hub",
-      "sourceIds": ["wiki-murder-of-crowz"]
-    },
-    {
-      "id": "hhn-2024-zone-chainsaw-punkz",
-      "eventId": "hhn-2024",
-      "type": "scare_zone",
-      "name": "Chainsaw Punkz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Front Gates",
-      "sourceIds": ["wiki-chainsaw-punkz"]
-    },
-    {
-      "id": "hhn-2024-zone-skull-lordz",
-      "eventId": "hhn-2024",
-      "type": "scare_zone",
-      "name": "Skull Lordz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "New York Street",
-      "sourceIds": ["wiki-skull-lordz"]
-    },
-    {
       "id": "hhn-2025-house-fallout-hollywood",
       "eventId": "hhn-2025",
       "type": "house",
@@ -10018,74 +6911,6 @@
           "distribution": "reference"
         }
       ]
-    },
-    {
-      "id": "hhn-2025-zone-terror-tram-enter-the-blumhouse",
-      "eventId": "hhn-2025",
-      "type": "scare_zone",
-      "name": "Terror Tram: Enter the Blumhouse",
-      "parks": ["hollywood"],
-      "location": "Studio Tour Backlot",
-      "sourceIds": ["wiki-terror-tram-enter-the-blumhouse", "universal-media-site"],
-      "media": [
-        {
-          "id": "hhn-2025-zone-terror-tram-enter-the-blumhouse-media-1",
-          "kind": "poster",
-          "url": "https://media.universalparksusa.com/wp-content/uploads/2025/08/Terror-Tram-key-art-HHN-at-USH-2025.jpg",
-          "attribution": "Universal Studios Hollywood",
-          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "universal-media-site",
-          "distribution": "reference"
-        }
-      ]
-    },
-    {
-      "id": "hhn-2025-zone-carnival-of-carnage",
-      "eventId": "hhn-2025",
-      "type": "scare_zone",
-      "name": "Carnival of Carnage",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "New York Street",
-      "sourceIds": ["wiki-carnival-of-carnage"]
-    },
-    {
-      "id": "hhn-2025-zone-noche-de-brujas",
-      "eventId": "hhn-2025",
-      "type": "scare_zone",
-      "name": "Noche de Brujas",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "French Street",
-      "sourceIds": ["wiki-noche-de-brujas"]
-    },
-    {
-      "id": "hhn-2025-zone-chainsaw-clownz",
-      "eventId": "hhn-2025",
-      "type": "scare_zone",
-      "name": "Chainsaw Clownz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Front Gates",
-      "sourceIds": ["wiki-chainsaw-clownz"]
-    },
-    {
-      "id": "hhn-2025-zone-murder-of-crowz",
-      "eventId": "hhn-2025",
-      "type": "scare_zone",
-      "name": "Murder of Crowz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Decision Hub",
-      "sourceIds": ["wiki-murder-of-crowz"]
     },
     {
       "id": "hhn-2026-house-sinners-hollywood",
@@ -10401,197 +7226,6 @@
         }
       ],
       "sourceIds": ["universal-media-site"]
-    },
-    {
-      "id": "hhn-2026-zone-terror-tram-starring-art-the-clown",
-      "eventId": "hhn-2026",
-      "type": "scare_zone",
-      "name": "Terror Tram starring Art the Clown",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "Terrifier 3"
-      },
-      "location": "Studio Tour Backlot",
-      "sourceIds": [
-        "wiki-terror-tram-starring-art-the-clown",
-        "discover-universal-hhn-2026-hollywood"
-      ],
-      "media": [
-        {
-          "id": "hhn-2026-zone-terror-tram-starring-art-the-clown-media-1",
-          "kind": "poster",
-          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2026/08/26-USH-9909100-HHN26-IP-Tram-DU-940x705-1.jpeg",
-          "attribution": "Universal Studios Hollywood",
-          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Includes Terrifier 3 intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "discover-universal-hhn-2026-hollywood",
-          "distribution": "reference"
-        }
-      ]
-    },
-    {
-      "id": "hhn-2026-zone-fortnitemares-hollywood",
-      "eventId": "hhn-2026",
-      "type": "scare_zone",
-      "name": "Fortnitemares",
-      "parks": ["hollywood", "orlando"],
-      "variantName": null,
-      "ip": {
-        "type": "licensed",
-        "franchise": "Fortnite"
-      },
-      "summary": "Guests drop into the world of Fortnitemares.",
-      "location": null,
-      "slug": "hhn-2026-zone-fortnitemares",
-      "previousIds": ["hhn-2026-zone-fortnitemares-orlando"],
-      "venueWiki": [
-        {
-          "park": "hollywood",
-          "location": "New York Street",
-          "sourceIds": ["wiki-fortnitemares-hollywood", "press-nbcu-halloween-2026-guide"]
-        },
-        {
-          "park": "orlando",
-          "location": "Central Park",
-          "sourceIds": ["wiki-fortnitemares-orlando", "press-uo-hhn-2026-overview"]
-        }
-      ],
-      "media": [
-        {
-          "id": "hhn-2026-zone-fortnitemares-hollywood-media-1",
-          "kind": "poster",
-          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/07/Fortnitemares-at-Halloween-Horror-Nights.jpg",
-          "attribution": "Universal Destinations & Experiences",
-          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Includes Fortnite intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "universal-media-site",
-          "distribution": "reference"
-        },
-        {
-          "id": "hhn-2026-zone-fortnitemares-hollywood-media-2",
-          "kind": "promotional_image",
-          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/08/03_Fortnitemares-1-scaled.jpg",
-          "attribution": "Universal Orlando Resort",
-          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Includes Fortnite intellectual property. Opening photograph. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "universal-media-site",
-          "distribution": "reference"
-        }
-      ],
-      "sourceIds": ["universal-media-site"]
-    },
-    {
-      "id": "hhn-2026-zone-el-circo-de-la-muerte",
-      "eventId": "hhn-2026",
-      "type": "scare_zone",
-      "name": "El Circo de la Muerte",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "French Street",
-      "sourceIds": ["wiki-el-circo-de-la-muerte", "discover-universal-hhn-2026-hollywood"],
-      "media": [
-        {
-          "id": "hhn-2026-zone-el-circo-de-la-muerte-media-1",
-          "kind": "poster",
-          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2026/08/circo-sz-key-art.jpg",
-          "attribution": "Universal Studios Hollywood",
-          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "discover-universal-hhn-2026-hollywood",
-          "distribution": "reference"
-        }
-      ]
-    },
-    {
-      "id": "hhn-2026-zone-hackerz",
-      "eventId": "hhn-2026",
-      "type": "scare_zone",
-      "name": "Hackerz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Front Gates",
-      "sourceIds": ["wiki-hackerz", "discover-universal-hhn-2026-hollywood"],
-      "media": [
-        {
-          "id": "hhn-2026-zone-hackerz-media-1",
-          "kind": "poster",
-          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2026/08/26-USH-9900080-HHN26-Hackerz-IP-1920x1080-1.jpg",
-          "attribution": "Universal Studios Hollywood",
-          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "discover-universal-hhn-2026-hollywood",
-          "distribution": "reference"
-        }
-      ]
-    },
-    {
-      "id": "hhn-2026-zone-blood-bog",
-      "eventId": "hhn-2026",
-      "type": "scare_zone",
-      "name": "Blood Bog",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Studio Tour Backlot",
-      "sourceIds": ["wiki-blood-bog", "discover-universal-hhn-2026-hollywood"],
-      "media": [
-        {
-          "id": "hhn-2026-zone-blood-bog-media-1",
-          "kind": "poster",
-          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2026/08/blood-bog-sz-key-art.jpg",
-          "attribution": "Universal Studios Hollywood",
-          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "discover-universal-hhn-2026-hollywood",
-          "distribution": "reference"
-        }
-      ]
-    },
-    {
-      "id": "hhn-2026-zone-murder-of-crowz",
-      "eventId": "hhn-2026",
-      "type": "scare_zone",
-      "name": "Murder of Crowz",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Front Gates",
-      "sourceIds": ["wiki-murder-of-crowz", "discover-universal-hhn-2026-hollywood"],
-      "media": [
-        {
-          "id": "hhn-2026-zone-murder-of-crowz-media-1",
-          "kind": "poster",
-          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2026/08/crowz-sz-key-art.jpg",
-          "attribution": "Universal Studios Hollywood",
-          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "discover-universal-hhn-2026-hollywood",
-          "distribution": "reference"
-        }
-      ]
-    },
-    {
-      "id": "hhn-2026-zone-shriek-of-the-banshee",
-      "eventId": "hhn-2026",
-      "type": "scare_zone",
-      "name": "Shriek of the Banshee",
-      "parks": ["hollywood"],
-      "ip": {
-        "type": "original"
-      },
-      "location": "Decision Hub",
-      "sourceIds": ["wiki-shriek-of-the-banshee", "discover-universal-hhn-2026-hollywood"],
-      "media": [
-        {
-          "id": "hhn-2026-zone-shriek-of-the-banshee-media-1",
-          "kind": "poster",
-          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2026/08/shriek-sz-key-art.jpg",
-          "attribution": "Universal Studios Hollywood",
-          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
-          "sourceId": "discover-universal-hhn-2026-hollywood",
-          "distribution": "reference"
-        }
-      ]
     }
   ]
 }

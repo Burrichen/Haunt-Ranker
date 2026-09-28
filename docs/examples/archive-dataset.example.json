@@ -98,13 +98,13 @@
       "sourceIds": ["example-channel-2101-recap"]
     },
     {
-      "id": "example-2101-zone-ashfall",
+      "id": "example-2101-house-ashfall",
       "eventId": "example-2101",
-      "type": "scare_zone",
+      "type": "house",
       "name": "Ashfall",
       "parks": ["orlando"],
       "ip": { "type": "licensed", "franchise": "Example Franchise" },
-      "summary": "A licensed scare zone, with the franchise recorded separately from the name.",
+      "summary": "A licensed house, with the franchise recorded separately from the name.",
       "location": "The central lagoon path"
     }
   ]

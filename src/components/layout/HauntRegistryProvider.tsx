@@ -32,9 +32,8 @@ const INITIAL: RegistryData = {
  * Loads what haunts exist, where they run and what they call things — once,
  * at startup, for the whole app.
  *
- * This is the hinge the Haunt Pack system turns on. Every heading, filter
- * and label downstream reads these rows, so importing a pack adds a haunt
- * to the interface without a line of code naming it.
+ * Every heading, filter and label downstream reads these rows — "Houses"
+ * for HHN, "Mazes" for Knott's — rather than naming either haunt in code.
  */
 export function HauntRegistryProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState<RegistryData>(INITIAL);
@@ -72,7 +71,8 @@ export function HauntRegistryProvider({ children }: { children: ReactNode }) {
     };
   }, [reloads]);
 
-  // Importing a pack adds a haunt; the app has to see it without a restart.
+  // A backup restore can rewrite the reference rows; the app has to see
+  // that without a restart.
   const refresh = useCallback(() => setReloads((count) => count + 1), []);
 
   const registry = useMemo<HauntRegistry>(

@@ -15,9 +15,8 @@ export const PARK_IDS = {
 export type ParkId = string;
 
 /**
- * The marks a venue may use. A pack picks one of the app's own icons —
- * it can't ship artwork, and an unrecognised name falls back to a plain
- * marker rather than to nothing.
+ * The marks a venue may use — the app's own icons, never shipped artwork.
+ * An unrecognised name falls back to a plain marker rather than to nothing.
  */
 export const VENUE_ICONS = ["star", "palm", "ferris-wheel", "tent", "trees", "pin"] as const;
 export type VenueIcon = (typeof VENUE_ICONS)[number];
@@ -34,7 +33,7 @@ export interface Park {
   /** Which of the app's marks stands for this venue. */
   icon: VenueIcon;
   sortOrder: number;
-  /** Which pack introduced this venue, where one did. */
+  /** Dormant: written by the retired Haunt Pack importer. Never shown. */
   packId: string | null;
 }
 

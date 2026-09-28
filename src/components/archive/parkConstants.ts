@@ -5,10 +5,10 @@ import { DEFAULT_VENUE_ICON, type VenueIcon } from "../../models/park";
 /**
  * The marks a venue can be drawn with.
  *
- * Professional, non-emoji, and the app's own: a Haunt Pack chooses a name
- * from this set rather than shipping artwork, so a venue nobody has written
- * code for still gets a mark that belongs to the rest of the interface. An
- * unrecognised name falls back to a plain pin rather than to nothing.
+ * Professional, non-emoji, and the app's own: a venue row names one of
+ * these rather than shipping artwork, so every venue's mark belongs to the
+ * rest of the interface. An unrecognised name falls back to a plain pin
+ * rather than to nothing.
  *
  * The icon is how a card says where something ran, which is why an
  * exclusive attraction needs no "exclusive" label: it simply shows one venue.

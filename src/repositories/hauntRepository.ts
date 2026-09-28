@@ -47,11 +47,11 @@ export interface HauntRepository {
   getAll(): Promise<Haunt[]>;
   getById(id: EntityId): Promise<Haunt | null>;
   /**
-   * Writes a haunt a pack describes, creating it or correcting it.
+   * Writes a haunt row, creating it or correcting it.
    *
-   * The only way a new haunt reaches the database — there is no UI for
-   * inventing one, because a haunt without seasons, venues and vocabulary
-   * would be a half-built collection.
+   * Nothing in the app calls this: HHN and Knott's Scary Farm are seeded by
+   * a migration, and there is no way to add a third. It was the retired
+   * Haunt Pack importer's, and is kept only because tests set up with it.
    */
   save(input: HauntInput): Promise<Haunt>;
 }

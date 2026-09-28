@@ -45,7 +45,6 @@ describe("ranking persistence", () => {
     best: string;
     middle: string;
     worst: string;
-    zone: string;
   }
 
   async function seed(): Promise<Seeded> {
@@ -75,13 +74,6 @@ describe("ranking persistence", () => {
       slug: "worst-house",
       parkIds: ["hollywood"],
     });
-    const zone = await attractions.create({
-      eventYearId: eventYear.id,
-      attractionType: "scare_zone",
-      name: "A Scare Zone",
-      slug: "a-scare-zone",
-      parkIds: ["orlando"],
-    });
 
     // Deliberately short of a perfect 15, so a later re-rate can clearly
     // overtake it rather than tying and falling back to the name tie-break.
@@ -90,7 +82,7 @@ describe("ranking persistence", () => {
     await ratings.upsert(worst.id, { theme: 1, fun: 1, fear: 1 });
 
     session.close();
-    return { best: best.id, middle: middle.id, worst: worst.id, zone: zone.id };
+    return { best: best.id, middle: middle.id, worst: worst.id };
   }
 
   /** Rebuilds the rows the Rankings page would render, straight from the database. */
@@ -195,40 +187,14 @@ describe("ranking persistence", () => {
     await expect(createRankingRepository(third).getScope(scope)).resolves.toEqual([]);
   });
 
-  it("keeps each group's ranking independent of the others", async () => {
-    const { best, middle, zone } = await seed();
-
-    const first = restart();
-    const rankings = createRankingRepository(first);
-    await rankings.setScope(rankingGroupScope("houses"), [middle, best]);
-    await rankings.setScope(rankingGroupScope("scare_zones"), [zone]);
-    await rankings.setScope(rankingGroupScope("all"), [best, zone, middle]);
-
-    const second = restart();
-    const reloaded = createRankingRepository(second);
-
-    expect(
-      (await reloaded.getScope(rankingGroupScope("houses"))).map((e) => e.attractionId),
-    ).toEqual([middle, best]);
-    expect(
-      (await reloaded.getScope(rankingGroupScope("scare_zones"))).map((e) => e.attractionId),
-    ).toEqual([zone]);
-    expect((await reloaded.getScope(rankingGroupScope("all"))).map((e) => e.attractionId)).toEqual([
-      best,
-      zone,
-      middle,
-    ]);
-  });
-
   it("keeps each haunt's ranking independent of the others and of All Haunts", async () => {
-    const { best, middle, zone } = await seed();
+    const { best, middle } = await seed();
 
     const first = restart();
     const rankings = createRankingRepository(first);
     await rankings.setScope(rankingGroupScope("houses", "all"), [best, middle]);
     await rankings.setScope(rankingGroupScope("houses", "hhn"), [middle, best]);
     await rankings.setScope(rankingGroupScope("houses", "knotts-scary-farm"), [best]);
-    await rankings.setScope(rankingGroupScope("scare_zones", "hhn"), [zone]);
 
     const second = restart();
     const reloaded = createRankingRepository(second);
@@ -240,15 +206,12 @@ describe("ranking persistence", () => {
     expect(await idsIn(rankingGroupScope("houses", "all"))).toEqual([best, middle]);
     expect(await idsIn(rankingGroupScope("houses", "hhn"))).toEqual([middle, best]);
     expect(await idsIn(rankingGroupScope("houses", "knotts-scary-farm"))).toEqual([best]);
-    expect(await idsIn(rankingGroupScope("scare_zones", "hhn"))).toEqual([zone]);
-    expect(await idsIn(rankingGroupScope("scare_zones", "knotts-scary-farm"))).toEqual([]);
   });
 
   it("leaves a ranking saved before there was a second haunt as the All Haunts list", async () => {
     // Existing installs hold rows under the unprefixed scopes. Those are
     // the All Haunts lists, not orphans to be migrated or dropped.
     expect(rankingGroupScope("houses", "all")).toBe("houses:all");
-    expect(rankingGroupScope("all", "all")).toBe("attractions:all");
     expect(rankingGroupScope("houses", "hhn")).toBe("hhn:houses:all");
 
     const { best, middle } = await seed();
@@ -267,7 +230,6 @@ describe("ranking persistence", () => {
     // Both read the same saved order, so ranking houses on this page is what
     // the browser's "Personal Ranking" sort picks up.
     expect(rankingGroupScope("houses")).toBe(allTimeScope("house"));
-    expect(rankingGroupScope("scare_zones")).toBe(allTimeScope("scare_zone"));
 
     const { best, middle } = await seed();
     const first = restart();

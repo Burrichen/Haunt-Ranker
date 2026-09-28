@@ -68,9 +68,9 @@ describe("AttractionRepository", () => {
   it("setParks replaces the prior park assignment rather than adding to it", async () => {
     const created = await attractions.create({
       eventYearId,
-      attractionType: "scare_zone",
-      name: "Zone",
-      slug: "zone",
+      attractionType: "house",
+      name: "House",
+      slug: "house",
       parkIds: ["hollywood"],
     });
 
@@ -81,9 +81,9 @@ describe("AttractionRepository", () => {
   it("refuses to strip an attraction's last park, even through setParks directly", async () => {
     const created = await attractions.create({
       eventYearId,
-      attractionType: "scare_zone",
-      name: "Zone",
-      slug: "zone",
+      attractionType: "house",
+      name: "House",
+      slug: "house",
       parkIds: ["hollywood"],
     });
 
@@ -93,7 +93,7 @@ describe("AttractionRepository", () => {
     expect((await attractions.getById(created.id))?.parkIds).toEqual(["hollywood"]);
   });
 
-  it("filters by event year and by attraction type", async () => {
+  it("filters by event year", async () => {
     const otherYearId = (await createFixtureEventYear(db, { calendarYear: 2023, name: "Other" }))
       .id;
 
@@ -104,11 +104,11 @@ describe("AttractionRepository", () => {
       slug: "a-house",
       parkIds: ["hollywood"],
     });
-    const zone = await attractions.create({
+    const secondHouse = await attractions.create({
       eventYearId,
-      attractionType: "scare_zone",
-      name: "A Zone",
-      slug: "a-zone",
+      attractionType: "house",
+      name: "A Second House",
+      slug: "a-second-house",
       parkIds: ["hollywood"],
     });
     await attractions.create({
@@ -120,11 +120,50 @@ describe("AttractionRepository", () => {
     });
 
     const thisYear = await attractions.getByEventYear(eventYearId);
-    expect(thisYear.map((a) => a.id).sort()).toEqual([house.id, zone.id].sort());
+    expect(thisYear.map((a) => a.id).sort()).toEqual([house.id, secondHouse.id].sort());
 
     const houses = await attractions.getByType("house");
     expect(houses.map((a) => a.id)).toContain(house.id);
-    expect(houses.map((a) => a.id)).not.toContain(zone.id);
+  });
+
+  it("refuses a scare zone or a show — houses and mazes are all the archive records", async () => {
+    for (const retired of ["scare_zone", "show", "other"]) {
+      await expect(
+        attractions.create({
+          eventYearId,
+          attractionType: retired as AttractionType,
+          name: `A ${retired}`,
+          slug: `a-${retired}`,
+          parkIds: ["hollywood"],
+        }),
+      ).rejects.toBeInstanceOf(ConstraintViolationError);
+    }
+    const house = await attractions.create({
+      eventYearId,
+      attractionType: "house",
+      name: "A House",
+      slug: "a-house",
+      parkIds: ["hollywood"],
+    });
+    await expect(
+      attractions.update(house.id, { attractionType: "scare_zone" as AttractionType }),
+    ).rejects.toBeInstanceOf(ConstraintViolationError);
+    expect(await attractions.getAll()).toHaveLength(1);
+  });
+
+  it("never reads back a retired category, even one written behind its back", async () => {
+    // The schema still accepts the old values so old data can be read and
+    // its personal rows preserved; the repository is what keeps them out
+    // of the interface.
+    await db.execute(
+      `INSERT INTO attractions (id, event_year_id, attraction_type, name, slug)
+       VALUES ('stray-zone', ?, 'scare_zone', 'Stray Zone', 'stray-zone')`,
+      [eventYearId],
+    );
+
+    expect(await attractions.getAll()).toEqual([]);
+    expect(await attractions.getByEventYear(eventYearId)).toEqual([]);
+    expect(await attractions.getById("stray-zone")).toBeNull();
   });
 
   it("updates only provided fields, leaving park assignment untouched when omitted", async () => {
@@ -143,7 +182,7 @@ describe("AttractionRepository", () => {
     expect(updated.parkIds?.slice().sort()).toEqual(["hollywood", "orlando"]);
   });
 
-  it("stamps an edit made here, so a Haunt Pack can tell it apart from its own writing", async () => {
+  it("stamps an edit made here, as a record of when it was last corrected by hand", async () => {
     const created = await attractions.create({
       eventYearId,
       attractionType: "house",
@@ -156,7 +195,7 @@ describe("AttractionRepository", () => {
       "SELECT manual_edit_at FROM attractions WHERE id = ?",
       [created.id],
     );
-    // Nothing has been edited yet — a pack may write this record freely.
+    // Nothing has been edited by hand yet.
     expect(fresh.manual_edit_at).toBeNull();
 
     await attractions.update(created.id, { shortSummary: "Corrected by hand." });
@@ -226,7 +265,7 @@ describe("AttractionRepository", () => {
     it("accepts an attraction that knows almost nothing beyond the required facts", async () => {
       const sparse = await attractions.create({
         eventYearId,
-        attractionType: "scare_zone",
+        attractionType: "house",
         name: "Barely Documented",
         slug: "barely-documented",
         parkIds: ["orlando"],

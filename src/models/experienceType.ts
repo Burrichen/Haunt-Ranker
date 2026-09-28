@@ -5,13 +5,11 @@ import type { HauntId } from "./haunt";
 /**
  * What one haunt calls one kind of experience.
  *
- * HHN has Houses, Knott's has Mazes, and a haunt imported tomorrow may have
- * Trails. The word belongs to the haunt, so it is a row rather than a
- * branch in the interface — that is the whole reason a haunt nobody has
- * written code for can still read correctly.
+ * HHN has Houses and Knott's has Mazes. The word belongs to the haunt, so
+ * it is a row rather than a branch in the interface.
  *
- * `category` is the closed set the app reasons about; `labelOne` and
- * `labelMany` are what a reader sees and are entirely the pack's.
+ * `category` is what the app reasons about — only walk-throughs, since
+ * migration 0014; `labelOne` and `labelMany` are what a reader sees.
  */
 export interface ExperienceType extends Timestamped {
   id: string;
@@ -21,7 +19,7 @@ export interface ExperienceType extends Timestamped {
   labelMany: string;
   description: string | null;
   sortOrder: number;
-  /** Which pack introduced this type, where one did. */
+  /** Dormant: written by the retired Haunt Pack importer. Never shown. */
   packId: string | null;
 }
 

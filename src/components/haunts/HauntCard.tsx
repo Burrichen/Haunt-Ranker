@@ -78,10 +78,6 @@ export function HauntCard({ summary, featured = false }: HauntCardProps) {
                 label={registry.label("house", hauntId, "many")}
                 value={summary.walkthroughs}
               />
-              <Figure
-                label={registry.label("scare_zone", hauntId, "many")}
-                value={summary.scareZones}
-              />
             </dl>
 
             <div className="haunt-card__coverage">

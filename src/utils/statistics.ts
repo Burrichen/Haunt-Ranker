@@ -1,4 +1,4 @@
-import type { Attraction, AttractionType, IpType } from "../models/attraction";
+import type { Attraction, IpType } from "../models/attraction";
 import type { EntityId } from "../models/common";
 import type { EventYear } from "../models/eventYear";
 import type { HauntId } from "../models/haunt";
@@ -19,32 +19,22 @@ export interface StatisticsRow {
 /** Every facet is single-select, `null` meaning "no restriction" — a dashboard slice, not a query builder. */
 export interface StatisticsFilters {
   year: number | null;
-  type: AttractionType | null;
   park: ParkId | null;
   ipType: IpType | null;
 }
 
 export const DEFAULT_STATISTICS_FILTERS: StatisticsFilters = {
   year: null,
-  type: null,
   park: null,
   ipType: null,
 };
 
 export function areStatisticsFiltersActive(filters: StatisticsFilters): boolean {
-  return (
-    filters.year !== null ||
-    filters.type !== null ||
-    filters.park !== null ||
-    filters.ipType !== null
-  );
+  return filters.year !== null || filters.park !== null || filters.ipType !== null;
 }
 
 export function matchesStatisticsFilters(row: StatisticsRow, filters: StatisticsFilters): boolean {
   if (filters.year !== null && row.eventYear?.calendarYear !== filters.year) {
-    return false;
-  }
-  if (filters.type !== null && row.attraction.attractionType !== filters.type) {
     return false;
   }
   if (filters.park !== null && !row.attraction.parkIds.includes(filters.park)) {
@@ -195,7 +185,6 @@ export interface CoverageSlice {
 export interface Coverage {
   all: CoverageSlice;
   houses: CoverageSlice;
-  scareZones: CoverageSlice;
 }
 
 function sliceFor(rows: StatisticsRow[]): CoverageSlice {
@@ -209,7 +198,6 @@ export function computeCoverage(rows: StatisticsRow[]): Coverage {
   return {
     all: sliceFor(rows),
     houses: sliceFor(rows.filter((row) => row.attraction.attractionType === "house")),
-    scareZones: sliceFor(rows.filter((row) => row.attraction.attractionType === "scare_zone")),
   };
 }
 

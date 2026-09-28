@@ -4,7 +4,7 @@
  * ============================================================================
  *
  * Everything created by `seedDevSampleData` below (event years, houses,
- * scare zones, characters, sources, media, ratings...) is invented for
+ * characters, sources, media, ratings...) is invented for
  * development purposes only, so the UI can be built and exercised against
  * realistic-looking records before any real Halloween Horror Nights data
  * exists in this app. None of it describes real attractions, and it must
@@ -135,7 +135,7 @@ export async function seedDevSampleData(db: SqlExecutor): Promise<DevSampleDataS
   };
 
   // ---------------------------------------------------------------------
-  // Attractions — houses and scare zones covering every combination the
+  // Attractions — houses covering every combination the
   // UI needs to render: Hollywood-only / Orlando-only / dual-park,
   // original / fictional-licensed IP, with/without a variant name.
   // ---------------------------------------------------------------------
@@ -207,7 +207,7 @@ export async function seedDevSampleData(db: SqlExecutor): Promise<DevSampleDataS
     },
     pumpkinPier: {
       eventYearId: yearIds.y2101,
-      attractionType: "scare_zone",
+      attractionType: "house",
       name: "Pumpkin Pier",
       slug: "pumpkin-pier",
       parkIds: ["orlando"] satisfies ParkId[],
@@ -218,7 +218,7 @@ export async function seedDevSampleData(db: SqlExecutor): Promise<DevSampleDataS
     },
     midnightCarnival: {
       eventYearId: yearIds.y2102,
-      attractionType: "scare_zone",
+      attractionType: "house",
       name: "Midnight Carnival",
       slug: "midnight-carnival",
       parkIds: ["hollywood", "orlando"] satisfies ParkId[],
@@ -228,7 +228,7 @@ export async function seedDevSampleData(db: SqlExecutor): Promise<DevSampleDataS
     },
     graveyardRadio: {
       eventYearId: yearIds.y2103,
-      attractionType: "scare_zone",
+      attractionType: "house",
       name: "Graveyard Radio",
       slug: "graveyard-radio",
       parkIds: ["hollywood"] satisfies ParkId[],
@@ -423,12 +423,7 @@ export async function seedDevSampleData(db: SqlExecutor): Promise<DevSampleDataS
     attractionIds.nightmareCarnivalSecondAct,
     attractionIds.radioactiveCrypt,
   ]);
-  await rankings.setScope(allTimeScope("scare_zone"), [
-    attractionIds.midnightCarnival,
-    attractionIds.graveyardRadio,
-    attractionIds.pumpkinPier,
-  ]);
-  const rankingScopeCount = 2;
+  const rankingScopeCount = 1;
 
   return {
     eventYears: Object.keys(yearIds).length,

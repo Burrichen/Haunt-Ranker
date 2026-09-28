@@ -37,7 +37,7 @@ const REPORT = join(ROOT, "docs", "research", "hhn-import-validation.md");
 const MIN_YEAR = 2010;
 const MAX_YEAR = new Date().getFullYear();
 const PARKS = new Set(["hollywood", "orlando"]);
-const TYPES = new Set(["house", "scare_zone"]);
+const TYPES = new Set(["house"]);
 
 interface Check {
   name: string;

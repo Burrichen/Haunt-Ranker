@@ -11,7 +11,8 @@
  *   1. migrates a fresh database to schema 7;
  *   2. imports that build's HHN archive dataset with that build's importer;
  *   3. writes the personal data in src/test/hhnPersonalSeed.ts;
- *   4. takes src/test/hhnSnapshot.ts — everything the screens show;
+ *   4. takes src/test/hhnSnapshot.ts — everything the screens show —
+ *      both files as they were at RECORDER_SOURCE;
  *
  * and writes the database (as SQL), the snapshot and that build's own
  * backup export of the same data into src/test/fixtures/hhn-v7/. The worktree is removed afterwards.
@@ -19,13 +20,21 @@
  * Usage: npx tsx scripts/make-hhn-v7-fixture.ts
  */
 import { execFileSync } from "node:child_process";
-import { copyFileSync, mkdirSync, mkdtempSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 /** The last commit before 0008_haunts_and_seasons. */
 const PRE_MULTI_HAUNT = "475b8cd051c7d18d2da390abf7b1a28a0dbbceb7";
+
+/**
+ * Where the recorder's own two files are taken from: the last commit at
+ * which they still read scare zones, which the old build's archive holds.
+ * The current `src/test/hhnSnapshot.ts` reads houses only, through today's
+ * APIs, and no longer runs against the old build.
+ */
+const RECORDER_SOURCE = "2dc68f1";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(ROOT, "src", "test", "fixtures", "hhn-v7");
@@ -74,7 +83,13 @@ try {
   // The dependencies didn't change between the two builds.
   symlinkSync(join(ROOT, "node_modules"), join(tree, "node_modules"));
   for (const file of ["hhnSnapshot.ts", "hhnPersonalSeed.ts"]) {
-    copyFileSync(join(ROOT, "src", "test", file), join(tree, "src", "test", file));
+    writeFileSync(
+      join(tree, "src", "test", file),
+      execFileSync("git", ["show", `${RECORDER_SOURCE}:src/test/${file}`], {
+        cwd: ROOT,
+        encoding: "utf8",
+      }),
+    );
   }
   writeFileSync(join(tree, "scripts", "record-hhn-v7.ts"), RUNNER);
 

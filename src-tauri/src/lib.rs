@@ -83,6 +83,12 @@ fn migrations() -> Vec<Migration> {
             sql: include_str!("../migrations/0013_media_policy.sql"),
             kind: MigrationKind::Up,
         },
+        Migration {
+            version: 14,
+            description: "walk-throughs only: retire scare zones, shows and other experiences",
+            sql: include_str!("../migrations/0014_walkthroughs_only.sql"),
+            kind: MigrationKind::Up,
+        },
     ]
 }
 

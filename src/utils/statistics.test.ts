@@ -103,9 +103,9 @@ function filters(overrides: Partial<StatisticsFilters>): StatisticsFilters {
 describe("filtering", () => {
   const rows = [
     makeRow("Hollywood House", { year: 2101, type: "house", parkIds: ["hollywood"] }),
-    makeRow("Orlando Zone", {
+    makeRow("Orlando House", {
       year: 2102,
-      type: "scare_zone",
+      type: "house",
       parkIds: ["orlando"],
       ipType: "licensed",
     }),
@@ -120,25 +120,19 @@ describe("filtering", () => {
   });
 
   it("filters to one year", () => {
-    expect(names(filterStatisticsRows(rows, filters({ year: 2102 })))).toEqual(["Orlando Zone"]);
-  });
-
-  it("filters by attraction type", () => {
-    expect(names(filterStatisticsRows(rows, filters({ type: "scare_zone" })))).toEqual([
-      "Orlando Zone",
-    ]);
+    expect(names(filterStatisticsRows(rows, filters({ year: 2102 })))).toEqual(["Orlando House"]);
   });
 
   it("filters by park, counting an attraction that ran at both", () => {
     expect(names(filterStatisticsRows(rows, filters({ park: "orlando" })))).toEqual([
-      "Orlando Zone",
+      "Orlando House",
       "Dual Park",
     ]);
   });
 
   it("filters by IP classification", () => {
     expect(names(filterStatisticsRows(rows, filters({ ipType: "licensed" })))).toEqual([
-      "Orlando Zone",
+      "Orlando House",
     ]);
   });
 
@@ -287,17 +281,16 @@ describe("computeCoverage", () => {
   const rows = [
     makeRow("House A", { scores: [3, 3, 3], type: "house" }),
     makeRow("House B", { scores: null, type: "house" }),
-    makeRow("Zone A", { scores: [4, 4, 4], type: "scare_zone" }),
-    makeRow("Zone B", { scores: null, type: "scare_zone" }),
-    makeRow("Zone C", { scores: null, type: "scare_zone" }),
+    makeRow("House C", { scores: [4, 4, 4], type: "house" }),
+    makeRow("House D", { scores: null, type: "house" }),
+    makeRow("House E", { scores: null, type: "house" }),
   ];
 
-  it("reports reviewed out of total, broken down by type", () => {
+  it("reports reviewed out of total, never counting unrated as reviewed", () => {
     const coverage = computeCoverage(rows);
 
     expect(coverage.all).toEqual({ reviewed: 2, total: 5 });
-    expect(coverage.houses).toEqual({ reviewed: 1, total: 2 });
-    expect(coverage.scareZones).toEqual({ reviewed: 1, total: 3 });
+    expect(coverage.houses).toEqual({ reviewed: 2, total: 5 });
   });
 
   it("turns a slice into a percentage, with nothing in scope reading as zero", () => {

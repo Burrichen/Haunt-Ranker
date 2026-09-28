@@ -16,8 +16,14 @@ describe("the archive / personal split", () => {
     expect(new Set(classified).size).toBe(classified.length);
   });
 
-  it("keeps ratings, notes, rankings and settings out of the archive side", () => {
-    expect([...PERSONAL_TABLE_KEYS].sort()).toEqual(["notes", "rankings", "ratings", "settings"]);
+  it("keeps ratings, notes, rankings, settings and preserved legacy data out of the archive side", () => {
+    expect([...PERSONAL_TABLE_KEYS].sort()).toEqual([
+      "legacyPersonalData",
+      "notes",
+      "rankings",
+      "ratings",
+      "settings",
+    ]);
     for (const key of PERSONAL_TABLE_KEYS) {
       expect(ARCHIVE_TABLE_KEYS).not.toContain(key);
     }

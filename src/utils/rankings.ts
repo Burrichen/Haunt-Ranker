@@ -46,26 +46,18 @@ export function rankingSortLabel({ metric, direction }: RankingSort): string {
 
 export interface RankingFilters {
   years: number[];
-  /** Only meaningful for the "all" group; the single-type groups filter by type already. */
-  types: AttractionType[];
   parks: ParkFacet[];
   ipTypes: IpType[];
 }
 
 export const DEFAULT_RANKING_FILTERS: RankingFilters = {
   years: [],
-  types: [],
   parks: [],
   ipTypes: [],
 };
 
 export function areRankingFiltersActive(filters: RankingFilters): boolean {
-  return (
-    filters.years.length > 0 ||
-    filters.types.length > 0 ||
-    filters.parks.length > 0 ||
-    filters.ipTypes.length > 0
-  );
+  return filters.years.length > 0 || filters.parks.length > 0 || filters.ipTypes.length > 0;
 }
 
 /** Which attraction types belong to a group at all, before any user filtering. */
@@ -73,10 +65,6 @@ export function groupAttractionTypes(group: RankingGroup): AttractionType[] {
   switch (group) {
     case "houses":
       return ["house"];
-    case "scare_zones":
-      return ["scare_zone"];
-    case "all":
-      return ["house", "scare_zone"];
   }
 }
 
@@ -87,10 +75,6 @@ export function matchesRankingFilters(row: RankingRow, filters: RankingFilters):
     if (eventYear === null || !filters.years.includes(eventYear.calendarYear)) {
       return false;
     }
-  }
-
-  if (filters.types.length > 0 && !filters.types.includes(attraction.attractionType)) {
-    return false;
   }
 
   if (

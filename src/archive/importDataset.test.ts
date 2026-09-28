@@ -281,10 +281,10 @@ describe("importArchiveDataset", () => {
     it("adds new attractions alongside the ones already there", async () => {
       const grown = dataset();
       grown.attractions.push({
-        id: "example-2101-zone-one",
+        id: "example-2101-house-two",
         eventId: "example-2101",
-        type: "scare_zone",
-        name: "Zone One",
+        type: "house",
+        name: "House Two",
         parks: ["orlando"],
       });
 
@@ -492,12 +492,12 @@ describe("importArchiveDataset", () => {
       // dataset related an attraction to one further down the file.
       const forward = dataset();
       forward.attractions[0].related = [
-        { attractionId: "example-2101-zone-later", type: "related_concept" },
+        { attractionId: "example-2101-house-later", type: "related_concept" },
       ];
       forward.attractions.push({
-        id: "example-2101-zone-later",
+        id: "example-2101-house-later",
         eventId: "example-2101",
-        type: "scare_zone",
+        type: "house",
         name: "Defined Later",
         parks: ["hollywood"],
       });
@@ -511,7 +511,7 @@ describe("importArchiveDataset", () => {
       expect(rows).toEqual([
         {
           attraction_id: "example-2101-house-one",
-          related_attraction_id: "example-2101-zone-later",
+          related_attraction_id: "example-2101-house-later",
         },
       ]);
     });
@@ -574,10 +574,10 @@ describe("importArchiveDataset", () => {
       const grown = dataset();
       grown.attractions[0].name = "House One: Corrected";
       grown.attractions.push({
-        id: "example-2101-zone-one",
+        id: "example-2101-house-two",
         eventId: "example-2101",
-        type: "scare_zone",
-        name: "Zone One",
+        type: "house",
+        name: "House Two",
         parks: ["orlando"],
       });
 

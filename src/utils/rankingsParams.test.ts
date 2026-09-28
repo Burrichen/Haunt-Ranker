@@ -28,12 +28,11 @@ describe("rankings URL params", () => {
 
   it("round-trips a fully specified view", () => {
     const params: RankingsParams = {
-      group: "all",
+      group: "houses",
       haunt: "hhn",
       mode: "manual",
       filters: {
         years: [2101, 2102],
-        types: ["scare_zone"],
         parks: ["both"],
         ipTypes: ["licensed"],
       },
@@ -59,8 +58,15 @@ describe("rankings URL params", () => {
     expect(parsed.mode).toBeNull();
     expect(parsed.filters.parks).toEqual(["hollywood"]);
     expect(parsed.filters.ipTypes).toEqual([]);
-    expect(parsed.filters.types).toEqual([]);
     expect(parsed.sort).toEqual({ metric: "total", direction: "desc" });
+  });
+
+  it("ignores the retired group and type params from an old link", () => {
+    const parsed = parseRankingsParams(new URLSearchParams("group=all&type=scare_zone"));
+
+    expect(parsed).toEqual(parseRankingsParams(new URLSearchParams()));
+    expect(parsed.group).toBe("houses");
+    expect(parsed.filters).toEqual(DEFAULT_RANKINGS_PARAMS.filters);
   });
 
   it("drops year values that aren't numbers", () => {

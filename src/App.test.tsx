@@ -80,7 +80,7 @@ describe("App", () => {
 
   it("reads the haunts out of the archive, and calls things what they call them", async () => {
     // This asserts the wiring, not the hook: without the registry mounted in
-    // the shell, every haunt, venue and word a Haunt Pack brings would be
+    // the shell, every haunt, venue and word the archive holds would be
     // missing from the running app while every test that supplies its own
     // registry still passed. That is exactly the bug this covers.
     render(<App />);

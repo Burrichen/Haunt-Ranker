@@ -9,8 +9,27 @@ import type { ParkId } from "./park";
  *
  * `house` is the walk-through category's stored name, kept because every
  * row, backup and saved ranking scope already uses it.
+ *
+ * Walk-throughs are the only category Haunt Ranker archives, rates and
+ * ranks: Houses at HHN, Mazes at Knott's. Scare zones, shows and other
+ * experiences are out of scope — see `StoredAttractionType`.
  */
-export type AttractionType = "house" | "scare_zone" | "show" | "other";
+export type AttractionType = "house";
+
+/**
+ * Every value the `attraction_type` column has ever accepted.
+ *
+ * The schema's CHECK still allows the retired categories so that old
+ * backups and datasets can be *read* and their personal data preserved
+ * (migration 0014, backup format 5). Nothing may create one, and none is
+ * ever handed to the interface.
+ */
+export type StoredAttractionType = AttractionType | "scare_zone" | "show" | "other";
+export const RETIRED_ATTRACTION_TYPES: readonly StoredAttractionType[] = [
+  "scare_zone",
+  "show",
+  "other",
+];
 export type IpType = "original" | "licensed";
 
 /**

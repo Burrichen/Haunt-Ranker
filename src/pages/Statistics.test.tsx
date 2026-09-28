@@ -159,8 +159,7 @@ function makeState(overrides: Partial<StatisticsState> = {}): StatisticsState {
     distribution: computeScoreDistribution([]),
     coverage: {
       all: { reviewed: 4, total: 7 },
-      houses: { reviewed: 2, total: 4 },
-      scareZones: { reviewed: 2, total: 3 },
+      houses: { reviewed: 4, total: 7 },
     },
     hauntComparison: [
       {
@@ -215,12 +214,13 @@ describe("Statistics dashboard", () => {
     it("offers every facet the dashboard can be sliced by, in one row", () => {
       renderDashboard();
 
-      expect(screen.getByRole("radiogroup", { name: "Attraction type" })).toBeInTheDocument();
       expect(screen.getByRole("radiogroup", { name: "Venue" })).toBeInTheDocument();
       expect(screen.getByRole("radiogroup", { name: "Haunt" })).toBeInTheDocument();
       expect(screen.getByRole("radiogroup", { name: "IP classification" })).toBeInTheDocument();
       expect(screen.getByRole("radiogroup", { name: "Metric" })).toBeInTheDocument();
       expect(screen.getByRole("button", { name: "All years" })).toBeInTheDocument();
+      // Only walk-throughs are archived, so there is no type to slice by.
+      expect(screen.queryByRole("radiogroup", { name: "Attraction type" })).not.toBeInTheDocument();
     });
 
     it("filters to a single year", () => {
@@ -235,17 +235,10 @@ describe("Statistics dashboard", () => {
       });
     });
 
-    it("filters to houses, a park and an IP classification", () => {
+    it("filters to a park and an IP classification", () => {
       const state = renderDashboard();
-      const type = within(screen.getByRole("radiogroup", { name: "Attraction type" }));
       const park = within(screen.getByRole("radiogroup", { name: "Venue" }));
       const ip = within(screen.getByRole("radiogroup", { name: "IP classification" }));
-
-      fireEvent.click(type.getByRole("radio", { name: "Houses" }));
-      expect(state.setFilters).toHaveBeenLastCalledWith({
-        ...DEFAULT_STATISTICS_FILTERS,
-        type: "house",
-      });
 
       fireEvent.click(park.getByRole("radio", { name: "Orlando" }));
       expect(state.setFilters).toHaveBeenLastCalledWith({
@@ -337,8 +330,7 @@ describe("Statistics dashboard", () => {
       renderDashboard({
         coverage: {
           all: { reviewed: 0, total: 3 },
-          houses: { reviewed: 0, total: 2 },
-          scareZones: { reviewed: 0, total: 1 },
+          houses: { reviewed: 0, total: 3 },
         },
       });
       expect(screen.getByText(/rate an attraction and it shows up here/i)).toBeInTheDocument();
@@ -346,21 +338,17 @@ describe("Statistics dashboard", () => {
   });
 
   describe("review coverage", () => {
-    it("shows reviewed out of total overall and per type", () => {
+    it("shows reviewed out of total in a single walk-through meter", () => {
       renderDashboard();
 
-      expect(screen.getByRole("progressbar", { name: "All attractions reviewed" })).toHaveAttribute(
+      expect(screen.getByRole("progressbar", { name: "Houses reviewed" })).toHaveAttribute(
         "aria-valuetext",
         "4 of 7 reviewed",
       );
-      expect(screen.getByRole("progressbar", { name: "Houses reviewed" })).toHaveAttribute(
-        "aria-valuetext",
-        "2 of 4 reviewed",
-      );
-      expect(screen.getByRole("progressbar", { name: "Scare Zones reviewed" })).toHaveAttribute(
-        "aria-valuetext",
-        "2 of 3 reviewed",
-      );
+      expect(screen.getAllByRole("progressbar")).toHaveLength(1);
+      expect(
+        screen.queryByRole("progressbar", { name: "Scare Zones reviewed" }),
+      ).not.toBeInTheDocument();
     });
   });
 

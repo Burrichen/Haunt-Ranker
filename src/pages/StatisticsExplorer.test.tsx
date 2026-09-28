@@ -159,11 +159,12 @@ describe("StatisticsExplorer", () => {
       expect(screen.getByRole("radiogroup", { name: "What to rank" })).toBeInTheDocument();
       expect(screen.getByRole("radiogroup", { name: "Metric" })).toBeInTheDocument();
       expect(screen.getByRole("radiogroup", { name: "Direction" })).toBeInTheDocument();
-      expect(screen.getByRole("radiogroup", { name: "Attraction type" })).toBeInTheDocument();
       expect(screen.getByRole("radiogroup", { name: "Venue" })).toBeInTheDocument();
       expect(screen.getByRole("radiogroup", { name: "Haunt" })).toBeInTheDocument();
       expect(screen.getByRole("radiogroup", { name: "IP classification" })).toBeInTheDocument();
       expect(screen.getByRole("button", { name: "All years" })).toBeInTheDocument();
+      // Only walk-throughs are archived, so there is no type to filter by.
+      expect(screen.queryByRole("radiogroup", { name: "Attraction type" })).not.toBeInTheDocument();
     });
 
     it("offers both directions", () => {
@@ -195,7 +196,7 @@ describe("StatisticsExplorer", () => {
       expect(state.setSubject).toHaveBeenCalledWith("years");
     });
 
-    it("filters by year, type, park and IP", () => {
+    it("filters by year, park and IP", () => {
       const state = renderExplorer();
 
       fireEvent.click(screen.getByRole("button", { name: "All years" }));
@@ -206,13 +207,23 @@ describe("StatisticsExplorer", () => {
       });
 
       fireEvent.click(
-        within(screen.getByRole("radiogroup", { name: "Attraction type" })).getByRole("radio", {
-          name: "Scare Zones",
+        within(screen.getByRole("radiogroup", { name: "Venue" })).getByRole("radio", {
+          name: "Orlando",
         }),
       );
       expect(state.setFilters).toHaveBeenLastCalledWith({
         ...DEFAULT_STATISTICS_FILTERS,
-        type: "scare_zone",
+        park: "orlando",
+      });
+
+      fireEvent.click(
+        within(screen.getByRole("radiogroup", { name: "IP classification" })).getByRole("radio", {
+          name: "Licensed",
+        }),
+      );
+      expect(state.setFilters).toHaveBeenLastCalledWith({
+        ...DEFAULT_STATISTICS_FILTERS,
+        ipType: "licensed",
       });
     });
 
