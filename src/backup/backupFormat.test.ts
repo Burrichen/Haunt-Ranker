@@ -482,6 +482,7 @@ describe("upgradeBackup", () => {
       0: (raw) => ({ ...raw, wasUpgraded: true }),
       1: (raw) => ({ ...raw, wasUpgradedAgain: true }),
       2: (raw) => raw,
+      3: (raw) => raw,
     };
 
     const result = upgradeBackup({ formatVersion: 0 }, upgrades);

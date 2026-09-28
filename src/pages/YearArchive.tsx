@@ -42,6 +42,7 @@ function AttractionSection({
               attraction={item.attraction}
               eventYear={eventYear}
               posterUrl={item.posterUrl}
+              posterFit={item.posterFit}
               rating={item.rating}
             />
           ))}
@@ -116,6 +117,7 @@ export function YearArchive() {
     notFound,
     eventYear,
     artworkUrl,
+    artworkFit,
     houses,
     scareZones,
     otherKinds,
@@ -159,6 +161,7 @@ export function YearArchive() {
       <YearHeader
         eventYear={eventYear}
         artworkUrl={artworkUrl}
+        artworkFit={artworkFit}
         houseCount={houses.length}
         scareZoneCount={scareZones.length}
         otherCounts={otherSections.map((section) => ({

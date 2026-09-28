@@ -11,7 +11,8 @@ import { createAttractionRepository } from "../repositories/attractionRepository
 import { createEventYearRepository } from "../repositories/eventYearRepository";
 import { createMediaRepository } from "../repositories/mediaRepository";
 import { createRatingRepository } from "../repositories/ratingRepository";
-import { pickMediaSrc } from "../media/mediaFiles";
+import { posterFields } from "../media/mediaFiles";
+import type { ArtworkFit } from "../media/mediaPolicy";
 import { pickRandomSample } from "../utils/sample";
 
 const SPOTLIGHT_COUNT = 6;
@@ -21,6 +22,7 @@ export interface ArchiveSpotlightItem {
   eventYear: EventYear | null;
   /** A poster (or first available) media URL, or null if no artwork is on file. */
   posterUrl: string | null;
+  posterFit?: ArtworkFit;
   /** `null` means genuinely unrated — never treat that as a rating of 0. */
   rating: Rating | null;
 }
@@ -98,7 +100,7 @@ export function useArchiveOverview(): ArchiveOverview {
             return {
               attraction,
               eventYear: yearsById.get(attraction.eventYearId) ?? null,
-              posterUrl: await pickMediaSrc(mediaList, "poster"),
+              ...(await posterFields(mediaList)),
               rating,
             };
           }),

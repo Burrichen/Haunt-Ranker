@@ -1,7 +1,7 @@
 {
   "name": "haunt-ranker",
   "private": true,
-  "version": "0.3.0",
+  "version": "0.4.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -24,7 +24,8 @@
     "data:import": "tsx scripts/import-dataset.ts",
     "data:verify": "tsx scripts/verify-archive.ts",
     "pack:import": "tsx scripts/haunt-pack.ts import",
-    "pack:remove": "tsx scripts/haunt-pack.ts remove"
+    "pack:remove": "tsx scripts/haunt-pack.ts remove",
+    "media:download": "tsx scripts/media-download.ts"
   },
   "dependencies": {
     "@tauri-apps/api": "^2",

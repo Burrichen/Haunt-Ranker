@@ -383,7 +383,7 @@ describe("AttractionEditor", () => {
       });
       fireEvent.click(
         within(media.getByRole("radiogroup", { name: "Distribution policy" })).getByRole("radio", {
-          name: "Cleared to bundle",
+          name: "Approved asset",
         }),
       );
       fireEvent.click(screen.getByRole("button", { name: /Add media/ }));

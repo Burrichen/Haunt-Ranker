@@ -174,16 +174,30 @@ function experienceRow(
   };
 }
 
-function mediaRow(media: PackMedia, owner: Record<string, string | null>) {
+/**
+ * A media row as the pack describes it — keeping this machine's offline copy.
+ *
+ * A pack or dataset records where an image lives and what may be done with
+ * it. Whether this installation holds a copy is this installation's fact:
+ * `npm run media:download` saved it to the app's media folder and marked the
+ * row `local`. Re-importing corrects the URL, credit and licence note, and
+ * leaves the copy — and the fact that it is shown — alone.
+ */
+function mediaRow(
+  media: PackMedia,
+  owner: Record<string, string | null>,
+  existing?: Record<string, unknown>,
+) {
+  const offlineCopy = typeof existing?.local_path === "string" ? existing.local_path : null;
   return {
     ...owner,
     media_type: media.kind,
     url: media.url,
-    local_path: null,
+    local_path: offlineCopy,
     source_id: nullable(media.sourceId),
     attribution: nullable(media.attribution),
     license_notes: nullable(media.licenseNotes),
-    distribution: media.distribution ?? "reference",
+    distribution: offlineCopy ? "local" : (media.distribution ?? "reference"),
   };
 }
 
@@ -460,7 +474,11 @@ export function planPackImport(pack: HauntPack, state: PackState): PackImportPla
       upsert(
         "media",
         media.id,
-        mediaRow(media, { attraction_id: null, event_year_id: season.id, haunt_id: null }),
+        mediaRow(
+          media,
+          { attraction_id: null, event_year_id: season.id, haunt_id: null },
+          state.media.get(media.id),
+        ),
         state.media.get(media.id),
         counts(),
       );
@@ -629,7 +647,11 @@ export function planPackImport(pack: HauntPack, state: PackState): PackImportPla
       upsert(
         "media",
         media.id,
-        mediaRow(media, { attraction_id: experience.id, event_year_id: null, haunt_id: null }),
+        mediaRow(
+          media,
+          { attraction_id: experience.id, event_year_id: null, haunt_id: null },
+          state.media.get(media.id),
+        ),
         state.media.get(media.id),
         counts(),
       );

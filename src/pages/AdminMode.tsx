@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CircleAlert, DoorOpen, Pencil, Plus, ShieldOff, Trash2, TreePine } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { ConfirmDialog, HauntPackImport } from "../components/admin";
+import { AddHaunt, ConfirmDialog } from "../components/admin";
 import {
   Badge,
   Button,
@@ -207,7 +207,7 @@ export function AdminMode() {
         />
       ) : (
         <>
-          <HauntPackImport
+          <AddHaunt
             onImported={async () => {
               // A pack can bring a haunt, a venue and a vocabulary that did not
               // exist a second ago, so both the registry and this page reread.
@@ -216,7 +216,7 @@ export function AdminMode() {
             }}
           />
 
-          <Panel elevated padding="lg" className="admin__section">
+          <Panel elevated padding="lg" className="admin__section" id="admin-event-years">
             <h2 className="admin__section-title">Event years</h2>
 
             {years.length > 0 && (

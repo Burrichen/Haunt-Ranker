@@ -156,21 +156,24 @@ embedded or redistributed.
 Media entries carry _metadata about an image_, never an image and never a path
 on anyone's machine.
 
-| Field          | Required | Notes                                                                 |
-| -------------- | -------- | --------------------------------------------------------------------- |
-| `id`           | yes      | Stable id                                                             |
-| `kind`         | yes      | `poster`, `promotional_image`, `logo`, `event_artwork`, `local_image` |
-| `url`          | yes      | The remote original                                                   |
-| `attribution`  | no       | Who made it / where it came from                                      |
-| `licenseNotes` | no       | What's actually known about reuse rights                              |
-| `sourceId`     | no       | The source this image came from                                       |
-| `distribution` | no       | `reference` (default) or `bundled`                                    |
+| Field          | Required | Notes                                                                        |
+| -------------- | -------- | ---------------------------------------------------------------------------- |
+| `id`           | yes      | Stable id                                                                    |
+| `kind`         | yes      | `poster`, `promotional_image`, `logo`, `event_artwork`, `map`, `local_image` |
+| `url`          | yes      | The remote original                                                          |
+| `attribution`  | no       | Who made it / where it came from                                             |
+| `licenseNotes` | no       | What's actually known about reuse rights                                     |
+| `sourceId`     | no       | The source this image came from                                              |
+| `distribution` | no       | `reference` (default), `unclear` or `bundled`                                |
 
 `distribution` says what the archive may _do_ with the image, separately from
-where it lives. A dataset may only say `reference` (link to the original) or
+where it lives. A dataset may say `reference` (the original, hosted by its
+owner), `unclear` (a copy elsewhere, or rights nobody has established) or
 `bundled` (a deliberate, recorded decision that this asset may ship with the
-app). It may **never** say `local` — that describes a file a user picked on
-their own computer.
+app). The app never loads an image from the web: it shows `bundled` assets,
+and offline copies `npm run media:download` saves; the rest are linked to. A dataset may **never** say `local` — that describes
+a file a user picked on their own computer. An event map is `map`, never key
+art.
 
 **Artwork is never generated to fill a gap.** An attraction with no legitimate
 image simply has no media entry; the app's typographic fallback card is the

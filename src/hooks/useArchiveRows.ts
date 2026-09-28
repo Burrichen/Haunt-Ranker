@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { getDatabase } from "../database/client";
-import { isInHauntScope } from "../models/haunt";
+import { isInHauntScope, isRankedCategory } from "../models/haunt";
 import { useHauntScope } from "./useHauntScope";
 import { createAttractionRepository } from "../repositories/attractionRepository";
 import { createEventYearRepository } from "../repositories/eventYearRepository";
@@ -74,9 +74,16 @@ export function useArchiveRows(): ArchiveRows {
 
   // The haunt in view narrows the archive before any statistic is computed,
   // so the dashboard and the explorer are always describing the same thing
-  // and neither can quietly include the other haunt's records.
+  // and neither can quietly include the other haunt's records. Shows and
+  // special experiences aren't reviewed, so they're no part of any figure —
+  // not even as "unreviewed" in a coverage count.
   const rows = useMemo(
-    () => state.rows.filter((row) => isInHauntScope(row.eventYear?.hauntId, scope)),
+    () =>
+      state.rows.filter(
+        (row) =>
+          isRankedCategory(row.attraction.attractionType) &&
+          isInHauntScope(row.eventYear?.hauntId, scope),
+      ),
     [state.rows, scope],
   );
 

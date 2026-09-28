@@ -130,3 +130,63 @@ describe("ArchiveCard", () => {
     expect(screen.getByTitle("Ran at Orlando")).toBeInTheDocument();
   });
 });
+
+describe("ArchiveCard artwork", () => {
+  function renderGrid() {
+    return render(
+      <TestHaunts>
+        <MemoryRouter>
+          <HauntScopeProvider>
+            <ArchiveCard
+              attraction={makeAttraction({ id: "a1", name: "With Key Art" })}
+              eventYear={makeEventYear()}
+              posterUrl="asset://localhost/app-data/media/key-art.jpg"
+              rating={null}
+            />
+            <ArchiveCard
+              attraction={makeAttraction({ id: "a2", name: "With A Logo" })}
+              eventYear={makeEventYear()}
+              posterUrl="asset://localhost/app-data/media/logo.png"
+              posterFit="contain"
+              rating={null}
+            />
+            <ArchiveCard
+              attraction={makeAttraction({ id: "a3", name: "With Nothing" })}
+              eventYear={makeEventYear()}
+              posterUrl={null}
+              rating={null}
+            />
+          </HauntScopeProvider>
+        </MemoryRouter>
+      </TestHaunts>,
+    );
+  }
+
+  it("mixes key art, a logo shown whole, and the designed fallback in one grid", () => {
+    const { container } = renderGrid();
+
+    const keyArt = screen.getByAltText("With Key Art artwork");
+    const logo = screen.getByAltText("With A Logo artwork");
+    expect(keyArt).not.toHaveClass("archive-card__image--contain");
+    expect(logo).toHaveClass("archive-card__image--contain");
+
+    // No image at all is the fallback treatment, not a broken image.
+    expect(screen.queryByAltText("With Nothing artwork")).not.toBeInTheDocument();
+    expect(container.querySelectorAll(".archive-card__fallback")).toHaveLength(1);
+    // Every card, with art or without, carries the same name, badges and link.
+    expect(screen.getAllByRole("link")).toHaveLength(3);
+    expect(screen.getAllByRole("heading", { level: 3 }).map((h) => h.textContent)).toEqual([
+      "With Key Art",
+      "With A Logo",
+      "With Nothing",
+    ]);
+  });
+
+  it("falls back cleanly when an image fails to load", () => {
+    const { container } = renderGrid();
+
+    fireEvent.error(screen.getByAltText("With Key Art artwork"));
+
+    expect(container.querySelectorAll(".archive-card__fallback")).toHaveLength(2);
+  });
+});

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getDatabase } from "../database/client";
 import { useHauntScope } from "./useHauntScope";
-import { pickMediaSrc } from "../media/mediaFiles";
+import { posterFields } from "../media/mediaFiles";
 import type { AttractionType } from "../models/attraction";
 import type { Media } from "../models/media";
 import { isInHauntScope } from "../models/haunt";
@@ -89,7 +89,8 @@ export function useAttractionBrowser(attractionType: AttractionType): Attraction
           eventYearRepo.getAll(),
           mediaRepo.getAll(),
           ratingRepo.getAll(),
-          rankingRepo.getScope(allTimeScope(attractionType)),
+          // The same list the Rankings page shows for the haunt in view.
+          rankingRepo.getScope(allTimeScope(attractionType, scope)),
         ]);
 
         if (cancelled) {
@@ -115,7 +116,7 @@ export function useAttractionBrowser(attractionType: AttractionType): Attraction
           attractions.map(async (attraction) => ({
             attraction,
             eventYear: yearsById.get(attraction.eventYearId) ?? null,
-            posterUrl: await pickMediaSrc(mediaByAttraction.get(attraction.id) ?? [], "poster"),
+            ...(await posterFields(mediaByAttraction.get(attraction.id) ?? [])),
             rating: ratingByAttraction.get(attraction.id) ?? null,
             rankingPosition: positionByAttraction.get(attraction.id) ?? null,
           })),
@@ -146,7 +147,7 @@ export function useAttractionBrowser(attractionType: AttractionType): Attraction
     return () => {
       cancelled = true;
     };
-  }, [attractionType]);
+  }, [attractionType, scope]);
 
   const { filters, sort: rawSort } = useMemo(
     () => parseAttractionBrowserParams(searchParams),

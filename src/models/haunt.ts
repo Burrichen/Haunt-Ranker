@@ -100,6 +100,20 @@ export function isInHauntScope(hauntId: string | null | undefined, scope: HauntS
  */
 export const ATTRACTION_CATEGORIES: AttractionType[] = ["house", "scare_zone", "show", "other"];
 
+/**
+ * The categories a person rates and ranks: walk-throughs and scare zones.
+ *
+ * Shows, ride overlays and exhibits are archive and wiki content. They sit
+ * in the season's line-up and have pages of their own, but they take no
+ * Theme / Fun / Fear review and count toward no average, coverage figure or
+ * ranking — so importing a haunt's shows can't dilute its statistics.
+ */
+export const RANKED_CATEGORIES: readonly AttractionType[] = ["house", "scare_zone"];
+
+export function isRankedCategory(type: AttractionType): boolean {
+  return RANKED_CATEGORIES.includes(type);
+}
+
 /** The word to fall back to when no haunt has named this kind of experience. */
 const GENERIC_LABELS: Record<AttractionType, { one: string; many: string }> = {
   house: { one: "Walk-through", many: "Walk-throughs" },

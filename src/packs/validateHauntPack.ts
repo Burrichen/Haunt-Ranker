@@ -1,45 +1,25 @@
-import type { AttractionType } from "../models/attraction";
 import { HAUNT_ACCENTS } from "../models/haunt";
 import { VENUE_ICONS } from "../models/park";
 import { HAUNT_PACK_SCHEMA, SUPPORTED_PACK_SCHEMAS, type HauntPack } from "./hauntPack";
+import {
+  EXPERIENCE_CATEGORIES,
+  IP_TYPES,
+  MAX_CALENDAR_YEAR,
+  MEDIA_KINDS,
+  MIN_CALENDAR_YEAR,
+  PACK_DISTRIBUTIONS,
+  PACK_ID_PATTERN,
+  RELATION_TYPES,
+  SOURCE_TYPES,
+} from "./packVocabulary";
 
 /** More than this and the list stops being something a person reads. */
 const MAX_REPORTED_ERRORS = 15;
 
-/**
- * A stable id: lowercase, unambiguous in a URL, and obviously not a
- * display name. Colons are allowed so a pack can namespace its ids —
- * `mff:2026:walkthrough:hollow-road`.
- */
-export const PACK_ID_PATTERN = /^[a-z0-9][a-z0-9:-]{1,119}$/;
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 
-const CATEGORIES: AttractionType[] = ["house", "scare_zone", "show", "other"];
-const IP_TYPES = ["original", "licensed"];
-const RELATION_TYPES = [
-  "sequel",
-  "previous_version",
-  "same_franchise",
-  "related_concept",
-  "reimagining_of",
-  "revival_of",
-];
-const MEDIA_KINDS = ["poster", "promotional_image", "logo", "event_artwork", "local_image"];
-const DISTRIBUTIONS = ["reference", "bundled"];
-const SOURCE_TYPES = [
-  "youtube",
-  "article",
-  "official_site",
-  "promotional",
-  "book",
-  "podcast",
-  "interview",
-  "social_media",
-  "other",
-];
-
-const MIN_CALENDAR_YEAR = 1900;
-const MAX_CALENDAR_YEAR = 2200;
+const CATEGORIES = EXPERIENCE_CATEGORIES;
+const DISTRIBUTIONS = PACK_DISTRIBUTIONS;
 
 export interface PackSummary {
   schema: string;
@@ -223,7 +203,8 @@ function validateMedia(
       problems.add(
         `${at}.distribution`,
         "'local' describes a file on one person's machine, so a pack can't claim it — " +
-          "use 'reference', or 'bundled' if this asset has been cleared for distribution",
+          "use 'reference', 'unclear' if its reuse rights aren't established, or 'bundled' " +
+          "if this asset has been cleared for distribution",
       );
     } else if (entry.distribution !== undefined) {
       oneOf(entry.distribution, DISTRIBUTIONS, `${at}.distribution`, problems, false);
@@ -327,13 +308,29 @@ function validateVenueWiki(
   });
 }
 
+export interface ValidationOptions {
+  /**
+   * Whether the archive already holds `id` for this same haunt.
+   *
+   * Such an id is exempt from the namespacing warning: the pack is
+   * describing a record that already exists, and giving it a namespaced id
+   * instead would create a second copy of it. Knott's Berry Farm, seeded
+   * as `knotts-berry-farm` by a migration, is the case this is for.
+   */
+  isEstablished?: (id: string, hauntId: string) => boolean;
+}
+
 function namespaceWarning(
   value: string | null,
   hauntId: string | null,
   path: string,
   problems: Problems,
+  options: ValidationOptions,
 ): void {
   if (value === null || hauntId === null || value === hauntId) {
+    return;
+  }
+  if (options.isEstablished?.(value, hauntId)) {
     return;
   }
   if (!value.startsWith(`${hauntId}:`) && !value.startsWith(`${hauntId}-`)) {
@@ -353,7 +350,7 @@ function namespaceWarning(
  * that isn't namespaced. Nothing here touches the database: a pack is
  * either understood in full or refused.
  */
-export function validateHauntPack(value: unknown): PackValidation {
+export function validateHauntPack(value: unknown, options: ValidationOptions = {}): PackValidation {
   const problems = new Problems();
 
   if (!isRecord(value)) {
@@ -458,7 +455,7 @@ export function validateHauntPack(value: unknown): PackValidation {
     }
     const typeId = id(entry.id, `${at}.id`, problems);
     claim(taken, typeId, `${at}.id`, problems);
-    namespaceWarning(typeId, hauntId, `${at}.id`, problems);
+    namespaceWarning(typeId, hauntId, `${at}.id`, problems, options);
     if (typeId) {
       context.typeIds.add(typeId);
     }
@@ -480,7 +477,7 @@ export function validateHauntPack(value: unknown): PackValidation {
     }
     const venueId = id(entry.id, `${at}.id`, problems);
     claim(taken, venueId, `${at}.id`, problems);
-    namespaceWarning(venueId, hauntId, `${at}.id`, problems);
+    namespaceWarning(venueId, hauntId, `${at}.id`, problems, options);
     if (venueId) {
       context.venueIds.add(venueId);
     }
@@ -503,7 +500,7 @@ export function validateHauntPack(value: unknown): PackValidation {
     }
     const seasonId = id(entry.id, `${at}.id`, problems);
     claim(taken, seasonId, `${at}.id`, problems);
-    namespaceWarning(seasonId, hauntId, `${at}.id`, problems);
+    namespaceWarning(seasonId, hauntId, `${at}.id`, problems, options);
     if (seasonId) {
       context.seasonIds.add(seasonId);
     }
@@ -539,7 +536,7 @@ export function validateHauntPack(value: unknown): PackValidation {
 
     const experienceId = id(entry.id, `${at}.id`, problems);
     claim(taken, experienceId, `${at}.id`, problems);
-    namespaceWarning(experienceId, hauntId, `${at}.id`, problems);
+    namespaceWarning(experienceId, hauntId, `${at}.id`, problems, options);
     if (experienceId) {
       context.experienceIds.add(experienceId);
     }
@@ -724,13 +721,75 @@ export function validateHauntPack(value: unknown): PackValidation {
   };
 }
 
-/** Reads a pack from file text. Unparseable JSON is a bad pack, not a crash. */
-export function readHauntPack(text: string): PackValidation {
+/**
+ * An assistant usually hands JSON back inside a Markdown code fence, and a
+ * person copying the whole reply copies the fence with it. That one wrapper
+ * — an opening ``` line, optionally tagged `json`, and a closing ``` — is
+ * removed when it encloses the entire text.
+ *
+ * Nothing else is. Prose around the fence, a second fence, a trailing comma
+ * or a stray quote all stay exactly as they were and fail as JSON: repairing
+ * them would mean guessing at what a pack meant to say, and a pack is a set
+ * of facts.
+ */
+export function unwrapCodeFence(text: string): string {
+  const match = /^\s*```[ \t]*(?:json|jsonc|JSON)?[ \t]*\r?\n([\s\S]*?)\r?\n[ \t]*```\s*$/.exec(
+    text,
+  );
+  if (!match || match[1].includes("```")) {
+    return text;
+  }
+  return match[1];
+}
+
+/** Line and column (both 1-based) of a character offset. */
+function lineAndColumn(text: string, offset: number): { line: number; column: number } {
+  const before = text.slice(0, offset);
+  const lines = before.split("\n");
+  return { line: lines.length, column: lines[lines.length - 1].length + 1 };
+}
+
+/**
+ * The parser's own complaint, made readable: where the engine reports an
+ * offset but not a line, the line and column are worked out from the text
+ * so the person can find the problem.
+ */
+function describeParseError(error: unknown, text: string): string {
+  const message = error instanceof Error ? error.message : String(error);
+  const position = /position (\d+)/.exec(message);
+  if (position && !/line \d+/.test(message)) {
+    const { line, column } = lineAndColumn(text, Number(position[1]));
+    return `${message} (line ${line}, column ${column})`;
+  }
+  return message;
+}
+
+/**
+ * Reads a pack from file or pasted text. Unparseable JSON is a bad pack,
+ * not a crash — and the person is told what the parser said, not just that
+ * it said no.
+ */
+export function readHauntPack(text: string, options: ValidationOptions = {}): PackValidation {
+  const json = unwrapCodeFence(text);
   let parsed: unknown;
   try {
-    parsed = JSON.parse(text);
-  } catch {
-    return { ok: false, errors: ["This file isn't valid JSON, so it can't be a Haunt Pack."] };
+    parsed = JSON.parse(json);
+  } catch (error) {
+    const errors = [
+      `This isn't valid JSON, so it can't be read as a Haunt Pack. ${describeParseError(error, json)}`,
+    ];
+    if (json.includes("```")) {
+      errors.push(
+        "It still contains a Markdown code fence (```). Copy only the JSON inside the code " +
+          "block — the assistant's copy button on the block does exactly that.",
+      );
+    } else if (!json.trimStart().startsWith("{")) {
+      errors.push(
+        "A Haunt Pack starts with { — anything before it, such as an introductory sentence, " +
+          "has to be left out.",
+      );
+    }
+    return { ok: false, errors };
   }
-  return validateHauntPack(parsed);
+  return validateHauntPack(parsed, options);
 }

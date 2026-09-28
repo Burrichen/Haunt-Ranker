@@ -6,6 +6,7 @@ import {
   type BackupTableKey,
 } from "../models/backup";
 import { BACKUP_TABLES, type BackupColumn, type BackupTableSpec } from "./backupTables";
+import { copyHhnRankingScopes, mergeCrossParkHhn } from "./hhnBackupUpgrades";
 
 /** How many problems to report before it stops being useful to read. */
 const MAX_REPORTED_ERRORS = 12;
@@ -106,7 +107,11 @@ const upgradeV1ToV2: BackupUpgrade = (raw) => {
   data.attractionVenueWiki = [];
   data.migrationConflicts = [];
 
-  return { ...raw, data };
+  // A version 1 file predates 0009, so it still holds Orlando and Hollywood
+  // halves of the same attraction as two records. A restore replaces the
+  // archive wholesale and never runs that migration, so the merge happens
+  // here instead — or restoring the file would bring every duplicate back.
+  return { ...raw, data: mergeCrossParkHhn(data, stamp) };
 };
 
 /**
@@ -243,9 +248,24 @@ const upgradeV2ToV3: BackupUpgrade = (raw) => {
   return { ...raw, data };
 };
 
+/**
+ * Version 3 → 4: the unprefixed ranking lists stop being HHN's.
+ *
+ * Until 0012, a manual ranking saved under `houses:all` was the only one an
+ * HHN reader had, and the HHN view read `hhn:houses:all`, which nothing had
+ * written. A version 3 file comes from before that fix, so HHN is given its
+ * copy here exactly as 0012 gives it one — only where it has no list of its
+ * own, so an order made on the HHN view is never replaced.
+ */
+const upgradeV3ToV4: BackupUpgrade = (raw) => {
+  const data = isRecord(raw.data) ? raw.data : {};
+  return { ...raw, data: copyHhnRankingScopes(data) };
+};
+
 export const BACKUP_UPGRADES: Record<number, BackupUpgrade> = {
   1: upgradeV1ToV2,
   2: upgradeV2ToV3,
+  3: upgradeV3ToV4,
 };
 
 function isRecord(value: unknown): value is Record<string, unknown> {

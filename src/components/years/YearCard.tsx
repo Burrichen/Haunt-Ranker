@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useHauntRegistry } from "../../hooks/useHauntRegistry";
 import { useHauntScope } from "../../hooks/useHauntScope";
 import { RATING_TOTAL_MAX } from "../../models/rating";
+import { cn } from "../../utils/cn";
 import { formatScore } from "../../utils/formatScore";
 import type { YearSummary } from "../../utils/years";
 import { Badge, Panel } from "../ui";
@@ -28,7 +29,8 @@ export function YearCard({ summary, showHaunt = true }: YearCardProps) {
   const [imageFailed, setImageFailed] = useState(false);
   const { isAllHaunts } = useHauntScope();
   const registry = useHauntRegistry();
-  const { eventYear, artworkUrl, houseCount, scareZoneCount, reviewedCount, averages } = summary;
+  const { eventYear, artworkUrl, artworkFit, houseCount, scareZoneCount, reviewedCount, averages } =
+    summary;
   const showImage = Boolean(artworkUrl) && !imageFailed;
 
   return (
@@ -39,7 +41,10 @@ export function YearCard({ summary, showHaunt = true }: YearCardProps) {
             <img
               src={artworkUrl ?? undefined}
               alt={`${eventYear.name} artwork`}
-              className="year-card__image"
+              className={cn(
+                "year-card__image",
+                artworkFit === "contain" && "year-card__image--contain",
+              )}
               onError={() => setImageFailed(true)}
             />
           ) : (

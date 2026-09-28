@@ -23,7 +23,7 @@ interface ExperienceTypeRow {
  * are translated here, in one place, rather than either name leaking into
  * the other's world.
  */
-function toCategory(stored: string): AttractionType {
+export function fromStoredCategory(stored: string): AttractionType {
   return stored === "walkthrough" ? "house" : (stored as AttractionType);
 }
 
@@ -35,7 +35,7 @@ function mapRow(row: ExperienceTypeRow): ExperienceType {
   return {
     id: row.id,
     hauntId: row.haunt_id as HauntId,
-    category: toCategory(row.category),
+    category: fromStoredCategory(row.category),
     labelOne: row.label_one,
     labelMany: row.label_many,
     description: row.description,

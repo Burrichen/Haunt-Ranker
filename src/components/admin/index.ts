@@ -1,7 +1,9 @@
+export { AddHaunt } from "./AddHaunt";
+export type { AddHauntProps } from "./AddHaunt";
 export { AttractionForm } from "./AttractionForm";
 export type { AttractionFormProps } from "./AttractionForm";
-export { HauntPackImport } from "./HauntPackImport";
-export type { HauntPackImportProps } from "./HauntPackImport";
+export { HauntPackImport, HauntPackImportBody } from "./HauntPackImport";
+export type { HauntPackImportBodyProps, HauntPackImportProps } from "./HauntPackImport";
 export { ConfirmDialog } from "./ConfirmDialog";
 export type { ConfirmDialogProps } from "./ConfirmDialog";
 export { MediaManager } from "./MediaManager";

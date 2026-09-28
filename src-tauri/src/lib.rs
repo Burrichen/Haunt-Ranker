@@ -71,6 +71,18 @@ fn migrations() -> Vec<Migration> {
             sql: include_str!("../migrations/0011_source_provenance.sql"),
             kind: MigrationKind::Up,
         },
+        Migration {
+            version: 12,
+            description: "give hhn its own copy of rankings saved before multi-haunt support",
+            sql: include_str!("../migrations/0012_hhn_ranking_scopes.sql"),
+            kind: MigrationKind::Up,
+        },
+        Migration {
+            version: 13,
+            description: "media: an unclear distribution, and maps",
+            sql: include_str!("../migrations/0013_media_policy.sql"),
+            kind: MigrationKind::Up,
+        },
     ]
 }
 

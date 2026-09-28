@@ -236,11 +236,20 @@ describe("YearEditor", () => {
       renderYearEditor();
       const media = mediaSection();
 
-      expect(media.getByText(/Never copied, never shipped with the app/)).toBeInTheDocument();
+      expect(
+        media.getByText(/Recorded and linked to, never loaded from their server/),
+      ).toBeInTheDocument();
 
       fireEvent.click(
         within(media.getByRole("radiogroup", { name: "Distribution policy" })).getByRole("radio", {
-          name: "Cleared to bundle",
+          name: "Redistribution unclear",
+        }),
+      );
+      expect(media.getByText(/Never loaded, never shipped/)).toBeInTheDocument();
+
+      fireEvent.click(
+        within(media.getByRole("radiogroup", { name: "Distribution policy" })).getByRole("radio", {
+          name: "Approved asset",
         }),
       );
       expect(media.getByText(/Finding an image online is not that decision/)).toBeInTheDocument();

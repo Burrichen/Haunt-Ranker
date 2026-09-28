@@ -1,3 +1,4 @@
+import type { ArtworkFit } from "../media/mediaPolicy";
 import type { Attraction, IpType } from "../models/attraction";
 import type { EventYear } from "../models/eventYear";
 import type { ParkId } from "../models/park";
@@ -9,6 +10,8 @@ export interface AttractionBrowserRow {
   attraction: Attraction;
   eventYear: EventYear | null;
   posterUrl: string | null;
+  /** How the poster sits in its frame; a logo is shown whole. Cover when omitted. */
+  posterFit?: ArtworkFit;
   /** `null` means genuinely unrated — never treated as a rating of 0. */
   rating: Rating | null;
   /** `null` means this attraction has no manual ranking position in scope. */

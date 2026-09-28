@@ -31,6 +31,7 @@ export const MEDIA_TYPES: MediaType[] = [
   "promotional_image",
   "logo",
   "event_artwork",
+  "map",
   "local_image",
 ];
 
@@ -39,26 +40,32 @@ export const MEDIA_TYPE_LABELS: Record<MediaType, string> = {
   promotional_image: "Promotional Image",
   logo: "Logo",
   event_artwork: "Event Artwork",
+  map: "Event Map",
   local_image: "Photo",
 };
 
 export const DISTRIBUTION_OPTIONS = [
-  { value: "reference", label: "Reference only" },
-  { value: "local", label: "My local file" },
-  { value: "bundled", label: "Cleared to bundle" },
+  { value: "reference", label: "External reference only" },
+  { value: "unclear", label: "Redistribution unclear" },
+  { value: "local", label: "User-provided file" },
+  { value: "bundled", label: "Approved asset" },
 ];
 
 export const DISTRIBUTION_LABELS: Record<MediaDistribution, string> = {
-  reference: "Reference only",
-  local: "Local file",
-  bundled: "Cleared to bundle",
+  reference: "External reference",
+  unclear: "Redistribution unclear",
+  local: "User-provided",
+  bundled: "Approved asset",
 };
 
 /** Said in full at the point of choosing, because this is the decision that matters. */
 export const DISTRIBUTION_HELP: Record<MediaDistribution, string> = {
   reference:
-    "A link we store and nothing more. Never copied, never shipped with the app. The safe default.",
-  local: "A file of yours, copied into the app's own folder. Stays on this machine.",
+    "The official original, hosted by its owner. Recorded and linked to, never loaded from their server. Save an offline copy with npm run media:download to show it. The safe default.",
+  unclear:
+    "Recorded so someone can decide — typically a copy on another site, or rights nobody has established. Never loaded, never shipped.",
+  local:
+    "A copy in the app's own folder — a file of yours, or artwork saved for personal offline use. Stays on this machine, and is shown.",
   bundled:
-    "Only for artwork we have positively decided we may distribute. Finding an image online is not that decision.",
+    "Only for artwork we have positively decided we may distribute. Finding an image online is not that decision. Shown in the app.",
 };

@@ -113,6 +113,7 @@ export function AttractionBrowser({ attractionType }: AttractionBrowserProps) {
                   attraction={row.attraction}
                   eventYear={row.eventYear}
                   posterUrl={row.posterUrl}
+                  posterFit={row.posterFit}
                   rating={row.rating}
                 />
               ))}

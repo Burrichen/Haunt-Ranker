@@ -108,6 +108,35 @@ describe("importArchiveDataset", () => {
     repository = createArchiveImportRepository(db);
   });
 
+  it("keeps this machine's offline copy of an image when the dataset is imported again", async () => {
+    await importArchiveDataset(dataset(), repository);
+    // What `npm run media:download` leaves behind.
+    await db.execute(
+      "UPDATE media SET local_path = 'media/one-abc.jpg', distribution = 'local' WHERE id = ?",
+      ["example-2101-house-one-poster"],
+    );
+
+    const corrected = dataset();
+    corrected.attractions[0].media![0] = {
+      ...corrected.attractions[0].media![0],
+      url: "https://example.invalid/one-corrected.jpg",
+      attribution: "Corrected credit",
+      licenseNotes: "Corrected note",
+    };
+    await importArchiveDataset(corrected, repository);
+
+    expect(await db.select("SELECT url, local_path, distribution, attribution FROM media")).toEqual(
+      [
+        {
+          url: "https://example.invalid/one-corrected.jpg",
+          local_path: "media/one-abc.jpg",
+          distribution: "local",
+          attribution: "Corrected credit",
+        },
+      ],
+    );
+  });
+
   describe("a first import", () => {
     it("creates the archive the dataset describes", async () => {
       const report = await importArchiveDataset(dataset(), repository);

@@ -3,6 +3,7 @@ import { ChevronLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { ParkBadgeRow } from "../archive";
 import { attractionTypeIcon, attractionTypeVariant } from "../archive/typeIcons";
+import type { ArtworkFit } from "../../media/mediaPolicy";
 import type { Attraction } from "../../models/attraction";
 import type { EventYear } from "../../models/eventYear";
 import { useHauntRegistry } from "../../hooks/useHauntRegistry";
@@ -16,6 +17,8 @@ export interface WikiHeaderProps {
   eventYear: EventYear | null;
   /** A poster (or other) artwork URL, or null to show the generated fallback. */
   posterUrl: string | null;
+  /** How the artwork sits in its frame; a logo is shown whole. */
+  posterFit?: ArtworkFit;
   backTo: string;
 }
 
@@ -29,7 +32,13 @@ const IP_LABEL: Record<NonNullable<Attraction["ipType"]>, string> = {
  * deliberately plain fallback (never a generated fake poster) — name,
  * event year, type, IP classification, franchise and park icons.
  */
-export function WikiHeader({ attraction, eventYear, posterUrl, backTo }: WikiHeaderProps) {
+export function WikiHeader({
+  attraction,
+  eventYear,
+  posterUrl,
+  posterFit = "cover",
+  backTo,
+}: WikiHeaderProps) {
   const [imageFailed, setImageFailed] = useState(false);
   const registry = useHauntRegistry();
   const hauntId = eventYear?.hauntId ?? null;
@@ -51,7 +60,10 @@ export function WikiHeader({ attraction, eventYear, posterUrl, backTo }: WikiHea
             <img
               src={posterUrl ?? undefined}
               alt={`${attraction.name} artwork`}
-              className="wiki-header__image"
+              className={cn(
+                "wiki-header__image",
+                posterFit === "contain" && "wiki-header__image--contain",
+              )}
               onError={() => setImageFailed(true)}
             />
           ) : (

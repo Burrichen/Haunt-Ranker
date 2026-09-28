@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { CalendarDays, ChevronLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import type { ArtworkFit } from "../../media/mediaPolicy";
 import type { EventYear } from "../../models/eventYear";
+import { cn } from "../../utils/cn";
 import { useHauntRegistry } from "../../hooks/useHauntRegistry";
 import { Badge, IconButton } from "../ui";
 import "./YearHeader.css";
@@ -10,6 +12,8 @@ export interface YearHeaderProps {
   eventYear: EventYear;
   /** Real event artwork, or null to show the plain fallback. */
   artworkUrl: string | null;
+  /** How the artwork sits in its frame; a logo is shown whole. */
+  artworkFit?: ArtworkFit;
   houseCount: number;
   scareZoneCount: number;
   /**
@@ -24,6 +28,7 @@ export interface YearHeaderProps {
 export function YearHeader({
   eventYear,
   artworkUrl,
+  artworkFit = "cover",
   houseCount,
   scareZoneCount,
   otherCounts = [],
@@ -49,7 +54,10 @@ export function YearHeader({
             <img
               src={artworkUrl ?? undefined}
               alt={`${eventYear.name} artwork`}
-              className="year-header__image"
+              className={cn(
+                "year-header__image",
+                artworkFit === "contain" && "year-header__image--contain",
+              )}
               onError={() => setImageFailed(true)}
             />
           ) : (

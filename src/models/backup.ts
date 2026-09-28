@@ -12,7 +12,7 @@ import type { ParkId } from "./park";
  * when an older file can no longer be read correctly — a renamed or removed
  * column, a changed meaning, a new required field.
  */
-export const BACKUP_FORMAT_VERSION = 3;
+export const BACKUP_FORMAT_VERSION = 4;
 
 /**
  * A backup is a table-level dump rather than a dump of the domain models.

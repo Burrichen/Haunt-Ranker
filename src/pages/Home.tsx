@@ -229,6 +229,7 @@ function ArchiveBody({
                 attraction={item.attraction}
                 eventYear={item.eventYear}
                 posterUrl={item.posterUrl}
+                posterFit={item.posterFit}
                 rating={item.rating}
               />
             ))}

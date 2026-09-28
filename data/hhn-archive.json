@@ -3748,6 +3748,58 @@
       "url": "https://halloweenhorrornights.fandom.com/wiki/Shriek_of_the_Banshee",
       "publisher": "Halloween Horror Nights Wiki",
       "notes": "Fan-maintained archive, not a Universal publication. Used for names, line-ups and venue attribution; claims from it are not official statements."
+    },
+    {
+      "id": "universal-media-site",
+      "type": "official_site",
+      "title": "Universal Orlando Resort & Universal Studios Hollywood Media Site",
+      "url": "https://media.universalparksusa.com/",
+      "publisher": "Universal Destinations & Experiences",
+      "notes": "Universal's press image library. Its download terms: materials are for \"news reporting and editorial purposes only\" and \"may not be used for commercial purposes\"."
+    },
+    {
+      "id": "discover-universal-hhn-2024-orlando",
+      "type": "official_site",
+      "title": "Universal Halloween Horror Nights 33: everything coming to HHN at Universal Orlando Resort",
+      "url": "https://blog.discoveruniversal.com/events/universal-halloween-horror-nights-33-everything-coming-to-hhn-at-universal-orlando-resort/",
+      "publisher": "Discover Universal (Universal Destinations & Experiences)"
+    },
+    {
+      "id": "discover-universal-hhn-2025-orlando",
+      "type": "official_site",
+      "title": "Halloween Horror Nights 2025 at Universal Orlando Resort",
+      "url": "https://blog.discoveruniversal.com/events/halloween-horror-nights-universal-orlando-resort-2025/",
+      "publisher": "Discover Universal (Universal Destinations & Experiences)"
+    },
+    {
+      "id": "discover-universal-hhn-2026-orlando",
+      "type": "official_site",
+      "title": "Universal Halloween Horror Nights 35: everything coming to HHN at Universal Orlando Resort",
+      "url": "https://blog.discoveruniversal.com/events/universal-halloween-horror-nights-35-everything-coming-to-hhn-at-universal-orlando-resort/",
+      "publisher": "Discover Universal (Universal Destinations & Experiences)"
+    },
+    {
+      "id": "discover-universal-hhn-2026-hollywood",
+      "type": "official_site",
+      "title": "Halloween Horror Nights 2026 at Universal Studios Hollywood: the line-up",
+      "url": "https://blog.discoveruniversal.com/events/halloween-horror-nights-2026-universal-studios-hollywood-lineup/",
+      "publisher": "Discover Universal (Universal Destinations & Experiences)"
+    },
+    {
+      "id": "discover-universal",
+      "type": "official_site",
+      "title": "Discover Universal (Universal's official blog)",
+      "url": "https://blog.discoveruniversal.com/",
+      "publisher": "Universal Destinations & Experiences",
+      "notes": "\"© Universal Studios. All rights reserved.\" No reuse licence is stated."
+    },
+    {
+      "id": "hhn-com-wayback",
+      "type": "other",
+      "title": "halloweenhorrornights.com, as preserved by the Internet Archive's Wayback Machine",
+      "url": "https://web.archive.org/web/*/halloweenhorrornights.com*",
+      "publisher": "Internet Archive (content: Universal)",
+      "notes": "Universal's former official event site. The archive's copies grant no rights of their own."
     }
   ],
   "events": [
@@ -3763,7 +3815,28 @@
         "yt-w1ev-inmjzo",
         "yt-1fmv3-y-rok",
         "yt-ckfp-1ddzgc",
-        "yt-fexrm2-kerw"
+        "yt-fexrm2-kerw",
+        "hhn-com-wayback"
+      ],
+      "media": [
+        {
+          "id": "hhn-2010-media-1",
+          "kind": "logo",
+          "url": "https://web.archive.org/web/20101030021543im_/http://halloweenhorrornights.com/orlando/images/hhn_logo2.png",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal's own artwork from its former halloweenhorrornights.com, as preserved by the Wayback Machine. Rights remain Universal's; the archive's copy grants none. Redistribution unclear. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "hhn-com-wayback",
+          "distribution": "unclear"
+        },
+        {
+          "id": "hhn-2010-media-2",
+          "kind": "logo",
+          "url": "https://web.archive.org/web/20101123093255im_/http://halloweenhorrornights.com/orlando/images/house_logos_small/hhn_20_yrs_fear_logo_small.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal's own artwork from its former halloweenhorrornights.com, as preserved by the Wayback Machine. Rights remain Universal's; the archive's copy grants none. Redistribution unclear. The \"20 Years of Fear\" mark. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "hhn-com-wayback",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -3778,7 +3851,28 @@
         "yt-gnnveftnqty",
         "yt-prcryidx0-e",
         "yt-qctam8qooks",
-        "yt-m-ok-wadl7c"
+        "yt-m-ok-wadl7c",
+        "hhn-com-wayback"
+      ],
+      "media": [
+        {
+          "id": "hhn-2011-media-1",
+          "kind": "logo",
+          "url": "https://web.archive.org/web/20111203041456im_/http://www.halloweenhorrornights.com/hollywood/2011/_images/logo_2011.png",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "Universal's own artwork from its former halloweenhorrornights.com, as preserved by the Wayback Machine. Rights remain Universal's; the archive's copy grants none. Redistribution unclear. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "hhn-com-wayback",
+          "distribution": "unclear"
+        },
+        {
+          "id": "hhn-2011-media-2",
+          "kind": "logo",
+          "url": "https://web.archive.org/web/20110721094733im_/http://www.halloweenhorrornights.com/orlando/images/Halloween-Horror-Nights_logo.png",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal's own artwork from its former halloweenhorrornights.com, as preserved by the Wayback Machine. Rights remain Universal's; the archive's copy grants none. Redistribution unclear. Captured July 2011; not confirmed as the 2011-specific mark. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "hhn-com-wayback",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -3792,7 +3886,28 @@
         "yt-ikga-ynnqwi",
         "yt-xrki2ycu2nc",
         "yt-feo5jfxsdow",
-        "yt-rtp0fokhdnq"
+        "yt-rtp0fokhdnq",
+        "hhn-com-wayback"
+      ],
+      "media": [
+        {
+          "id": "hhn-2012-media-1",
+          "kind": "logo",
+          "url": "https://web.archive.org/web/20120722035633im_/http://www.halloweenhorrornights.com/orlando/images/Halloween-Horror-Nights-22_logo.png",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal's own artwork from its former halloweenhorrornights.com, as preserved by the Wayback Machine. Rights remain Universal's; the archive's copy grants none. Redistribution unclear. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "hhn-com-wayback",
+          "distribution": "unclear"
+        },
+        {
+          "id": "hhn-2012-media-2",
+          "kind": "logo",
+          "url": "https://web.archive.org/web/20120829205829im_/http://www.halloweenhorrornights.com/hollywood/2012/_images/header/HHN_2012_Logo.png",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "Universal's own artwork from its former halloweenhorrornights.com, as preserved by the Wayback Machine. Rights remain Universal's; the archive's copy grants none. Redistribution unclear. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "hhn-com-wayback",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -3807,7 +3922,28 @@
         "yt-gerep7qaume",
         "yt-sfpiy-tkk-u",
         "yt-dntrpzjb85w",
-        "yt-hyuinmz8rc4"
+        "yt-hyuinmz8rc4",
+        "hhn-com-wayback"
+      ],
+      "media": [
+        {
+          "id": "hhn-2013-media-1",
+          "kind": "logo",
+          "url": "https://web.archive.org/web/20130901031009im_/http://www.halloweenhorrornights.com/orlando/img/bg/HHN23Logo.png",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal's own artwork from its former halloweenhorrornights.com, as preserved by the Wayback Machine. Rights remain Universal's; the archive's copy grants none. Redistribution unclear. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "hhn-com-wayback",
+          "distribution": "unclear"
+        },
+        {
+          "id": "hhn-2013-media-2",
+          "kind": "logo",
+          "url": "https://web.archive.org/web/20130910063816im_/http://www.halloweenhorrornights.com/hollywood/2013/teaser/images/HHN_2013_Logo.png",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "Universal's own artwork from its former halloweenhorrornights.com, as preserved by the Wayback Machine. Rights remain Universal's; the archive's copy grants none. Redistribution unclear. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "hhn-com-wayback",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -3816,7 +3952,42 @@
       "name": "Halloween Horror Nights 2014",
       "description": "Universal Orlando branded this season Halloween Horror Nights 24.",
       "sourceNotes": "Line-up assembled from the Halloween Horror Nights Wiki and checked against the event page's own counts. Dates and attraction detail still to be confirmed against Universal's own material.",
-      "sourceIds": ["yt-pv74j3hrxqa", "yt-yftlgks-rks", "yt-3-lbytvsvee", "yt-ptc5ewyyn8c"]
+      "sourceIds": [
+        "yt-pv74j3hrxqa",
+        "yt-yftlgks-rks",
+        "yt-3-lbytvsvee",
+        "yt-ptc5ewyyn8c",
+        "hhn-com-wayback"
+      ],
+      "media": [
+        {
+          "id": "hhn-2014-media-1",
+          "kind": "logo",
+          "url": "https://web.archive.org/web/20140701170957im_/http://www.halloweenhorrornights.com/orlando/img/nav/HHN24_logo.png",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal's own artwork from its former halloweenhorrornights.com, as preserved by the Wayback Machine. Rights remain Universal's; the archive's copy grants none. Redistribution unclear. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "hhn-com-wayback",
+          "distribution": "unclear"
+        },
+        {
+          "id": "hhn-2014-media-2",
+          "kind": "logo",
+          "url": "https://web.archive.org/web/20140811033624im_/http://www.halloweenhorrornights.com/hollywood/2014/teaser/images/HHN_2014_Logo.png",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "Universal's own artwork from its former halloweenhorrornights.com, as preserved by the Wayback Machine. Rights remain Universal's; the archive's copy grants none. Redistribution unclear. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "hhn-com-wayback",
+          "distribution": "unclear"
+        },
+        {
+          "id": "hhn-2014-media-3",
+          "kind": "map",
+          "url": "https://web.archive.org/web/20141021213209im_/http://www.halloweenhorrornights.com/orlando/img/map/eventmap.png",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal's own artwork from its former halloweenhorrornights.com, as preserved by the Wayback Machine. Rights remain Universal's; the archive's copy grants none. Redistribution unclear. The 2014 Orlando event map. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "hhn-com-wayback",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2015",
@@ -3829,7 +4000,28 @@
         "yt-yaaiqqrgx7w",
         "yt-xyqglapsv9o",
         "yt-cy8ky5cb1yo",
-        "yt-0jaz0y5lqkg"
+        "yt-0jaz0y5lqkg",
+        "hhn-com-wayback"
+      ],
+      "media": [
+        {
+          "id": "hhn-2015-media-1",
+          "kind": "logo",
+          "url": "https://web.archive.org/web/20150323091222im_/http://www.halloweenhorrornights.com/orlando/img/nav/HHN_logo25.png",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal's own artwork from its former halloweenhorrornights.com, as preserved by the Wayback Machine. Rights remain Universal's; the archive's copy grants none. Redistribution unclear. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "hhn-com-wayback",
+          "distribution": "unclear"
+        },
+        {
+          "id": "hhn-2015-media-2",
+          "kind": "logo",
+          "url": "https://web.archive.org/web/20151009203121im_/http://www.halloweenhorrornights.com/hollywood/2015/_images/header/HHNHeader2015Logo.png",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "Universal's own artwork from its former halloweenhorrornights.com, as preserved by the Wayback Machine. Rights remain Universal's; the archive's copy grants none. Redistribution unclear. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "hhn-com-wayback",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -3843,7 +4035,29 @@
         "yt-xyyx8gb0hfe",
         "yt-zxyl5xeow6y",
         "yt-tpk9fef-zeg",
-        "yt-pdskrgusxyo"
+        "yt-pdskrgusxyo",
+        "discover-universal",
+        "hhn-com-wayback"
+      ],
+      "media": [
+        {
+          "id": "hhn-2016-media-1",
+          "kind": "logo",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2016/10/Halloween-Horror-Nights-26-Logo-Lockup_Secondary.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2016-media-2",
+          "kind": "logo",
+          "url": "https://web.archive.org/web/20160817194549im_/http://www.halloweenhorrornights.com/hollywood/2016/_images/header/HHN2016_logo.png",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "Universal's own artwork from its former halloweenhorrornights.com, as preserved by the Wayback Machine. Rights remain Universal's; the archive's copy grants none. Redistribution unclear. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "hhn-com-wayback",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -3857,7 +4071,39 @@
         "yt-toc5t1qjnuc",
         "yt-jxsczny-5-y",
         "yt-auaxo9qdhwy",
-        "yt-pegmvek-qsk"
+        "yt-pegmvek-qsk",
+        "discover-universal",
+        "universal-media-site",
+        "hhn-com-wayback"
+      ],
+      "media": [
+        {
+          "id": "hhn-2017-media-1",
+          "kind": "event_artwork",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2017/02/Universal-Orlandos-Halloween-Horror-Nights-27-Tickets-On-Sale.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2017-media-2",
+          "kind": "logo",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2018/03/HHN17_Dates_3Lines_27_BLK_US.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2017-media-3",
+          "kind": "logo",
+          "url": "https://web.archive.org/web/20170802172242im_/http://www.halloweenhorrornights.com/hollywood/2017/_images/header/hhn2017_logo.png",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "Universal's own artwork from its former halloweenhorrornights.com, as preserved by the Wayback Machine. Rights remain Universal's; the archive's copy grants none. Redistribution unclear. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "hhn-com-wayback",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -3866,7 +4112,33 @@
       "name": "Halloween Horror Nights 2018",
       "description": "Universal Orlando branded this season Halloween Horror Nights 28.",
       "sourceNotes": "Line-up assembled from the Halloween Horror Nights Wiki and checked against the event page's own counts. Dates and attraction detail still to be confirmed against Universal's own material.",
-      "sourceIds": ["yt-nslaslnmy0u", "yt-s7ug59yid5s", "yt-cwjozlsf6h0", "yt-y-hlaydetvy"]
+      "sourceIds": [
+        "yt-nslaslnmy0u",
+        "yt-s7ug59yid5s",
+        "yt-cwjozlsf6h0",
+        "yt-y-hlaydetvy",
+        "universal-media-site"
+      ],
+      "media": [
+        {
+          "id": "hhn-2018-media-1",
+          "kind": "event_artwork",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2018/09/Halloween-Horror-Nights-2018-is-Now-Open-e1536944349273.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2018-media-2",
+          "kind": "logo",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2018/04/18-30637-HHN18-ST-logo-lockup_1400x900_r2-e1523558386903.jpg",
+          "attribution": "Universal Destinations & Experiences",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. The Stranger Things tie-in lockup. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2019",
@@ -3874,7 +4146,24 @@
       "name": "Halloween Horror Nights 2019",
       "description": "Universal Orlando branded this season Halloween Horror Nights 29.",
       "sourceNotes": "Line-up assembled from the Halloween Horror Nights Wiki and checked against the event page's own counts. Dates and attraction detail still to be confirmed against Universal's own material.",
-      "sourceIds": ["yt-qai-1vp8r8q", "yt-jbjtdmip4io", "yt-vawqlkkac2i", "yt-fdnr3ez0qza"]
+      "sourceIds": [
+        "yt-qai-1vp8r8q",
+        "yt-jbjtdmip4io",
+        "yt-vawqlkkac2i",
+        "yt-fdnr3ez0qza",
+        "universal-media-site"
+      ],
+      "media": [
+        {
+          "id": "hhn-2019-media-1",
+          "kind": "logo",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2019/09/lkup_neon_UO-HHN_fc_2L_2019-US.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2021",
@@ -3882,7 +4171,34 @@
       "name": "Halloween Horror Nights 2021",
       "description": "Universal Orlando branded this season Halloween Horror Nights 30.",
       "sourceNotes": "Line-up assembled from the Halloween Horror Nights Wiki and checked against the event page's own counts. Dates and attraction detail still to be confirmed against Universal's own material.",
-      "sourceIds": ["yt-d9y4yjcocqa", "yt-bncorfdnazs", "yt-xu7ulppiunw", "yt-wmyss7pkyoc"]
+      "sourceIds": [
+        "yt-d9y4yjcocqa",
+        "yt-bncorfdnazs",
+        "yt-xu7ulppiunw",
+        "yt-wmyss7pkyoc",
+        "discover-universal",
+        "universal-media-site"
+      ],
+      "media": [
+        {
+          "id": "hhn-2021-media-1",
+          "kind": "event_artwork",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2021/06/Jack-the-Clown-Returns-to-Halloween-Horror-Nights-30.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2021-media-2",
+          "kind": "event_artwork",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2021/03/Universal-Orlando-Halloween-Horror-Nights.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Generic event art; the year is inferred from the upload date. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2022",
@@ -3895,7 +4211,37 @@
         "yt-jsmmkkl-qkc",
         "yt-xme-tsbhwlu",
         "yt-vw2zlcm3y-g",
-        "yt-mcsweso60me"
+        "yt-mcsweso60me",
+        "universal-media-site"
+      ],
+      "media": [
+        {
+          "id": "hhn-2022-media-1",
+          "kind": "event_artwork",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2022/08/Universal-Orlandos-Halloween-Horror-Nights-2022.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2022-media-2",
+          "kind": "event_artwork",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2022/03/HHN-31-Tickets-on-Sale-Carousel-Image.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2022-media-3",
+          "kind": "event_artwork",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2022/08/22-1153404-HHN22-USH-Asset-MirrorResizesMASTER-1220x940-1.jpg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
       ]
     },
     {
@@ -3904,7 +4250,42 @@
       "name": "Halloween Horror Nights 2023",
       "description": "Universal Orlando branded this season Halloween Horror Nights 32.",
       "sourceNotes": "Line-up assembled from the Halloween Horror Nights Wiki and checked against the event page's own counts. Dates and attraction detail still to be confirmed against Universal's own material.",
-      "sourceIds": ["yt-jgeeq4lm-oq", "yt-cqb7prg4l7y", "yt-xoreb5snqdq", "yt-jioygej--eq"]
+      "sourceIds": [
+        "yt-jgeeq4lm-oq",
+        "yt-cqb7prg4l7y",
+        "yt-xoreb5snqdq",
+        "yt-jioygej--eq",
+        "universal-media-site"
+      ],
+      "media": [
+        {
+          "id": "hhn-2023-media-1",
+          "kind": "event_artwork",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2023/07/23-UNA-01558221-HHN23-KUMQUAT-PR-Media-Carousel-1220x940-1.jpg",
+          "attribution": "Universal Destinations & Experiences",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2023-media-2",
+          "kind": "event_artwork",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2023/03/Universal-Orlandos-Halloween-Horror-Nights-Dates-and-Select-Tickets-Announced.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2023-media-3",
+          "kind": "event_artwork",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2023/09/Universal-Orlandos-Halloween-Horror-Nights-Opens-Tonight.png",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2024",
@@ -3912,7 +4293,42 @@
       "name": "Halloween Horror Nights 2024",
       "description": "Universal Orlando branded this season Halloween Horror Nights 33.",
       "sourceNotes": "Line-up assembled from the Halloween Horror Nights Wiki and checked against the event page's own counts. Dates and attraction detail still to be confirmed against Universal's own material.",
-      "sourceIds": ["yt-g84sz01liw8", "yt-zl82pm57x-4", "yt-ebagd34abtc", "yt-gdozqrhzjf0"]
+      "sourceIds": [
+        "yt-g84sz01liw8",
+        "yt-zl82pm57x-4",
+        "yt-ebagd34abtc",
+        "yt-gdozqrhzjf0",
+        "universal-media-site"
+      ],
+      "media": [
+        {
+          "id": "hhn-2024-media-1",
+          "kind": "event_artwork",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2024/04/HHN24-Hero-DuelingDragons-RG38475-RET-1220x940-1.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2024-media-2",
+          "kind": "event_artwork",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2024/08/Countdown-to-HHN-2024.jpg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2024-media-3",
+          "kind": "event_artwork",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2024/08/24-UNA-3446021-HHN24-USH-Beat-6-BARMBRACK-RESIZES_029-1220x940-1.jpg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2025",
@@ -3920,7 +4336,51 @@
       "name": "Halloween Horror Nights 2025",
       "description": "Universal Orlando branded this season Halloween Horror Nights 34.",
       "sourceNotes": "Line-up assembled from the Halloween Horror Nights Wiki and checked against the event page's own counts. Dates and attraction detail still to be confirmed against Universal's own material.",
-      "sourceIds": ["yt-qnicepsstjm", "yt-lwf5k1j-7v4", "yt-tanokzwfbqg", "yt--ueoj1xhc9y"]
+      "sourceIds": [
+        "yt-qnicepsstjm",
+        "yt-lwf5k1j-7v4",
+        "yt-tanokzwfbqg",
+        "yt--ueoj1xhc9y",
+        "universal-media-site"
+      ],
+      "media": [
+        {
+          "id": "hhn-2025-media-1",
+          "kind": "event_artwork",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2025/07/25-UNA-5697133-HHN25-Poinsettia-Carousel-1220x940-1.jpg",
+          "attribution": "Universal Destinations & Experiences",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2025-media-2",
+          "kind": "logo",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2025/07/HHN2025.png",
+          "attribution": "Universal Destinations & Experiences",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2025-media-3",
+          "kind": "event_artwork",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2025/06/25-UNA-5709469-HHN25-Daisy-CP-USH-1566x1044-1.jpg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2025-media-4",
+          "kind": "event_artwork",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2025/08/25-USH-5768900-HHN25-USH-CorpseFlower-1920x1080-wLogo.jpg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2026",
@@ -3939,7 +4399,55 @@
         "yt-zu-fwik3t6y",
         "yt-peuml6fs5hy",
         "press-uo-hhn-2026-overview",
-        "press-nbcu-halloween-2026-guide"
+        "press-nbcu-halloween-2026-guide",
+        "universal-media-site"
+      ],
+      "media": [
+        {
+          "id": "hhn-2026-media-1",
+          "kind": "event_artwork",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/05/HHN26-UNA-1920x1080-1.jpg",
+          "attribution": "Universal Destinations & Experiences",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2026-media-2",
+          "kind": "event_artwork",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/06/26-UOR-8067000-HHN26-UOR-Asset-GenericHHNKeyVisualResizesforTicketsonSale_1920x1080_HHN-Logo-1.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "press-uo-hhn-2026-overview",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2026-media-3",
+          "kind": "event_artwork",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/03/Universal-Orlando-Resort-Celebrates-35-Years-of-Pure-Fear-with-Halloween-Horror-Nights-35.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2026-media-4",
+          "kind": "event_artwork",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/07/26-UNA-9679850-HHN26_USH_1920x1080.jpg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2026-media-5",
+          "kind": "logo",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/06/HHN26-UOR-Logo_wDates-3Line-Black.png",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "press-uo-hhn-2026-overview",
+          "distribution": "reference"
+        }
       ]
     }
   ],
@@ -4502,12 +5010,23 @@
       "parks": ["orlando"],
       "variantName": "Orlando version",
       "location": "Hollywood",
-      "sourceIds": ["wiki-face-off-in-the-flesh-orlando"],
+      "sourceIds": ["wiki-face-off-in-the-flesh-orlando", "discover-universal"],
       "related": [
         {
           "attractionId": "hhn-2014-house-face-off-in-the-flesh-hollywood",
           "type": "related_concept",
           "notes": "Same title and season at the other park, built separately. No source found describing the two as the same build."
+        }
+      ],
+      "media": [
+        {
+          "id": "hhn-2014-zone-face-off-in-the-flesh-orlando-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2014/07/HHN24-Key-Art-Face-Off.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal",
+          "distribution": "reference"
         }
       ]
     },
@@ -5619,7 +6138,21 @@
         "type": "original"
       },
       "location": "Soundstage 23A",
-      "sourceIds": ["wiki-monstruos-the-monsters-of-latin-america-orlando"]
+      "sourceIds": [
+        "wiki-monstruos-the-monsters-of-latin-america-orlando",
+        "discover-universal-hhn-2024-orlando"
+      ],
+      "media": [
+        {
+          "id": "hhn-2024-house-monstruos-the-monsters-of-latin-america-media-1",
+          "kind": "logo",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2024/05/HHN24-UOR-oc-logo-flan-1920x1080-1.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2024-orlando",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2024-house-triplets-of-terror",
@@ -5631,7 +6164,18 @@
         "type": "original"
       },
       "location": "Soundstage 24B",
-      "sourceIds": ["wiki-triplets-of-terror"]
+      "sourceIds": ["wiki-triplets-of-terror", "discover-universal-hhn-2024-orlando"],
+      "media": [
+        {
+          "id": "hhn-2024-house-triplets-of-terror-media-1",
+          "kind": "logo",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2024/05/HHN24-UOR-oc-logo-fudge-1920x1080-1.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2024-orlando",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2024-house-major-sweets-candy-factory",
@@ -5643,7 +6187,18 @@
         "type": "original"
       },
       "location": "Fast & Furious Location",
-      "sourceIds": ["wiki-major-sweets-candy-factory"]
+      "sourceIds": ["wiki-major-sweets-candy-factory", "discover-universal-hhn-2024-orlando"],
+      "media": [
+        {
+          "id": "hhn-2024-house-major-sweets-candy-factory-media-1",
+          "kind": "logo",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2024/05/HHN24-UOR-oc-logo-pie-1920x1080-1.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2024-orlando",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2024-house-the-museum-deadly-exhibits",
@@ -5655,7 +6210,18 @@
         "type": "original"
       },
       "location": "Sprung Tent 1",
-      "sourceIds": ["wiki-the-museum-deadly-exhibits"]
+      "sourceIds": ["wiki-the-museum-deadly-exhibits", "discover-universal-hhn-2024-orlando"],
+      "media": [
+        {
+          "id": "hhn-2024-house-the-museum-deadly-exhibits-media-1",
+          "kind": "logo",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2024/05/HHN24-UOR-oc-logo-baklava-1920x1080-1.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2024-orlando",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2024-house-slaughter-sinema-2",
@@ -5667,7 +6233,31 @@
         "type": "original"
       },
       "location": "Sprung Tent 2",
-      "sourceIds": ["wiki-slaughter-sinema-2"]
+      "sourceIds": [
+        "wiki-slaughter-sinema-2",
+        "discover-universal-hhn-2024-orlando",
+        "universal-media-site"
+      ],
+      "media": [
+        {
+          "id": "hhn-2024-house-slaughter-sinema-2-media-1",
+          "kind": "logo",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2024/05/HHN24-UOR-oc-logo-cobbler-1920x1080-1.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2024-orlando",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2024-house-slaughter-sinema-2-media-2",
+          "kind": "promotional_image",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2024/08/05_Halloween-Horror-Nights-2024-Slaughter-Sinema-2-scaled.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Event photograph. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2024-house-goblin-s-feast",
@@ -5679,7 +6269,18 @@
         "type": "original"
       },
       "location": "Sprung Tent 4",
-      "sourceIds": ["wiki-goblin-s-feast"]
+      "sourceIds": ["wiki-goblin-s-feast", "discover-universal-hhn-2024-orlando"],
+      "media": [
+        {
+          "id": "hhn-2024-house-goblin-s-feast-media-1",
+          "kind": "logo",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2024/05/HHN24-UOR-oc-logo-sundae-1920x1080-1.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2024-orlando",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2024-zone-duality-of-fear",
@@ -5691,7 +6292,18 @@
         "type": "original"
       },
       "location": "Front Lot",
-      "sourceIds": ["wiki-duality-of-fear"]
+      "sourceIds": ["wiki-duality-of-fear", "discover-universal-hhn-2024-orlando"],
+      "media": [
+        {
+          "id": "hhn-2024-zone-duality-of-fear-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2024/07/Duality-of-Fear.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2024-orlando",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2024-zone-demon-queens",
@@ -5703,7 +6315,31 @@
         "type": "original"
       },
       "location": "Hollywood",
-      "sourceIds": ["wiki-demon-queens"]
+      "sourceIds": [
+        "wiki-demon-queens",
+        "discover-universal-hhn-2024-orlando",
+        "universal-media-site"
+      ],
+      "media": [
+        {
+          "id": "hhn-2024-zone-demon-queens-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2024/07/Demon-Queens.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2024-orlando",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2024-zone-demon-queens-media-2",
+          "kind": "promotional_image",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2024/08/08_Halloween-Horror-Nights-2024-Demon-Queens-Scare-Zone-scaled.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Event photograph. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2024-zone-swamp-of-the-undead",
@@ -5715,7 +6351,18 @@
         "type": "original"
       },
       "location": "Central Park",
-      "sourceIds": ["wiki-swamp-of-the-undead"]
+      "sourceIds": ["wiki-swamp-of-the-undead", "discover-universal-hhn-2024-orlando"],
+      "media": [
+        {
+          "id": "hhn-2024-zone-swamp-of-the-undead-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2024/07/Swamp-of-the-Undead.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2024-orlando",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2024-zone-torture-faire",
@@ -5727,7 +6374,18 @@
         "type": "original"
       },
       "location": "New York",
-      "sourceIds": ["wiki-torture-faire"]
+      "sourceIds": ["wiki-torture-faire", "discover-universal-hhn-2024-orlando"],
+      "media": [
+        {
+          "id": "hhn-2024-zone-torture-faire-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2024/07/Torture-Faire.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2024-orlando",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2024-zone-enter-the-blumhouse",
@@ -5740,7 +6398,18 @@
         "franchise": "Blumhouse Productions"
       },
       "location": "San Francisco",
-      "sourceIds": ["wiki-enter-the-blumhouse"]
+      "sourceIds": ["wiki-enter-the-blumhouse", "discover-universal-hhn-2024-orlando"],
+      "media": [
+        {
+          "id": "hhn-2024-zone-enter-the-blumhouse-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2024/07/Enter-the-Blumhouse-UOR.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Includes Blumhouse Productions intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2024-orlando",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2025-house-el-artista-a-spanish-haunting",
@@ -5752,7 +6421,21 @@
         "type": "original"
       },
       "location": "Soundstage 22",
-      "sourceIds": ["wiki-el-artista-a-spanish-haunting-haunted-house"]
+      "sourceIds": [
+        "wiki-el-artista-a-spanish-haunting-haunted-house",
+        "discover-universal-hhn-2025-orlando"
+      ],
+      "media": [
+        {
+          "id": "hhn-2025-house-el-artista-a-spanish-haunting-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2025/06/El-Artista-A-Spanish-Haunting.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2025-orlando",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2025-house-five-nights-at-freddy-s",
@@ -5767,7 +6450,19 @@
       "location": "Orlando: Soundstage 23B; Hollywood: Soundstage 15",
       "sourceIds": [
         "wiki-five-nights-at-freddy-s-orlando",
-        "wiki-five-nights-at-freddy-s-hollywood"
+        "wiki-five-nights-at-freddy-s-hollywood",
+        "discover-universal-hhn-2025-orlando"
+      ],
+      "media": [
+        {
+          "id": "hhn-2025-house-five-nights-at-freddy-s-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2025/07/Five-Nights-at-Freddys-HHN-UOR.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Includes Five Nights at Freddy's intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2025-orlando",
+          "distribution": "reference"
+        }
       ]
     },
     {
@@ -5780,7 +6475,18 @@
         "type": "original"
       },
       "location": "Soundstage 24B",
-      "sourceIds": ["wiki-grave-of-flesh-haunted-house"]
+      "sourceIds": ["wiki-grave-of-flesh-haunted-house", "discover-universal-hhn-2025-orlando"],
+      "media": [
+        {
+          "id": "hhn-2025-house-grave-of-flesh-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2025/06/Grave-of-Flesh-RGB.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2025-orlando",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2025-house-hatchet-and-chains-demon-bounty-hunters",
@@ -5792,7 +6498,21 @@
         "type": "original"
       },
       "location": "Sprung Tent 1",
-      "sourceIds": ["wiki-hatchet-and-chains-demon-bounty-hunters-haunted-house"]
+      "sourceIds": [
+        "wiki-hatchet-and-chains-demon-bounty-hunters-haunted-house",
+        "discover-universal-hhn-2025-orlando"
+      ],
+      "media": [
+        {
+          "id": "hhn-2025-house-hatchet-and-chains-demon-bounty-hunters-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2025/06/HHN-Hatchet-Chains.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2025-orlando",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2025-house-dolls-let-s-play-dead",
@@ -5804,7 +6524,18 @@
         "type": "original"
       },
       "location": "Sprung Tent 2",
-      "sourceIds": ["wiki-dolls-let-s-play-dead"]
+      "sourceIds": ["wiki-dolls-let-s-play-dead", "discover-universal-hhn-2025-orlando"],
+      "media": [
+        {
+          "id": "hhn-2025-house-dolls-let-s-play-dead-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2025/06/Dolls-Lets-Play-Dead.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2025-orlando",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2025-house-g-lkn-monsters-of-the-north",
@@ -5816,7 +6547,18 @@
         "type": "original"
       },
       "location": "Sprung Tent 3",
-      "sourceIds": ["wiki-g-lkn-monsters-of-the-north"]
+      "sourceIds": ["wiki-g-lkn-monsters-of-the-north", "discover-universal-hhn-2025-orlando"],
+      "media": [
+        {
+          "id": "hhn-2025-house-g-lkn-monsters-of-the-north-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2025/06/Galkn-Horizontal.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2025-orlando",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2025-zone-the-origins-of-horror",
@@ -5828,7 +6570,18 @@
         "type": "original"
       },
       "location": "Plaza of the Stars",
-      "sourceIds": ["wiki-the-origins-of-horror"]
+      "sourceIds": ["wiki-the-origins-of-horror", "discover-universal-hhn-2025-orlando"],
+      "media": [
+        {
+          "id": "hhn-2025-zone-the-origins-of-horror-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2025/07/HHN-The-Origins-of-Horror.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2025-orlando",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2025-zone-masquerade-dance-with-death",
@@ -5840,7 +6593,18 @@
         "type": "original"
       },
       "location": "Hollywood",
-      "sourceIds": ["wiki-masquerade-dance-with-death"]
+      "sourceIds": ["wiki-masquerade-dance-with-death", "discover-universal-hhn-2025-orlando"],
+      "media": [
+        {
+          "id": "hhn-2025-zone-masquerade-dance-with-death-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2025/07/Masquerade-Dance-with-Death-HHN-2025.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2025-orlando",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2025-zone-the-cat-lady-of-crooked-lane",
@@ -5852,7 +6616,21 @@
         "type": "original"
       },
       "location": "Central Park",
-      "sourceIds": ["wiki-the-cat-lady-of-crooked-lane-scarezone"]
+      "sourceIds": [
+        "wiki-the-cat-lady-of-crooked-lane-scarezone",
+        "discover-universal-hhn-2025-orlando"
+      ],
+      "media": [
+        {
+          "id": "hhn-2025-zone-the-cat-lady-of-crooked-lane-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2025/07/The-Cat-Lady-of-Crooked-Lane-HHN.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2025-orlando",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2025-zone-mutations-toxic-twenties",
@@ -5864,7 +6642,21 @@
         "type": "original"
       },
       "location": "New York",
-      "sourceIds": ["wiki-mutations-toxic-twenties-scarezone"]
+      "sourceIds": [
+        "wiki-mutations-toxic-twenties-scarezone",
+        "discover-universal-hhn-2025-orlando"
+      ],
+      "media": [
+        {
+          "id": "hhn-2025-zone-mutations-toxic-twenties-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2025/07/Mutations-Toxic-Twenties-HHN-2025.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2025-orlando",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2025-zone-mel-s-die-in-zombies",
@@ -5901,7 +6693,32 @@
       },
       "summary": "Dr. Oddfellow leads guests through Jack the Clown's origin story.",
       "location": "Soundstage 22",
-      "sourceIds": ["wiki-jack-and-oddfellow-chaos-and-control", "press-uo-hhn-2026-overview"]
+      "sourceIds": [
+        "wiki-jack-and-oddfellow-chaos-and-control",
+        "press-uo-hhn-2026-overview",
+        "discover-universal-hhn-2026-orlando",
+        "universal-media-site"
+      ],
+      "media": [
+        {
+          "id": "hhn-2026-house-jack-and-oddfellow-chaos-and-control-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2026/03/HHN-Jack-Oddfellow-Key-Art.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2026-orlando",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2026-house-jack-and-oddfellow-chaos-and-control-media-2",
+          "kind": "promotional_image",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/08/10_Jack-Oddfellow_-Chaos-Control.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Opening photograph. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2026-house-madlands-caged-cannibals",
@@ -5914,7 +6731,18 @@
       },
       "summary": "A post-apocalyptic wasteland in which almost all life has died out.",
       "location": "Soundstage 24B",
-      "sourceIds": ["wiki-madlands-caged-cannibals", "press-uo-hhn-2026-overview"]
+      "sourceIds": ["wiki-madlands-caged-cannibals", "press-uo-hhn-2026-overview"],
+      "media": [
+        {
+          "id": "hhn-2026-house-madlands-caged-cannibals-media-1",
+          "kind": "poster",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/06/Madlands-Caged-Animals_1920x1080.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. The file is named \"Caged Animals\"; the house is billed \"Caged Cannibals\". Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "press-uo-hhn-2026-overview",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2026-house-cybergoria",
@@ -5927,7 +6755,18 @@
       },
       "summary": "Set thousands of years in the future, in a cold and lifeless world.",
       "location": "Fast & Furious Location",
-      "sourceIds": ["wiki-cybergoria", "press-uo-hhn-2026-overview"]
+      "sourceIds": ["wiki-cybergoria", "press-uo-hhn-2026-overview"],
+      "media": [
+        {
+          "id": "hhn-2026-house-cybergoria-media-1",
+          "kind": "poster",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/06/Cybergoria_1920x1080-1.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "press-uo-hhn-2026-overview",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2026-house-invasion-alien-abduction",
@@ -5940,7 +6779,18 @@
       },
       "summary": "An encounter with an aggressive, unseen alien craft.",
       "location": "Sprung Tent 1",
-      "sourceIds": ["wiki-invasion-alien-abduction", "press-uo-hhn-2026-overview"]
+      "sourceIds": ["wiki-invasion-alien-abduction", "press-uo-hhn-2026-overview"],
+      "media": [
+        {
+          "id": "hhn-2026-house-invasion-alien-abduction-media-1",
+          "kind": "poster",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/06/Invasion-Alien-Abduction_1920x1080.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "press-uo-hhn-2026-overview",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2026-house-h-r-bloodengutz-presents-a-halloween-fright-tacu",
@@ -5955,7 +6805,28 @@
       "location": "Sprung Tent 2",
       "sourceIds": [
         "wiki-h-r-bloodengutz-presents-a-halloween-fright-tacular",
-        "press-uo-hhn-2026-overview"
+        "press-uo-hhn-2026-overview",
+        "universal-media-site"
+      ],
+      "media": [
+        {
+          "id": "hhn-2026-house-h-r-bloodengutz-presents-a-halloween-fright-tacu-media-1",
+          "kind": "poster",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/06/HR-Bloodengutz_1920x1080.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "press-uo-hhn-2026-overview",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2026-house-h-r-bloodengutz-presents-a-halloween-fright-tacu-media-2",
+          "kind": "promotional_image",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/08/04_H.R.-Bloodengutz-Presents_-A-Halloween-Fright-Tacular.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Opening photograph. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
       ]
     },
     {
@@ -5969,7 +6840,22 @@
       },
       "summary": "Jack the Clown and Dr. Oddfellow invite guests into the season's carnival midway.",
       "location": "Illumination Boulevard",
-      "sourceIds": ["wiki-infernal-carnival-of-nightmares-scarezone", "press-uo-hhn-2026-overview"]
+      "sourceIds": [
+        "wiki-infernal-carnival-of-nightmares-scarezone",
+        "press-uo-hhn-2026-overview",
+        "discover-universal-hhn-2026-orlando"
+      ],
+      "media": [
+        {
+          "id": "hhn-2026-zone-infernal-carnival-of-nightmares-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2026/06/ICON.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2026-orlando",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2026-zone-downtown-clowntown",
@@ -5982,7 +6868,32 @@
       },
       "summary": "A troupe of clowns takes over the city streets.",
       "location": "New York",
-      "sourceIds": ["wiki-downtown-clowntown-scarezone", "press-uo-hhn-2026-overview"]
+      "sourceIds": [
+        "wiki-downtown-clowntown-scarezone",
+        "press-uo-hhn-2026-overview",
+        "discover-universal-hhn-2026-orlando",
+        "universal-media-site"
+      ],
+      "media": [
+        {
+          "id": "hhn-2026-zone-downtown-clowntown-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2026/07/QuitClownin.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2026-orlando",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2026-zone-downtown-clowntown-media-2",
+          "kind": "promotional_image",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/08/05_Downtown-Clowntown_Killer-Klowns-from-Outer-Space.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Opening photograph. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2026-zone-sideshow-of-decay",
@@ -5995,7 +6906,22 @@
       },
       "summary": "Cindy Caine opens a portal and brings back nightmares from the event's past.",
       "location": "Hollywood",
-      "sourceIds": ["wiki-sideshow-of-decay", "press-uo-hhn-2026-overview"]
+      "sourceIds": [
+        "wiki-sideshow-of-decay",
+        "press-uo-hhn-2026-overview",
+        "discover-universal-hhn-2026-orlando"
+      ],
+      "media": [
+        {
+          "id": "hhn-2026-zone-sideshow-of-decay-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2026/06/SideshowOfDecay.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2026-orlando",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2026-zone-mel-s-die-in-zombies",
@@ -7448,7 +8374,19 @@
           "location": "Soundstage 22",
           "sourceIds": ["wiki-stranger-things-orlando-2018"]
         }
-      ]
+      ],
+      "media": [
+        {
+          "id": "hhn-2018-house-stranger-things-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2018/10/Stranger-Things-Poster-Halloween-Horror-Nights.jpg",
+          "attribution": "Universal Destinations & Experiences",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Includes Stranger Things intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": ["discover-universal"]
     },
     {
       "id": "hhn-2018-house-trick-r-treat-hollywood",
@@ -7686,7 +8624,19 @@
           "location": "Soundstage 25",
           "sourceIds": ["wiki-stranger-things-orlando-2019"]
         }
-      ]
+      ],
+      "media": [
+        {
+          "id": "hhn-2019-house-stranger-things-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2019/07/Stranger-Things-Maze-Key-Art-HHN-2019.jpg",
+          "attribution": "Universal Destinations & Experiences",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Includes Stranger Things 2 intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": ["universal-media-site"]
     },
     {
       "id": "hhn-2019-house-holidayz-in-hell",
@@ -7752,7 +8702,19 @@
           "location": "Soundstage 22",
           "sourceIds": ["wiki-ghostbusters-orlando"]
         }
-      ]
+      ],
+      "media": [
+        {
+          "id": "hhn-2019-house-ghostbusters-hollywood-media-1",
+          "kind": "logo",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2019/07/Ghostbusters-maze-at-HHN-2019-logo.jpg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Includes Ghostbusters intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": ["universal-media-site"]
     },
     {
       "id": "hhn-2019-house-killer-klowns-from-outer-space-hollywood",
@@ -8050,7 +9012,18 @@
         "franchise": "The Purge"
       },
       "location": "Backlot",
-      "sourceIds": ["wiki-terror-tram-the-ultimate-purge"]
+      "sourceIds": ["wiki-terror-tram-the-ultimate-purge", "universal-media-site"],
+      "media": [
+        {
+          "id": "hhn-2021-zone-terror-tram-the-ultimate-purge-media-1",
+          "kind": "promotional_image",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2021/08/Terror-Tram-at-USH-HHN-2021-scaled-e1629301566296.jpg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Includes The Purge intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2021-zone-universal-monsters-silver-scream-queenz",
@@ -8524,7 +9497,19 @@
           "location": "Soundstage 22",
           "sourceIds": ["wiki-a-quiet-place-orlando-2024"]
         }
-      ]
+      ],
+      "media": [
+        {
+          "id": "hhn-2024-house-a-quiet-place-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2024/05/24-UNA-2638665-HHN24-UNA-Beat-2-Toolkit-IP-COOKIES-Key-Art-Resizes-Layout9-1.jpg",
+          "attribution": "Universal Destinations & Experiences",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Includes A Quiet Place intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2024-orlando",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": ["discover-universal-hhn-2024-orlando"]
     },
     {
       "id": "hhn-2024-house-dead-exposure-death-valley",
@@ -8536,7 +9521,18 @@
         "type": "original"
       },
       "location": "Mummy Venue",
-      "sourceIds": ["wiki-dead-exposure-death-valley"]
+      "sourceIds": ["wiki-dead-exposure-death-valley", "universal-media-site"],
+      "media": [
+        {
+          "id": "hhn-2024-house-dead-exposure-death-valley-media-1",
+          "kind": "poster",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2024/02/Dead-Exposure-Death-Valley-Key-Art-HHN-2024-scaled.jpg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2024-house-monstruos-2-the-nightmares-of-latin-america",
@@ -8548,7 +9544,18 @@
         "type": "original"
       },
       "location": "Parisian Courtyard",
-      "sourceIds": ["wiki-monstruos-2-the-nightmares-of-latin-america"]
+      "sourceIds": ["wiki-monstruos-2-the-nightmares-of-latin-america", "universal-media-site"],
+      "media": [
+        {
+          "id": "hhn-2024-house-monstruos-2-the-nightmares-of-latin-america-media-1",
+          "kind": "poster",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2024/02/Monstruos-2-Key-Art-HHN-2024-scaled.jpg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2024-house-ghostbusters-frozen-empire-hollywood",
@@ -8576,7 +9583,28 @@
           "location": "Soundstage 23B",
           "sourceIds": ["wiki-ghostbusters-frozen-empire-orlando"]
         }
-      ]
+      ],
+      "media": [
+        {
+          "id": "hhn-2024-house-ghostbusters-frozen-empire-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2024/06/2697416-HHN24-UNA-Beat-3-Toolkit-SMORES-Key-Art-Resizes14-Social-1920x1080-1-scaled.jpg",
+          "attribution": "Universal Destinations & Experiences",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Includes Ghostbusters: Frozen Empire intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2024-orlando",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2024-house-ghostbusters-frozen-empire-hollywood-media-2",
+          "kind": "promotional_image",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2024/09/Ghostbusters_-Frozen-Empire-10-scaled.jpg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Includes Ghostbusters: Frozen Empire intellectual property. Opening-night photograph. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": ["discover-universal-hhn-2024-orlando", "universal-media-site"]
     },
     {
       "id": "hhn-2024-house-insidious-the-further-hollywood",
@@ -8604,7 +9632,28 @@
           "location": "Soundstage 24A",
           "sourceIds": ["wiki-insidious-the-further-orlando"]
         }
-      ]
+      ],
+      "media": [
+        {
+          "id": "hhn-2024-house-insidious-the-further-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2024/07/Insidious-Haunted-House-Art-USF.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Includes Insidious intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2024-orlando",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2024-house-insidious-the-further-hollywood-media-2",
+          "kind": "promotional_image",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2024/08/03_Halloween-Horror-Nights-2024-Insidious_-The-Further-scaled.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Includes Insidious intellectual property. Event photograph. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": ["discover-universal-hhn-2024-orlando", "universal-media-site"]
     },
     {
       "id": "hhn-2024-house-universal-monsters-eternal-bloodlines-hollywood",
@@ -8632,7 +9681,19 @@
           "location": "Sprung Tent 3",
           "sourceIds": ["wiki-universal-monsters-eternal-bloodlines-orlando"]
         }
-      ]
+      ],
+      "media": [
+        {
+          "id": "hhn-2024-house-universal-monsters-eternal-bloodlines-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2024/07/Universal-Monsters-Eternal-Bloodlines.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Includes Universal Classic Monsters intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2024-orlando",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": ["discover-universal-hhn-2024-orlando"]
     },
     {
       "id": "hhn-2024-house-the-texas-chainsaw-massacre-the-legacy-of-leathe",
@@ -8658,7 +9719,18 @@
         "franchise": "After Hours"
       },
       "location": "Soundstage 15",
-      "sourceIds": ["wiki-the-weeknd-nightmare-trilogy"]
+      "sourceIds": ["wiki-the-weeknd-nightmare-trilogy", "universal-media-site"],
+      "media": [
+        {
+          "id": "hhn-2024-house-the-weeknd-nightmare-trilogy-media-1",
+          "kind": "poster",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2024/08/The-Weeknd-Key-Art-USH-HHN-2024-scaled.jpg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Includes After Hours intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2024-zone-terror-tram-enter-the-blumhouse",
@@ -8667,7 +9739,18 @@
       "name": "Terror Tram: Enter the Blumhouse",
       "parks": ["hollywood"],
       "location": "Studio Tour Backlot",
-      "sourceIds": ["wiki-terror-tram-enter-the-blumhouse"]
+      "sourceIds": ["wiki-terror-tram-enter-the-blumhouse", "universal-media-site"],
+      "media": [
+        {
+          "id": "hhn-2024-zone-terror-tram-enter-the-blumhouse-media-1",
+          "kind": "promotional_image",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2024/08/Terror-Tram-at-USH-HHN-2024-scaled.jpg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2024-zone-luchadores-monstruosos",
@@ -8743,7 +9826,19 @@
           "location": "Sprung Tent 4",
           "sourceIds": ["wiki-fallout-orlando"]
         }
-      ]
+      ],
+      "media": [
+        {
+          "id": "hhn-2025-house-fallout-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2025/06/HHN-2025-Fallout-Key-Art.jpg",
+          "attribution": "Universal Destinations & Experiences",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Includes Fallout intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2025-orlando",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": ["discover-universal-hhn-2025-orlando"]
     },
     {
       "id": "hhn-2025-house-monstruos-3-the-ghosts-of-latin-america",
@@ -8783,7 +9878,19 @@
           "location": "Fast & Furious Location",
           "sourceIds": ["wiki-jason-universe-orlando"]
         }
-      ]
+      ],
+      "media": [
+        {
+          "id": "hhn-2025-house-jason-universe-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2025/06/HHN-2025-Jason-Universe-Key-Art.jpg",
+          "attribution": "Universal Destinations & Experiences",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Includes Friday The 13th intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2025-orlando",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": ["discover-universal-hhn-2025-orlando"]
     },
     {
       "id": "hhn-2025-house-scarecrow-music-by-slash",
@@ -8795,7 +9902,18 @@
         "type": "original"
       },
       "location": "T-Pad",
-      "sourceIds": ["wiki-scarecrow-the-reaping-hollywood"]
+      "sourceIds": ["wiki-scarecrow-the-reaping-hollywood", "universal-media-site"],
+      "media": [
+        {
+          "id": "hhn-2025-house-scarecrow-music-by-slash-media-1",
+          "kind": "poster",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2025/07/Scarecrow-Music-by-Slash-key-art-HHN-at-USH-2025.jpg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2025-house-wwe-presents-the-horrors-of-the-wyatt-sicks-hollywood",
@@ -8823,7 +9941,19 @@
           "location": "Soundstage 23A",
           "sourceIds": ["wiki-wwe-presents-the-horrors-of-the-wyatt-sicks-orlando"]
         }
-      ]
+      ],
+      "media": [
+        {
+          "id": "hhn-2025-house-wwe-presents-the-horrors-of-the-wyatt-sicks-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2025/07/Wyatt-Sicks-HHN-Orlando.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Includes The Wyatt Sicks intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2025-orlando",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": ["discover-universal-hhn-2025-orlando"]
     },
     {
       "id": "hhn-2025-house-terrifier-hollywood",
@@ -8851,7 +9981,19 @@
           "location": "Soundstage 25",
           "sourceIds": ["wiki-terrifier-orlando"]
         }
-      ]
+      ],
+      "media": [
+        {
+          "id": "hhn-2025-house-terrifier-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2025/06/Terrifier-at-Halloween-Horror-Nights-Orlando.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Includes Terrifier intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2025-orlando",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": ["discover-universal-hhn-2025-orlando"]
     },
     {
       "id": "hhn-2025-house-poltergeist",
@@ -8864,7 +10006,18 @@
         "franchise": "Poltergeist"
       },
       "location": "H-Lot South",
-      "sourceIds": ["wiki-poltergeist-hollywood"]
+      "sourceIds": ["wiki-poltergeist-hollywood", "universal-media-site"],
+      "media": [
+        {
+          "id": "hhn-2025-house-poltergeist-media-1",
+          "kind": "poster",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2025/08/Poltergiest-key-art-for-media-site.jpg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Includes Poltergeist intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2025-zone-terror-tram-enter-the-blumhouse",
@@ -8873,7 +10026,18 @@
       "name": "Terror Tram: Enter the Blumhouse",
       "parks": ["hollywood"],
       "location": "Studio Tour Backlot",
-      "sourceIds": ["wiki-terror-tram-enter-the-blumhouse"]
+      "sourceIds": ["wiki-terror-tram-enter-the-blumhouse", "universal-media-site"],
+      "media": [
+        {
+          "id": "hhn-2025-zone-terror-tram-enter-the-blumhouse-media-1",
+          "kind": "poster",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2025/08/Terror-Tram-key-art-HHN-at-USH-2025.jpg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2025-zone-carnival-of-carnage",
@@ -8949,7 +10113,28 @@
           "location": "Sprung Tent 3",
           "sourceIds": ["wiki-sinners-orlando", "press-uo-hhn-2026-overview"]
         }
-      ]
+      ],
+      "media": [
+        {
+          "id": "hhn-2026-house-sinners-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/05/Sinners-key-art-at-HHN-2026.jpg",
+          "attribution": "Universal Destinations & Experiences",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Includes Sinners intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2026-house-sinners-hollywood-media-2",
+          "kind": "promotional_image",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/08/06_Sinners.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Includes Sinners intellectual property. Opening photograph. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": ["universal-media-site"]
     },
     {
       "id": "hhn-2026-house-killcea-era-music-by-slash",
@@ -8961,7 +10146,18 @@
         "type": "original"
       },
       "location": "Parisian Courtyard",
-      "sourceIds": ["wiki-killcea-era-music-by-slash"]
+      "sourceIds": ["wiki-killcea-era-music-by-slash", "discover-universal-hhn-2026-hollywood"],
+      "media": [
+        {
+          "id": "hhn-2026-house-killcea-era-music-by-slash-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2026/08/killceanera-key-art.jpg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2026-hollywood",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2026-house-ozzy-osbourne-prince-of-darkness-hollywood",
@@ -8995,7 +10191,28 @@
             "press-uo-hhn-2026-overview"
           ]
         }
-      ]
+      ],
+      "media": [
+        {
+          "id": "hhn-2026-house-ozzy-osbourne-prince-of-darkness-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/07/Ozzy-at-HHN-2026-media-site-image.jpg",
+          "attribution": "Universal Destinations & Experiences",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Includes Ozzy Osbourne intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2026-house-ozzy-osbourne-prince-of-darkness-hollywood-media-2",
+          "kind": "promotional_image",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/08/04_Ozzy-Osbourne_Prince-of-Darkness.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Includes Ozzy Osbourne intellectual property. Opening photograph. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": ["universal-media-site"]
     },
     {
       "id": "hhn-2026-house-stranger-things-5-hollywood",
@@ -9023,7 +10240,28 @@
           "location": "Soundstage 23B",
           "sourceIds": ["wiki-stranger-things-5-orlando", "press-uo-hhn-2026-overview"]
         }
-      ]
+      ],
+      "media": [
+        {
+          "id": "hhn-2026-house-stranger-things-5-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/06/Stranger-Things-at-Halloween-Horror-Nights-2026.jpeg",
+          "attribution": "Universal Destinations & Experiences",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Includes Stranger Things 5 intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2026-house-stranger-things-5-hollywood-media-2",
+          "kind": "promotional_image",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/08/06_Stranger-Things-5.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Includes Stranger Things 5 intellectual property. Opening photograph. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": ["universal-media-site"]
     },
     {
       "id": "hhn-2026-house-killer-klowns-from-outer-space",
@@ -9036,7 +10274,21 @@
         "franchise": "Killer Klowns From Outer Space"
       },
       "location": "T-Pad",
-      "sourceIds": ["wiki-killer-klowns-from-outer-space-hollywood"]
+      "sourceIds": [
+        "wiki-killer-klowns-from-outer-space-hollywood",
+        "discover-universal-hhn-2026-hollywood"
+      ],
+      "media": [
+        {
+          "id": "hhn-2026-house-killer-klowns-from-outer-space-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2026/08/26-USH-9494635-HHN26-UNA-Klownz-DU-940x705-1.jpg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Includes Killer Klowns From Outer Space intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2026-hollywood",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2026-house-dead-deader-deadest",
@@ -9048,7 +10300,18 @@
         "type": "original"
       },
       "location": "Jurassic World Queue",
-      "sourceIds": ["wiki-dead-deader-deadest"]
+      "sourceIds": ["wiki-dead-deader-deadest", "discover-universal-hhn-2026-hollywood"],
+      "media": [
+        {
+          "id": "hhn-2026-house-dead-deader-deadest-media-1",
+          "kind": "promotional_image",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2026/07/USH-Lorry_1920x1080.jpg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not key art: the only official image found for this house. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2026-hollywood",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2026-house-hellraiser-hollywood",
@@ -9076,7 +10339,28 @@
           "location": "Sprung Tent 4",
           "sourceIds": ["wiki-hellraiser-orlando", "press-uo-hhn-2026-overview"]
         }
-      ]
+      ],
+      "media": [
+        {
+          "id": "hhn-2026-house-hellraiser-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/06/HHN26-UNA-Hellraiser-1920x1080-1-e1782841176149.jpg",
+          "attribution": "Universal Destinations & Experiences",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Includes Hellraiser intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2026-house-hellraiser-hollywood-media-2",
+          "kind": "promotional_image",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/08/03_Hellraiser.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Includes Hellraiser intellectual property. Opening photograph. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": ["universal-media-site"]
     },
     {
       "id": "hhn-2026-house-evil-dead-burn-hollywood",
@@ -9104,7 +10388,19 @@
           "location": "Soundstage 23A",
           "sourceIds": ["wiki-evil-dead-burn-orlando", "press-uo-hhn-2026-overview"]
         }
-      ]
+      ],
+      "media": [
+        {
+          "id": "hhn-2026-house-evil-dead-burn-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/07/Evil-Dead-Burn-at-Halloween-Horror-Nights.jpg",
+          "attribution": "Universal Destinations & Experiences",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Includes Evil Dead Burn intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": ["universal-media-site"]
     },
     {
       "id": "hhn-2026-zone-terror-tram-starring-art-the-clown",
@@ -9117,7 +10413,21 @@
         "franchise": "Terrifier 3"
       },
       "location": "Studio Tour Backlot",
-      "sourceIds": ["wiki-terror-tram-starring-art-the-clown"]
+      "sourceIds": [
+        "wiki-terror-tram-starring-art-the-clown",
+        "discover-universal-hhn-2026-hollywood"
+      ],
+      "media": [
+        {
+          "id": "hhn-2026-zone-terror-tram-starring-art-the-clown-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2026/08/26-USH-9909100-HHN26-IP-Tram-DU-940x705-1.jpeg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Includes Terrifier 3 intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2026-hollywood",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2026-zone-fortnitemares-hollywood",
@@ -9145,7 +10455,28 @@
           "location": "Central Park",
           "sourceIds": ["wiki-fortnitemares-orlando", "press-uo-hhn-2026-overview"]
         }
-      ]
+      ],
+      "media": [
+        {
+          "id": "hhn-2026-zone-fortnitemares-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/07/Fortnitemares-at-Halloween-Horror-Nights.jpg",
+          "attribution": "Universal Destinations & Experiences",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Includes Fortnite intellectual property. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        },
+        {
+          "id": "hhn-2026-zone-fortnitemares-hollywood-media-2",
+          "kind": "promotional_image",
+          "url": "https://media.universalparksusa.com/wp-content/uploads/2026/08/03_Fortnitemares-1-scaled.jpg",
+          "attribution": "Universal Orlando Resort",
+          "licenseNotes": "Universal press image from its Media Site, whose terms permit download \"for news reporting and editorial purposes only\" and no commercial use; Universal's terms of use allow personal, non-commercial use. Includes Fortnite intellectual property. Opening photograph. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "universal-media-site",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": ["universal-media-site"]
     },
     {
       "id": "hhn-2026-zone-el-circo-de-la-muerte",
@@ -9157,7 +10488,18 @@
         "type": "original"
       },
       "location": "French Street",
-      "sourceIds": ["wiki-el-circo-de-la-muerte"]
+      "sourceIds": ["wiki-el-circo-de-la-muerte", "discover-universal-hhn-2026-hollywood"],
+      "media": [
+        {
+          "id": "hhn-2026-zone-el-circo-de-la-muerte-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2026/08/circo-sz-key-art.jpg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2026-hollywood",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2026-zone-hackerz",
@@ -9169,7 +10511,18 @@
         "type": "original"
       },
       "location": "Front Gates",
-      "sourceIds": ["wiki-hackerz"]
+      "sourceIds": ["wiki-hackerz", "discover-universal-hhn-2026-hollywood"],
+      "media": [
+        {
+          "id": "hhn-2026-zone-hackerz-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2026/08/26-USH-9900080-HHN26-Hackerz-IP-1920x1080-1.jpg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2026-hollywood",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2026-zone-blood-bog",
@@ -9181,7 +10534,18 @@
         "type": "original"
       },
       "location": "Studio Tour Backlot",
-      "sourceIds": ["wiki-blood-bog"]
+      "sourceIds": ["wiki-blood-bog", "discover-universal-hhn-2026-hollywood"],
+      "media": [
+        {
+          "id": "hhn-2026-zone-blood-bog-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2026/08/blood-bog-sz-key-art.jpg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2026-hollywood",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2026-zone-murder-of-crowz",
@@ -9193,7 +10557,18 @@
         "type": "original"
       },
       "location": "Front Gates",
-      "sourceIds": ["wiki-murder-of-crowz"]
+      "sourceIds": ["wiki-murder-of-crowz", "discover-universal-hhn-2026-hollywood"],
+      "media": [
+        {
+          "id": "hhn-2026-zone-murder-of-crowz-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2026/08/crowz-sz-key-art.jpg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2026-hollywood",
+          "distribution": "reference"
+        }
+      ]
     },
     {
       "id": "hhn-2026-zone-shriek-of-the-banshee",
@@ -9205,7 +10580,18 @@
         "type": "original"
       },
       "location": "Decision Hub",
-      "sourceIds": ["wiki-shriek-of-the-banshee"]
+      "sourceIds": ["wiki-shriek-of-the-banshee", "discover-universal-hhn-2026-hollywood"],
+      "media": [
+        {
+          "id": "hhn-2026-zone-shriek-of-the-banshee-media-1",
+          "kind": "poster",
+          "url": "https://blog.discoveruniversal.com/wp-content/uploads/2026/08/shriek-sz-key-art.jpg",
+          "attribution": "Universal Studios Hollywood",
+          "licenseNotes": "From Universal's official Discover Universal blog (all rights reserved); Universal's terms of use allow personal, non-commercial use. Not for redistribution; an offline copy may be kept for personal use.",
+          "sourceId": "discover-universal-hhn-2026-hollywood",
+          "distribution": "reference"
+        }
+      ]
     }
   ]
 }

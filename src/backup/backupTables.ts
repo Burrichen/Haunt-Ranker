@@ -299,14 +299,14 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
       haunt_id: { kind: "text", nullable: true, references: "haunts" },
       media_type: {
         kind: "text",
-        values: ["poster", "promotional_image", "logo", "event_artwork", "local_image"],
+        values: ["poster", "promotional_image", "logo", "event_artwork", "map", "local_image"],
       },
       url: { kind: "text", nullable: true },
       local_path: { kind: "text", nullable: true },
       source_id: { kind: "text", nullable: true, references: "sources" },
       attribution: { kind: "text", nullable: true },
       license_notes: { kind: "text", nullable: true },
-      distribution: { kind: "text", values: ["reference", "local", "bundled"] },
+      distribution: { kind: "text", values: ["reference", "unclear", "local", "bundled"] },
       ...TIMESTAMPS,
     },
     rowCheck: (row) => {

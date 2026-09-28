@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Star } from "lucide-react";
 import { Link } from "react-router-dom";
+import type { ArtworkFit } from "../../media/mediaPolicy";
+import { isRankedCategory } from "../../models/haunt";
 import type { Attraction } from "../../models/attraction";
 import type { EventYear } from "../../models/eventYear";
 import { useHauntRegistry } from "../../hooks/useHauntRegistry";
@@ -20,6 +22,8 @@ export interface ArchiveCardProps {
   eventYear: EventYear | null;
   /** A poster (or other) artwork URL, or null to show the generated fallback. */
   posterUrl: string | null;
+  /** How the artwork sits in its frame; a logo is shown whole. */
+  posterFit?: ArtworkFit;
   /** `null`/omitted means genuinely unrated — renders a "Not Rated" badge, never a 0. */
   rating?: Rating | null;
 }
@@ -35,7 +39,13 @@ const IP_LABEL: Record<NonNullable<Attraction["ipType"]>, string> = {
  * (name, year, type, park icons) — never a generated fake poster. Always
  * links through to that attraction's wiki page.
  */
-export function ArchiveCard({ attraction, eventYear, posterUrl, rating }: ArchiveCardProps) {
+export function ArchiveCard({
+  attraction,
+  eventYear,
+  posterUrl,
+  posterFit = "cover",
+  rating,
+}: ArchiveCardProps) {
   const [imageFailed, setImageFailed] = useState(false);
   const { isAllHaunts } = useHauntScope();
   const registry = useHauntRegistry();
@@ -51,7 +61,10 @@ export function ArchiveCard({ attraction, eventYear, posterUrl, rating }: Archiv
             <img
               src={posterUrl ?? undefined}
               alt={`${attraction.name} artwork`}
-              className="archive-card__image"
+              className={cn(
+                "archive-card__image",
+                posterFit === "contain" && "archive-card__image--contain",
+              )}
               onError={() => setImageFailed(true)}
             />
           ) : (
@@ -91,7 +104,8 @@ export function ArchiveCard({ attraction, eventYear, posterUrl, rating }: Archiv
           )}
           <div className="archive-card__badges">
             {attraction.ipType && <Badge variant="neutral">{IP_LABEL[attraction.ipType]}</Badge>}
-            {rating ? (
+            {/* Shows and special experiences aren't rated, so they say nothing about it. */}
+            {!isRankedCategory(attraction.attractionType) ? null : rating ? (
               <Badge variant="positive">
                 <Star size={11} strokeWidth={2} />
                 {formatScore(rating.total)} / {RATING_TOTAL_MAX}

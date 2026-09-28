@@ -31,3 +31,81 @@
   font-size: 0.6875rem;
   color: var(--color-text-tertiary);
 }
+
+.media-gallery-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.media-gallery__image--contain {
+  box-sizing: border-box;
+  padding: var(--space-3);
+  object-fit: contain;
+}
+
+/* Recorded, not displayed: provenance and a link, laid out like the source
+   list so a reference reads as a citation rather than a missing picture. */
+.media-gallery__references {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.media-gallery__reference {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-2);
+}
+
+.media-gallery__reference-icon {
+  display: inline-flex;
+  margin-top: 2px;
+  color: var(--color-text-tertiary);
+}
+
+.media-gallery__reference-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.media-gallery__reference-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.media-gallery__reference-note {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--color-text-tertiary);
+}
+
+.media-gallery__reference-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  align-self: flex-start;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 0.8125rem;
+  color: var(--color-accent-text, var(--color-text-secondary));
+  cursor: pointer;
+}
+
+.media-gallery__reference-link:hover {
+  text-decoration: underline;
+}

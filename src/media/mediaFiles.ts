@@ -3,45 +3,22 @@ import { appDataDir, join } from "@tauri-apps/api/path";
 import { open } from "@tauri-apps/plugin-dialog";
 import { mkdir, readFile, remove, writeFile } from "@tauri-apps/plugin-fs";
 import type { Media } from "../models/media";
-import { generateId } from "../repositories/id";
+import {
+  artworkFit,
+  chooseArtwork,
+  mayDisplayInline,
+  type ArtworkFit,
+  type ArtworkSlot,
+} from "./mediaPolicy";
+import {
+  buildStoredFileName,
+  fileNameOf,
+  IMAGE_EXTENSIONS,
+  MEDIA_DIRECTORY,
+  toStoredPath,
+} from "./storedFiles";
 
-/** Everything the app manages itself lives under one directory inside the app data dir. */
-export const MEDIA_DIRECTORY = "media";
-
-const IMAGE_EXTENSIONS = ["png", "jpg", "jpeg", "gif", "webp", "avif", "bmp"];
-
-/** The last path segment, whichever separator the platform used. */
-export function fileNameOf(path: string): string {
-  return path.split(/[\\/]/).pop() ?? path;
-}
-
-/**
- * A filename that can't collide and can't smuggle anything.
- *
- * The random id is what actually guarantees uniqueness — two files called
- * `poster.jpg` from different folders both keep their readable name and still
- * land on disk separately. The original name is reduced to plain characters
- * so nothing in it can escape the media directory.
- */
-export function buildStoredFileName(originalName: string, id: string = generateId()): string {
-  const name = fileNameOf(originalName);
-  const lastDot = name.lastIndexOf(".");
-  const rawExtension = lastDot > 0 ? name.slice(lastDot + 1).toLowerCase() : "";
-  const extension = IMAGE_EXTENSIONS.includes(rawExtension) ? rawExtension : "img";
-
-  const base = (lastDot > 0 ? name.slice(0, lastDot) : name)
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 48);
-
-  return `${base || "image"}-${id}.${extension}`;
-}
-
-/** The value stored in `media.local_path` — relative to the app data dir, never the user's path. */
-export function toStoredPath(fileName: string): string {
-  return `${MEDIA_DIRECTORY}/${fileName}`;
-}
+export { buildStoredFileName, fileNameOf, IMAGE_EXTENSIONS, MEDIA_DIRECTORY, toStoredPath };
 
 let appDataDirPromise: Promise<string> | null = null;
 
@@ -87,37 +64,84 @@ export async function importLocalMediaFile(): Promise<ImportedMediaFile | null> 
 }
 
 /**
- * What an `<img src>` should point at: a remote URL as-is, or an asset-protocol
- * URL for a managed local file. `null` when there's nothing to show, which is a
- * normal state — the UI's fallback card covers it.
+ * What an `<img src>` should point at, or `null` when the app may not show
+ * this image at all.
+ *
+ * Only an image the app holds is displayed: a copy in its own media folder,
+ * or an approved asset. A reference or an unclear copy returns `null`
+ * whatever its URL, so the webview never fetches artwork from someone else's
+ * server — the app works offline, and hotlinks nothing.
+ * A managed local file is served through the asset protocol from the app's
+ * own data directory — never from wherever the user originally picked it.
+ * `null` is a normal answer: the designed fallback covers it.
  */
 export async function resolveMediaSrc(
-  media: Pick<Media, "url" | "localPath">,
+  media: Pick<Media, "url" | "localPath" | "distribution">,
 ): Promise<string | null> {
-  if (media.url) {
-    return media.url;
-  }
-  if (!media.localPath) {
+  if (!mayDisplayInline(media)) {
     return null;
   }
-  return convertFileSrc(await join(await dataDir(), media.localPath));
+  if (media.localPath) {
+    return convertFileSrc(await join(await dataDir(), media.localPath));
+  }
+  return media.url ?? null;
+}
+
+/** An image the app may show in a slot, and how it sits in the frame. */
+export interface Artwork {
+  src: string;
+  fit: ArtworkFit;
 }
 
 /**
- * The display source for the most representative item in a list — the
- * preferred kind if it's there, otherwise the first. `null` when the list is
- * empty, which is not an error: the UI's fallback card is the answer.
+ * The image for a card or a header: the best kind for the slot among those
+ * the app may display. `null` when there isn't one, which is not an error —
+ * the fallback card is the answer.
+ */
+export async function pickArtwork(
+  mediaList: readonly Media[],
+  slot: ArtworkSlot,
+): Promise<Artwork | null> {
+  const chosen = chooseArtwork(mediaList, slot);
+  if (!chosen) {
+    return null;
+  }
+  const src = await resolveMediaSrc(chosen);
+  return src ? { src, fit: artworkFit(chosen) } : null;
+}
+
+/** An attraction's card fields: its artwork, if any, and how it sits in the frame. */
+export async function posterFields(
+  mediaList: readonly Media[],
+): Promise<{ posterUrl: string | null; posterFit?: ArtworkFit }> {
+  const artwork = await pickArtwork(mediaList, "attraction");
+  return artwork ? { posterUrl: artwork.src, posterFit: artwork.fit } : { posterUrl: null };
+}
+
+/** A season's card fields, likewise. */
+export async function seasonArtworkFields(
+  mediaList: readonly Media[],
+): Promise<{ artworkUrl: string | null; artworkFit?: ArtworkFit }> {
+  const artwork = await pickArtwork(mediaList, "season");
+  return artwork ? { artworkUrl: artwork.src, artworkFit: artwork.fit } : { artworkUrl: null };
+}
+
+/**
+ * Just the src, for callers that don't lay out logos. `event_artwork` asks
+ * for a season's image; anything else, an attraction's.
  */
 export async function pickMediaSrc(
   mediaList: Media[],
   preferredType?: Media["mediaType"],
 ): Promise<string | null> {
-  const preferred =
-    (preferredType && mediaList.find((item) => item.mediaType === preferredType)) ?? mediaList[0];
-  return preferred ? resolveMediaSrc(preferred) : null;
+  const artwork = await pickArtwork(
+    mediaList,
+    preferredType === "event_artwork" ? "season" : "attraction",
+  );
+  return artwork?.src ?? null;
 }
 
-/** Display sources for a whole list, keyed by media id. */
+/** Display sources for a whole list, keyed by media id — `null` for anything not shown. */
 export async function resolveMediaSrcMap(mediaList: Media[]): Promise<Map<string, string | null>> {
   const entries = await Promise.all(
     mediaList.map(async (item) => [item.id, await resolveMediaSrc(item)] as const),

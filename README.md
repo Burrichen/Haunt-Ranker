@@ -433,13 +433,12 @@ with an empty dependency array) — it does not reshuffle while the page
 stays open, per spec.
 
 Each spotlight attraction renders as an `ArchiveCard`
-(`src/components/archive/`): real poster artwork when a `Media` row has a
-loadable `url`, or an elegant CSS-only fallback (name, year, type badge,
-park icons) otherwise — including when the URL exists but the image
-itself fails to load (`onError` swaps to the fallback), which is exactly
-what happens with the dev sample dataset's intentionally-`.invalid` media
-URLs. The fallback is a UI treatment only; nothing here ever generates or
-fetches placeholder artwork.
+(`src/components/archive/`): real artwork when the app holds an image for the
+attraction — an offline copy, a user-provided file or an approved asset, chosen
+by `mediaPolicy` — or the designed fallback (name, year, type badge, park icons)
+otherwise, including when an image exists but fails to load (`onError` swaps
+to the fallback). The fallback is a UI treatment only; nothing here ever
+generates or fetches placeholder artwork.
 
 ### Attraction browser
 
@@ -856,21 +855,56 @@ attraction we don't have a legitimate image for, and it stays.
 **Media rows separate storage from distribution**, because they're
 different questions:
 
-- _Where does the file live?_ — a `url` (remote, fetched by the webview at
-  display time) or a `localPath` (a file the user picked, copied into the
-  app's own data directory).
-- _What may we do with it?_ — `distribution` is `reference` (default: never
-  copied, never shipped), `local` (kept in this installation's data
-  directory, still not shipped), or `bundled` (explicitly cleared to
-  distribute with the app). **Finding an image online is not that
-  decision**, and the default is the only safe assumption; the control spells
-  this out beside itself rather than leaving it to be inferred. Attribution
-  and license notes sit on the same row, and a media row can point at the
+- _Where does the file live?_ — a `url` (a remote original) or a
+  `localPath` (a file the user picked, copied into the app's own data
+  directory).
+- _What may we do with it?_ — `distribution` is one of four:
+
+  | Distribution | Means                        | Shown in the app?              | Shipped? |
+  | ------------ | ---------------------------- | ------------------------------ | -------- |
+  | `bundled`    | approved asset               | yes                            | may be   |
+  | `local`      | user-provided / offline copy | yes, from the app's own folder | never    |
+  | `reference`  | external reference only      | no — linked                    | never    |
+  | `unclear`    | redistribution unclear       | no — linked                    | never    |
+
+  **Finding an image online is not permission to show it or ship it**, and
+  the default is the only safe assumption; the control spells this out
+  beside itself rather than leaving it to be inferred. Attribution and
+  license notes sit on the same row, and a media row can point at the
   source it came from.
 
-This is what lets the eventual real dataset mix all three: reference the
-originals, let the user add their own local images, and bundle only what
-we've explicitly decided we may distribute.
+**Offline first, and nothing is hotlinked.** `src/media/mediaPolicy.ts` is the
+one place that decides what may appear on screen: only an image the app
+_holds_ is ever loaded — a `local` copy in its own media folder, or a
+`bundled` asset. The webview never fetches artwork from anyone's server, so
+every page works offline. A `reference` (an official original, hosted by its
+owner) or an `unclear` copy (anywhere else, or rights nobody has established)
+that has no copy here is listed on the wiki page's Media section with its
+owner, licence note and a **View at source** link that opens the system
+browser.
+
+**`npm run media:download`** saves personal offline copies of the recorded
+artwork into the app's media folder, under safe generated names, and marks
+each row `local` — keeping its original URL, credit and licence note, so a
+copy never loses where it came from. It asks each host for its own smaller
+rendition where one exists (WordPress's resized copies, Sanity's on-request
+resizing), so the archive's artwork is about 20 MB rather than 100. It skips
+PDFs and anything over the size cap (`--max-mb`, default 8), backs the
+database up first, and refuses to finish if personal data moved; `--check`
+verifies every held copy exists at a safe path. Re-importing a pack or the
+dataset corrects a record's URL and credit and leaves this machine's copy
+alone. The copies belong to the installation — never committed, never
+bundled — so run it once on each machine.
+
+Cards and headers pick by slot: an attraction prefers a poster, then other
+promotional art, then a photo, then a logo; a season prefers key art. A logo
+is shown whole on the card's own background rather than cropped. A `map` is
+recorded as a map and is never card artwork. With nothing that qualifies, the
+designed fallback is the card.
+
+The archive's media, with provenance for every record and the list of what has
+no artwork, is in `docs/research/media-manifest.json` (regenerate with
+`npx tsx scripts/media-manifest.ts`) and `docs/research/media-provenance.md`.
 
 **Imported files are managed, not merely remembered.** `src/media/` owns
 this: `importLocalMediaFile` opens the Tauri dialog, reads the chosen file
@@ -1397,7 +1431,12 @@ Scare Zones, Knott's Mazes, Knott's Scare Zones, and the All Haunts lists.
 They are separate lists and are mutually non-destructive — ordering one never
 writes to another. All Haunts keeps the unprefixed scope keys (`houses:all`,
 `scare_zones:all`, `attractions:all`), so every ranking saved before there was
-a second haunt is still exactly where it was.
+a second haunt is still exactly where it was. Those lists were HHN's lists
+when they were made, so migration 0012 also gives HHN its own copy
+(`hhn:houses:all`, …) — HHN attractions only, same order — wherever HHN has no
+list of its own yet. Viewing HHN, a person sees the order they made. The
+browser's "Personal Ranking" sort reads the same list as the Rankings page for
+whichever haunt is in view.
 
 ### Statistics
 
@@ -1409,16 +1448,35 @@ figures.
 
 ### Backups
 
-The backup format is at **version 3**, carrying each haunt's vocabulary and
+The backup format is at **version 4**, carrying each haunt's vocabulary and
 pack provenance alongside the haunts, venues, seasons, appearances,
 venue-specific wiki sections, debut years, ranking scopes and migration
-conflict log that version 2 added to version 1. **Version 1 and version 2
-backups still import**, through registered upgrades rather than special
-cases: a version 1 file's seasons are read as HHN (all that existed when it
-was written),
-each attraction's appearance is recovered from the season it belonged to, and
+conflict log that version 2 added to version 1. **Versions 1, 2 and 3 still
+import**, through registered upgrades rather than special cases: a version 1
+file's seasons are read as HHN (all that existed when it was written), each
+attraction's appearance is recovered from the season it belonged to, and
 nothing is invented — debut years and venue sections arrive empty because a
-version 1 file genuinely says nothing about them. Haunts and venues are
+version 1 file genuinely says nothing about them.
+
+A restore replaces the archive wholesale, so an old file never passes through
+the migrations written after it. Its upgrade does their work instead
+(`src/backup/hhnBackupUpgrades.ts`): a version 1 file gets 0009's cross-park
+merge, and a version 3 file gets 0012's HHN ranking copy. Restoring a backup
+made before multi-haunt support lands on the same HHN as migrating the
+database it came from.
+
+### The HHN regression fixture
+
+`src/test/fixtures/hhn-v7/` is Halloween Horror Nights as the last
+pre-multi-haunt build (475b8cd, schema 7) held it: that build's own importer
+and archive, a person's ratings, notes and rankings on top — including every
+case the cross-park merge has to decide — and that build's own record of
+everything its screens showed, plus its own backup export.
+`src/database/hhnMigrationRegression.test.ts` migrates that database, and
+restores that backup, with the current code and requires the same HHN: the
+only permitted difference is 0009 folding each Orlando/Hollywood pair into one
+record. Regenerate with `npx tsx scripts/make-hhn-v7-fixture.ts`; never edit
+the files by hand. Haunts and venues are
 carried in the file for completeness but are never deleted by an import, so a
 restore can't leave an app with no haunts.
 

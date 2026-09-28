@@ -60,6 +60,23 @@ export function createTestDatabaseAtVersion(version: number): {
 }
 
 /**
+ * A database restored from a SQL dump taken at schema `version`, then
+ * brought up to date by every later migration — the path a real install
+ * that has sat at that version takes when the app is updated.
+ */
+export function createTestDatabaseFromDump(dump: string, version: number): SqlExecutor {
+  const raw = new DatabaseSync(":memory:");
+  raw.exec(dump);
+  raw.exec("PRAGMA foreign_keys = ON;");
+  for (const file of readMigrationFiles()) {
+    if (migrationVersion(file) > version) {
+      raw.exec(readFileSync(join(MIGRATIONS_DIR, file), "utf8"));
+    }
+  }
+  return new NodeSqliteExecutor(raw);
+}
+
+/**
  * Creates a fresh in-memory SQLite database with the real migrations
  * (read from `src-tauri/migrations/`, the same files the Tauri app runs)
  * applied, for use in repository tests.

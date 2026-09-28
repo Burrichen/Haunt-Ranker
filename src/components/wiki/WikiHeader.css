@@ -119,3 +119,11 @@
     width: 140px;
   }
 }
+
+/* A logo is shown whole, on the frame's own background — cropping it to the
+   poster shape would make it look like a broken poster. */
+.wiki-header__image--contain {
+  box-sizing: border-box;
+  padding: var(--space-4);
+  object-fit: contain;
+}

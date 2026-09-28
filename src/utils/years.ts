@@ -1,4 +1,6 @@
+import type { ArtworkFit } from "../media/mediaPolicy";
 import type { Attraction } from "../models/attraction";
+import { isRankedCategory } from "../models/haunt";
 import type { EventYear } from "../models/eventYear";
 import type { Rating } from "../models/rating";
 import { pickExtreme, ratedOnly, type AttractionExtreme } from "./attractionMetrics";
@@ -10,6 +12,8 @@ export interface YearAttraction {
   /** `null` means genuinely unrated — never counted as a score of 0. */
   rating: Rating | null;
   posterUrl: string | null;
+  /** How the poster sits in its frame; a logo is shown whole. Cover when omitted. */
+  posterFit?: ArtworkFit;
 }
 
 /**
@@ -60,14 +64,19 @@ function mean(values: number[]): number {
   return values.reduce((sum, value) => sum + value, 0) / values.length;
 }
 
-/** Everything the app can honestly say about a year, computed from reviewed records only. */
+/**
+ * Everything the app can honestly say about a year, computed from reviewed
+ * records only — and only from the kinds of record that are reviewed at
+ * all, so a season's shows and overlays don't count as unreviewed.
+ */
 export function computeYearStats(items: YearAttraction[]): YearStats {
-  const rated = ratedOnly(items);
+  const reviewable = items.filter((item) => isRankedCategory(item.attraction.attractionType));
+  const rated = ratedOnly(reviewable);
 
   if (rated.length < MIN_REVIEWED_FOR_STATS) {
     return {
       reviewedCount: rated.length,
-      attractionCount: items.length,
+      attractionCount: reviewable.length,
       averages: null,
       superlatives: null,
     };
@@ -75,7 +84,7 @@ export function computeYearStats(items: YearAttraction[]): YearStats {
 
   return {
     reviewedCount: rated.length,
-    attractionCount: items.length,
+    attractionCount: reviewable.length,
     averages: {
       theme: mean(rated.map((item) => item.rating.theme)),
       fun: mean(rated.map((item) => item.rating.fun)),
@@ -99,6 +108,8 @@ export interface YearSummary {
   eventYear: EventYear;
   /** Real event artwork if the year has any on file — never a generated stand-in. */
   artworkUrl: string | null;
+  /** How the artwork sits in its frame. Cover when omitted. */
+  artworkFit?: ArtworkFit;
   houseCount: number;
   scareZoneCount: number;
   reviewedCount: number;
@@ -111,12 +122,14 @@ export function summarizeYear(
   eventYear: EventYear,
   items: YearAttraction[],
   artworkUrl: string | null,
+  artworkFit?: ArtworkFit,
 ): YearSummary {
   const stats = computeYearStats(items);
 
   return {
     eventYear,
     artworkUrl,
+    artworkFit,
     houseCount: items.filter((item) => item.attraction.attractionType === "house").length,
     scareZoneCount: items.filter((item) => item.attraction.attractionType === "scare_zone").length,
     reviewedCount: stats.reviewedCount,

@@ -7,7 +7,8 @@ import { createEventYearRepository } from "../repositories/eventYearRepository";
 import { createMediaRepository } from "../repositories/mediaRepository";
 import { createRatingRepository } from "../repositories/ratingRepository";
 import { createSeasonAppearanceRepository } from "../repositories/seasonAppearanceRepository";
-import { pickMediaSrc } from "../media/mediaFiles";
+import { posterFields, seasonArtworkFields } from "../media/mediaFiles";
+import type { ArtworkFit } from "../media/mediaPolicy";
 import { computeYearStats, type YearAttraction, type YearStats } from "../utils/years";
 import { classifySeasonLineage, type SeasonLineage } from "../utils/seasonLineage";
 
@@ -18,6 +19,7 @@ export interface YearArchive {
   eventYear: EventYear | null;
   /** Real event artwork if any exists — never a generated stand-in. */
   artworkUrl: string | null;
+  artworkFit?: ArtworkFit;
   houses: YearAttraction[];
   scareZones: YearAttraction[];
   /**
@@ -123,7 +125,7 @@ export function useYearArchive(eventYearId: string | undefined): YearArchive {
           attractions.map(async (attraction) => ({
             attraction,
             rating: ratingByAttraction.get(attraction.id) ?? null,
-            posterUrl: await pickMediaSrc(mediaByAttraction.get(attraction.id) ?? [], "poster"),
+            ...(await posterFields(mediaByAttraction.get(attraction.id) ?? [])),
           })),
         );
 
@@ -132,7 +134,7 @@ export function useYearArchive(eventYearId: string | undefined): YearArchive {
           error: null,
           notFound: false,
           eventYear,
-          artworkUrl: await pickMediaSrc(yearMedia, "event_artwork"),
+          ...(await seasonArtworkFields(yearMedia)),
           houses: items.filter((item) => item.attraction.attractionType === "house"),
           scareZones: items.filter((item) => item.attraction.attractionType === "scare_zone"),
           otherKinds: items.filter(

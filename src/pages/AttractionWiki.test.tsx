@@ -87,6 +87,8 @@ function makeWikiData(overrides: Partial<AttractionWikiState> = {}): AttractionW
     attraction: makeAttraction(),
     eventYear: makeEventYear(),
     media: [],
+    mediaSrc: new Map(),
+    hero: null,
     characters: [],
     sources: [],
     venueSections: [],
@@ -280,29 +282,80 @@ describe("AttractionWiki", () => {
     expect(screen.getByText("YouTube")).toBeInTheDocument();
   });
 
+  function makeMedia(overrides: Partial<Media> = {}): Media {
+    return {
+      id: "m1",
+      attractionId: "a1",
+      eventYearId: null,
+      mediaType: "poster",
+      url: "https://example.com/poster.jpg",
+      localPath: null,
+      sourceId: null,
+      attribution: null,
+      licenseNotes: null,
+      distribution: "bundled",
+      createdAt: "2026-01-01T00:00:00.000Z",
+      updatedAt: "2026-01-01T00:00:00.000Z",
+      ...overrides,
+    };
+  }
+
   it("excludes the header's hero image from the Media gallery to avoid duplication", () => {
-    const media: Media[] = [
-      {
-        id: "m1",
-        attractionId: "a1",
-        eventYearId: null,
-        mediaType: "poster",
-        url: "https://example.com/poster.jpg",
-        localPath: null,
-        sourceId: null,
-        attribution: null,
-        licenseNotes: null,
-        distribution: "reference",
-        createdAt: "2026-01-01T00:00:00.000Z",
-        updatedAt: "2026-01-01T00:00:00.000Z",
-      },
-    ];
-    mockedUseAttractionWiki.mockReturnValue(makeWikiData({ media }));
+    const media = [makeMedia()];
+    mockedUseAttractionWiki.mockReturnValue(
+      makeWikiData({
+        media,
+        mediaSrc: new Map([["m1", "https://example.com/poster.jpg"]]),
+        hero: { src: "https://example.com/poster.jpg", fit: "cover", mediaId: "m1" },
+      }),
+    );
     renderWiki();
 
+    expect(screen.getByAltText("Moonlight Manor artwork")).toHaveAttribute(
+      "src",
+      "https://example.com/poster.jpg",
+    );
     // The one and only media item was used as the header hero image, so
     // there's nothing left for the Media gallery section — it shouldn't render.
     expect(screen.queryByText("Media")).not.toBeInTheDocument();
+  });
+
+  it("records a reference without loading it, and links to where it was found", () => {
+    const media = [
+      makeMedia({
+        distribution: "reference",
+        attribution: "Universal Orlando Resort",
+        licenseNotes: "Press image. Editorial use only.",
+        sourceId: "s1",
+      }),
+    ];
+    mockedUseAttractionWiki.mockReturnValue(
+      makeWikiData({
+        media,
+        mediaSrc: new Map([["m1", null]]),
+        sources: [
+          {
+            id: "s1",
+            sourceType: "official_site",
+            title: "Press kit",
+            url: "https://example.com/press",
+            publisher: "Universal",
+            publishedAt: null,
+            notes: null,
+            createdAt: "2026-01-01T00:00:00.000Z",
+            updatedAt: "2026-01-01T00:00:00.000Z",
+          } as never,
+        ],
+      }),
+    );
+    renderWiki();
+
+    expect(screen.queryByRole("img", { name: /Poster/ })).not.toBeInTheDocument();
+    const recorded = screen.getByRole("list", { name: "Recorded artwork" });
+    expect(recorded).toHaveTextContent("Universal Orlando Resort");
+    expect(recorded).toHaveTextContent("no offline copy on this machine yet");
+    expect(recorded).toHaveTextContent("Editorial use only.");
+    expect(screen.getByRole("button", { name: /View at Universal/ })).toBeInTheDocument();
   });
 
   it("shows the My Review panel with a not-rated message when there is no rating", () => {

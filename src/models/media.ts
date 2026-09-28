@@ -1,6 +1,7 @@
 import type { EntityId, Timestamped } from "./common";
 
-export type MediaType = "poster" | "promotional_image" | "logo" | "event_artwork" | "local_image";
+export type MediaType =
+  "poster" | "promotional_image" | "logo" | "event_artwork" | "map" | "local_image";
 
 /** Media belongs to exactly one attraction OR one event year, never both. */
 export type MediaOwner = { attractionId: EntityId } | { eventYearId: EntityId };
@@ -10,14 +11,22 @@ export type MediaOwner = { attractionId: EntityId } | { eventYearId: EntityId };
  * separate from where the file currently is. Finding an image online has
  * never been permission to ship it.
  *
- * - `reference`: a link and nothing more. Never copied, never bundled. The
- *   default, because it's the only safe assumption without a decision.
- * - `local`: a file the user chose, copied into the app's own data
- *   directory. Theirs, on their machine, never shipped.
- * - `bundled`: explicitly cleared for distribution with the app, one asset
- *   at a time.
+ * - `reference` — *external reference only*: where the original lives, and
+ *   nothing more. Never copied, never bundled, and never loaded inline — the
+ *   app links to it rather than hotlinking it. The default, because it's the
+ *   only safe assumption without a decision.
+ * - `unclear` — *redistribution unclear*: recorded with its provenance so a
+ *   person can decide, typically a copy on someone else's site. Treated
+ *   exactly like `reference` until they do.
+ * - `local` — *user-provided*: a file the user chose, copied into the app's
+ *   own data directory. Theirs, on their machine, never shipped.
+ * - `bundled` — *approved*: deliberately cleared for distribution with the
+ *   app, one asset at a time.
+ *
+ * Only `local` and `bundled` are ever displayed as images. See
+ * `src/media/mediaPolicy.ts`.
  */
-export type MediaDistribution = "reference" | "local" | "bundled";
+export type MediaDistribution = "reference" | "unclear" | "local" | "bundled";
 
 /**
  * Media metadata — never assume artwork found online can legally be

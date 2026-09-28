@@ -7,7 +7,7 @@ import {
   PackagePlus,
   TriangleAlert,
 } from "lucide-react";
-import { useHauntPackImport } from "../../hooks/useHauntPackImport";
+import { useHauntPackImport, type HauntPackImportState } from "../../hooks/useHauntPackImport";
 import { parseImportSummary } from "../../packs/importHauntPack";
 import type { PackConflict, PackCounts, PackPreview } from "../../packs/planPackImport";
 import type { PackImportRecord } from "../../packs/packState";
@@ -177,41 +177,40 @@ function HistoryRow({ record }: { record: PackImportRecord }) {
   );
 }
 
-export interface HauntPackImportProps {
-  /** Called once an import lands, so the interface can pick up what is new. */
-  onImported?: () => void | Promise<void>;
+export interface HauntPackImportBodyProps {
+  importer: HauntPackImportState;
+  /** Offer "Open .json" as well as pasting. Off where the page is about pasting. */
+  allowFile?: boolean;
+  label?: string;
+  hint?: string;
 }
 
 /**
- * Importing a Haunt Pack, and the record of every pack imported before.
- *
- * Nothing here is specific to a haunt this app has heard of. A pack that
- * validates brings its own event, its own venues and its own words for
- * things, and this panel is where a person sees exactly what that would do
- * before agreeing to it.
+ * The controls themselves — open or paste, check, read the preview, import
+ * — without the panel around them, so Add a Haunt can show the same importer
+ * under more than one heading and keep one pasted pack between them.
  */
-export function HauntPackImport({ onImported }: HauntPackImportProps) {
-  const importer = useHauntPackImport(onImported);
+export function HauntPackImportBody({
+  importer,
+  allowFile = true,
+  label = "Haunt Pack JSON",
+  hint = "Paste the whole file. Nothing is written until you say so.",
+}: HauntPackImportBodyProps) {
   const [showHistory, setShowHistory] = useState(false);
 
   return (
-    <Panel elevated padding="lg" className="admin__section pack-import">
-      <h2 className="admin__section-title">Haunt Packs</h2>
-      <p className="pack-import__lead">
-        A Haunt Pack is a single JSON file describing an event, its seasons and everything in them.
-        Open one or paste it below — it is checked completely before anything is written, and you
-        see what it would change before it changes it.
-      </p>
-
+    <>
       <div className="pack-import__actions">
-        <Button
-          variant="secondary"
-          leadingIcon={<FolderOpen size={16} />}
-          onClick={() => void importer.chooseFile()}
-          disabled={importer.isBusy}
-        >
-          Open .json
-        </Button>
+        {allowFile && (
+          <Button
+            variant="secondary"
+            leadingIcon={<FolderOpen size={16} />}
+            onClick={() => void importer.chooseFile()}
+            disabled={importer.isBusy}
+          >
+            Open .json
+          </Button>
+        )}
         <Button
           variant="primary"
           leadingIcon={<PackagePlus size={16} />}
@@ -228,12 +227,8 @@ export function HauntPackImport({ onImported }: HauntPackImportProps) {
       </div>
 
       <Textarea
-        label="Haunt Pack JSON"
-        hint={
-          importer.sourcePath
-            ? `Loaded from ${importer.sourcePath}`
-            : "Paste the whole file. Nothing is written until you say so."
-        }
+        label={label}
+        hint={importer.sourcePath ? `Loaded from ${importer.sourcePath}` : hint}
         rows={12}
         spellCheck={false}
         className="pack-import__textarea"
@@ -318,6 +313,35 @@ export function HauntPackImport({ onImported }: HauntPackImportProps) {
       >
         {importer.pending && <PackPreviewBody preview={importer.pending.preview} />}
       </Modal>
+    </>
+  );
+}
+
+export interface HauntPackImportProps {
+  /** Called once an import lands, so the interface can pick up what is new. */
+  onImported?: () => void | Promise<void>;
+}
+
+/**
+ * Importing a Haunt Pack, and the record of every pack imported before.
+ *
+ * Nothing here is specific to a haunt this app has heard of. A pack that
+ * validates brings its own event, its own venues and its own words for
+ * things, and this panel is where a person sees exactly what that would do
+ * before agreeing to it.
+ */
+export function HauntPackImport({ onImported }: HauntPackImportProps) {
+  const importer = useHauntPackImport(onImported);
+
+  return (
+    <Panel elevated padding="lg" className="admin__section pack-import">
+      <h2 className="admin__section-title">Haunt Packs</h2>
+      <p className="pack-import__lead">
+        A Haunt Pack is a single JSON file describing an event, its seasons and everything in them.
+        Open one or paste it below — it is checked completely before anything is written, and you
+        see what it would change before it changes it.
+      </p>
+      <HauntPackImportBody importer={importer} />
     </Panel>
   );
 }

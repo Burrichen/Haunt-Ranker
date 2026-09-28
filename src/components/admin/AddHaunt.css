@@ -1,0 +1,124 @@
+.add-haunt__route {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.add-haunt__steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: add-haunt-step;
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+.add-haunt__steps li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  counter-increment: add-haunt-step;
+}
+
+.add-haunt__steps li::before {
+  content: counter(add-haunt-step);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 999px;
+  background-color: var(--color-bg-2);
+  border: 1px solid var(--color-border-subtle);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--color-text-tertiary);
+}
+
+.add-haunt__step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.add-haunt__step-title {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.add-haunt__form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.add-haunt__form-grow {
+  flex: 1 1 16rem;
+}
+
+.add-haunt__form-years {
+  flex: 0 1 12rem;
+}
+
+.add-haunt__copy {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.add-haunt__copy-failed {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+.add-haunt__context {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin: 0;
+  max-width: 78ch;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.add-haunt__context svg {
+  flex: none;
+  margin-top: 3px;
+}
+
+.add-haunt__format {
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.add-haunt__format summary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+}
+
+.add-haunt__format summary:hover {
+  color: var(--color-text-secondary);
+}
+
+.add-haunt__format-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.add-haunt__format-body .field {
+  align-self: stretch;
+}

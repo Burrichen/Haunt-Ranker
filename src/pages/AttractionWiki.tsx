@@ -11,15 +11,18 @@ import {
   WikiHeader,
   WikiSection,
 } from "../components/wiki";
-import { Button, EmptyState, LoadingState, PageHeader } from "../components/ui";
+import { Button, EmptyState, LoadingState, PageHeader, Panel } from "../components/ui";
 import { useAdminMode } from "../hooks/useAdminMode";
 import { useAttractionWiki } from "../hooks/useAttractionWiki";
+import { useHauntRegistry } from "../hooks/useHauntRegistry";
+import { isRankedCategory } from "../models/haunt";
 import "./AttractionWiki.css";
 
 export function AttractionWiki() {
   const { attractionId } = useParams<{ attractionId: string }>();
   const navigate = useNavigate();
   const [adminMode] = useAdminMode();
+  const registry = useHauntRegistry();
   const {
     isLoading,
     error,
@@ -27,6 +30,8 @@ export function AttractionWiki() {
     attraction,
     eventYear,
     media,
+    mediaSrc,
+    hero,
     characters,
     sources,
     venueSections,
@@ -55,10 +60,18 @@ export function AttractionWiki() {
     );
   }
 
-  const backTo = attraction.attractionType === "house" ? "/houses" : "/scare-zones";
-  const heroMedia = media.find((item) => item.mediaType === "poster") ?? media[0] ?? null;
-  const posterUrl = heroMedia ? (heroMedia.url ?? heroMedia.localPath) : null;
-  const galleryMedia = heroMedia ? media.filter((item) => item.id !== heroMedia.id) : media;
+  // Walk-throughs and zones have browsers of their own; anything else is
+  // found through its season, so that is where "back" goes.
+  const backTo =
+    attraction.attractionType === "house"
+      ? "/houses"
+      : attraction.attractionType === "scare_zone"
+        ? "/scare-zones"
+        : `/years/${attraction.eventYearId}`;
+  // The header shows the one image the app may display for this slot; the
+  // Media section lists everything else on record, including references it
+  // links to rather than loads.
+  const galleryMedia = hero ? media.filter((item) => item.id !== hero.mediaId) : media;
   const hasEventDetails = Boolean(eventYear && (eventYear.description || eventYear.sourceNotes));
 
   return (
@@ -66,7 +79,8 @@ export function AttractionWiki() {
       <WikiHeader
         attraction={attraction}
         eventYear={eventYear}
-        posterUrl={posterUrl}
+        posterUrl={hero?.src ?? null}
+        posterFit={hero?.fit}
         backTo={backTo}
       />
 
@@ -141,7 +155,7 @@ export function AttractionWiki() {
 
           {galleryMedia.length > 0 && (
             <WikiSection title="Media">
-              <MediaGallery media={galleryMedia} />
+              <MediaGallery media={galleryMedia} mediaSrc={mediaSrc} sources={sources} />
             </WikiSection>
           )}
 
@@ -159,13 +173,22 @@ export function AttractionWiki() {
             appearances={appearances}
             relatedItems={relatedItems}
           />
-          <MyReview
-            attractionName={attraction.name}
-            rating={rating}
-            note={note}
-            onSave={saveReview}
-            onClear={clearRating}
-          />
+          {isRankedCategory(attraction.attractionType) ? (
+            <MyReview
+              attractionName={attraction.name}
+              rating={rating}
+              note={note}
+              onSave={saveReview}
+              onClear={clearRating}
+            />
+          ) : (
+            <Panel padding="md" className="my-review" aria-label="My Review">
+              <p className="my-review__empty">
+                {registry.label(attraction.attractionType, eventYear?.hauntId, "many")} are archive
+                records, not rated or ranked.
+              </p>
+            </Panel>
+          )}
         </aside>
       </div>
     </div>

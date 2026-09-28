@@ -402,4 +402,85 @@ describe("importing a haunt the app has never heard of", () => {
     expect(await rows("SELECT COUNT(*) as count FROM user_ratings")).toEqual([{ count: 0 }]);
     expect(await rows("SELECT COUNT(*) as count FROM user_notes")).toEqual([{ count: 0 }]);
   });
+
+  describe("the namespacing warning", () => {
+    const namespace = /isn't namespaced to this haunt/;
+
+    /** A small pack for a haunt the migrations already seed, reusing its seeded ids. */
+    function knottsPack(venueId: string): HauntPack {
+      return {
+        schema: "haunt-ranker.haunt-pack/v1",
+        pack: { id: "knotts-namespace-check", version: "1" },
+        haunt: { id: "knotts-scary-farm", name: "Knott's Scary Farm", shortName: "Knott's" },
+        experienceTypes: [
+          {
+            id: "knotts-scary-farm:type:maze",
+            category: "house",
+            labelOne: "Maze",
+            labelMany: "Mazes",
+          },
+        ],
+        venues: [{ id: venueId, name: "Knott's Berry Farm" }],
+        seasons: [
+          { id: "knotts-scary-farm:2024", calendarYear: 2024, name: "Knott's Scary Farm 2024" },
+        ],
+        experiences: [
+          {
+            id: "knotts-scary-farm:2024:maze:widows",
+            seasonId: "knotts-scary-farm:2024",
+            typeId: "knotts-scary-farm:type:maze",
+            name: "Widows",
+            venues: [venueId],
+          },
+        ],
+      };
+    }
+
+    it("doesn't flag an id the archive already holds for the same haunt", async () => {
+      const prepared = preparePackImport(
+        knottsPack("knotts-berry-farm"),
+        await createHauntPackRepository(db).readState(),
+      );
+
+      expect(prepared.preview.warnings.filter((w) => namespace.test(w))).toEqual([]);
+    });
+
+    it("still flags an un-namespaced id the pack has invented", async () => {
+      const prepared = preparePackImport(
+        knottsPack("buena-park"),
+        await createHauntPackRepository(db).readState(),
+      );
+
+      expect(prepared.preview.warnings).toEqual([expect.stringMatching(namespace)]);
+    });
+  });
+
+  it("keeps this machine's offline copy of an image when the pack is imported again", async () => {
+    const pack = packObject();
+    pack.experiences[0].media = [
+      {
+        id: "moonlight-fright-festival:2026:media:poster",
+        kind: "poster",
+        url: "https://example.invalid/poster.jpg",
+        distribution: "reference",
+      },
+    ];
+    await importPack(pack);
+    await db.execute(
+      "UPDATE media SET local_path = 'media/poster-abc.jpg', distribution = 'local' WHERE id = ?",
+      ["moonlight-fright-festival:2026:media:poster"],
+    );
+
+    pack.pack.version = "2026.1.1";
+    pack.experiences[0].media[0].attribution = "Corrected credit";
+    await importPack(pack);
+
+    expect(await rows("SELECT local_path, distribution, attribution FROM media")).toEqual([
+      {
+        local_path: "media/poster-abc.jpg",
+        distribution: "local",
+        attribution: "Corrected credit",
+      },
+    ]);
+  });
 });

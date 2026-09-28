@@ -21,9 +21,9 @@ const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 const ATTRACTION_TYPES = ["house", "scare_zone"];
 const IP_TYPES = ["original", "licensed"];
 const RELATION_TYPES = ["sequel", "previous_version", "same_franchise", "related_concept"];
-const MEDIA_KINDS = ["poster", "promotional_image", "logo", "event_artwork", "local_image"];
+const MEDIA_KINDS = ["poster", "promotional_image", "logo", "event_artwork", "map", "local_image"];
 /** A dataset may reference or bundle; `local` describes a file on one person's machine. */
-const DATASET_DISTRIBUTIONS = ["reference", "bundled"];
+const DATASET_DISTRIBUTIONS = ["reference", "unclear", "bundled"];
 const SOURCE_TYPES = [
   "youtube",
   "article",
@@ -218,7 +218,8 @@ function validateMedia(
       problems.add(
         `${at}.distribution`,
         "'local' describes a file on one person's machine, so it can't come from a dataset — " +
-          "use 'reference', or 'bundled' if this asset has been cleared for distribution",
+          "use 'reference', 'unclear' if its reuse rights aren't established, or 'bundled' " +
+          "if this asset has been cleared for distribution",
       );
     } else if (entry.distribution !== undefined) {
       oneOf(entry.distribution, DATASET_DISTRIBUTIONS, `${at}.distribution`, problems, false);

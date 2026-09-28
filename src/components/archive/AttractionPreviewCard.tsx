@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { isRankedCategory } from "../../models/haunt";
 import type { Attraction } from "../../models/attraction";
 import type { EventYear } from "../../models/eventYear";
 import { useHauntRegistry } from "../../hooks/useHauntRegistry";
@@ -88,11 +89,11 @@ export function AttractionPreviewCard({
               <dd>{formatScore(rating.total)}</dd>
             </div>
           </dl>
-        ) : (
+        ) : isRankedCategory(attraction.attractionType) ? (
           <Badge variant="neutral" className="attraction-preview-card__not-rated">
             Not Rated
           </Badge>
-        )}
+        ) : null}
       </Panel>
     </Link>
   );

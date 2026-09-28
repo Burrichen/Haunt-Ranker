@@ -8,7 +8,8 @@ import { createAttractionRepository } from "../repositories/attractionRepository
 import { createEventYearRepository } from "../repositories/eventYearRepository";
 import { createMediaRepository } from "../repositories/mediaRepository";
 import { createRatingRepository } from "../repositories/ratingRepository";
-import { pickMediaSrc } from "../media/mediaFiles";
+import { createSeasonAppearanceRepository } from "../repositories/seasonAppearanceRepository";
+import { posterFields, seasonArtworkFields } from "../media/mediaFiles";
 import {
   buildYearRanking,
   summarizeYear,
@@ -58,11 +59,12 @@ export function useYearsOverview(): YearsOverview {
     async function load() {
       try {
         const db = await getDatabase();
-        const [years, attractions, ratings, media] = await Promise.all([
+        const [years, attractions, ratings, media, appearances] = await Promise.all([
           createEventYearRepository(db).getAll(),
           createAttractionRepository(db).getAll(),
           createRatingRepository(db).getAll(),
           createMediaRepository(db).getAll(),
+          createSeasonAppearanceRepository(db).getAll(),
         ]);
 
         if (cancelled) {
@@ -84,26 +86,34 @@ export function useYearsOverview(): YearsOverview {
           }
         }
 
+        // A season's line-up is everything that appeared in it, as on the
+        // season's own page — a maze that returns is one record, filed under
+        // the season it's filed under, and appears in the others.
+        const appearedIn = new Map<string, Set<string>>();
+        for (const appearance of appearances) {
+          const seasons = appearedIn.get(appearance.attractionId) ?? new Set<string>();
+          seasons.add(appearance.seasonId);
+          appearedIn.set(appearance.attractionId, seasons);
+        }
+
         const summaries = await Promise.all(
           years.map(async (eventYear) => {
             const items: YearAttraction[] = await Promise.all(
               attractions
-                .filter((attraction) => attraction.eventYearId === eventYear.id)
+                .filter(
+                  (attraction) =>
+                    attraction.eventYearId === eventYear.id ||
+                    appearedIn.get(attraction.id)?.has(eventYear.id),
+                )
                 .map(async (attraction) => ({
                   attraction,
                   rating: ratingByAttraction.get(attraction.id) ?? null,
-                  posterUrl: await pickMediaSrc(
-                    mediaByAttraction.get(attraction.id) ?? [],
-                    "poster",
-                  ),
+                  ...(await posterFields(mediaByAttraction.get(attraction.id) ?? [])),
                 })),
             );
 
-            return summarizeYear(
-              eventYear,
-              items,
-              await pickMediaSrc(mediaByYear.get(eventYear.id) ?? [], "event_artwork"),
-            );
+            const artwork = await seasonArtworkFields(mediaByYear.get(eventYear.id) ?? []);
+            return summarizeYear(eventYear, items, artwork.artworkUrl, artwork.artworkFit);
           }),
         );
 

@@ -34,8 +34,25 @@ export function preparePackImport(
   input: string | unknown,
   state: Parameters<typeof planPackImport>[1],
 ): PackPlanResult {
+  // An id the archive already holds for the same haunt is the pack
+  // describing an existing record, not inventing an un-namespaced one.
+  const isEstablished = (id: string, hauntId: string): boolean => {
+    for (const rows of [state.venues, state.experienceTypes, state.seasons]) {
+      const row = rows.get(id);
+      if (row) {
+        return row.haunt_id === hauntId;
+      }
+    }
+    const attraction = state.attractions.get(id);
+    return (
+      attraction !== undefined &&
+      state.seasons.get(String(attraction.event_year_id))?.haunt_id === hauntId
+    );
+  };
   const validation: PackValidation =
-    typeof input === "string" ? readHauntPack(input) : validateHauntPack(input);
+    typeof input === "string"
+      ? readHauntPack(input, { isEstablished })
+      : validateHauntPack(input, { isEstablished });
 
   if (!validation.ok) {
     throw new PackImportError("This Haunt Pack can't be read.", validation.errors);

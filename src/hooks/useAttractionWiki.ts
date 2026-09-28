@@ -5,6 +5,8 @@ import type { AttractionVenueWiki } from "../models/attractionVenueWiki";
 import type { AttractionRelation } from "../models/attractionRelation";
 import type { Character } from "../models/character";
 import type { EventYear } from "../models/eventYear";
+import { resolveMediaSrcMap, type Artwork } from "../media/mediaFiles";
+import { artworkFit, chooseArtwork } from "../media/mediaPolicy";
 import type { Media } from "../models/media";
 import type { Note } from "../models/note";
 import type { Rating, RatingInput } from "../models/rating";
@@ -36,6 +38,13 @@ export interface AttractionWikiData {
   attraction: Attraction | null;
   eventYear: EventYear | null;
   media: Media[];
+  /**
+   * What each media row displays as — `null` for anything the app may not
+   * show (a reference or an unclear copy), which the page links to instead.
+   */
+  mediaSrc: Map<string, string | null>;
+  /** The header image, if the app has one it may show. */
+  hero: (Artwork & { mediaId: string }) | null;
   characters: Character[];
   sources: Source[];
   /**
@@ -83,6 +92,8 @@ const INITIAL_STATE: AttractionWikiData = {
   attraction: null,
   eventYear: null,
   media: [],
+  mediaSrc: new Map(),
+  hero: null,
   characters: [],
   sources: [],
   venueSections: [],
@@ -223,6 +234,14 @@ export function useAttractionWiki(attractionId: string | undefined): AttractionW
           ];
         });
 
+        const mediaSrc = await resolveMediaSrcMap(media);
+        const heroMedia = chooseArtwork(media, "attraction");
+        const heroSrc = heroMedia ? mediaSrc.get(heroMedia.id) : null;
+        const hero =
+          heroMedia && heroSrc
+            ? { src: heroSrc, fit: artworkFit(heroMedia), mediaId: heroMedia.id }
+            : null;
+
         if (cancelled) {
           return;
         }
@@ -234,6 +253,8 @@ export function useAttractionWiki(attractionId: string | undefined): AttractionW
           attraction,
           eventYear,
           media,
+          mediaSrc,
+          hero,
           characters,
           sources,
           venueSections,
