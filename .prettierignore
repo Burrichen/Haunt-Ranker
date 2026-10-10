@@ -8,3 +8,6 @@ src/styles/fonts.css
 
 # Recorded by scripts/make-hhn-v7-fixture.ts from the pre-multi-haunt build — regenerate, never edit
 src/test/fixtures/hhn-v7
+
+# Written by scripts/validate-dataset.ts on every run — regenerate, never hand-format
+docs/research/*-import-validation.md
