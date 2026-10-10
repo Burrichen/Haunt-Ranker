@@ -95,7 +95,7 @@
   font-size: 0.875rem;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-  color: var(--color-orange-strong);
+  color: var(--accent-strong);
 }
 
 .top-attractions__out-of {

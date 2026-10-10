@@ -31,7 +31,7 @@
 }
 
 .ranking-row--drop-target .ranking-row__inner {
-  border-color: var(--color-orange);
+  border-color: var(--accent);
 }
 
 .ranking-row__position {
@@ -112,7 +112,7 @@
   font-size: 0.9375rem;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-  color: var(--color-orange-strong);
+  color: var(--accent-strong);
 }
 
 .ranking-row__total-max {

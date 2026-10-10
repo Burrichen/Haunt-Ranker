@@ -29,7 +29,10 @@
       "name": "Example Event 2101",
       "description": "A placeholder season, included so the format has something to show.",
       "sourceNotes": "Line-up confirmed from the official announcement; dates from the same page.",
-      "dates": { "start": "2101-09-05", "end": "2101-11-02" },
+      "dates": {
+        "start": "2101-09-05",
+        "end": "2101-11-02"
+      },
       "sourceIds": ["example-official-lineup-2101"],
       "media": [
         {
@@ -41,6 +44,24 @@
           "sourceId": "example-official-lineup-2101"
         }
       ]
+    },
+    {
+      "id": "example-2102",
+      "calendarYear": 2102,
+      "name": "Example Event 2102",
+      "description": "A second placeholder HHN season, so a reused name has somewhere to be reused."
+    },
+    {
+      "id": "example-ksf-2101",
+      "hauntId": "knotts-scary-farm",
+      "calendarYear": 2101,
+      "name": "Example Knott's Season 2101"
+    },
+    {
+      "id": "example-ksf-2102",
+      "hauntId": "knotts-scary-farm",
+      "calendarYear": 2102,
+      "name": "Example Knott's Season 2102"
     }
   ],
   "attractions": [
@@ -50,8 +71,10 @@
       "type": "house",
       "name": "The Hollow Chapel",
       "parks": ["hollywood", "orlando"],
-      "ip": { "type": "original" },
-      "summary": "An original house that ran at both parks, shown here as one record.",
+      "ip": {
+        "type": "original"
+      },
+      "summary": "An original house that ran at both parks: one record, however much the two builds differed.",
       "wiki": {
         "overview": "A longer description of the house, written for someone who never got to walk through it.",
         "story": "The premise, as the event told it.",
@@ -59,7 +82,10 @@
         "development": "What is known about how it was made."
       },
       "location": "Soundstage 22",
-      "dates": { "start": "2101-09-05", "end": "2101-11-02" },
+      "dates": {
+        "start": "2101-09-05",
+        "end": "2101-11-02"
+      },
       "characters": [
         {
           "id": "example-2101-hollow-chapel-the-verger",
@@ -76,26 +102,39 @@
           "distribution": "reference"
         }
       ],
-      "sourceIds": ["example-channel-2101-recap", "example-official-lineup-2101"]
+      "sourceIds": ["example-channel-2101-recap", "example-official-lineup-2101"],
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "experience": "Hollywood's build cut the cloister and ended in the bell tower instead.",
+          "location": "Soundstage 22",
+          "sourceIds": ["example-channel-2101-recap"]
+        },
+        {
+          "park": "orlando",
+          "experience": "Orlando's build ran longer, through a flooded crypt."
+        }
+      ]
     },
     {
-      "id": "example-2101-house-hollow-chapel-hollywood",
+      "id": "example-2102-house-hollow-chapel",
       "previousIds": ["example-2101-house-hollow-chapel-west"],
-      "eventId": "example-2101",
+      "eventId": "example-2102",
       "type": "house",
       "name": "The Hollow Chapel",
-      "variantName": "Hollywood version",
-      "parks": ["hollywood"],
-      "ip": { "type": "original" },
-      "summary": "A substantially different version, so it gets its own record rather than being merged.",
+      "variantName": "2102 remount",
+      "parks": ["orlando"],
+      "ip": {
+        "type": "original"
+      },
+      "summary": "The same name in a later season is a different house, so it gets its own record.",
       "related": [
         {
           "attractionId": "example-2101-house-hollow-chapel",
           "type": "previous_version",
-          "notes": "Shares a name and a premise; a different layout and finale."
+          "notes": "A rebuilt remount of the 2101 house."
         }
-      ],
-      "sourceIds": ["example-channel-2101-recap"]
+      ]
     },
     {
       "id": "example-2101-house-ashfall",
@@ -103,9 +142,25 @@
       "type": "house",
       "name": "Ashfall",
       "parks": ["orlando"],
-      "ip": { "type": "licensed", "franchise": "Example Franchise" },
+      "ip": {
+        "type": "licensed",
+        "franchise": "Example Franchise"
+      },
       "summary": "A licensed house, with the franchise recorded separately from the name.",
       "location": "The central lagoon path"
+    },
+    {
+      "id": "example-ksf-maze-lantern-mill",
+      "eventId": "example-ksf-2101",
+      "appearances": ["example-ksf-2102"],
+      "debutYear": 2097,
+      "type": "house",
+      "name": "The Lantern Mill",
+      "parks": ["knotts-berry-farm"],
+      "ip": {
+        "type": "original"
+      },
+      "summary": "A returning maze: one record with an appearance per season, and a debut year from before this file's first season."
     }
   ]
 }

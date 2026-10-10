@@ -69,11 +69,17 @@
   display: block;
   height: 100%;
   border-radius: inherit;
-  background-color: var(--color-orange);
+  background-color: var(--accent);
 }
 
-.haunt-landing--purple .haunt-landing__coverage-fill {
-  background-color: var(--color-purple);
+.haunt-landing__scope-note {
+  margin: var(--space-4) 0 0;
+  padding-left: var(--space-3);
+  /* A thin rule in the haunt's secondary accent marks the archive's limits. */
+  border-left: 2px solid var(--accent-2);
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
 }
 
 .haunt-landing__sample,
@@ -119,11 +125,7 @@
 .haunt-landing__season-year {
   font-family: var(--font-display);
   font-variant-numeric: tabular-nums;
-  color: var(--color-orange-strong);
-}
-
-.haunt-landing--purple .haunt-landing__season-year {
-  color: var(--color-purple-strong);
+  color: var(--accent-strong);
 }
 
 .haunt-landing__season-name {

@@ -87,7 +87,7 @@
 /* The metric the list is currently ordered by. */
 .year-ranking-row__metric--active {
   font-weight: 600;
-  color: var(--color-orange-strong);
+  color: var(--accent-strong);
 }
 
 .year-ranking-row__out-of {

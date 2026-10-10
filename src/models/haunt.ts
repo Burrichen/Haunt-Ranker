@@ -36,6 +36,11 @@ export interface Haunt extends Timestamped {
   accent: HauntAccent;
   /** Where it runs, in plain words — "Hollywood and Orlando". */
   venuesLabel: string | null;
+  /**
+   * What the archive holds for this haunt, where it covers only part of its
+   * history — so a window of seasons is never read as the whole story.
+   */
+  archiveCoverage: string | null;
   /** Lower sorts first. The collection the app opens on leads. */
   sortOrder: number;
   /** Dormant: written by the retired Haunt Pack importer. Never shown. */

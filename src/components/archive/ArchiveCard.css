@@ -20,7 +20,7 @@
 .archive-card-link:hover .archive-card {
   transform: translateY(-2px);
   border-color: var(--color-border-strong);
-  box-shadow: var(--shadow-md), var(--shadow-glow-orange);
+  box-shadow: var(--shadow-md), var(--shadow-glow-accent);
 }
 
 .archive-card__art {
@@ -54,13 +54,8 @@
 }
 
 .archive-card__fallback-icon--house {
-  background-color: var(--color-orange-subtle);
-  color: var(--color-orange-strong);
-}
-
-.archive-card__fallback-icon--scare_zone {
-  background-color: var(--color-purple-subtle);
-  color: var(--color-purple-strong);
+  background-color: var(--accent-subtle);
+  color: var(--accent-strong);
 }
 
 .archive-card__body {

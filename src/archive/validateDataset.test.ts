@@ -344,6 +344,92 @@ describe("validateDataset", () => {
   });
 });
 
+describe("canonical identity", () => {
+  type Rec = Record<string, unknown>;
+  const house = (id: string, eventId: string, name: string, extra: Rec = {}): Rec => ({
+    id,
+    eventId,
+    type: "house",
+    name,
+    parks: eventId.startsWith("ksf") ? ["knotts-berry-farm"] : ["orlando"],
+    ...extra,
+  });
+  const withRecords = (attractions: Rec[]) => {
+    const dataset = makeDataset({ attractions });
+    (dataset.events as Rec[]).push(
+      { id: "example-2102", calendarYear: 2102, name: "Example Event 2102" },
+      { id: "ksf-2101", hauntId: "knotts-scary-farm", calendarYear: 2101, name: "KSF 2101" },
+      { id: "ksf-2102", hauntId: "knotts-scary-farm", calendarYear: 2102, name: "KSF 2102" },
+    );
+    return validateDataset(dataset);
+  };
+  const errors = (attractions: Rec[]) => {
+    const result = withRecords(attractions);
+    return result.ok ? [] : result.errors;
+  };
+
+  it("refuses one HHN name twice in one season, whatever the case or spacing", () => {
+    expect(
+      errors([
+        house("h1", "example-2101", "The Hollow Chapel"),
+        house("h2", "example-2101", " the hollow  chapel"),
+      ]),
+    ).toEqual([
+      expect.stringMatching(/attractions\[1\]\.name: is the same house as attractions\[0\]/),
+    ]);
+  });
+
+  it("allows an HHN name reused in another season, and different titles", () => {
+    expect(
+      errors([
+        house("h1", "example-2101", "The Hollow Chapel"),
+        house("h2", "example-2102", "The Hollow Chapel"),
+        house("h3", "example-2101", "The Hollow Chapel: Reborn"),
+      ]),
+    ).toEqual([]);
+  });
+
+  it("refuses a Knott's maze recorded once per season", () => {
+    expect(
+      errors([house("m1", "ksf-2101", "Room 13"), house("m2", "ksf-2102", "Room 13")]),
+    ).toEqual([expect.stringMatching(/is the same maze as attractions\[0\].*appearances/)]);
+  });
+
+  it("accepts a returning Knott's maze as one record with appearances", () => {
+    const result = withRecords([
+      house("m1", "ksf-2101", "Room 13", { appearances: ["ksf-2102"], debutYear: 2095 }),
+    ]);
+    expect(result.ok, result.ok ? "" : result.errors.join("\n")).toBe(true);
+  });
+
+  it("allows a Knott's title reused with a different known debut", () => {
+    expect(
+      errors([
+        house("m1", "ksf-2101", "The Gauntlet", { debutYear: 2090 }),
+        house("m2", "ksf-2102", "The Gauntlet", { debutYear: 2102 }),
+      ]),
+    ).toEqual([]);
+  });
+
+  it("refuses appearances on an HHN house, or in another haunt's season", () => {
+    expect(
+      errors([
+        house("h1", "example-2101", "A", { appearances: ["example-2102"] }),
+        house("m1", "ksf-2101", "B", { appearances: ["example-2101"] }),
+      ]),
+    ).toEqual([
+      expect.stringMatching(/attractions\[0\]\.appearances: an HHN house belongs to one season/),
+      expect.stringMatching(/attractions\[1\]\.appearances\[0\]: is a season of a different haunt/),
+    ]);
+  });
+
+  it("refuses a debut year after a season the maze already ran in", () => {
+    expect(
+      errors([house("m1", "ksf-2101", "Room 13", { appearances: ["ksf-2102"], debutYear: 2102 })]),
+    ).toEqual([expect.stringMatching(/debutYear: 2102 is after 2101/)]);
+  });
+});
+
 describe("readDataset", () => {
   it("treats unreadable text as a bad file rather than crashing", () => {
     const result = readDataset("{oh dear");

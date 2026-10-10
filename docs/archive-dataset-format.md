@@ -21,7 +21,9 @@ correction would read as a brand-new attraction, and the rating attached to the
 old one would be stranded beside it. Every entity therefore carries an `id`
 chosen once and kept forever.
 
-An id is lowercase letters, numbers and hyphens (`^[a-z0-9][a-z0-9-]{1,79}$`).
+An id is lowercase letters, numbers and hyphens, 2–120 characters, optionally
+in colon-separated segments (`knotts-scary-farm:2024:maze:room-13` — the shape
+Knott's records were first stored under, kept so their ratings never move).
 A readable convention that has held up: `<event>-<type>-<name>`, e.g.
 `hhn-2024-house-the-quarry`. The validator only enforces the shape; the
 convention is for humans reading diffs.
@@ -83,7 +85,9 @@ ran at is recorded on the attraction, because that's where it differs.
 | ------------- | -------- | ------------------------------------------------------------------- |
 | `id`          | yes      | Stable id                                                           |
 | `previousIds` | no       | See "Renaming"                                                      |
-| `eventId`     | yes      | An `id` from `events`                                               |
+| `eventId`     | yes      | An `id` from `events` — for a returning maze, its first season here |
+| `appearances` | no       | Knott's only: the other seasons a returning maze ran in (event ids) |
+| `debutYear`   | no       | The researched year it first ran — leave out when unknown           |
 | `type`        | yes      | `house` (scare zones and shows are out of scope and are refused)    |
 | `name`        | yes      | Display name                                                        |
 | `slug`        | no       | URL segment; defaults to the id. Addressing, not identity           |
@@ -105,11 +109,29 @@ in the same season at Hollywood and Orlando is **one attraction carrying both
 parks** — one rating, one note, one place in a ranking — however much the two
 builds differed. A dataset that still holds two records for such a pair is
 rejected by validation, because the database it imports into merges exactly
-that shape (migration `0009_merge_hhn_cross_park.sql`).
+that shape (migrations `0009_merge_hhn_cross_park.sql` and
+`0015_canonical_identity.sql`). A name reused in a _different_ HHN season is a
+different house and gets its own record.
 
-`variantName` remains for versions that are genuinely different attractions
-under different names, and those stay separate records with their own ids,
-linked by a relation.
+**One record per Knott's maze.** A maze that returns is the same maze: one
+record, with `eventId` for the first season this file holds and `appearances`
+for the others. A dataset with two records for the same Knott's name is
+rejected — unless both carry different `debutYear`s, which marks a reused title
+rather than a returning maze. `appearances` is refused on an HHN record.
+
+**`debutYear` is researched, never inferred.** The archive's first Knott's
+season is not the year a maze debuted; a maze in the 2024 season may have
+debuted in 2019. Leave `debutYear` out when it isn't known — an import never
+clears one already stored. It may not be later than any season the record ran
+in.
+
+Names are compared after trimming, collapsing runs of spaces and ignoring
+case — nothing looser. An import is also refused if it would add a second copy
+of an attraction the archive already holds under another id.
+
+`variantName` labels a record that shares its name with a _different_
+attraction — an HHN remount in a later year, say — and the two are linked by a
+relation. It never splits one season's attraction into a record per park.
 
 ### `venueWiki[]`
 

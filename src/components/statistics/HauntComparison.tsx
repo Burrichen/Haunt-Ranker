@@ -4,6 +4,7 @@ import { formatScore } from "../../utils/formatScore";
 import type { HauntComparisonRow } from "../../utils/statistics";
 import { MIN_REVIEWED_FOR_STATS } from "../../utils/years";
 import { Panel } from "../ui";
+import { hauntSeriesColor } from "./chartTheme";
 import "./HauntComparison.css";
 
 export interface HauntComparisonProps {
@@ -54,7 +55,15 @@ export function HauntComparison({ rows }: HauntComparisonProps) {
         <tbody>
           {comparable.map((row) => (
             <tr key={row.hauntId}>
-              <th scope="row">{registry.hauntName(row.hauntId) ?? row.hauntId}</th>
+              <th scope="row">
+                {/* The same key the charts use for this haunt's series. */}
+                <span
+                  aria-hidden="true"
+                  className="haunt-comparison__key"
+                  style={{ backgroundColor: hauntSeriesColor(row.hauntId) }}
+                />
+                {registry.hauntName(row.hauntId) ?? row.hauntId}
+              </th>
               <td className="haunt-comparison__sample">
                 {row.reviewedCount} of {row.attractionCount}
               </td>
@@ -80,6 +89,14 @@ export function HauntComparison({ rows }: HauntComparisonProps) {
         of a haunt&rsquo;s attractions have been rated. Read them against the sample sizes beside
         them rather than as a ranking.
       </p>
+      {comparable
+        .map((row) => registry.haunt(row.hauntId))
+        .filter((haunt) => haunt?.archiveCoverage)
+        .map((haunt) => (
+          <p key={haunt!.id} className="haunt-comparison__note">
+            {haunt!.archiveCoverage}
+          </p>
+        ))}
     </Panel>
   );
 }

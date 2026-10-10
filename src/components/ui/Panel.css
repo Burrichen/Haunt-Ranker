@@ -30,22 +30,13 @@
   padding: var(--space-7);
 }
 
-.panel--glow-orange {
-  box-shadow: var(--shadow-md), var(--shadow-glow-orange);
-  border-color: var(--color-orange-subtle);
+/* Glows follow the haunt theme in scope (see tokens.css). */
+.panel--glow-accent {
+  box-shadow: var(--shadow-md), var(--shadow-glow-accent);
+  border-color: var(--accent-subtle);
 }
 
-.panel--glow-purple {
-  box-shadow: var(--shadow-md), var(--shadow-glow-purple);
-  border-color: var(--color-purple-subtle);
-}
-
-.panel--glow-green {
-  box-shadow: var(--shadow-md), var(--shadow-glow-green);
-  border-color: var(--color-green-subtle);
-}
-
-.panel--glow-blue {
-  box-shadow: var(--shadow-md), var(--shadow-glow-blue);
-  border-color: var(--color-blue-subtle);
+.panel--glow-accent-2 {
+  box-shadow: var(--shadow-md), var(--shadow-glow-accent-2);
+  border-color: var(--accent-2-subtle);
 }

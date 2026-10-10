@@ -101,7 +101,7 @@
 
 .sub-editor__select:focus-visible {
   outline: none;
-  border-color: var(--color-focus);
+  border-color: var(--focus);
 }
 
 .admin-error {
@@ -156,5 +156,5 @@
 
 .media-file-note code {
   font-size: 0.6875rem;
-  color: var(--color-orange-strong);
+  color: var(--accent-strong);
 }

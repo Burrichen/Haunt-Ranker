@@ -48,12 +48,12 @@
 }
 
 .btn--primary {
-  background-color: var(--color-orange);
-  color: var(--color-on-orange);
+  background-color: var(--accent);
+  color: var(--on-accent);
 }
 
 .btn--primary:hover:not(:disabled) {
-  background-color: var(--color-orange-strong);
+  background-color: var(--accent-strong);
 }
 
 .btn--secondary {

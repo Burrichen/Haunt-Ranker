@@ -58,9 +58,11 @@ Run these from the repository root.
 | `npm run db:reset`        | Clear then re-seed the dev sample dataset                           |
 | `npm run data:validate`   | Validate data/hhn-archive.json and apply it to a throwaway database |
 | `npm run data:import`     | Import the dataset into the app's real database                     |
-| `npm run data:verify`     | Check the imported archive through the app's own browsing logic     |
-| `npm run assets:icons`    | Regenerate the placeholder app icons                                |
-| `npm run assets:fonts`    | Re-download the bundled Inter/Fraunces subsets                      |
+
+Add `-- --haunt knotts` to either for `data/knotts-archive.json`.
+| `npm run data:verify` | Check the imported archive through the app's own browsing logic |
+| `npm run assets:icons` | Regenerate the placeholder app icons |
+| `npm run assets:fonts` | Re-download the bundled Inter/Fraunces subsets |
 
 ### Requirements
 
@@ -1544,6 +1546,20 @@ to import a third haunt. The Haunt Pack system that briefly existed —
 prompt, `npm run pack:import` / `pack:remove` and its fictional test festival —
 has been removed. The Knott's pack file that came with it is now
 [`docs/research/knotts-2024-2026.research.json`](docs/research/knotts-2024-2026.research.json):
-untrusted research material, not data the app reads. The `pack_*` provenance
+untrusted research material, not data the app reads.
+
+Knott's data now lives in [`data/knotts-archive.json`](data/knotts-archive.json):
+the **canonical maze debut archive for 2021–2026** — exactly the twelve mazes
+that debuted in those years, each one record filed under its debut season, with
+an appearance for every verified season it ran (Mesmer: 2021–2025). Older
+Knott's history is incomplete and will be backfilled later, and the app says so
+on the Knott's page (`haunts.archive_coverage`, migration 0016). Migration
+`0016_knotts_maze_archive.sql` retired Wax Works and Origins: The Curse of Calico,
+which debuted in 2019 and had only returned in 2024 — any rating, note or
+ranking on them is preserved in `legacy_personal_data`. Its text, sources and
+media were carried over from the research file and checked against new
+research for 2021–2023 (`npm run data:validate -- --haunt knotts`).
+
+The `pack_*` provenance
 columns and the `haunt_packs` table added by migration 0010 remain in the
 schema, dormant; nothing in the product shows them.

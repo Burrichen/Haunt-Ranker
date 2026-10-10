@@ -8,6 +8,7 @@ import type { RankingRow as RankingRowData } from "../../utils/rankings";
 import { AttractionHoverPreview, ParkBadgeRow } from "../archive";
 import { Badge, IconButton } from "../ui";
 import "./RankingRow.css";
+import { hauntTheme } from "../../models/hauntTheme";
 
 export interface RankingRowReorder {
   onMoveUp: () => void;
@@ -51,6 +52,7 @@ export function RankingRow({ row, position, reorder, drag, action }: RankingRowP
         drag?.isDragging && "ranking-row--dragging",
         drag?.isDropTarget && "ranking-row--drop-target",
       )}
+      data-haunt-theme={hauntTheme(eventYear?.hauntId)}
     >
       <AttractionHoverPreview attraction={attraction} eventYear={eventYear} rating={rating}>
         <span

@@ -7,6 +7,8 @@ export interface ChartTooltipProps {
   title: string;
   /** One short qualifying line, e.g. the sample size behind an average. */
   detail?: string;
+  /** The series' mark colour, for its key stroke. Defaults to the theme's series colour. */
+  color?: string;
 }
 
 /**
@@ -15,11 +17,15 @@ export interface ChartTooltipProps {
  * has the category and wants the number. The series is keyed with a short
  * stroke of the mark colour rather than a filled box.
  */
-export function ChartTooltip({ value, title, detail }: ChartTooltipProps) {
+export function ChartTooltip({ value, title, detail, color }: ChartTooltipProps) {
   return (
     <div className="chart-tooltip">
       <div className="chart-tooltip__headline">
-        <span aria-hidden="true" className="chart-tooltip__key" />
+        <span
+          aria-hidden="true"
+          className="chart-tooltip__key"
+          style={color ? { backgroundColor: color } : undefined}
+        />
         <span className="chart-tooltip__value">{value}</span>
       </div>
       <span className="chart-tooltip__title">{title}</span>

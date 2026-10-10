@@ -86,7 +86,7 @@
 }
 
 .year-archive__lineage-list a:hover {
-  color: var(--color-orange-strong);
+  color: var(--accent-strong);
 }
 
 .year-archive__lineage-note {

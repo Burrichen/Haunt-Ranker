@@ -5,6 +5,7 @@ import type {
   ArchiveMedia,
   ArchiveSource,
 } from "../models/archiveDataset";
+import { findIdentityClash } from "../models/attractionIdentity";
 import { generateId } from "../repositories/id";
 
 /**
@@ -145,6 +146,9 @@ function attractionRow(attraction: ArchiveAttraction): Record<string, unknown> {
     opening_date: nullable(attraction.dates?.start),
     closing_date: nullable(attraction.dates?.end),
     location_notes: nullable(attraction.location),
+    // Only written when the dataset knows it, so a debut year entered by
+    // hand is never cleared by a dataset that simply doesn't say.
+    ...(attraction.debutYear !== undefined ? { debut_year: attraction.debutYear } : {}),
   };
 }
 
@@ -365,6 +369,59 @@ function upsert(
 }
 
 /**
+ * A dataset record that would be a second copy of one already stored under
+ * another id — the same HHN name in the same season, or a Knott's maze
+ * already archived from another season. The validator has already checked
+ * the file against itself; this checks it against the archive.
+ */
+function identityErrors(dataset: ArchiveDataset, state: ArchiveState): string[] {
+  const hauntOf = new Map<string, string>();
+  for (const [id, row] of state.eventYears) {
+    hauntOf.set(id, String(row.haunt_id ?? "hhn"));
+  }
+  for (const event of dataset.events) {
+    hauntOf.set(event.id, event.hauntId ?? "hhn");
+  }
+
+  // Stored records the dataset itself describes — by id, or by an id it is
+  // renaming away from — are the dataset's to settle, not clashes.
+  const described = new Set(
+    dataset.attractions.flatMap((attraction) => [attraction.id, ...(attraction.previousIds ?? [])]),
+  );
+  const stored = [...state.attractions]
+    .filter(([id, row]) => !described.has(id) && row.attraction_type === "house")
+    .map(([id, row]) => ({
+      id,
+      hauntId: hauntOf.get(String(row.event_year_id)) ?? "hhn",
+      seasonId: String(row.event_year_id),
+      name: String(row.name),
+      debutYear: (row.debut_year as number | null | undefined) ?? null,
+    }));
+
+  const errors: string[] = [];
+  for (const attraction of dataset.attractions) {
+    const clash = findIdentityClash(
+      {
+        id: attraction.id,
+        hauntId: hauntOf.get(attraction.eventId) ?? "hhn",
+        seasonId: attraction.eventId,
+        name: attraction.name,
+        debutYear: attraction.debutYear ?? null,
+      },
+      stored,
+    );
+    if (clash) {
+      errors.push(
+        `attractions["${attraction.id}"]: the archive already holds this attraction as ` +
+          `"${clash.id}". Give the dataset record that id (or list it in previousIds) ` +
+          "rather than adding a second copy.",
+      );
+    }
+  }
+  return errors;
+}
+
+/**
  * Works out everything an import would do, and everything that would stop it.
  *
  * Nothing is written here. The result is both the preview a person approves
@@ -473,15 +530,18 @@ export function planImport(dataset: ArchiveDataset, state: ArchiveState): Planne
       { is_sample: 0 },
     );
 
-    // The season an attraction belongs to is also a season it appeared in.
-    // Appearances are only ever added here: a dataset says where a record
-    // belongs, and never that some other season it ran in didn't happen.
-    if (!state.seasonAppearances.has(pairKey(attraction.id, attraction.eventId))) {
-      operations.push({
-        kind: "link",
-        table: "season_appearances",
-        key: { attraction_id: attraction.id, season_id: attraction.eventId },
-      });
+    // The season an attraction belongs to is also a season it appeared in,
+    // as is every season a returning maze came back for. Appearances are
+    // only ever added here: a dataset says where a record ran, and never
+    // that some other season it ran in didn't happen.
+    for (const seasonId of new Set([attraction.eventId, ...(attraction.appearances ?? [])])) {
+      if (!state.seasonAppearances.has(pairKey(attraction.id, seasonId))) {
+        operations.push({
+          kind: "link",
+          table: "season_appearances",
+          key: { attraction_id: attraction.id, season_id: seasonId },
+        });
+      }
     }
 
     // What differed at one venue is as much a fact as the rest of the
@@ -634,5 +694,6 @@ export function planImport(dataset: ArchiveDataset, state: ArchiveState): Planne
     }
   }
 
+  errors.push(...identityErrors(dataset, state));
   return { operations: [...operations, ...relationOperations], report, errors };
 }

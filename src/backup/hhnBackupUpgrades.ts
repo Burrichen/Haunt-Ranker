@@ -13,7 +13,7 @@
 type Row = Record<string, unknown>;
 type Data = Record<string, unknown>;
 
-function rowsOf(data: Data, key: string): Row[] {
+export function rowsOf(data: Data, key: string): Row[] {
   const value = data[key];
   return Array.isArray(value) ? (value as Row[]) : [];
 }
@@ -45,7 +45,7 @@ const VENUE_PROSE = [
  * `REPLACE` passes), spaces trimmed, ASCII lowercased. SQLite's `LOWER` and
  * `TRIM` do no more than that, so neither does this.
  */
-function normalisedName(name: unknown): string {
+export function normalisedName(name: unknown): string {
   let value = String(name);
   for (let pass = 0; pass < 3; pass += 1) {
     value = value.replaceAll("  ", " ");
@@ -53,7 +53,7 @@ function normalisedName(name: unknown): string {
   return value.replace(/^ +| +$/g, "").replace(/[A-Z]/g, (letter) => letter.toLowerCase());
 }
 
-function byText(a: string, b: string): number {
+export function byText(a: string, b: string): number {
   return a < b ? -1 : a > b ? 1 : 0;
 }
 

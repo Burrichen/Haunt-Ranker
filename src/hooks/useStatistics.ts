@@ -10,6 +10,9 @@ import {
   computeTopAttractions,
   compareHaunts,
   computeYearPerformance,
+  computeDebutsByYear,
+  TOP_ATTRACTIONS_LIMIT,
+  type DebutCount,
   DEFAULT_STATISTICS_FILTERS,
   filterStatisticsRows,
   type Coverage,
@@ -28,6 +31,8 @@ import {
 } from "../utils/statisticsParams";
 import { useArchiveRows } from "./useArchiveRows";
 import { useHauntRegistry } from "./useHauntRegistry";
+import { useHauntScope } from "./useHauntScope";
+import { HAUNT_IDS, type HauntId } from "../models/haunt";
 
 /**
  * Just the dashboard/explorer switch, so the page shell can flip views
@@ -72,6 +77,10 @@ export interface Statistics {
   /** The haunts side by side — only meaningful, and only shown, under All Haunts. */
   hauntComparison: HauntComparisonRow[];
   topAttractions: TopAttraction[];
+  /** The same list from the other end — purely by score, whichever haunt. */
+  bottomAttractions: TopAttraction[];
+  /** New debuts per year, for each haunt in view that records debut years (Knott's). */
+  debuts: Array<{ hauntId: HauntId; counts: DebutCount[] }>;
   /** How many attractions the current slice contains at all, reviewed or not. */
   attractionCount: number;
 }
@@ -79,6 +88,7 @@ export interface Statistics {
 const EMPTY_COVERAGE: Coverage = {
   all: { reviewed: 0, total: 0 },
   houses: { reviewed: 0, total: 0 },
+  byHaunt: [],
 };
 
 /**
@@ -91,6 +101,14 @@ export function useStatistics(): Statistics {
   const [searchParams, setSearchParams] = useSearchParams();
   const data = useArchiveRows();
   const { haunts: registryHaunts } = useHauntRegistry();
+  const { hauntId: scopeHauntId } = useHauntScope();
+  const hauntIds = useMemo(() => registryHaunts.map((haunt) => haunt.id), [registryHaunts]);
+  // A haunt that records an archive-coverage note holds only part of each
+  // season's line-up, so its yearly averages are flagged as partial.
+  const partialHaunts = useMemo(
+    () => new Set(registryHaunts.filter((haunt) => haunt.archiveCoverage).map((haunt) => haunt.id)),
+    [registryHaunts],
+  );
 
   const params = useMemo(() => parseStatisticsParams(searchParams), [searchParams]);
   const { filters, metric, highlightMode } = params;
@@ -119,25 +137,48 @@ export function useStatistics(): Statistics {
     [updateParams],
   );
 
-  const visibleRows = useMemo(() => filterStatisticsRows(data.rows, filters), [data.rows, filters]);
+  // Hollywood and Orlando are HHN's venues: the venue filter only applies
+  // while HHN is in view, so a choice made there can't silently narrow
+  // Knott's or All Haunts.
+  const effectiveFilters = useMemo(
+    () => (scopeHauntId === HAUNT_IDS.hhn ? filters : { ...filters, park: null }),
+    [filters, scopeHauntId],
+  );
+  const visibleRows = useMemo(
+    () => filterStatisticsRows(data.rows, effectiveFilters),
+    [data.rows, effectiveFilters],
+  );
 
   const highlights = useMemo(
     () => computeHighlights(visibleRows, highlightMode),
     [visibleRows, highlightMode],
   );
   const yearPerformance = useMemo(
-    () => computeYearPerformance(visibleRows, metric),
-    [visibleRows, metric],
+    () =>
+      computeYearPerformance(visibleRows, metric, { partialHaunts, year: effectiveFilters.year }),
+    [visibleRows, metric, partialHaunts, effectiveFilters.year],
   );
   const distribution = useMemo(() => computeScoreDistribution(visibleRows), [visibleRows]);
   const coverage = useMemo(
-    () => (visibleRows.length === 0 ? EMPTY_COVERAGE : computeCoverage(visibleRows)),
-    [visibleRows],
+    () => (visibleRows.length === 0 ? EMPTY_COVERAGE : computeCoverage(visibleRows, hauntIds)),
+    [visibleRows, hauntIds],
   );
   const topAttractions = useMemo(
     () => computeTopAttractions(visibleRows, metric),
     [visibleRows, metric],
   );
+  const bottomAttractions = useMemo(
+    () => computeTopAttractions(visibleRows, metric, TOP_ATTRACTIONS_LIMIT, "asc"),
+    [visibleRows, metric],
+  );
+  // Debuts are counted over the haunt's whole archive in view, not the
+  // season filter: "new in 2023" doesn't change because 2025 is selected.
+  const debuts = useMemo(() => {
+    const rows = filterStatisticsRows(data.rows, { ...effectiveFilters, year: null });
+    return hauntIds
+      .map((hauntId) => ({ hauntId, counts: computeDebutsByYear(rows, hauntId) }))
+      .filter((entry) => entry.counts.length > 0);
+  }, [data.rows, effectiveFilters, hauntIds]);
   const hauntComparison = useMemo(
     () =>
       compareHaunts(
@@ -154,7 +195,7 @@ export function useStatistics(): Statistics {
     filters,
     setFilters,
     clearFilters,
-    areFiltersActive: areStatisticsFiltersActive(filters),
+    areFiltersActive: areStatisticsFiltersActive(effectiveFilters),
     availableYears,
     metric,
     setMetric,
@@ -166,6 +207,8 @@ export function useStatistics(): Statistics {
     coverage,
     hauntComparison,
     topAttractions,
+    bottomAttractions,
+    debuts,
     attractionCount: visibleRows.length,
   };
 }

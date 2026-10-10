@@ -1,5 +1,7 @@
 /**
- * Imports `data/hhn-archive.json` into the app's real database.
+ * Imports a haunt's archive dataset (`data/hhn-archive.json` by default,
+ * `--haunt knotts` for `data/knotts-archive.json`) into the app's real
+ * database — see `scripts/datasets.ts`.
  *
  * The order is the safety:
  *
@@ -14,7 +16,7 @@
  * script checks that it didn't, by counting those rows either side of the
  * import and refusing to report success if the numbers moved.
  *
- * Usage: npm run data:import [-- --dry-run]
+ * Usage: npm run data:import [-- --haunt knotts] [--dry-run]
  */
 import { copyFileSync, existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -27,9 +29,10 @@ import { SCHEMA_VERSION } from "../src/database/schemaVersion";
 import { NodeSqliteExecutor } from "../src/database/nodeSqliteExecutor";
 import type { SqlExecutor } from "../src/database/types";
 import { createArchiveImportRepository } from "../src/repositories/archiveImportRepository";
+import { selectedDataset } from "./datasets";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const DATASET = join(ROOT, "data", "hhn-archive.json");
+const { path: DATASET } = selectedDataset();
 const DRY_RUN = process.argv.includes("--dry-run");
 
 const PERSONAL_TABLES = ["user_ratings", "user_notes", "user_rankings", "user_settings"] as const;

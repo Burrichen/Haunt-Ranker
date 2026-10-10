@@ -52,6 +52,7 @@ function referenceData(): Pick<BackupData, "haunts" | "venues"> {
         tagline: null,
         accent: "orange",
         venues_label: null,
+        archive_coverage: null,
         sort_order: 0,
         pack_id: null,
         pack_version: null,
@@ -66,6 +67,7 @@ function referenceData(): Pick<BackupData, "haunts" | "venues"> {
         tagline: null,
         accent: "purple",
         venues_label: null,
+        archive_coverage: null,
         sort_order: 10,
         pack_id: null,
         pack_version: null,
@@ -490,6 +492,9 @@ describe("upgradeBackup", () => {
       2: (raw) => raw,
       3: (raw) => raw,
       4: (raw) => raw,
+      5: (raw) => raw,
+      6: (raw) => raw,
+      7: (raw) => raw,
     };
 
     const result = upgradeBackup({ formatVersion: 0 }, upgrades);

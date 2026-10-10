@@ -19,8 +19,12 @@ describe("AttractionRelationRepository", () => {
     db = createTestDatabase();
     relations = createAttractionRelationRepository(db);
     const eventYear = await createFixtureEventYear(db);
-    attractionA = (await createFixtureAttraction(db, eventYear.id, { slug: "a" })).id;
-    attractionB = (await createFixtureAttraction(db, eventYear.id, { slug: "b" })).id;
+    attractionA = (
+      await createFixtureAttraction(db, eventYear.id, { slug: "a", name: "Attraction A" })
+    ).id;
+    attractionB = (
+      await createFixtureAttraction(db, eventYear.id, { slug: "b", name: "Attraction B" })
+    ).id;
   });
 
   it("creates a relation and finds it from either side", async () => {

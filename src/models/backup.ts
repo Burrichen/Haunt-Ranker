@@ -12,7 +12,7 @@ import type { ParkId } from "./park";
  * when an older file can no longer be read correctly — a renamed or removed
  * column, a changed meaning, a new required field.
  */
-export const BACKUP_FORMAT_VERSION = 5;
+export const BACKUP_FORMAT_VERSION = 8;
 
 /**
  * A backup is a table-level dump rather than a dump of the domain models.
@@ -31,6 +31,7 @@ export interface HauntRow {
   tagline: string | null;
   accent: string;
   venues_label: string | null;
+  archive_coverage: string | null;
   sort_order: number;
   pack_id: string | null;
   pack_version: string | null;

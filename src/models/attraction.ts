@@ -33,7 +33,7 @@ export const RETIRED_ATTRACTION_TYPES: readonly StoredAttractionType[] = [
 export type IpType = "original" | "licensed";
 
 /**
- * A house or scare zone. Most descriptive fields are nullable — do not
+ * A walk-through: a House at HHN, a Maze at Knott's. Most descriptive fields are nullable — do not
  * assume every fact is known. `parkIds` is assembled from the
  * `attraction_parks` join table, not a column on `attractions`.
  */

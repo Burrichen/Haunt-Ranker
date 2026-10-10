@@ -17,6 +17,7 @@ interface HauntRow {
   tagline: string | null;
   accent: string | null;
   venues_label: string | null;
+  archive_coverage: string | null;
   sort_order: number;
   pack_id: string | null;
   pack_version: string | null;
@@ -34,6 +35,7 @@ function mapRow(row: HauntRow): Haunt {
     tagline: row.tagline,
     accent: isHauntAccent(row.accent) ? row.accent : DEFAULT_HAUNT_ACCENT,
     venuesLabel: row.venues_label,
+    archiveCoverage: row.archive_coverage ?? null,
     sortOrder: row.sort_order,
     packId: row.pack_id,
     packVersion: row.pack_version,

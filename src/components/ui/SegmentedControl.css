@@ -31,7 +31,7 @@
 
 .segmented__option--active {
   background-color: var(--color-bg-3);
-  color: var(--color-orange-strong);
+  color: var(--accent-strong);
 }
 
 .segmented__icon {

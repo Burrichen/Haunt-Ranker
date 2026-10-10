@@ -115,7 +115,7 @@ export function MediaManager({ media, sources, onAdd, onRemove }: MediaManagerPr
                     {MEDIA_TYPE_LABELS[item.mediaType]}
                   </span>
                   <span className="sub-editor__item-detail">
-                    <Badge variant={item.distribution === "bundled" ? "orange" : "neutral"}>
+                    <Badge variant={item.distribution === "bundled" ? "accent" : "neutral"}>
                       {DISTRIBUTION_LABELS[item.distribution]}
                     </Badge>
                     {item.localPath ? ` ${item.localPath}` : ` ${item.url}`}

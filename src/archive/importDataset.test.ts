@@ -567,6 +567,90 @@ describe("importArchiveDataset", () => {
     });
   });
 
+  describe("canonical identity", () => {
+    const knotts = (attractions: ArchiveDataset["attractions"]): ArchiveDataset =>
+      dataset({
+        events: [
+          { id: "ksf-2101", hauntId: "knotts-scary-farm", calendarYear: 2101, name: "KSF 2101" },
+          { id: "ksf-2102", hauntId: "knotts-scary-farm", calendarYear: 2102, name: "KSF 2102" },
+          { id: "ksf-2103", hauntId: "knotts-scary-farm", calendarYear: 2103, name: "KSF 2103" },
+        ],
+        attractions,
+      });
+    const maze = (
+      extra: Partial<ArchiveDataset["attractions"][number]> = {},
+    ): ArchiveDataset["attractions"][number] => ({
+      id: "ksf-room-13",
+      eventId: "ksf-2101",
+      type: "house",
+      name: "Room 13",
+      parks: ["knotts-berry-farm"],
+      ...extra,
+    });
+    const seasonsOf = async (id: string) =>
+      (
+        await db.select<Array<{ season_id: string }>>(
+          "SELECT season_id FROM season_appearances WHERE attraction_id = ? ORDER BY season_id",
+          [id],
+        )
+      ).map((row) => row.season_id);
+
+    it("records a returning maze once, with every season as an appearance", async () => {
+      await importArchiveDataset(
+        knotts([maze({ appearances: ["ksf-2102", "ksf-2103"], debutYear: 2090 })]),
+        repository,
+      );
+
+      expect(await seasonsOf("ksf-room-13")).toEqual(["ksf-2101", "ksf-2102", "ksf-2103"]);
+      expect(await db.select("SELECT id, debut_year FROM attractions")).toEqual([
+        { id: "ksf-room-13", debut_year: 2090 },
+      ]);
+    });
+
+    it("adds a later appearance without touching the rating, and never clears a known debut", async () => {
+      await importArchiveDataset(knotts([maze({ debutYear: 2090 })]), repository);
+      await addPersonalData("ksf-room-13");
+
+      await importArchiveDataset(knotts([maze({ appearances: ["ksf-2102"] })]), repository);
+
+      expect(await seasonsOf("ksf-room-13")).toEqual(["ksf-2101", "ksf-2102"]);
+      expect(await db.select("SELECT debut_year FROM attractions")).toEqual([{ debut_year: 2090 }]);
+      expect(await db.select("SELECT attraction_id FROM user_ratings")).toEqual([
+        { attraction_id: "ksf-room-13" },
+      ]);
+    });
+
+    it("refuses a second copy of a maze the archive already holds under another id", async () => {
+      await importArchiveDataset(knotts([maze()]), repository);
+
+      await expect(
+        importArchiveDataset(
+          knotts([maze({ id: "ksf-2102-room-13", eventId: "ksf-2102" })]),
+          repository,
+        ),
+      ).rejects.toBeInstanceOf(ArchiveImportError);
+      expect(await db.select("SELECT id FROM attractions")).toEqual([{ id: "ksf-room-13" }]);
+    });
+
+    it("refuses a second record for an HHN house already stored for that season", async () => {
+      await importArchiveDataset(dataset(), repository);
+      const second = dataset();
+      second.attractions = [
+        {
+          ...second.attractions[0],
+          id: "example-2101-house-one-hollywood",
+          parks: ["hollywood"],
+          characters: [],
+          media: [],
+        },
+      ];
+
+      await expect(importArchiveDataset(second, repository)).rejects.toBeInstanceOf(
+        ArchiveImportError,
+      );
+    });
+  });
+
   describe("previewImport", () => {
     it("reports what would change without changing it", async () => {
       await importArchiveDataset(dataset(), repository);

@@ -16,14 +16,14 @@
   color: var(--color-text-secondary);
 }
 
-.badge--orange {
-  background-color: var(--color-orange-subtle);
-  color: var(--color-orange-strong);
+.badge--accent {
+  background-color: var(--accent-subtle);
+  color: var(--accent-strong);
 }
 
-.badge--purple {
-  background-color: var(--color-purple-subtle);
-  color: var(--color-purple-strong);
+.badge--accent-2 {
+  background-color: var(--accent-2-subtle);
+  color: var(--accent-2-strong);
 }
 
 .badge--danger {

@@ -67,13 +67,26 @@ function walkthroughScopeFor(scope: string): string | null {
   return null;
 }
 
-export function retireNonWalkthroughs(data: Data, preservedAt: string): Data {
-  const attractions = rowsOf(data, "attractions");
+/**
+ * Takes the given attractions out of a backup's archive the way a migration
+ * would: every rating, note and ranking position on them is copied whole into
+ * `legacyPersonalData` first, then they go with everything that belongs to
+ * them and any source only they cited.
+ */
+export function retireAttractions(
+  data: Data,
+  ids: ReadonlySet<string>,
+  reason: string,
+  preservedAt: string,
+): Data {
   const retired = new Map(
-    attractions
-      .filter((row) => row.attraction_type !== WALKTHROUGH)
+    rowsOf(data, "attractions")
+      .filter((row) => ids.has(String(row.id)))
       .map((row) => [String(row.id), row]),
   );
+  if (retired.size === 0) {
+    return data;
+  }
   const seasons = new Map(rowsOf(data, "eventYears").map((row) => [String(row.id), row]));
   const isRetired = (value: unknown) => retired.has(String(value));
 
@@ -97,33 +110,13 @@ export function retireNonWalkthroughs(data: Data, preservedAt: string): Data {
         season_id: season?.id ?? null,
         calendar_year: season?.calendar_year ?? null,
         payload: payload(kind, row),
-        reason: LEGACY_REASON,
+        reason,
         preserved_at: preservedAt,
       });
     }
   }
 
-  // 2. Keep a hand-made All Attractions order as the walk-through list.
-  const walkthroughIds = new Set(
-    attractions.filter((row) => !isRetired(row.id)).map((row) => String(row.id)),
-  );
-  const rankings = rowsOf(data, "rankings");
-  const scopes = new Set(rankings.map((row) => String(row.scope)));
-  const copies: Row[] = [];
-  for (const scope of [...scopes].sort(byText)) {
-    const target = walkthroughScopeFor(scope);
-    if (target === null || scopes.has(target)) {
-      continue;
-    }
-    rankings
-      .filter((row) => row.scope === scope && walkthroughIds.has(String(row.attraction_id)))
-      .sort((a, b) => Number(a.position) - Number(b.position) || byText(String(a.id), String(b.id)))
-      .forEach((row, position) =>
-        copies.push({ ...row, id: `walkthrough:${String(row.id)}`, scope: target, position }),
-      );
-  }
-
-  // 3. Remove.
+  // 2. Remove.
   const attractionSources = rowsOf(data, "attractionSources");
   const candidateSources = new Set(
     attractionSources
@@ -143,10 +136,7 @@ export function retireNonWalkthroughs(data: Data, preservedAt: string): Data {
 
   return {
     ...data,
-    experienceTypes: rowsOf(data, "experienceTypes").filter(
-      (row) => row.category === WALKTHROUGH_CATEGORY,
-    ),
-    attractions: attractions.filter((row) => !isRetired(row.id)),
+    attractions: rowsOf(data, "attractions").filter((row) => !isRetired(row.id)),
     attractionParks: withoutRetired("attractionParks"),
     seasonAppearances: withoutRetired("seasonAppearances"),
     characters: withoutRetired("characters"),
@@ -161,7 +151,45 @@ export function retireNonWalkthroughs(data: Data, preservedAt: string): Data {
     attractionVenueWiki: withoutRetired("attractionVenueWiki"),
     ratings: withoutRetired("ratings"),
     notes: withoutRetired("notes"),
-    rankings: [...rankings.filter((row) => !isRetired(row.attraction_id)), ...copies],
+    rankings: withoutRetired("rankings"),
     legacyPersonalData: legacy,
+  };
+}
+
+export function retireNonWalkthroughs(data: Data, preservedAt: string): Data {
+  const attractions = rowsOf(data, "attractions");
+  const retired = new Set(
+    attractions.filter((row) => row.attraction_type !== WALKTHROUGH).map((row) => String(row.id)),
+  );
+
+  // Keep a hand-made All Attractions order as the walk-through list.
+  const walkthroughIds = new Set(
+    attractions.filter((row) => !retired.has(String(row.id))).map((row) => String(row.id)),
+  );
+  const rankings = rowsOf(data, "rankings");
+  const scopes = new Set(rankings.map((row) => String(row.scope)));
+  const copies: Row[] = [];
+  for (const scope of [...scopes].sort(byText)) {
+    const target = walkthroughScopeFor(scope);
+    if (target === null || scopes.has(target)) {
+      continue;
+    }
+    rankings
+      .filter((row) => row.scope === scope && walkthroughIds.has(String(row.attraction_id)))
+      .sort((a, b) => Number(a.position) - Number(b.position) || byText(String(a.id), String(b.id)))
+      .forEach((row, position) =>
+        copies.push({ ...row, id: `walkthrough:${String(row.id)}`, scope: target, position }),
+      );
+  }
+
+  const withCopies = { ...data, rankings: [...rankings, ...copies] };
+  const out = retireAttractions(withCopies, retired, LEGACY_REASON, preservedAt);
+  return {
+    ...out,
+    // A file with nothing to retire still loses the retired vocabulary.
+    legacyPersonalData: rowsOf(out, "legacyPersonalData"),
+    experienceTypes: rowsOf(data, "experienceTypes").filter(
+      (row) => row.category === WALKTHROUGH_CATEGORY,
+    ),
   };
 }

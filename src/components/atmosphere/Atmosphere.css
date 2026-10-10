@@ -19,8 +19,8 @@
   top: -2%;
   left: 12%;
   box-shadow:
-    0 0 120px 60px rgba(193, 98, 47, 0.1),
-    0 0 220px 120px rgba(193, 98, 47, 0.06);
+    0 0 120px 60px rgba(var(--atmosphere-1), 0.1),
+    0 0 220px 120px rgba(var(--atmosphere-1), 0.06);
   animation: atmosphere-drift 90s var(--ease-standard) infinite alternate;
 }
 
@@ -28,8 +28,8 @@
   bottom: -4%;
   right: 10%;
   box-shadow:
-    0 0 140px 70px rgba(124, 106, 156, 0.1),
-    0 0 240px 130px rgba(124, 106, 156, 0.06);
+    0 0 140px 70px rgba(var(--atmosphere-2), 0.1),
+    0 0 240px 130px rgba(var(--atmosphere-2), 0.06);
   animation: atmosphere-drift 120s var(--ease-standard) infinite alternate-reverse;
 }
 

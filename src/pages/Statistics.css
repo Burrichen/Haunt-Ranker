@@ -28,3 +28,11 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* The haunt comparison and the debut chart sit side by side when both show. */
+.statistics__secondary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: var(--space-4);
+  align-items: start;
+}

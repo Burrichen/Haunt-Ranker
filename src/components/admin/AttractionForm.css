@@ -58,7 +58,7 @@
 
 .attraction-form__select:focus-visible {
   outline: none;
-  border-color: var(--color-focus);
+  border-color: var(--focus);
 }
 
 .attraction-form__chips {

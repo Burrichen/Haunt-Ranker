@@ -1,10 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { getDatabase } from "../database/client";
 import { isInHauntScope, isRankedCategory } from "../models/haunt";
+import type { EventYear } from "../models/eventYear";
 import { useHauntScope } from "./useHauntScope";
 import { createAttractionRepository } from "../repositories/attractionRepository";
 import { createEventYearRepository } from "../repositories/eventYearRepository";
 import { createRatingRepository } from "../repositories/ratingRepository";
+import { createSeasonAppearanceRepository } from "../repositories/seasonAppearanceRepository";
 import type { StatisticsRow } from "../utils/statistics";
 
 export interface ArchiveRows {
@@ -31,10 +33,11 @@ export function useArchiveRows(): ArchiveRows {
     async function load() {
       try {
         const db = await getDatabase();
-        const [attractions, years, ratings] = await Promise.all([
+        const [attractions, years, ratings, appearances] = await Promise.all([
           createAttractionRepository(db).getAll(),
           createEventYearRepository(db).getAll(),
           createRatingRepository(db).getAll(),
+          createSeasonAppearanceRepository(db).getAll(),
         ]);
 
         if (cancelled) {
@@ -43,6 +46,20 @@ export function useArchiveRows(): ArchiveRows {
 
         const yearsById = new Map(years.map((year) => [year.id, year]));
         const ratingByAttraction = new Map(ratings.map((rating) => [rating.attractionId, rating]));
+        // Every season each record is verified to have run in, oldest first.
+        const seasonsByAttraction = new Map<string, EventYear[]>();
+        for (const appearance of appearances) {
+          const season = yearsById.get(appearance.seasonId);
+          if (season) {
+            seasonsByAttraction.set(appearance.attractionId, [
+              ...(seasonsByAttraction.get(appearance.attractionId) ?? []),
+              season,
+            ]);
+          }
+        }
+        for (const seasons of seasonsByAttraction.values()) {
+          seasons.sort((a, b) => a.calendarYear - b.calendarYear);
+        }
 
         setState({
           isLoading: false,
@@ -51,6 +68,7 @@ export function useArchiveRows(): ArchiveRows {
             attraction,
             eventYear: yearsById.get(attraction.eventYearId) ?? null,
             rating: ratingByAttraction.get(attraction.id) ?? null,
+            appearances: seasonsByAttraction.get(attraction.id),
           })),
         });
       } catch (error) {

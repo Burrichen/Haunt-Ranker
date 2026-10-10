@@ -19,7 +19,8 @@
 
 .haunt-card-link:hover .haunt-card {
   transform: translateY(-2px);
-  border-color: var(--color-border-strong);
+  border-color: var(--accent-subtle);
+  box-shadow: var(--shadow-md), var(--shadow-glow-accent);
 }
 
 .haunt-card__eyebrow {
@@ -37,19 +38,8 @@
   line-height: 1.2;
 }
 
-/* The home collection reads larger. Everything else about the card — the
-   figures, the coverage, the spacing — is identical, so a second haunt is
-   smaller on the page without being lesser on it. */
-.haunt-card--featured .haunt-card__name {
-  font-size: clamp(1.625rem, 3vw, 2.125rem);
-}
-
-.haunt-card--orange .haunt-card__name {
-  color: var(--color-orange-strong);
-}
-
-.haunt-card--purple .haunt-card__name {
-  color: var(--color-purple-strong);
+.haunt-card__name {
+  color: var(--accent-strong);
 }
 
 .haunt-card__tagline {
@@ -98,11 +88,7 @@
   display: block;
   height: 100%;
   border-radius: inherit;
-  background-color: var(--color-orange);
-}
-
-.haunt-card--purple .haunt-card__coverage-fill {
-  background-color: var(--color-purple);
+  background-color: var(--accent);
 }
 
 .haunt-card__coverage-label,
@@ -125,6 +111,7 @@
   right: var(--space-5);
   display: flex;
   gap: var(--space-2);
-  color: var(--color-text-tertiary);
-  opacity: 0.5;
+  /* The haunt's secondary accent, kept small and faint. */
+  color: var(--accent-2-strong);
+  opacity: 0.55;
 }

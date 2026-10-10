@@ -175,9 +175,34 @@ async function renditionUrl(url: string): Promise<string> {
 
 const USER_AGENT = "HauntRanker/offline-copy (personal archive)";
 
+/**
+ * Some image hosts (Fandom's static.wikia.nocookie.net, which holds the HHN
+ * Wiki's copies of the official posters) refuse any non-browser user agent
+ * with a 403, and rate-limit bursts the same way. The honest agent is tried
+ * first; only a 403 falls back to a standard browser string, with one retry.
+ */
+const BROWSER_USER_AGENT =
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) " +
+  "Chrome/126.0.0.0 Safari/537.36";
+
+async function fetchImage(url: string): Promise<Response> {
+  let response = await fetch(url, { headers: { "User-Agent": USER_AGENT }, redirect: "follow" });
+  for (let attempt = 0; response.status === 403 && attempt < 2; attempt += 1) {
+    await new Promise((resolve) => setTimeout(resolve, 1500 * attempt));
+    response = await fetch(url, {
+      headers: { "User-Agent": BROWSER_USER_AGENT, Accept: "image/*" },
+      redirect: "follow",
+    });
+  }
+  return response;
+}
+
 /** The readable part of a URL's filename, before our own extension goes on. */
 function baseNameOf(url: string): string {
-  const name = decodeURIComponent(fileNameOf(new URL(url).pathname)) || "image";
+  // Fandom serves a file at ".../File_Name.png/revision/latest"; the name is
+  // the segment before "/revision".
+  const path = new URL(url).pathname.replace(/\/revision\/.*$/, "");
+  const name = decodeURIComponent(fileNameOf(path)) || "image";
   const dot = name.lastIndexOf(".");
   return dot > 0 ? name.slice(0, dot) : name;
 }
@@ -186,10 +211,7 @@ async function download(row: Row, mediaDir: string): Promise<Outcome> {
   const from = await renditionUrl(row.url);
   let response: Response;
   try {
-    response = await fetch(from, {
-      headers: { "User-Agent": USER_AGENT },
-      redirect: "follow",
-    });
+    response = await fetchImage(from);
   } catch (error) {
     return { kind: "skipped", row, reason: `couldn't fetch: ${(error as Error).message}` };
   }

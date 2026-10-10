@@ -49,7 +49,7 @@ select {
 }
 
 a {
-  color: var(--color-orange-strong);
+  color: var(--accent-strong);
 }
 
 /* Visible, consistent focus ring across every interactive element */
@@ -57,8 +57,13 @@ a {
   outline: none;
 }
 
+::selection {
+  background-color: var(--selection);
+  color: var(--color-text-primary);
+}
+
 :focus-visible {
-  outline: 2px solid var(--color-focus);
+  outline: 2px solid var(--focus);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
 }

@@ -64,6 +64,7 @@ function backupText(preferences = {}): string {
     tagline: null,
     accent: "orange",
     venues_label: null,
+    archive_coverage: null,
     sort_order: 0,
     pack_id: null,
     pack_version: null,

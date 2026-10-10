@@ -47,8 +47,8 @@
 
 .haunt-selector__option--active,
 .haunt-selector__option--active:hover {
-  background-color: var(--color-orange-subtle);
-  border-color: var(--color-orange-subtle);
-  color: var(--color-orange-strong);
+  background-color: var(--accent-subtle);
+  border-color: var(--accent-subtle);
+  color: var(--accent-strong);
   font-weight: 600;
 }

@@ -32,6 +32,7 @@ function haunt(id: string, name: string, shortName: string, sortOrder: number): 
     tagline: null,
     accent: "orange",
     venuesLabel: null,
+    archiveCoverage: null,
     sortOrder,
     packId: null,
     packVersion: null,

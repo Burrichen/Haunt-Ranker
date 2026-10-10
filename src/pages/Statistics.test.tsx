@@ -87,6 +87,7 @@ const HIGHLIGHTS: Highlight[] = [
     attraction: makeAttraction("Moonlight Manor"),
     rating: makeRating(5, 5, 4),
     value: 14,
+    eventYear: null,
   },
   {
     metric: "fear",
@@ -94,6 +95,7 @@ const HIGHLIGHTS: Highlight[] = [
     attraction: makeAttraction("Radioactive Crypt"),
     rating: makeRating(3, 3, 5),
     value: 5,
+    eventYear: null,
   },
   {
     metric: "fun",
@@ -101,6 +103,7 @@ const HIGHLIGHTS: Highlight[] = [
     attraction: makeAttraction("Pumpkin Pier"),
     rating: makeRating(3, 5, 2),
     value: 5,
+    eventYear: null,
   },
   {
     metric: "theme",
@@ -108,6 +111,7 @@ const HIGHLIGHTS: Highlight[] = [
     attraction: makeAttraction("Graveyard Radio"),
     rating: makeRating(5, 4, 4),
     value: 5,
+    eventYear: null,
   },
 ];
 
@@ -143,23 +147,28 @@ function makeState(overrides: Partial<StatisticsState> = {}): StatisticsState {
     yearPerformance: [
       {
         calendarYear: 2101,
+        hauntId: "hhn",
         eventYearId: "y2101",
         label: "Shadowfest 2101",
         average: 11,
         reviewedCount: 2,
+        partial: false,
       },
       {
         calendarYear: 2103,
+        hauntId: "hhn",
         eventYearId: "y2103",
         label: "Shadowfest 2103",
         average: 13.5,
         reviewedCount: 1,
+        partial: false,
       },
     ],
     distribution: computeScoreDistribution([]),
     coverage: {
       all: { reviewed: 4, total: 7 },
       houses: { reviewed: 4, total: 7 },
+      byHaunt: [],
     },
     hauntComparison: [
       {
@@ -176,6 +185,8 @@ function makeState(overrides: Partial<StatisticsState> = {}): StatisticsState {
       },
     ],
     topAttractions: TOP,
+    bottomAttractions: [],
+    debuts: [],
     attractionCount: 7,
     ...overrides,
   };
@@ -331,6 +342,7 @@ describe("Statistics dashboard", () => {
         coverage: {
           all: { reviewed: 0, total: 3 },
           houses: { reviewed: 0, total: 3 },
+          byHaunt: [],
         },
       });
       expect(screen.getByText(/rate an attraction and it shows up here/i)).toBeInTheDocument();

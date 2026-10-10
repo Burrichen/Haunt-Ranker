@@ -1,13 +1,30 @@
+import { hauntTheme } from "../../models/hauntTheme";
+
 /**
  * Shared chart chrome, so both charts read as one system.
  *
- * There is exactly one mark colour. Each chart plots a single series, so
- * colour carries no identity here — it's just "this is the data". The hue is
- * the app's existing orange token, checked against the panel surface for
- * contrast and lightness rather than picked by eye. Everything else (grid,
- * axes, labels) is deliberately recessive: the data is the only loud thing.
+ * A single-series chart has one mark colour, the haunt theme's `--series`:
+ * HHN orange, Knott's plum, or the neutral brass when All Haunts is in view.
+ * Everything else (grid, axes, labels) is deliberately recessive: the data is
+ * the only loud thing.
  */
-export const CHART_MARK = "var(--color-orange)";
+export const CHART_MARK = "var(--series)";
+
+/**
+ * Where a chart splits by haunt, each haunt's series wears that haunt's
+ * colour — colour follows the entity, never its rank or order. The pair was
+ * run through the dataviz palette validator against the panel (#1a151a) and
+ * passes every check: lightness, chroma, CVD separation (ΔE 20.6), contrast.
+ * Ghost green is deliberately not a series colour (it fails the chroma floor).
+ */
+export function hauntSeriesColor(hauntId: string): string {
+  const theme = hauntTheme(hauntId);
+  return theme === "hhn"
+    ? "var(--color-orange)"
+    : theme === "knotts"
+      ? "var(--color-plum)"
+      : "var(--series)";
+}
 
 /** The panel the charts sit on — used for the rings that separate overlapping marks. */
 export const CHART_SURFACE = "var(--color-bg-1)";

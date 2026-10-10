@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import { RATING_MAX, RATING_TOTAL_MAX } from "../../models/rating";
 import { formatScore } from "../../utils/formatScore";
 import type { Highlight, HighlightMode } from "../../utils/statistics";
+import { useHauntScope } from "../../hooks/useHauntScope";
 import { AttractionHoverPreview } from "../archive";
+import { HauntTag } from "./HauntTag";
 import { Panel, SegmentedControl } from "../ui";
 import "./HighlightCards.css";
 
@@ -25,6 +27,8 @@ const MODE_OPTIONS = [
  * unknown.
  */
 export function HighlightCards({ highlights, mode, onModeChange }: HighlightCardsProps) {
+  // Under All Haunts a highlight can come from either haunt, so it says which.
+  const { isAllHaunts } = useHauntScope();
   return (
     <section className="highlights" aria-label="Highlights">
       <div className="highlights__header">
@@ -55,7 +59,7 @@ export function HighlightCards({ highlights, mode, onModeChange }: HighlightCard
               </span>
               <AttractionHoverPreview
                 attraction={highlight.attraction}
-                eventYear={null}
+                eventYear={highlight.eventYear}
                 rating={highlight.rating}
               >
                 <Link
@@ -65,6 +69,7 @@ export function HighlightCards({ highlights, mode, onModeChange }: HighlightCard
                   {highlight.attraction.name}
                 </Link>
               </AttractionHoverPreview>
+              {isAllHaunts && <HauntTag hauntId={highlight.eventYear?.hauntId} />}
             </Panel>
           ))}
         </div>

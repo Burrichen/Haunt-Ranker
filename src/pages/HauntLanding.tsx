@@ -6,6 +6,7 @@ import { useHauntLanding } from "../hooks/useHaunts";
 import { useHauntScope } from "../hooks/useHauntScope";
 import { useHauntRegistry } from "../hooks/useHauntRegistry";
 import type { HauntId } from "../models/haunt";
+import { hauntTheme } from "../models/hauntTheme";
 import { RATING_MAX, RATING_TOTAL_MAX } from "../models/rating";
 import { formatScore } from "../utils/formatScore";
 import { reviewCoveragePercent, seasonSpanLabel } from "../utils/haunts";
@@ -112,7 +113,6 @@ export function HauntLanding() {
   }
 
   const haunt = registry.haunt(resolved);
-  const accent = haunt?.accent ?? "orange";
   const description = haunt?.description ?? haunt?.tagline ?? null;
   const venuesLabel = haunt?.venuesLabel ?? null;
   const name = haunt?.name ?? resolved;
@@ -120,7 +120,7 @@ export function HauntLanding() {
   const coverage = reviewCoveragePercent(summary);
 
   return (
-    <div className={`haunt-landing haunt-landing--${accent}`}>
+    <div className="haunt-landing" data-haunt-theme={hauntTheme(resolved)}>
       <PageHeader title={name} subtitle={venuesLabel ?? undefined} backTo="/haunts" />
 
       {isLoading ? (
@@ -133,16 +133,14 @@ export function HauntLanding() {
         />
       ) : (
         <>
-          <Panel elevated glow={accent} padding="lg" className="haunt-landing__intro">
+          <Panel elevated glow="accent" padding="lg" className="haunt-landing__intro">
             {description && <p className="haunt-landing__description">{description}</p>}
             <div className="haunt-landing__badges">
               <Badge variant="neutral">
                 <CalendarDays size={11} strokeWidth={2} />
                 {span ?? "No seasons yet"}
               </Badge>
-              {venuesLabel && (
-                <Badge variant={accent === "orange" ? "orange" : "purple"}>{venuesLabel}</Badge>
-              )}
+              {venuesLabel && <Badge variant="accent">{venuesLabel}</Badge>}
             </div>
           </Panel>
 
@@ -175,6 +173,9 @@ export function HauntLanding() {
             <p className="haunt-landing__sample">
               {summary.reviewed} of {summary.attractions} reviewed.
             </p>
+            {haunt?.archiveCoverage && (
+              <p className="haunt-landing__scope-note">{haunt.archiveCoverage}</p>
+            )}
 
             <div className="haunt-landing__actions">
               <Button

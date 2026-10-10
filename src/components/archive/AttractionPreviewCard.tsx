@@ -12,6 +12,7 @@ import { Badge, Panel } from "../ui";
 import { ParkBadgeRow } from "./ParkBadge";
 import { attractionTypeIcon, attractionTypeVariant } from "./typeIcons";
 import "./AttractionPreviewCard.css";
+import { hauntTheme } from "../../models/hauntTheme";
 
 export interface AttractionPreviewCardProps {
   attraction: Attraction;
@@ -49,7 +50,12 @@ export function AttractionPreviewCard({
       to={`/attractions/${attraction.id}`}
       className={cn("attraction-preview-card-link", className)}
     >
-      <Panel elevated padding="sm" className="attraction-preview-card">
+      <Panel
+        elevated
+        padding="sm"
+        className="attraction-preview-card"
+        data-haunt-theme={hauntTheme(eventYear?.hauntId)}
+      >
         <div className="attraction-preview-card__header">
           <span className="attraction-preview-card__icon" aria-hidden="true">
             {attractionTypeIcon(attraction.attractionType, { size: 15, strokeWidth: 1.5 })}

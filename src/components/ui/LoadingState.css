@@ -9,7 +9,7 @@
 }
 
 .loading-state__spinner {
-  color: var(--color-orange-strong);
+  color: var(--accent-strong);
   animation: loading-spin 0.8s linear infinite;
 }
 

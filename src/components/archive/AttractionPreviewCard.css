@@ -87,7 +87,7 @@
 }
 
 .attraction-preview-card__score--total dd {
-  color: var(--color-orange-strong);
+  color: var(--accent-strong);
 }
 
 .attraction-preview-card__not-rated {

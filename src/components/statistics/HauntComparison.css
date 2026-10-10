@@ -55,3 +55,12 @@
   color: var(--color-text-tertiary);
   max-width: 70ch;
 }
+
+.haunt-comparison__key {
+  display: inline-block;
+  width: 12px;
+  height: 2px;
+  margin-right: var(--space-2);
+  border-radius: 1px;
+  vertical-align: middle;
+}

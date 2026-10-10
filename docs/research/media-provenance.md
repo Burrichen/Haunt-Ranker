@@ -33,9 +33,34 @@ personal, non-commercial use, and the copies are made for exactly that. Neither
 allows redistribution, so none of this artwork may be bundled into a build
 that's given to other people.
 
+## House artwork added 2026-10-10
+
+The archive's owner confirmed permission to use official Halloween Horror
+Nights artwork, including copies of the official posters and logos hosted by fan
+sites. On that basis 168 houses from 2010–2023 that had no artwork gained one
+image each (HHN dataset 2026.10.1):
+
+- Every image is official Universal key art, a poster, a house logo or a title
+  card. None is fan-made, a photo of the house or generated. Each was chosen
+  from the house's own page and checked by eye.
+- 167 copies are hosted by the Halloween Horror Nights Wiki
+  (static.wikia.nocookie.net) and one by Creepy LA. They are recorded as
+  `unclear` (a copy hosted elsewhere), with the owner's permission stated in
+  each record's licence note, and cite the page they were found on.
+- That host refuses non-browser clients and serves WebP, so
+  `npm run media:download` falls back to a browser user agent on a 403.
+- Still without artwork: _SAW: Game On_ (Hollywood 2010). Only guest photos of
+  it exist online.
+- Some images are small (a few are under 300px wide), and a handful reuse an
+  earlier run's art where nothing specific to the year survives. Each house's
+  research — page, checks and any doubt — is in
+  [`hhn-house-artwork-2026-10.json`](hhn-house-artwork-2026-10.json).
+
 ## What's recorded
 
-138 media records: 117 for Halloween Horror Nights and 21 for Knott's Scary Farm.
+The 2026-09-28 audit, before the house artwork above: 138 media records, 117
+for Halloween Horror Nights and 21 for Knott's Scary Farm. The current full
+list is [`media-manifest.json`](media-manifest.json).
 
 | Host                        | Records | Owner / status                                  | Classification |
 | --------------------------- | ------: | ----------------------------------------------- | -------------- |

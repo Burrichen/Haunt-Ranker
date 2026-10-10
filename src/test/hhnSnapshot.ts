@@ -342,6 +342,16 @@ export async function takeHhnSnapshot(
   }
 
   // --- Statistics and the explorer ------------------------------------------
+  // Every season here is HHN's and HHN line-ups are complete, so the haunt a
+  // year point names and its "partial" flag carry no
+  // information — and a snapshot recorded before points named one has none.
+  const withoutHaunt = <T extends object>(points: T[]) =>
+    points.map((point) =>
+      Object.fromEntries(
+        Object.entries(point).filter(([key]) => key !== "hauntId" && key !== "partial"),
+      ),
+    );
+
   for (const [key, partial] of Object.entries(STATISTICS_FILTERS)) {
     const filters = { ...DEFAULT_STATISTICS_FILTERS, ...partial };
     const visible = filterStatisticsRows(statisticsRows, filters);
@@ -350,8 +360,8 @@ export async function takeHhnSnapshot(
       coverage: computeCoverage(visible),
       distribution: computeScoreDistribution(visible),
       yearPerformance: {
-        total: computeYearPerformance(visible, "total"),
-        fear: computeYearPerformance(visible, "fear"),
+        total: withoutHaunt(computeYearPerformance(visible, "total")),
+        fear: withoutHaunt(computeYearPerformance(visible, "fear")),
       },
       top: computeTopAttractions(visible, "total").map((top) => [top.attraction.id, top.value]),
       best: computeHighlights(visible, "best").map((h) => [h.metric, h.attraction.id, h.value]),
@@ -367,7 +377,7 @@ export async function takeHhnSnapshot(
       ranked: query.ranked.map((row) => [row.attraction.id, row.value]),
       unrated: ids(query.unrated),
       matchCount: query.matchCount,
-      years: runYearQuery(statisticsRows, filters, "total", "desc"),
+      years: withoutHaunt(runYearQuery(statisticsRows, filters, "total", "desc")),
     };
   }
 
