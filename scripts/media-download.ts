@@ -36,6 +36,7 @@ import {
   statSync,
   writeFileSync,
 } from "node:fs";
+import { execFile } from "node:child_process";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { DatabaseSync } from "node:sqlite";
@@ -44,18 +45,23 @@ import { NodeSqliteExecutor } from "../src/database/nodeSqliteExecutor";
 import { SCHEMA_VERSION } from "../src/database/schemaVersion";
 import type { SqlExecutor } from "../src/database/types";
 import {
-  buildStoredFileName,
-  fileNameOf,
-  MEDIA_DIRECTORY,
-  toStoredPath,
-} from "../src/media/storedFiles";
+  DEFAULT_MAX_BYTES,
+  pendingArtwork,
+  RENDITION_WIDTH,
+  recordOfflineCopies,
+  saveOfflineCopy,
+  type CopyOutcome,
+  type MediaRow,
+  type OfflineCopyNetwork,
+} from "../src/media/offlineCopies";
+import { fileNameOf, MEDIA_DIRECTORY } from "../src/media/storedFiles";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const args = process.argv.slice(2);
 const DRY_RUN = args.includes("--dry-run");
 const CHECK = args.includes("--check");
 const maxMbArg = args.indexOf("--max-mb");
-const MAX_BYTES = (maxMbArg >= 0 ? Number(args[maxMbArg + 1]) : 8) * 1024 * 1024;
+const MAX_BYTES = maxMbArg >= 0 ? Number(args[maxMbArg + 1]) * 1024 * 1024 : DEFAULT_MAX_BYTES;
 const CONCURRENCY = 4;
 const PERSONAL_TABLES = ["user_ratings", "user_notes", "user_rankings", "user_settings"] as const;
 
@@ -63,14 +69,6 @@ const PERSONAL_TABLES = ["user_ratings", "user_notes", "user_rankings", "user_se
 const SAFE_STORED_PATH = new RegExp(
   `^${MEDIA_DIRECTORY}/[a-z0-9-]+\\.(png|jpg|jpeg|gif|webp|avif|bmp|img)$`,
 );
-
-const EXTENSION_FOR_TYPE: Record<string, string> = {
-  "image/jpeg": "jpg",
-  "image/png": "png",
-  "image/webp": "webp",
-  "image/gif": "gif",
-  "image/avif": "avif",
-};
 
 function resolveDatabasePath(): string {
   if (process.env.HAUNT_RANKER_DB_PATH) {
@@ -97,93 +95,59 @@ async function personalCounts(db: SqlExecutor): Promise<string> {
   return parts.join(", ");
 }
 
-interface Row {
-  id: string;
-  url: string;
-  media_type: string;
-  distribution: string;
-  local_path: string | null;
-}
-
-type Outcome =
-  | { kind: "saved"; row: Row; storedPath: string; bytes: number; rendition: boolean }
-  | { kind: "skipped"; row: Row; reason: string };
-
-/** Longest edge of an offline copy, where the host can serve a rendition that size. */
-const RENDITION_WIDTH = 1024;
-const WORDPRESS_HOSTS = [
-  "media.universalparksusa.com",
-  "blog.discoveruniversal.com",
-  "themeparkduo.com",
-];
-
-interface WordPressMedia {
-  source_url?: string;
-  media_details?: { sizes?: Record<string, { source_url: string; width: number }> };
-}
-
-/**
- * A smaller copy of the same image, served by its own host, or the original
- * URL when there isn't one. Never a resize we do ourselves.
- */
-async function renditionUrl(url: string): Promise<string> {
-  const parsed = new URL(url);
-
-  if (parsed.hostname === "cdn.sanity.io") {
-    parsed.searchParams.set("w", String(RENDITION_WIDTH));
-    parsed.searchParams.set("fit", "max");
-    return parsed.toString();
-  }
-
-  if (
-    !WORDPRESS_HOSTS.includes(parsed.hostname) ||
-    !parsed.pathname.includes("/wp-content/uploads/")
-  ) {
-    return url;
-  }
-  // WordPress names an upload's media record after its file: lowercase,
-  // extension dropped, and any "-scaled" or "-e<edit stamp>" suffix it added.
-  const file = decodeURIComponent(fileNameOf(parsed.pathname));
-  const stem = file
-    .replace(/\.[a-z0-9]+$/i, "")
-    .replace(/-e\d{9,}$/, "")
-    .replace(/-scaled$/, "");
-  try {
-    const api = `${parsed.origin}/wp-json/wp/v2/media?search=${encodeURIComponent(stem)}&per_page=20`;
-    const response = await fetch(api, { headers: { "User-Agent": USER_AGENT } });
-    if (!response.ok) {
-      return url;
-    }
-    const items = (await response.json()) as WordPressMedia[];
-    const original = url.replace(/-e\d{9,}(\.[a-z0-9]+)$/i, "$1");
-    const match = items.find(
-      (item) =>
-        item.source_url === url ||
-        item.source_url === original ||
-        item.source_url?.replace(/-scaled(\.[a-z0-9]+)$/i, "$1") ===
-          original.replace(/-scaled(\.[a-z0-9]+)$/i, "$1"),
-    );
-    const sizes = match?.media_details?.sizes ?? {};
-    const fitting = Object.values(sizes)
-      .filter((size) => size.width >= RENDITION_WIDTH * 0.75 && size.width <= RENDITION_WIDTH * 1.5)
-      .sort((a, b) => Math.abs(a.width - RENDITION_WIDTH) - Math.abs(b.width - RENDITION_WIDTH));
-    return fitting[0]?.source_url ?? url;
-  } catch {
-    return url;
-  }
-}
-
 const USER_AGENT = "HauntRanker/offline-copy (personal archive)";
 
 /**
  * Some image hosts (Fandom's static.wikia.nocookie.net, which holds the HHN
- * Wiki's copies of the official posters) refuse any non-browser user agent
- * with a 403, and rate-limit bursts the same way. The honest agent is tried
- * first; only a 403 falls back to a standard browser string, with one retry.
+ * Wiki's copies of the official posters) sit behind a Cloudflare challenge
+ * that refuses Node's own HTTP client by its fingerprint, whatever user agent
+ * it sends. The honest agent is tried first; a 403 retries with a browser
+ * user agent, and a Cloudflare challenge then goes through curl (built into
+ * Windows 10 and later), which the challenge lets through.
  */
 const BROWSER_USER_AGENT =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) " +
   "Chrome/126.0.0.0 Safari/537.36";
+
+/** Fetches through curl, returned as a Response so the caller can't tell the difference. */
+function fetchWithCurl(url: string): Promise<Response> {
+  const MARKER = "\n__HAUNT_RANKER_CURL__";
+  return new Promise((resolve, reject) => {
+    execFile(
+      "curl",
+      [
+        "-sSL",
+        "-A",
+        BROWSER_USER_AGENT,
+        "-H",
+        "Accept: image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
+        "-H",
+        "Accept-Language: en-GB,en;q=0.9",
+        "-w",
+        `${MARKER}%{http_code} %{content_type}`,
+        url,
+      ],
+      { encoding: "buffer", maxBuffer: 64 * 1024 * 1024 },
+      (error, stdout) => {
+        if (error) {
+          reject(error);
+          return;
+        }
+        const at = stdout.lastIndexOf(Buffer.from(MARKER));
+        const [status, type] = stdout
+          .subarray(at + MARKER.length)
+          .toString()
+          .split(" ");
+        resolve(
+          new Response(stdout.subarray(0, at), {
+            status: Number(status) || 502,
+            headers: { "content-type": type ?? "" },
+          }),
+        );
+      },
+    );
+  });
+}
 
 async function fetchImage(url: string): Promise<Response> {
   let response = await fetch(url, { headers: { "User-Agent": USER_AGENT }, redirect: "follow" });
@@ -193,58 +157,47 @@ async function fetchImage(url: string): Promise<Response> {
       headers: { "User-Agent": BROWSER_USER_AGENT, Accept: "image/*" },
       redirect: "follow",
     });
+    if (response.headers.get("cf-mitigated") === "challenge") {
+      return fetchWithCurl(url);
+    }
   }
   return response;
 }
 
-/** The readable part of a URL's filename, before our own extension goes on. */
-function baseNameOf(url: string): string {
-  // Fandom serves a file at ".../File_Name.png/revision/latest"; the name is
-  // the segment before "/revision".
-  const path = new URL(url).pathname.replace(/\/revision\/.*$/, "");
-  const name = decodeURIComponent(fileNameOf(path)) || "image";
-  const dot = name.lastIndexOf(".");
-  return dot > 0 ? name.slice(0, dot) : name;
-}
-
-async function download(row: Row, mediaDir: string): Promise<Outcome> {
-  const from = await renditionUrl(row.url);
-  let response: Response;
-  try {
-    response = await fetchImage(from);
-  } catch (error) {
-    return { kind: "skipped", row, reason: `couldn't fetch: ${(error as Error).message}` };
-  }
-  if (!response.ok) {
-    return { kind: "skipped", row, reason: `HTTP ${response.status}` };
-  }
-  const type = (response.headers.get("content-type") ?? "").split(";")[0].trim().toLowerCase();
-  const extension = EXTENSION_FOR_TYPE[type];
-  if (!extension) {
-    return { kind: "skipped", row, reason: `not an image (${type || "no content type"})` };
-  }
-  const declared = Number(response.headers.get("content-length") ?? 0);
-  if (declared > MAX_BYTES) {
-    return { kind: "skipped", row, reason: `too big (${(declared / 1048576).toFixed(1)} MB)` };
-  }
-  const bytes = new Uint8Array(await response.arrayBuffer());
-  if (bytes.byteLength > MAX_BYTES) {
-    return {
-      kind: "skipped",
-      row,
-      reason: `too big (${(bytes.byteLength / 1048576).toFixed(1)} MB)`,
-    };
-  }
-
-  const storedPath = toStoredPath(buildStoredFileName(`${baseNameOf(row.url)}.${extension}`));
-  if (!DRY_RUN) {
-    writeFileSync(join(mediaDir, fileNameOf(storedPath)), bytes);
-  }
-  return { kind: "saved", row, storedPath, bytes: bytes.byteLength, rendition: from !== row.url };
+/** Node's networking for the shared offline-copy logic: images are held in memory. */
+function nodeNetwork(mediaDir: string): OfflineCopyNetwork {
+  return {
+    async getText(url) {
+      try {
+        const response = await fetch(url, { headers: { "User-Agent": USER_AGENT } });
+        return { status: response.status, body: await response.text() };
+      } catch {
+        return { status: 0, body: "" };
+      }
+    },
+    async getImage(url) {
+      const response = await fetchImage(url);
+      const bytes = new Uint8Array(await response.arrayBuffer());
+      return {
+        status: response.status,
+        contentType: (response.headers.get("content-type") ?? "")
+          .split(";")[0]
+          .trim()
+          .toLowerCase(),
+        size: bytes.byteLength,
+        async keep(storedPath) {
+          if (!DRY_RUN) {
+            writeFileSync(join(mediaDir, fileNameOf(storedPath)), bytes);
+          }
+        },
+        async discard() {},
+      };
+    },
+  };
 }
 
 async function check(db: SqlExecutor, dataDir: string): Promise<void> {
-  const rows = await db.select<Row[]>(
+  const rows = await db.select<MediaRow[]>(
     "SELECT id, url, media_type, distribution, local_path FROM media WHERE local_path IS NOT NULL",
   );
   let problems = 0;
@@ -305,12 +258,7 @@ async function main(): Promise<void> {
       return;
     }
 
-    const rows = await db.select<Row[]>(
-      `SELECT id, url, media_type, distribution, local_path FROM media
-       WHERE local_path IS NULL AND url IS NOT NULL
-         AND distribution IN ('reference', 'unclear') AND media_type != 'map'
-       ORDER BY id`,
-    );
+    const rows = await pendingArtwork(db);
     console.log(`${rows.length} recorded images with no offline copy yet.`);
     if (rows.length === 0) {
       return;
@@ -324,26 +272,22 @@ async function main(): Promise<void> {
       console.log(`Database copied to:\n  ${copy}`);
     }
 
-    const outcomes: Outcome[] = [];
+    const network = nodeNetwork(mediaDir);
+    const outcomes: CopyOutcome[] = [];
     for (let start = 0; start < rows.length; start += CONCURRENCY) {
       const batch = rows.slice(start, start + CONCURRENCY);
-      outcomes.push(...(await Promise.all(batch.map((row) => download(row, mediaDir)))));
+      outcomes.push(
+        ...(await Promise.all(batch.map((row) => saveOfflineCopy(row, network, MAX_BYTES)))),
+      );
       process.stdout.write(`\r  ${Math.min(start + CONCURRENCY, rows.length)} / ${rows.length}`);
     }
     process.stdout.write("\n");
 
     const saved = outcomes.filter(
-      (o): o is Extract<Outcome, { kind: "saved" }> => o.kind === "saved",
+      (o): o is Extract<CopyOutcome, { kind: "saved" }> => o.kind === "saved",
     );
     if (!DRY_RUN) {
-      for (const outcome of saved) {
-        await db.execute(
-          `UPDATE media SET local_path = ?, distribution = 'local',
-             updated_at = strftime('%Y-%m-%dT%H:%M:%fZ', 'now')
-           WHERE id = ?`,
-          [outcome.storedPath, outcome.row.id],
-        );
-      }
+      await recordOfflineCopies(db, saved);
     }
 
     const bytes = saved.reduce((sum, o) => sum + o.bytes, 0);

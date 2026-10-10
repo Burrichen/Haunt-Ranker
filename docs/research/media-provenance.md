@@ -10,8 +10,11 @@ designed fallback card, which is the app's intended presentation for it.
 
 ## Policy
 
-Haunt Ranker is offline first. **The app never loads an image from the web.**
-It shows only images it holds: offline copies in its own media folder, files a
+Haunt Ranker is offline first. **No page displays an image from the web.**
+Since 0.5.1 the app saves offline copies of the recorded artwork itself after
+an update, through its own browser engine (Settings → Archive can turn this
+off), as `npm run media:download` does from the command line. It shows only
+images it holds: offline copies in its own media folder, files a
 user added, and assets approved to ship (there are none). Everything else is
 listed on the wiki page with its provenance and a **View at source** link.
 

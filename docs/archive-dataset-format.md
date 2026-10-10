@@ -192,8 +192,9 @@ on anyone's machine.
 where it lives. A dataset may say `reference` (the original, hosted by its
 owner), `unclear` (a copy elsewhere, or rights nobody has established) or
 `bundled` (a deliberate, recorded decision that this asset may ship with the
-app). The app never loads an image from the web: it shows `bundled` assets,
-and offline copies `npm run media:download` saves; the rest are linked to. A dataset may **never** say `local` — that describes
+app). No page displays an image from the web: it shows `bundled` assets and
+offline copies, which the app saves itself after an update (or
+`npm run media:download` does); the rest are linked to. A dataset may **never** say `local` — that describes
 a file a user picked on their own computer. An event map is `map`, never key
 art.
 

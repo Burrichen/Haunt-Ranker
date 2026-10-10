@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import {
   AboutSettings,
   AppearanceSettings,
+  ArchiveSettings,
   DataSettings,
   HauntSettings,
   SampleDataSettings,
@@ -22,6 +23,7 @@ export function Settings() {
 
       <HauntSettings />
       <AppearanceSettings />
+      <ArchiveSettings />
       <DataSettings />
       <SampleDataSettings />
 
