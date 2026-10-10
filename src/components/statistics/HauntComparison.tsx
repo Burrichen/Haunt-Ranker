@@ -89,6 +89,14 @@ export function HauntComparison({ rows }: HauntComparisonProps) {
         of a haunt&rsquo;s attractions have been rated. Read them against the sample sizes beside
         them rather than as a ranking.
       </p>
+      {comparable
+        .map((row) => registry.haunt(row.hauntId))
+        .filter((haunt) => haunt?.archiveCoverage)
+        .map((haunt) => (
+          <p key={haunt!.id} className="haunt-comparison__note">
+            {haunt!.archiveCoverage}
+          </p>
+        ))}
     </Panel>
   );
 }

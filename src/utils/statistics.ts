@@ -12,8 +12,23 @@ import type { RankingMetric } from "./rankings";
 /** One attraction the dashboard can count. `rating: null` means unrated — never a zero. */
 export interface StatisticsRow {
   attraction: Attraction;
+  /** The season the record belongs to — for a Knott's maze, its debut season. */
   eventYear: EventYear | null;
   rating: Rating | null;
+  /**
+   * Every season it is verified to have run in, its own included. A
+   * returning Knott's maze has several; an HHN house has one. Absent means
+   * "its own season only".
+   */
+  appearances?: EventYear[];
+}
+
+/** The seasons a row ran in: its recorded appearances, or its own season. */
+export function seasonsOf(row: StatisticsRow): EventYear[] {
+  if (row.appearances && row.appearances.length > 0) {
+    return row.appearances;
+  }
+  return row.eventYear ? [row.eventYear] : [];
 }
 
 /** Every facet is single-select, `null` meaning "no restriction" — a dashboard slice, not a query builder. */
@@ -34,7 +49,12 @@ export function areStatisticsFiltersActive(filters: StatisticsFilters): boolean 
 }
 
 export function matchesStatisticsFilters(row: StatisticsRow, filters: StatisticsFilters): boolean {
-  if (filters.year !== null && row.eventYear?.calendarYear !== filters.year) {
+  // A season filter means "ran that season", not "debuted that season": a
+  // maze back for its third year is part of that year's line-up.
+  if (
+    filters.year !== null &&
+    !seasonsOf(row).some((season) => season.calendarYear === filters.year)
+  ) {
     return false;
   }
   if (filters.park !== null && !row.attraction.parkIds.includes(filters.park)) {
@@ -58,6 +78,8 @@ export type HighlightMode = "best" | "lowest";
 export interface Highlight extends AttractionExtreme {
   metric: RankingMetric;
   label: string;
+  /** Its season — under All Haunts, the card names the haunt it came from. */
+  eventYear: EventYear | null;
 }
 
 const HIGHLIGHT_LABELS: Record<HighlightMode, Record<RankingMetric, string>> = {
@@ -91,11 +113,16 @@ export function computeHighlights(rows: StatisticsRow[], mode: HighlightMode): H
   }
 
   const direction = mode === "best" ? "desc" : "asc";
-  return HIGHLIGHT_METRICS.map((metric) => ({
-    metric,
-    label: HIGHLIGHT_LABELS[mode][metric],
-    ...pickExtreme(rated, metric, direction),
-  }));
+  const yearOf = new Map(rows.map((row) => [row.attraction.id, row.eventYear]));
+  return HIGHLIGHT_METRICS.map((metric) => {
+    const extreme = pickExtreme(rated, metric, direction);
+    return {
+      metric,
+      label: HIGHLIGHT_LABELS[mode][metric],
+      ...extreme,
+      eventYear: yearOf.get(extreme.attraction.id) ?? null,
+    };
+  });
 }
 
 export interface YearPerformancePoint {
@@ -109,6 +136,19 @@ export interface YearPerformancePoint {
   average: number;
   /** The sample size behind the average, so the tooltip can qualify it. */
   reviewedCount: number;
+  /**
+   * The haunt's archive holds only part of this season's line-up (Knott's:
+   * the mazes that debuted 2021–2026, not the older ones still running), so
+   * the average is of what's archived, not of the whole event.
+   */
+  partial: boolean;
+}
+
+export interface YearPerformanceOptions {
+  /** Haunts whose archive covers only part of each season's line-up. */
+  partialHaunts?: ReadonlySet<string>;
+  /** Only this calendar year — when the page is filtered to one season. */
+  year?: number | null;
 }
 
 /**
@@ -123,36 +163,67 @@ export interface YearPerformancePoint {
 export function computeYearPerformance(
   rows: StatisticsRow[],
   metric: RankingMetric,
+  { partialHaunts = new Set<string>(), year = null }: YearPerformanceOptions = {},
 ): YearPerformancePoint[] {
-  const bySeason = new Map<
-    EntityId,
-    { calendarYear: number; hauntId: string; label: string; values: number[] }
-  >();
+  const bySeason = new Map<EntityId, { season: EventYear; values: number[] }>();
 
   for (const row of rows) {
-    if (!row.rating || !row.eventYear) {
+    if (!row.rating) {
       continue;
     }
-    const existing = bySeason.get(row.eventYear.id) ?? {
-      calendarYear: row.eventYear.calendarYear,
-      hauntId: row.eventYear.hauntId,
-      label: row.eventYear.name,
-      values: [],
-    };
-    existing.values.push(row.rating[metric]);
-    bySeason.set(row.eventYear.id, existing);
+    // Every season it ran in: a reviewed returning maze counts toward each
+    // line-up it was verified to be part of.
+    for (const season of seasonsOf(row)) {
+      if (year !== null && season.calendarYear !== year) {
+        continue;
+      }
+      const entry = bySeason.get(season.id) ?? { season, values: [] };
+      entry.values.push(row.rating[metric]);
+      bySeason.set(season.id, entry);
+    }
   }
 
-  return Array.from(bySeason.entries())
-    .map(([eventYearId, { calendarYear, hauntId, label, values }]) => ({
-      calendarYear,
-      hauntId,
-      eventYearId,
-      label,
+  return Array.from(bySeason.values())
+    .map(({ season, values }) => ({
+      calendarYear: season.calendarYear,
+      hauntId: season.hauntId,
+      eventYearId: season.id,
+      label: season.name,
       average: values.reduce((sum, value) => sum + value, 0) / values.length,
       reviewedCount: values.length,
+      partial: partialHaunts.has(season.hauntId),
     }))
     .sort((a, b) => a.calendarYear - b.calendarYear || (a.hauntId < b.hauntId ? -1 : 1));
+}
+
+/** How many records debuted in each year, for one haunt — never "the line-up that year". */
+export interface DebutCount {
+  year: number;
+  count: number;
+}
+
+/**
+ * New debuts per year from researched debut years. Years between the first
+ * and last debut with none are kept as zero so the bars stay evenly spaced;
+ * a record with no known debut year isn't counted anywhere.
+ */
+export function computeDebutsByYear(rows: StatisticsRow[], hauntId: HauntId): DebutCount[] {
+  const counts = new Map<number, number>();
+  for (const row of rows) {
+    const debut = row.attraction.debutYear;
+    if (row.eventYear?.hauntId === hauntId && debut != null) {
+      counts.set(debut, (counts.get(debut) ?? 0) + 1);
+    }
+  }
+  if (counts.size === 0) {
+    return [];
+  }
+  const years = [...counts.keys()];
+  const result: DebutCount[] = [];
+  for (let year = Math.min(...years); year <= Math.max(...years); year += 1) {
+    result.push({ year, count: counts.get(year) ?? 0 });
+  }
+  return result;
 }
 
 export interface DistributionBucket {
@@ -194,6 +265,8 @@ export interface CoverageSlice {
 export interface Coverage {
   all: CoverageSlice;
   houses: CoverageSlice;
+  /** Each haunt's own share, so All Haunts can show them apart as well as combined. */
+  byHaunt: Array<CoverageSlice & { hauntId: HauntId }>;
 }
 
 function sliceFor(rows: StatisticsRow[]): CoverageSlice {
@@ -203,10 +276,16 @@ function sliceFor(rows: StatisticsRow[]): CoverageSlice {
   };
 }
 
-export function computeCoverage(rows: StatisticsRow[]): Coverage {
+export function computeCoverage(rows: StatisticsRow[], hauntIds: HauntId[] = []): Coverage {
   return {
     all: sliceFor(rows),
     houses: sliceFor(rows.filter((row) => row.attraction.attractionType === "house")),
+    byHaunt: hauntIds
+      .map((hauntId) => ({
+        hauntId,
+        ...sliceFor(rows.filter((row) => row.eventYear?.hauntId === hauntId)),
+      }))
+      .filter((slice) => slice.total > 0),
   };
 }
 
@@ -230,6 +309,8 @@ export function computeTopAttractions(
   rows: StatisticsRow[],
   metric: RankingMetric,
   limit: number = TOP_ATTRACTIONS_LIMIT,
+  /** `desc` for the Top 10, `asc` for the Bottom 10. Purely by score — no haunt gets reserved places. */
+  direction: "desc" | "asc" = "desc",
 ): TopAttraction[] {
   const yearByAttraction = new Map(rows.map((row) => [row.attraction.id, row.eventYear]));
 
@@ -241,7 +322,7 @@ export function computeTopAttractions(
     }))
     .sort((a, b) => {
       if (a.value !== b.value) {
-        return b.value - a.value;
+        return direction === "desc" ? b.value - a.value : a.value - b.value;
       }
       return a.attraction.name.localeCompare(b.attraction.name);
     })

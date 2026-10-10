@@ -11,6 +11,7 @@ const point = (hauntId: string, year: number, average: number): YearPerformanceP
   label: `${hauntId} ${year}`,
   average,
   reviewedCount: 3,
+  partial: false,
 });
 
 function renderChart(points: YearPerformancePoint[]) {
@@ -38,5 +39,27 @@ describe("YearPerformanceChart", () => {
       "var(--color-orange)",
       "var(--color-plum)",
     ]);
+  });
+});
+
+describe("YearPerformanceChart partial coverage", () => {
+  it("says a haunt's line-ups are partial in the legend, never silently", () => {
+    renderChart([
+      point("hhn", 2024, 10),
+      { ...point("knotts-scary-farm", 2024, 12), partial: true },
+    ]);
+
+    const legend = screen.getByRole("list", { name: "Series" });
+    const [hhn, knotts] = legend.querySelectorAll("li");
+    expect(hhn).not.toHaveTextContent(/partial/);
+    expect(knotts).toHaveTextContent("Knott's Scary Farm");
+    expect(knotts).toHaveTextContent("partial archive coverage");
+  });
+
+  it("explains partial coverage under a single-haunt chart", () => {
+    renderChart([{ ...point("knotts-scary-farm", 2024, 12), partial: true }]);
+    expect(
+      screen.getByText(/Partial archive coverage: each year averages the archived mazes/),
+    ).toBeInTheDocument();
   });
 });

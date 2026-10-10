@@ -85,3 +85,57 @@
   flex-direction: column;
   gap: var(--space-2);
 }
+
+.chart-legend__qualifier {
+  margin-left: var(--space-1);
+  color: var(--color-text-tertiary);
+}
+
+.chart-legend__qualifier::before {
+  content: "· ";
+}
+
+.chart-panel__qualifier {
+  margin: var(--space-2) 0 0;
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+}
+
+/* The year leads; each haunt's season follows as its own block. */
+.year-tooltip {
+  gap: var(--space-2);
+}
+
+.year-tooltip__year {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.year-tooltip__season {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.year-tooltip__haunt {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.8125rem;
+  color: var(--color-text-primary);
+}
+
+.year-tooltip__line {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+.year-tooltip__partial {
+  color: var(--color-text-tertiary);
+}
+
+/* A small supporting chart: a handful of bars needs less height. */
+.chart-panel__plot--compact {
+  height: 180px;
+}

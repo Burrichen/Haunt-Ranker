@@ -1,12 +1,15 @@
 import { BarChart3, CircleAlert } from "lucide-react";
+import { useState } from "react";
 import {
   CoveragePanel,
   HauntComparison,
   HighlightCards,
+  NewDebutsChart,
   ScoreDistributionChart,
   StatisticsFilterBar,
   TopAttractionsList,
   YearPerformanceChart,
+  type TopListEnd,
 } from "../components/statistics";
 import { EmptyState, LoadingState } from "../components/ui";
 import { useHauntScope } from "../hooks/useHauntScope";
@@ -33,9 +36,12 @@ export function StatisticsDashboard() {
     coverage,
     hauntComparison,
     topAttractions,
+    bottomAttractions,
+    debuts,
     attractionCount,
   } = useStatistics();
   const { isAllHaunts } = useHauntScope();
+  const [listEnd, setListEnd] = useState<TopListEnd>("top");
 
   if (isLoading) {
     return <LoadingState label="Loading statistics…" />;
@@ -86,13 +92,25 @@ export function StatisticsDashboard() {
             <ScoreDistributionChart buckets={distribution} reviewedCount={coverage.all.reviewed} />
           </div>
 
-          {/* Only where the haunts are actually on screen together does
-              comparing them mean anything. */}
-          {isAllHaunts && <HauntComparison rows={hauntComparison} />}
+          {(isAllHaunts || debuts.length > 0) && (
+            <div className="statistics__secondary">
+              {/* Only where the haunts are actually on screen together does
+                  comparing them mean anything. */}
+              {isAllHaunts && <HauntComparison rows={hauntComparison} />}
+              {debuts.map((entry) => (
+                <NewDebutsChart key={entry.hauntId} hauntId={entry.hauntId} counts={entry.counts} />
+              ))}
+            </div>
+          )}
 
           <div className="statistics__lower">
             <CoveragePanel coverage={coverage} />
-            <TopAttractionsList attractions={topAttractions} metric={metric} />
+            <TopAttractionsList
+              attractions={listEnd === "top" ? topAttractions : bottomAttractions}
+              metric={metric}
+              end={listEnd}
+              onEndChange={setListEnd}
+            />
           </div>
         </>
       )}

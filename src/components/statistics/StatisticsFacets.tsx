@@ -1,7 +1,7 @@
 import type { IpType } from "../../models/attraction";
 import { useHauntScope } from "../../hooks/useHauntScope";
 import { useHauntRegistry } from "../../hooks/useHauntRegistry";
-import type { HauntScope } from "../../models/haunt";
+import { HAUNT_IDS, type HauntScope } from "../../models/haunt";
 import type { ParkId } from "../../models/park";
 import type { StatisticsFilters } from "../../utils/statistics";
 import { Button, Dropdown, SegmentedControl, type DropdownItem } from "../ui";
@@ -84,15 +84,20 @@ export function StatisticsFacets({ filters, onChange, availableYears }: Statisti
         />
       </div>
 
-      <div className="statistics-filters__group">
-        <span className="statistics-filters__label">Venue</span>
-        <SegmentedControl
-          options={venueOptions}
-          value={filters.park ?? ALL}
-          onChange={(value) => onChange({ ...filters, park: toNullable<ParkId>(value) })}
-          aria-label="Venue"
-        />
-      </div>
+      {/* Hollywood and Orlando are HHN's two venues; Knott's has one, and
+          All Haunts would mix them. A merged two-park house counts once
+          under either venue, and once under both. */}
+      {hauntId === HAUNT_IDS.hhn && (
+        <div className="statistics-filters__group">
+          <span className="statistics-filters__label">Venue</span>
+          <SegmentedControl
+            options={venueOptions}
+            value={filters.park ?? ALL}
+            onChange={(value) => onChange({ ...filters, park: toNullable<ParkId>(value) })}
+            aria-label="Venue"
+          />
+        </div>
+      )}
 
       <div className="statistics-filters__group">
         <span className="statistics-filters__label">IP</span>

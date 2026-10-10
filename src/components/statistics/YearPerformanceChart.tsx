@@ -13,7 +13,6 @@ import { formatScore } from "../../utils/formatScore";
 import type { RankingMetric } from "../../utils/rankings";
 import type { YearPerformancePoint } from "../../utils/statistics";
 import { Panel } from "../ui";
-import { ChartTooltip } from "./ChartTooltip";
 import {
   AXIS_TICK,
   CHART_AXIS_LINE,
@@ -57,7 +56,7 @@ interface TooltipPayloadEntry {
   payload?: YearRow;
 }
 
-function makeTooltip(hauntIds: string[]) {
+function makeTooltip(hauntIds: string[], max: number, nameOf: (hauntId: string) => string) {
   const split = hauntIds.length > 1;
   return function renderTooltip({
     active,
@@ -75,15 +74,30 @@ function makeTooltip(hauntIds: string[]) {
       .filter((point): point is YearPerformancePoint => point !== undefined);
 
     return (
-      <div className="chart-tooltip-stack">
+      <div className="chart-tooltip year-tooltip">
+        <span className="year-tooltip__year">{row.calendarYear}</span>
         {seasons.map((point) => (
-          <ChartTooltip
-            key={point.eventYearId}
-            value={formatScore(point.average)}
-            title={point.label}
-            detail={`average of ${point.reviewedCount} reviewed`}
-            color={split ? hauntSeriesColor(point.hauntId) : undefined}
-          />
+          <div key={point.eventYearId} className="year-tooltip__season">
+            <span className="year-tooltip__haunt">
+              {split && (
+                <span
+                  aria-hidden="true"
+                  className="chart-tooltip__key"
+                  style={{ backgroundColor: hauntSeriesColor(point.hauntId) }}
+                />
+              )}
+              {nameOf(point.hauntId)}
+            </span>
+            <span className="year-tooltip__line">
+              Average: <strong>{formatScore(point.average)}</strong> / {max}
+            </span>
+            <span className="year-tooltip__line">Reviewed: {point.reviewedCount}</span>
+            {point.partial && (
+              <span className="year-tooltip__line year-tooltip__partial">
+                Archive coverage: Partial
+              </span>
+            )}
+          </div>
         ))}
       </div>
     );
@@ -113,6 +127,9 @@ export function YearPerformanceChart({ points, metric }: YearPerformanceChartPro
   );
   const split = hauntIds.length > 1;
   const rows = pivot(points);
+  const nameOf = (hauntId: string) => registry.hauntName(hauntId) ?? hauntId;
+  // A haunt whose archive holds only part of each season's line-up.
+  const partial = new Set(points.filter((point) => point.partial).map((point) => point.hauntId));
   const peak = points.reduce<YearPerformancePoint | null>(
     (best, point) => (best === null || point.average > best.average ? point : best),
     null,
@@ -134,10 +151,21 @@ export function YearPerformanceChart({ points, metric }: YearPerformanceChartPro
                 className="chart-legend__key"
                 style={{ backgroundColor: hauntSeriesColor(hauntId) }}
               />
-              {registry.hauntName(hauntId) ?? hauntId}
+              {nameOf(hauntId)}
+              {partial.has(hauntId) && (
+                <span className="chart-legend__qualifier">partial archive coverage</span>
+              )}
             </li>
           ))}
         </ul>
+      )}
+
+      {!split && partial.size > 0 && (
+        <p className="chart-panel__qualifier">
+          Partial archive coverage: each year averages the archived{" "}
+          {registry.label("house", hauntIds[0], "many").toLowerCase()} that ran that season, not the
+          whole line-up.
+        </p>
       )}
 
       {points.length === 0 ? (
@@ -163,7 +191,7 @@ export function YearPerformanceChart({ points, metric }: YearPerformanceChartPro
                 width={44}
               />
               <Tooltip
-                content={makeTooltip(hauntIds)}
+                content={makeTooltip(hauntIds, max, nameOf)}
                 cursor={{ stroke: CHART_AXIS_LINE, strokeWidth: 1 }}
               />
               {hauntIds.map((hauntId) => {

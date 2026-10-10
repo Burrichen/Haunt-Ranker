@@ -342,11 +342,14 @@ export async function takeHhnSnapshot(
   }
 
   // --- Statistics and the explorer ------------------------------------------
-  // Every season here is HHN's, so the haunt a year point names carries no
+  // Every season here is HHN's and HHN line-ups are complete, so the haunt a
+  // year point names and its "partial" flag carry no
   // information — and a snapshot recorded before points named one has none.
   const withoutHaunt = <T extends object>(points: T[]) =>
     points.map((point) =>
-      Object.fromEntries(Object.entries(point).filter(([key]) => key !== "hauntId")),
+      Object.fromEntries(
+        Object.entries(point).filter(([key]) => key !== "hauntId" && key !== "partial"),
+      ),
     );
 
   for (const [key, partial] of Object.entries(STATISTICS_FILTERS)) {

@@ -22,3 +22,8 @@ export { TopAttractionsList } from "./TopAttractionsList";
 export type { TopAttractionsListProps } from "./TopAttractionsList";
 export { YearPerformanceChart } from "./YearPerformanceChart";
 export type { YearPerformanceChartProps } from "./YearPerformanceChart";
+export { HauntTag } from "./HauntTag";
+export type { HauntTagProps } from "./HauntTag";
+export { NewDebutsChart } from "./NewDebutsChart";
+export type { NewDebutsChartProps } from "./NewDebutsChart";
+export type { TopListEnd } from "./TopAttractionsList";
