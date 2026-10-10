@@ -100,6 +100,8 @@ export function computeHighlights(rows: StatisticsRow[], mode: HighlightMode): H
 
 export interface YearPerformancePoint {
   calendarYear: number;
+  /** Whose season it is — in an All Haunts slice, each haunt is its own series. */
+  hauntId: string;
   /** The event year's id, so a row can link through to its page. */
   eventYearId: EntityId;
   /** The event's own name, for the tooltip — the axis carries the bare year. */
@@ -110,7 +112,9 @@ export interface YearPerformancePoint {
 }
 
 /**
- * Average of one metric per event year.
+ * Average of one metric per event year — per season, so an All Haunts
+ * slice keeps HHN 2024 and Knott's 2024 apart rather than averaging them
+ * into one point under whichever name came first.
  *
  * Years with nothing reviewed are left out entirely rather than plotted at
  * zero — a flat line along the axis would read as "this year scored nothing"
@@ -120,30 +124,35 @@ export function computeYearPerformance(
   rows: StatisticsRow[],
   metric: RankingMetric,
 ): YearPerformancePoint[] {
-  const byYear = new Map<number, { eventYearId: EntityId; label: string; values: number[] }>();
+  const bySeason = new Map<
+    EntityId,
+    { calendarYear: number; hauntId: string; label: string; values: number[] }
+  >();
 
   for (const row of rows) {
     if (!row.rating || !row.eventYear) {
       continue;
     }
-    const existing = byYear.get(row.eventYear.calendarYear) ?? {
-      eventYearId: row.eventYear.id,
+    const existing = bySeason.get(row.eventYear.id) ?? {
+      calendarYear: row.eventYear.calendarYear,
+      hauntId: row.eventYear.hauntId,
       label: row.eventYear.name,
       values: [],
     };
     existing.values.push(row.rating[metric]);
-    byYear.set(row.eventYear.calendarYear, existing);
+    bySeason.set(row.eventYear.id, existing);
   }
 
-  return Array.from(byYear.entries())
-    .map(([calendarYear, { eventYearId, label, values }]) => ({
+  return Array.from(bySeason.entries())
+    .map(([eventYearId, { calendarYear, hauntId, label, values }]) => ({
       calendarYear,
+      hauntId,
       eventYearId,
       label,
       average: values.reduce((sum, value) => sum + value, 0) / values.length,
       reviewedCount: values.length,
     }))
-    .sort((a, b) => a.calendarYear - b.calendarYear);
+    .sort((a, b) => a.calendarYear - b.calendarYear || (a.hauntId < b.hauntId ? -1 : 1));
 }
 
 export interface DistributionBucket {

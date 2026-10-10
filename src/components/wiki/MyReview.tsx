@@ -43,7 +43,7 @@ export function MyReview({ attractionName, rating, note, onSave, onClear }: MyRe
   };
 
   return (
-    <Panel elevated glow="purple" padding="md" className="my-review" aria-label="My Review">
+    <Panel elevated glow="accent-2" padding="md" className="my-review" aria-label="My Review">
       <h2 className="my-review__title">My Review</h2>
 
       {rating ? (

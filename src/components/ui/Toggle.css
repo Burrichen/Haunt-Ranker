@@ -45,8 +45,8 @@
 }
 
 .toggle__switch--on {
-  background-color: var(--color-orange);
-  border-color: var(--color-orange);
+  background-color: var(--accent);
+  border-color: var(--accent);
 }
 
 .toggle__switch:disabled {
@@ -55,7 +55,7 @@
 }
 
 .toggle__switch:focus-visible {
-  outline: 2px solid var(--color-focus);
+  outline: 2px solid var(--focus);
   outline-offset: 2px;
 }
 
@@ -74,5 +74,5 @@
 
 .toggle__switch--on .toggle__thumb {
   transform: translateX(18px);
-  background-color: var(--color-on-orange);
+  background-color: var(--on-accent);
 }

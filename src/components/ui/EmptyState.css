@@ -16,8 +16,8 @@
   width: 56px;
   height: 56px;
   border-radius: var(--radius-full);
-  background-color: var(--color-orange-subtle);
-  color: var(--color-orange-strong);
+  background-color: var(--accent-subtle);
+  color: var(--accent-strong);
   margin-bottom: var(--space-2);
 }
 

@@ -3,7 +3,8 @@ import { cn } from "../../utils/cn";
 import "./Panel.css";
 
 export type PanelPadding = "none" | "sm" | "md" | "lg";
-export type PanelGlow = "none" | "orange" | "purple" | "green" | "blue";
+/** A glow in the haunt theme's primary or secondary accent. */
+export type PanelGlow = "none" | "accent" | "accent-2";
 
 export interface PanelProps extends HTMLAttributes<HTMLDivElement> {
   elevated?: boolean;

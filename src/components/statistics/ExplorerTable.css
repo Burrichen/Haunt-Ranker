@@ -59,7 +59,7 @@
 /* The column the query is actually answering. */
 .explorer-table__number--primary {
   font-weight: 600;
-  color: var(--color-orange-strong);
+  color: var(--accent-strong);
 }
 
 .explorer-table__out-of {
@@ -74,7 +74,7 @@
 }
 
 .explorer-table__link:hover {
-  color: var(--color-orange-strong);
+  color: var(--accent-strong);
   text-decoration: underline;
 }
 

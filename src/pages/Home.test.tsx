@@ -106,20 +106,17 @@ describe("Home", () => {
 
     renderHome();
 
-    // The home collection leads the page by name.
+    expect(screen.getByRole("heading", { level: 1, name: "Haunt Ranker" })).toBeInTheDocument();
+    // Both archives are offered as equals, side by side, in their own themes —
+    // neither is "the other haunt".
+    const collections = within(screen.getByRole("region", { name: "Collections" }));
     expect(
-      screen.getByRole("heading", { level: 1, name: "Halloween Horror Nights" }),
-    ).toBeInTheDocument();
-    // Both archives are offered as equals, and neither is hidden behind the other.
+      collections.getByRole("link", { name: /Open the Halloween Horror Nights archive/i }),
+    ).toHaveAttribute("data-haunt-theme", "hhn");
     expect(
-      screen.getByRole("link", { name: /Open the Halloween Horror Nights archive/i }),
-    ).toBeInTheDocument();
-    // A second collection is offered, under its own restrained heading,
-    // without being made to look like a rival brand.
-    expect(screen.getByRole("heading", { name: "Other Haunts" })).toBeInTheDocument();
-    expect(
-      screen.getByRole("link", { name: /Open the Knott's Scary Farm archive/i }),
-    ).toBeInTheDocument();
+      collections.getByRole("link", { name: /Open the Knott's Scary Farm archive/i }),
+    ).toHaveAttribute("data-haunt-theme", "knotts");
+    expect(screen.queryByText(/other haunts?/i)).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Search every haunt/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Years/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Rankings/i })).toBeInTheDocument();

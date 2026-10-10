@@ -1,9 +1,9 @@
-import { CalendarDays, DoorOpen, TreePine } from "lucide-react";
+import { CalendarDays, DoorOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useHauntScope } from "../../hooks/useHauntScope";
 import { useHauntRegistry } from "../../hooks/useHauntRegistry";
 import type { HauntId } from "../../models/haunt";
-import { cn } from "../../utils/cn";
+import { hauntTheme } from "../../models/hauntTheme";
 import { formatScore } from "../../utils/formatScore";
 import {
   reviewCoveragePercent,
@@ -15,8 +15,6 @@ import "./HauntCard.css";
 
 export interface HauntCardProps {
   summary: HauntArchiveSummary;
-  /** The home collection reads larger; the others are not thereby diminished. */
-  featured?: boolean;
 }
 
 function Figure({ label, value }: { label: string; value: number | string }) {
@@ -36,12 +34,11 @@ function Figure({ label, value }: { label: string; value: number | string }) {
  * figures are counts of what the archive holds, and a haunt with nothing in
  * it yet says so rather than showing zeroes dressed as data.
  */
-export function HauntCard({ summary, featured = false }: HauntCardProps) {
+export function HauntCard({ summary }: HauntCardProps) {
   const { setScope } = useHauntScope();
   const registry = useHauntRegistry();
   const hauntId: HauntId = summary.hauntId;
   const haunt = registry.haunt(hauntId);
-  const accent = haunt?.accent ?? "orange";
   const name = haunt?.name ?? hauntId;
   const tagline = haunt?.tagline ?? null;
   const venuesLabel = haunt?.venuesLabel ?? null;
@@ -53,17 +50,14 @@ export function HauntCard({ summary, featured = false }: HauntCardProps) {
     <Link
       to={`/haunts/${hauntId}`}
       onClick={() => setScope(hauntId)}
-      className={cn("haunt-card-link", featured && "haunt-card-link--featured")}
+      className="haunt-card-link"
+      // Each collection wears its own haunt's identity, wherever it's shown.
+      data-haunt-theme={hauntTheme(hauntId)}
       aria-label={`Open the ${name} archive`}
     >
-      <Panel
-        elevated
-        glow={accent}
-        padding="lg"
-        className={cn("haunt-card", `haunt-card--${accent}`, featured && "haunt-card--featured")}
-      >
+      <Panel elevated glow="accent" padding="lg" className="haunt-card">
         <div className="haunt-card__head">
-          <span className="haunt-card__eyebrow">{featured ? "Home collection" : "Archive"}</span>
+          <span className="haunt-card__eyebrow">Collection</span>
           <h2 className="haunt-card__name">{name}</h2>
           {tagline && <p className="haunt-card__tagline">{tagline}</p>}
         </div>
@@ -109,14 +103,11 @@ export function HauntCard({ summary, featured = false }: HauntCardProps) {
             <CalendarDays size={11} strokeWidth={2} />
             {span ?? "No seasons yet"}
           </Badge>
-          {venuesLabel && (
-            <Badge variant={accent === "orange" ? "orange" : "purple"}>{venuesLabel}</Badge>
-          )}
+          {venuesLabel && <Badge variant="accent">{venuesLabel}</Badge>}
         </div>
 
         <span className="haunt-card__types" aria-hidden="true">
           <DoorOpen size={15} strokeWidth={1.5} />
-          <TreePine size={15} strokeWidth={1.5} />
         </span>
       </Panel>
     </Link>

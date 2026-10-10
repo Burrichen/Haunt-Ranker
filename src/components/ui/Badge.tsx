@@ -2,7 +2,8 @@ import type { HTMLAttributes } from "react";
 import { cn } from "../../utils/cn";
 import "./Badge.css";
 
-export type BadgeVariant = "neutral" | "orange" | "purple" | "danger" | "positive";
+/** `accent` and `accent-2` follow the haunt theme in scope (see tokens.css). */
+export type BadgeVariant = "neutral" | "accent" | "accent-2" | "danger" | "positive";
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   variant?: BadgeVariant;

@@ -62,7 +62,7 @@
 
 .highlight-card__name {
   font-size: 0.875rem;
-  color: var(--color-orange-strong);
+  color: var(--accent-strong);
   text-decoration: none;
 }
 

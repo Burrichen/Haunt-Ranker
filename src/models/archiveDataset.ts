@@ -76,8 +76,20 @@ export interface ArchiveDateRange {
 export interface ArchiveAttraction {
   id: string;
   previousIds?: string[];
-  /** The `id` of an entry in `events`. */
+  /** The `id` of an entry in `events` — for a returning maze, the first season it ran. */
   eventId: string;
+  /**
+   * Knott's only: the other seasons this maze ran in. A returning maze is
+   * one record with several appearances, never a record per season. HHN
+   * houses belong to one season — the same name in another year is a
+   * different house.
+   */
+  appearances?: string[];
+  /**
+   * The researched year it first ran. Leave it out when it isn't known — it
+   * is never the oldest season this file happens to hold.
+   */
+  debutYear?: number | null;
   type: AttractionType;
   name: string;
   /**

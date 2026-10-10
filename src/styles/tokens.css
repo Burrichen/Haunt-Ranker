@@ -40,6 +40,26 @@
   --color-blue-subtle: rgba(88, 110, 150, 0.14);
   --color-on-purple: #fbf3ec;
 
+  /* Knott's Scary Farm: moonlit plum, with a ghost-green secondary.
+     #9456ad is 3.60:1 on the panel as a chart mark and 4.56:1 under
+     --color-on-plum as a fill; -strong is the text/icon form (8.3:1). */
+  --color-plum: #9456ad;
+  --color-plum-strong: #c9a2dc;
+  --color-plum-subtle: rgba(148, 86, 173, 0.16);
+  --color-on-plum: #fbf3ec;
+  /* Ghost green is a UI accent only — never a chart series: any green with
+     the chroma a chart mark needs reads as neon on this canvas. */
+  --color-ghost: #5f8f7c;
+  --color-ghost-strong: #9cc4ae;
+  --color-ghost-subtle: rgba(95, 143, 124, 0.14);
+
+  /* All Haunts: an antique-brass neutral, so that in a combined view orange
+     always means HHN and plum always means Knott's. */
+  --color-brass: #a08a68;
+  --color-brass-strong: #d6c4a6;
+  --color-brass-subtle: rgba(160, 138, 104, 0.14);
+  --color-on-brass: #100d0f;
+
   /* Deep red — danger, used sparingly */
   --color-danger: #8a3a3f;
   --color-danger-strong: #a24d51;
@@ -100,4 +120,75 @@
   --z-dropdown: 100;
   --z-modal: 1000;
   --z-tooltip: 1200;
+}
+
+/* ---------------------------------------------------------------------------
+   Haunt themes.
+
+   Components never name a haunt's colour. They use these semantic tokens,
+   and `data-haunt-theme` on any element decides what they resolve to for
+   everything inside it: the app shell carries the haunt in view, and a card
+   or wiki page carries its own haunt, so a Knott's card in an All Haunts
+   list still reads as Knott's.
+
+   --accent*      the haunt's primary: active nav, selected tabs, primary
+                  buttons, badges, glows, fallback artwork, chart marks
+   --accent-2*    a restrained secondary: dividers and small decorative marks
+   --series       the single-series chart mark (validated with the dataviz
+                  palette script against the panel surface)
+   --focus        the focus ring — distinct from the accent so it always
+                  reads as "interactive"
+   ------------------------------------------------------------------------ */
+:root,
+[data-haunt-theme="hhn"] {
+  --accent: var(--color-orange);
+  --accent-strong: var(--color-orange-strong);
+  --accent-subtle: var(--color-orange-subtle);
+  --on-accent: var(--color-on-orange);
+  --shadow-glow-accent: var(--shadow-glow-orange);
+  --accent-2: var(--color-purple);
+  --accent-2-strong: var(--color-purple-strong);
+  --accent-2-subtle: var(--color-purple-subtle);
+  --shadow-glow-accent-2: var(--shadow-glow-purple);
+  --series: var(--color-orange);
+  --focus: var(--color-focus);
+  --selection: rgba(193, 98, 47, 0.35);
+  /* The two faint drifting glows behind the page, as "r, g, b". */
+  --atmosphere-1: 193, 98, 47;
+  --atmosphere-2: 124, 106, 156;
+}
+
+[data-haunt-theme="knotts"] {
+  --accent: var(--color-plum);
+  --accent-strong: var(--color-plum-strong);
+  --accent-subtle: var(--color-plum-subtle);
+  --on-accent: var(--color-on-plum);
+  --shadow-glow-accent: 0 0 24px rgba(148, 86, 173, 0.24);
+  --accent-2: var(--color-ghost);
+  --accent-2-strong: var(--color-ghost-strong);
+  --accent-2-subtle: var(--color-ghost-subtle);
+  --shadow-glow-accent-2: 0 0 20px rgba(95, 143, 124, 0.18);
+  --series: var(--color-plum);
+  --focus: var(--color-ghost-strong);
+  --selection: rgba(148, 86, 173, 0.4);
+  /* Moonlit plum, and a faint ghost-green light. */
+  --atmosphere-1: 148, 86, 173;
+  --atmosphere-2: 95, 143, 124;
+}
+
+[data-haunt-theme="all"] {
+  --accent: var(--color-brass);
+  --accent-strong: var(--color-brass-strong);
+  --accent-subtle: var(--color-brass-subtle);
+  --on-accent: var(--color-on-brass);
+  --shadow-glow-accent: 0 0 24px rgba(160, 138, 104, 0.16);
+  --accent-2: var(--color-brass);
+  --accent-2-strong: var(--color-brass-strong);
+  --accent-2-subtle: var(--color-brass-subtle);
+  --shadow-glow-accent-2: 0 0 24px rgba(160, 138, 104, 0.12);
+  --series: var(--color-brass);
+  --focus: var(--color-focus);
+  --selection: rgba(160, 138, 104, 0.35);
+  --atmosphere-1: 160, 138, 104;
+  --atmosphere-2: 124, 106, 156;
 }

@@ -21,7 +21,7 @@
 }
 
 .field__control:has(.field__input:focus-visible) {
-  border-color: var(--color-focus);
+  border-color: var(--focus);
 }
 
 .field__control--error {

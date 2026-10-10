@@ -2,22 +2,17 @@ import { CircleAlert } from "lucide-react";
 import { HauntCard } from "../components/haunts";
 import { EmptyState, LoadingState, PageHeader } from "../components/ui";
 import { useHaunts } from "../hooks/useHaunts";
-import { HAUNT_IDS } from "../models/haunt";
 import "./Haunts.css";
 
 /**
  * The collections Haunt Ranker holds.
  *
- * Halloween Horror Nights leads, because it is the collection the app was
- * built around and the one it opens on. What follows is not a lesser tier:
- * the same card, the same figures, the same way in — set out below the
- * home collection rather than beside it.
+ * Halloween Horror Nights and Knott's Scary Farm side by side, as equals: the
+ * same card, the same figures, the same way in, each in its own haunt's
+ * colours. Order follows the registry.
  */
 export function Haunts() {
   const { isLoading, error, haunts } = useHaunts();
-
-  const featured = haunts.find((haunt) => haunt.hauntId === HAUNT_IDS.hhn);
-  const others = haunts.filter((haunt) => haunt.hauntId !== HAUNT_IDS.hhn);
 
   return (
     <div className="haunts">
@@ -35,20 +30,11 @@ export function Haunts() {
           description={error}
         />
       ) : (
-        <>
-          {featured && <HauntCard summary={featured} featured />}
-
-          {others.length > 0 && (
-            <section className="haunts__others" aria-label="Other haunts">
-              <h2 className="haunts__section-title">Other Haunts</h2>
-              <div className="haunts__grid">
-                {others.map((haunt) => (
-                  <HauntCard key={haunt.hauntId} summary={haunt} />
-                ))}
-              </div>
-            </section>
-          )}
-        </>
+        <div className="haunts__grid">
+          {haunts.map((haunt) => (
+            <HauntCard key={haunt.hauntId} summary={haunt} />
+          ))}
+        </div>
       )}
     </div>
   );

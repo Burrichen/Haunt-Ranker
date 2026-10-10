@@ -32,6 +32,6 @@ export function attractionTypeIcon(
 }
 
 /** The accent a category reads in: walk-throughs orange. */
-export function attractionTypeVariant(type: AttractionType): "orange" | "purple" | "neutral" {
-  return type === "house" ? "orange" : "neutral";
+export function attractionTypeVariant(type: AttractionType): "accent" | "neutral" {
+  return type === "house" ? "accent" : "neutral";
 }

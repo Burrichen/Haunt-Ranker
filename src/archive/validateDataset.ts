@@ -5,6 +5,8 @@ import {
   type ArchiveEvent,
   type ArchiveSource,
 } from "../models/archiveDataset";
+import { findIdentityClash, type IdentityCandidate } from "../models/attractionIdentity";
+import { hasVisibleText } from "../models/common";
 import { PARK_IDS, type ParkId } from "../models/park";
 
 /** More than this and the list stops being something a person reads. */
@@ -13,9 +15,11 @@ const MAX_REPORTED_ERRORS = 15;
 /**
  * A stable id: lowercase, unambiguous in a URL, and obviously not a display
  * name. Long enough to be descriptive (`hhn-2024-house-the-quarry`), short
- * enough to stay readable.
+ * enough to stay readable. A colon may separate segments
+ * (`knotts-scary-farm:2024:maze:room-13`) — the shape Knott's records were
+ * first stored under, kept so their ratings never have to move.
  */
-export const ID_PATTERN = /^[a-z0-9][a-z0-9-]{1,79}$/;
+export const ID_PATTERN = /^(?=.{2,120}$)[a-z0-9][a-z0-9-]*(?::[a-z0-9][a-z0-9-]*)*$/;
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 
 /**
@@ -89,11 +93,25 @@ function text(value: unknown, path: string, problems: Problems, required = false
     problems.add(path, `should be text, got ${typeof value}`);
     return null;
   }
-  if (required && value.trim() === "") {
+  if (required && !hasVisibleText(value)) {
     problems.add(path, "is required");
     return null;
   }
   return value;
+}
+
+/**
+ * A required name that a reader can actually see. A zero-width or other
+ * format character renders as nothing, so a name carrying one looks right in
+ * a diff and wrong in the app — which is how a scraped house once arrived
+ * with no visible name at all.
+ */
+function displayName(value: unknown, path: string, problems: Problems): string | null {
+  const name = text(value, path, problems, true);
+  if (name !== null && /\p{Cf}/u.test(name)) {
+    problems.add(path, "contains an invisible character (e.g. a zero-width space)");
+  }
+  return name;
 }
 
 function id(value: unknown, path: string, problems: Problems): string | null {
@@ -104,7 +122,7 @@ function id(value: unknown, path: string, problems: Problems): string | null {
   if (!ID_PATTERN.test(raw)) {
     problems.add(
       path,
-      `"${raw}" isn't a usable id — use lowercase letters, numbers and hyphens, ` +
+      `"${raw}" isn't a usable id — use lowercase letters, numbers and hyphens (colons between segments), ` +
         "and never a display name",
     );
     return null;
@@ -296,7 +314,7 @@ function validateEvent(
     oneOf(value.hauntId, HAUNT_IDS, `${path}.hauntId`, problems, false);
   }
   validatePreviousIds(value, eventId, path, problems);
-  text(value.name, `${path}.name`, problems, true);
+  displayName(value.name, `${path}.name`, problems);
 
   const year = value.calendarYear;
   if (typeof year !== "number" || !Number.isInteger(year)) {
@@ -422,11 +440,29 @@ function validateAttraction(
 
   text(value.eventId, `${path}.eventId`, problems, true);
   oneOf(value.type, ATTRACTION_TYPES, `${path}.type`, problems);
-  text(value.name, `${path}.name`, problems, true);
+  displayName(value.name, `${path}.name`, problems);
   if (value.slug !== undefined) {
     id(value.slug, `${path}.slug`, problems);
   }
   validateParks(value.parks, `${path}.parks`, problems);
+
+  if (value.appearances !== undefined) {
+    if (!Array.isArray(value.appearances)) {
+      problems.add(`${path}.appearances`, "should be a list of event ids");
+    } else {
+      value.appearances.forEach((season, index) =>
+        text(season, `${path}.appearances[${index}]`, problems, true),
+      );
+    }
+  }
+  if (value.debutYear !== undefined && value.debutYear !== null) {
+    const year = value.debutYear;
+    if (typeof year !== "number" || !Number.isInteger(year)) {
+      problems.add(`${path}.debutYear`, "should be a whole year, or left out when unknown");
+    } else if (year < MIN_CALENDAR_YEAR || year > MAX_CALENDAR_YEAR) {
+      problems.add(`${path}.debutYear`, `${year} isn't a plausible year`);
+    }
+  }
 
   if (value.ip !== undefined && value.ip !== null) {
     if (!isRecord(value.ip)) {
@@ -491,6 +527,90 @@ function validateAttraction(
   counts.media = validateMedia(value.media, `${path}.media`, sourceIds, taken, problems);
   validateSourceIds(value.sourceIds, `${path}.sourceIds`, sourceIds, problems);
   return counts;
+}
+
+/**
+ * The identity rules across the whole file (see `models/attractionIdentity`):
+ * no HHN name twice in one season, no Knott's maze recorded once per season,
+ * and appearances only where they mean a returning maze.
+ */
+function validateIdentity(events: unknown[], attractions: unknown[], problems: Problems): void {
+  const seasons = new Map<string, { hauntId: string; year: number }>();
+  for (const event of events) {
+    if (isRecord(event) && typeof event.id === "string") {
+      seasons.set(event.id, {
+        hauntId: typeof event.hauntId === "string" ? event.hauntId : "hhn",
+        year: Number(event.calendarYear),
+      });
+    }
+  }
+
+  const seen: Array<IdentityCandidate & { index: number }> = [];
+  attractions.forEach((attraction, index) => {
+    const path = `attractions[${index}]`;
+    if (
+      !isRecord(attraction) ||
+      typeof attraction.eventId !== "string" ||
+      typeof attraction.name !== "string"
+    ) {
+      return;
+    }
+    const home = seasons.get(attraction.eventId);
+    if (!home) {
+      return;
+    }
+
+    const years = [home.year];
+    if (Array.isArray(attraction.appearances)) {
+      if (home.hauntId === "hhn" && attraction.appearances.length > 0) {
+        problems.add(
+          `${path}.appearances`,
+          "an HHN house belongs to one season; the same name in another year is a different house",
+        );
+      }
+      attraction.appearances.forEach((seasonId, at) => {
+        const season = typeof seasonId === "string" ? seasons.get(seasonId) : undefined;
+        if (!season) {
+          problems.add(
+            `${path}.appearances[${at}]`,
+            `no event in this dataset has the id "${String(seasonId)}"`,
+          );
+        } else if (season.hauntId !== home.hauntId) {
+          problems.add(`${path}.appearances[${at}]`, "is a season of a different haunt");
+        } else {
+          years.push(season.year);
+        }
+      });
+    }
+    const debutYear = typeof attraction.debutYear === "number" ? attraction.debutYear : null;
+    if (debutYear !== null && debutYear > Math.min(...years)) {
+      problems.add(
+        `${path}.debutYear`,
+        `${debutYear} is after ${Math.min(...years)}, a season it already ran in`,
+      );
+    }
+
+    const candidate = {
+      id: typeof attraction.id === "string" ? attraction.id : undefined,
+      hauntId: home.hauntId,
+      seasonId: attraction.eventId,
+      name: attraction.name,
+      debutYear,
+      index,
+    };
+    const clash = findIdentityClash(candidate, seen);
+    if (clash) {
+      problems.add(
+        `${path}.name`,
+        home.hauntId === "hhn"
+          ? `is the same house as attractions[${clash.index}] — one name in one HHN season is ` +
+              "one attraction, so list both parks on a single record"
+          : `is the same maze as attractions[${clash.index}] — a returning maze is one record, ` +
+              'so list its other seasons under "appearances"',
+      );
+    }
+    seen.push(candidate);
+  });
 }
 
 function trim(errors: string[]): string[] {
@@ -592,6 +712,8 @@ export function validateDataset(value: unknown): DatasetValidation {
       }
     }
   });
+
+  validateIdentity(value.events, value.attractions, problems);
 
   if (!problems.ok) {
     return { ok: false, errors: trim(problems.list) };

@@ -69,6 +69,7 @@ export const BACKUP_TABLES: readonly BackupTableSpec[] = [
       tagline: { kind: "text", nullable: true },
       accent: { kind: "text" },
       venues_label: { kind: "text", nullable: true },
+      archive_coverage: { kind: "text", nullable: true },
       sort_order: { kind: "int" },
       // Which pack last described this haunt, where one did.
       pack_id: { kind: "text", nullable: true },

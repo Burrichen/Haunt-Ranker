@@ -4,114 +4,29 @@
   gap: var(--space-7);
 }
 
-.home__hero {
-  text-align: left;
-}
-
-.home__hero-title {
+.home__title {
   font-size: clamp(2rem, 3.4vw, 2.75rem);
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
-.home__hero-subtitle {
+.home__subtitle {
   margin-top: var(--space-3);
   color: var(--color-text-secondary);
   font-size: 1rem;
 }
 
-.home__hero-link {
-  display: block;
-  color: inherit;
-  text-decoration: none;
-  border-radius: var(--radius-lg);
-}
-
-.home__hero-link:hover .home__hero {
-  border-color: var(--color-border-strong);
-}
-
-.home__hero-eyebrow {
-  display: block;
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--color-text-tertiary);
-  margin-bottom: var(--space-3);
-}
-
-/* A row, not a grid of brands: secondary collections are offered plainly
-   and without competing with the home one above them. */
-.home__others {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-
-.home__others-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-3);
-}
-
-.home__others-all {
-  font-size: 0.8125rem;
-  color: var(--color-text-secondary);
-  text-decoration: none;
-}
-
-.home__others-all:hover {
-  color: var(--color-orange-strong);
-}
-
-.home__others-grid {
+/* Two collections, equal width. */
+.home__collections {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: var(--space-4);
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
 }
 
-.home__other-link {
-  display: block;
-  color: inherit;
-  text-decoration: none;
-  border-radius: var(--radius-lg);
-}
-
-.home__other {
-  height: 100%;
-  border-left: 2px solid var(--color-border-subtle);
-  transition: border-color var(--duration-fast) var(--ease-standard);
-}
-
-.home__other--purple {
-  border-left-color: var(--color-purple);
-}
-
-.home__other--orange {
-  border-left-color: var(--color-orange);
-}
-
-.home__other-link:hover .home__other {
-  border-color: var(--color-border-strong);
-}
-
-.home__other-name {
-  font-size: 1.0625rem;
-}
-
-.home__other-tagline {
-  margin-top: var(--space-2);
-  font-size: 0.8125rem;
-  line-height: 1.5;
-  color: var(--color-text-secondary);
-}
-
-.home__other-figures {
-  margin-top: var(--space-3);
-  font-size: 0.75rem;
-  color: var(--color-text-tertiary);
+@media (max-width: 860px) {
+  .home__collections {
+    grid-template-columns: 1fr;
+  }
 }
 
 .home__nav-grid {
@@ -144,7 +59,7 @@
 .home__nav-tile-link:hover .home__nav-tile {
   transform: translateY(-2px);
   border-color: var(--color-border-strong);
-  box-shadow: var(--shadow-md), var(--shadow-glow-orange);
+  box-shadow: var(--shadow-md), var(--shadow-glow-accent);
 }
 
 .home__nav-tile-icon {
@@ -154,8 +69,8 @@
   width: 52px;
   height: 52px;
   border-radius: var(--radius-md);
-  background-color: var(--color-orange-subtle);
-  color: var(--color-orange-strong);
+  background-color: var(--accent-subtle);
+  color: var(--accent-strong);
   margin-bottom: var(--space-4);
 }
 

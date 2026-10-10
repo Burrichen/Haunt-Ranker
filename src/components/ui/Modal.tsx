@@ -2,6 +2,7 @@ import { useEffect, useId, useRef } from "react";
 import type { ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
+import { useHauntTheme } from "../../hooks/useHauntTheme";
 import { IconButton } from "./IconButton";
 import "./Modal.css";
 
@@ -18,6 +19,7 @@ const FOCUSABLE_SELECTOR =
   'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
 export function Modal({ isOpen, onClose, title, description, children, footer }: ModalProps) {
+  const theme = useHauntTheme();
   const dialogRef = useRef<HTMLDivElement>(null);
   const titleId = useId();
   const descriptionId = useId();
@@ -71,6 +73,8 @@ export function Modal({ isOpen, onClose, title, description, children, footer }:
   return createPortal(
     <div
       className="modal-overlay"
+      // Portalled out of the themed tree, so it carries the theme itself.
+      data-haunt-theme={theme}
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) {
           onClose();

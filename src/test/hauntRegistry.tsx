@@ -25,6 +25,7 @@ export const TEST_HAUNTS: Haunt[] = [
     tagline: "Universal's Halloween event, at Hollywood and Orlando.",
     accent: "orange",
     venuesLabel: "Hollywood and Orlando",
+    archiveCoverage: null,
     sortOrder: 0,
     packId: null,
     packVersion: null,
@@ -39,6 +40,9 @@ export const TEST_HAUNTS: Haunt[] = [
     tagline: "The Halloween event at Knott's Berry Farm, Buena Park.",
     accent: "purple",
     venuesLabel: "Knott's Berry Farm",
+    archiveCoverage:
+      "The Knott's archive covers the mazes that debuted from 2021 to 2026. Older Knott's " +
+      "history is incomplete and will be added later, so nothing here is an all-time Knott's record.",
     sortOrder: 10,
     packId: null,
     packVersion: null,

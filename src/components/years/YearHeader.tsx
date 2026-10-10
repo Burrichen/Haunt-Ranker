@@ -63,7 +63,7 @@ export function YearHeader({
           <span className="year-header__year">{eventYear.calendarYear}</span>
           <h1 className="year-header__name">{eventYear.name}</h1>
           <div className="year-header__badges">
-            <Badge variant="orange">
+            <Badge variant="accent">
               {houseCount}{" "}
               {registry.label("house", eventYear.hauntId, houseCount === 1 ? "one" : "many")}
             </Badge>

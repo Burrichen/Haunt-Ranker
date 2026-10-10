@@ -2,12 +2,12 @@ import { BarChart3, Calendar, CircleAlert, DoorOpen, Search, Trophy } from "luci
 import type { ComponentType } from "react";
 import { Link } from "react-router-dom";
 import { ArchiveCard } from "../components/archive";
+import { HauntCard } from "../components/haunts";
 import { EmptyState, LoadingState, Panel } from "../components/ui";
 import { useArchiveOverview } from "../hooks/useArchiveOverview";
 import { useHauntScope } from "../hooks/useHauntScope";
 import { useHauntRegistry } from "../hooks/useHauntRegistry";
 import type { HauntId } from "../models/haunt";
-import { seasonSpanLabel, type HauntArchiveSummary } from "../utils/haunts";
 import "./Home.css";
 
 interface NavTile {
@@ -47,95 +47,31 @@ function ProgressStat({ value, label }: { value: number; label: string }) {
   );
 }
 
-/**
- * A secondary collection, offered without ceremony.
- *
- * Small, factual and in the app's own language — not a brand tile. Opening
- * it makes that haunt the one in view, so the archive it leads to already
- * calls its attractions what that haunt calls them.
- */
-function OtherHauntRow({ summary }: { summary: HauntArchiveSummary }) {
-  const { setScope } = useHauntScope();
-  const registry = useHauntRegistry();
-  const hauntId: HauntId = summary.hauntId;
-  const haunt = registry.haunt(hauntId);
-  const tagline = haunt?.tagline ?? null;
-  const accent = haunt?.accent ?? "purple";
-  const name = haunt?.name ?? hauntId;
-  const span = seasonSpanLabel(summary);
-
-  return (
-    <Link
-      to={`/haunts/${hauntId}`}
-      className="home__other-link"
-      onClick={() => setScope(hauntId)}
-      aria-label={`Open the ${name} archive`}
-    >
-      <Panel elevated padding="md" className={`home__other home__other--${accent}`}>
-        <h3 className="home__other-name">{name}</h3>
-        {tagline && <p className="home__other-tagline">{tagline}</p>}
-        <p className="home__other-figures">
-          {summary.attractions === 0
-            ? "Archive not yet entered."
-            : `${summary.attractions} attractions · ${summary.seasons} seasons${span ? ` · ${span}` : ""}`}
-        </p>
-      </Panel>
-    </Link>
-  );
-}
-
 export function Home() {
   const { isLoading, error, summary, haunts, spotlight } = useArchiveOverview();
   const { setScope, hauntId } = useHauntScope();
   const registry = useHauntRegistry();
 
-  // The home collection is whichever haunt sorts first — the app's own
-  // by default, and still a data decision rather than a hard-coded one.
-  const homeHauntId = registry.haunts[0]?.id ?? haunts[0]?.hauntId ?? null;
-  const home = haunts.find((haunt) => haunt.hauntId === homeHauntId);
-  const others = haunts.filter((haunt) => haunt.hauntId !== homeHauntId);
-  const homeName = registry.hauntName(homeHauntId) ?? "Haunt Ranker";
-  const homeSpan = home ? seasonSpanLabel(home) : null;
+  const names = registry.haunts.map((haunt) => haunt.name);
 
   return (
     <div className="home">
-      {/* Halloween Horror Nights leads, because it is what Haunt Ranker is
-          for. The other collections follow it rather than crowding it. */}
-      <Link
-        to={homeHauntId ? `/haunts/${homeHauntId}` : "/haunts"}
-        className="home__hero-link"
-        onClick={() => homeHauntId && setScope(homeHauntId)}
-        aria-label={`Open the ${homeName} archive`}
-      >
-        <Panel elevated glow="orange" padding="lg" className="home__hero">
-          <span className="home__hero-eyebrow">Haunt Ranker</span>
-          <h1 className="home__hero-title">{homeName}</h1>
-          <p className="home__hero-subtitle">
-            {registry.haunt(homeHauntId)?.tagline}
-            {home && home.attractions > 0 && (
-              <>
-                {" "}
-                {home.attractions} attractions across {home.seasons} seasons
-                {homeSpan ? `, ${homeSpan}` : ""}.
-              </>
-            )}
+      <header className="home__intro">
+        <h1 className="home__title">Haunt Ranker</h1>
+        {names.length > 0 && (
+          <p className="home__subtitle">
+            {names.join(" and ")} — every walk-through, rated and ranked.
           </p>
-        </Panel>
-      </Link>
+        )}
+      </header>
 
-      {others.length > 0 && (
-        <section className="home__others" aria-label="Other haunts">
-          <div className="home__others-head">
-            <h2 className="home__section-title">Other Haunts</h2>
-            <Link to="/haunts" className="home__others-all">
-              All haunts
-            </Link>
-          </div>
-          <div className="home__others-grid">
-            {others.map((haunt) => (
-              <OtherHauntRow key={haunt.hauntId} summary={haunt} />
-            ))}
-          </div>
+      {/* The collections side by side, as equals, each in its own haunt's
+          colours. Order follows the registry; neither is "the other one". */}
+      {haunts.length > 0 && (
+        <section className="home__collections" aria-label="Collections">
+          {haunts.map((haunt) => (
+            <HauntCard key={haunt.hauntId} summary={haunt} />
+          ))}
         </section>
       )}
 

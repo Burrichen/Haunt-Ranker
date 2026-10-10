@@ -43,13 +43,13 @@
 .coverage__track {
   height: 6px;
   border-radius: var(--radius-full);
-  background-color: var(--color-orange-subtle);
+  background-color: var(--accent-subtle);
   overflow: hidden;
 }
 
 .coverage__fill {
   height: 100%;
   border-radius: var(--radius-full);
-  background-color: var(--color-orange);
+  background-color: var(--accent);
   transition: width var(--duration-base) var(--ease-standard);
 }

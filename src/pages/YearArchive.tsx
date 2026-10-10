@@ -9,6 +9,8 @@ import { useHauntRegistry } from "../hooks/useHauntRegistry";
 import type { SeasonLineage } from "../utils/seasonLineage";
 import type { YearAttraction } from "../utils/years";
 import "./YearArchive.css";
+import { hauntTheme } from "../models/hauntTheme";
+import { HauntThemeContext } from "../hooks/useHauntTheme";
 
 function AttractionSection({
   title,
@@ -132,28 +134,31 @@ export function YearArchive() {
     );
   }
 
+  const theme = hauntTheme(eventYear.hauntId);
   return (
-    <div className="year-archive">
-      <YearHeader
-        eventYear={eventYear}
-        artworkUrl={artworkUrl}
-        artworkFit={artworkFit}
-        houseCount={houses.length}
-      />
+    <HauntThemeContext.Provider value={theme}>
+      <div className="year-archive" data-haunt-theme={theme}>
+        <YearHeader
+          eventYear={eventYear}
+          artworkUrl={artworkUrl}
+          artworkFit={artworkFit}
+          houseCount={houses.length}
+        />
 
-      <YearStatsPanel stats={stats} eventYear={eventYear} />
+        <YearStatsPanel stats={stats} eventYear={eventYear} />
 
-      {/* Knott's attractions return year after year, so a season is read as
+        {/* Knott's attractions return year after year, so a season is read as
           what was new and what came back. */}
-      {lineage.tracksReturning && <SeasonLineageSections lineage={lineage} />}
+        {lineage.tracksReturning && <SeasonLineageSections lineage={lineage} />}
 
-      <AttractionSection
-        title={registry.label("house", eventYear.hauntId, "many")}
-        icon={<DoorOpen size={18} strokeWidth={1.5} />}
-        items={houses}
-        eventYear={eventYear}
-        emptyLabel={`No ${registry.label("house", eventYear.hauntId, "many").toLowerCase()} on file for this year yet.`}
-      />
-    </div>
+        <AttractionSection
+          title={registry.label("house", eventYear.hauntId, "many")}
+          icon={<DoorOpen size={18} strokeWidth={1.5} />}
+          items={houses}
+          eventYear={eventYear}
+          emptyLabel={`No ${registry.label("house", eventYear.hauntId, "many").toLowerCase()} on file for this year yet.`}
+        />
+      </div>
+    </HauntThemeContext.Provider>
   );
 }

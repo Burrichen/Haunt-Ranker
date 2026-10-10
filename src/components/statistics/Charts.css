@@ -54,3 +54,34 @@
 .chart-panel .recharts-surface:focus {
   outline: none;
 }
+
+/* Only shown when a chart carries more than one series. Names wear text
+   tokens; the short stroke beside each carries the series colour. */
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chart-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+.chart-legend__key {
+  width: 14px;
+  height: 2px;
+  border-radius: 1px;
+}
+
+.chart-tooltip-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}

@@ -60,7 +60,7 @@
 }
 
 .year-stats__average--total dd {
-  color: var(--color-orange-strong);
+  color: var(--accent-strong);
 }
 
 .year-stats__out-of {
@@ -105,7 +105,7 @@
 }
 
 .year-stats__superlative-link:hover {
-  color: var(--color-orange-strong);
+  color: var(--accent-strong);
   text-decoration: underline;
 }
 

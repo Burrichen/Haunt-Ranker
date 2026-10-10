@@ -107,7 +107,7 @@ export function Rankings() {
 
       {isManual ? (
         <div className="rankings__notice">
-          <Badge variant="purple">
+          <Badge variant="accent-2">
             <ListOrdered size={11} strokeWidth={2} />
             {hasManualRanking ? "Manual order active" : "Manual order — not saved yet"}
           </Badge>

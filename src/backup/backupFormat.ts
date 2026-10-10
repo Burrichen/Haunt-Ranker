@@ -7,7 +7,8 @@ import {
 } from "../models/backup";
 import { BACKUP_TABLES, type BackupColumn, type BackupTableSpec } from "./backupTables";
 import { copyHhnRankingScopes, mergeCrossParkHhn } from "./hhnBackupUpgrades";
-import { retireNonWalkthroughs } from "./walkthroughBackupUpgrade";
+import { mergeCanonicalIdentity, repairScrapedNames } from "./canonicalIdentityBackupUpgrade";
+import { retireAttractions, retireNonWalkthroughs } from "./walkthroughBackupUpgrade";
 
 /** How many problems to report before it stops being useful to read. */
 const MAX_REPORTED_ERRORS = 12;
@@ -279,11 +280,69 @@ const upgradeV4ToV5: BackupUpgrade = (raw) => {
   return { ...raw, data: retireNonWalkthroughs(data, stamp) };
 };
 
+/**
+ * Version 5 → 6: canonical identity.
+ *
+ * Migration 0015 merges an HHN attraction recorded once per park into one
+ * record, and a Knott's maze recorded once per season into one record with
+ * many appearances. A version 5 file may still hold either split, so it is
+ * merged here exactly as the migration merges it — and where the halves both
+ * hold personal data, nothing is merged and the clash is recorded instead.
+ */
+const upgradeV5ToV6: BackupUpgrade = (raw) => {
+  const data = isRecord(raw.data) ? raw.data : {};
+  const stamp = typeof raw.exportedAt === "string" ? raw.exportedAt : new Date().toISOString();
+  return { ...raw, data: mergeCanonicalIdentity(data, stamp) };
+};
+
+/**
+ * The Knott's mazes that returned in 2024 but debuted before 2021, which
+ * migration 0016 takes out of the 2021–2026 debut archive.
+ */
+export const KNOTTS_PRE_2021_RETURNS = new Set([
+  "knotts-scary-farm:2024:maze:wax-works",
+  "knotts-scary-farm:2024:maze:origins-the-curse-of-calico",
+]);
+
+/**
+ * Version 6 → 7: the Knott's maze debut archive.
+ *
+ * Migration 0016 retires two mazes that only returned during 2021–2026, after
+ * preserving anything personal about them in `legacyPersonalData`. A version
+ * 6 file can still hold them, so the same happens here and a restore can't
+ * put them back.
+ */
+const upgradeV6ToV7: BackupUpgrade = (raw) => {
+  const data = isRecord(raw.data) ? raw.data : {};
+  const stamp = typeof raw.exportedAt === "string" ? raw.exportedAt : new Date().toISOString();
+  return {
+    ...raw,
+    data: retireAttractions(data, KNOTTS_PRE_2021_RETURNS, "outside-knotts-debut-archive", stamp),
+  };
+};
+
+/**
+ * Version 7 → 8: repaired HHN names.
+ *
+ * Migration 0017 repairs three names the original HHN scrape broke and runs
+ * the canonical identity rule again, which merges Orlando's and Hollywood's
+ * 2021 The Haunting of Hill House. A version 7 file still holds the broken
+ * names, so the same happens here.
+ */
+const upgradeV7ToV8: BackupUpgrade = (raw) => {
+  const data = isRecord(raw.data) ? raw.data : {};
+  const stamp = typeof raw.exportedAt === "string" ? raw.exportedAt : new Date().toISOString();
+  return { ...raw, data: repairScrapedNames(data, stamp) };
+};
+
 export const BACKUP_UPGRADES: Record<number, BackupUpgrade> = {
   1: upgradeV1ToV2,
   2: upgradeV2ToV3,
   3: upgradeV3ToV4,
   4: upgradeV4ToV5,
+  5: upgradeV5ToV6,
+  6: upgradeV6ToV7,
+  7: upgradeV7ToV8,
 };
 
 function isRecord(value: unknown): value is Record<string, unknown> {

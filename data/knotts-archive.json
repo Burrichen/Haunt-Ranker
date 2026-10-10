@@ -1,0 +1,1662 @@
+{
+  "formatVersion": 1,
+  "datasetVersion": "2026.10.1",
+  "generatedAt": "2026-10-10T00:00:00.000Z",
+  "notes": "Knott's Scary Farm canonical maze debut archive: the twelve mazes that debuted from 2021 to 2026, each one record with a researched debut year and an appearance for every verified season it ran. Older Knott's history is incomplete and will be backfilled later; nothing here is an all-time Knott's claim. Scare zones are out of scope.",
+  "sources": [
+    {
+      "id": "knotts-scary-farm:source:press-2024-51st-season",
+      "type": "promotional",
+      "title": "Experience Unparalleled Terror as Knott's Scary Farm Kicks Off its 51st Season with New Spine-Chilling Mazes and the Return of Elvira",
+      "url": "https://www.visitanaheim.org/articles/post/experience-unparalleled-terror-as-knotts-scary-farm-kicks-off-its-51st-season/",
+      "publisher": "Knott's Berry Farm (reprinted by Visit Anaheim)",
+      "publishedAt": "2024-08-23",
+      "notes": "Knott's press release. Knott's own 2024 event page is no longer online."
+    },
+    {
+      "id": "knotts-scary-farm:source:press-2024-51st-season-tpd",
+      "type": "promotional",
+      "title": "Knott's Scary Farm 51st season press release (reprint)",
+      "url": "https://themeparkduo.com/2024/08/23/experience-unparalleled-terror-as-knotts-scary-farm-kicks-off-its-51st-season-with-new-spine-chilling-mazes-and-the-return-of-elvira/",
+      "publisher": "Knott's Berry Farm (reprinted by Theme Park Duo)",
+      "publishedAt": "2024-08-23"
+    },
+    {
+      "id": "knotts-scary-farm:source:laughingplace-2024-lineup",
+      "type": "article",
+      "title": "Two New Mazes and Returning Fan-Favorite Shows and Mazes Await Guests at Knott's Scary Farm",
+      "url": "https://www.laughingplace.com/w/parks/knotts-scary-farm-2024-event-lineup/",
+      "publisher": "Laughing Place",
+      "publishedAt": "2024-08-22"
+    },
+    {
+      "id": "knotts-scary-farm:source:ahg-2024-nightmares-revealed",
+      "type": "article",
+      "title": "Nightmares Revealed: Everything We Learned About Knott's Scary Farm 2024",
+      "url": "https://www.allhallowsgeek.com/nightmares-revealed-everything-we-learned-about-knotts-scary-farm-2024-during-this-special-event/",
+      "publisher": "All Hallows Geek",
+      "publishedAt": "2024-08-22"
+    },
+    {
+      "id": "knotts-scary-farm:source:mouseinfo-2024-guide",
+      "type": "article",
+      "title": "FULL GUIDE: 2024 Knott's Scary Farm — what to know!",
+      "url": "https://mouseinfo.com/2024/09/full-guide-2024-knotts-scary-farm-what-to-know/",
+      "publisher": "MouseInfo",
+      "publishedAt": "2024-09-21"
+    },
+    {
+      "id": "knotts-scary-farm:source:han-2024",
+      "type": "article",
+      "title": "Knott's Scary Farm 2024 - 2 New Mazes Unveiled",
+      "url": "https://hauntedattractionnetwork.com/knotts-scary-farm-unveils-2-new-mazes-for-2024/",
+      "publisher": "Haunted Attraction Network",
+      "publishedAt": "2024-08-26"
+    },
+    {
+      "id": "knotts-scary-farm:source:spectrum-2024-widows",
+      "type": "article",
+      "title": "A Knott's Scary Farm maze will give visitors arachnophobia",
+      "url": "https://spectrumnews1.com/ca/southern-california/entertainment/2024/09/21/knott-s-scary-farm-maze-will-give-visitors-arachnophobia",
+      "publisher": "Spectrum News 1",
+      "publishedAt": "2024-09-22"
+    },
+    {
+      "id": "knotts-scary-farm:source:micechat-2024-widows",
+      "type": "article",
+      "title": "Explore the Spider's Lair: The Dark Secrets of Knott's Widows!",
+      "url": "https://www.micechat.com/400851-knotts-scary-farm-haunted-house-widows/",
+      "publisher": "MiceChat",
+      "publishedAt": "2024-10-20",
+      "notes": "Designer feature with Daniel Miller."
+    },
+    {
+      "id": "knotts-scary-farm:source:micechat-2024-eight-fingers-nine",
+      "type": "article",
+      "title": "The Secrets Behind Knott's Twisted Fairytale: Eight Fingers Nine",
+      "url": "https://www.micechat.com/400771-the-secrets-behind-knotts-twisted-fairytale-eight-fingers-nine/",
+      "publisher": "MiceChat",
+      "publishedAt": "2024-10-19",
+      "notes": "Designer feature with Gus Krueger."
+    },
+    {
+      "id": "knotts-scary-farm:source:parkjourney-2024-review",
+      "type": "article",
+      "title": "Review: Knott's Scary Farm 2024",
+      "url": "https://www.parkjourney.com/six-flags/review-knotts-scary-farm-2024",
+      "publisher": "Park Journey",
+      "publishedAt": "2024-09-25",
+      "notes": "A review. Used only for observed layout facts, never for lore."
+    },
+    {
+      "id": "knotts-scary-farm:source:insideuniversal-2024-review",
+      "type": "article",
+      "title": "REVIEW: Knott's Scary Farm 2024 Brings The Frights",
+      "url": "https://www.insideuniversal.net/2024/09/knotts-scary-farm-brings-the-frights/",
+      "publisher": "Inside Universal",
+      "publishedAt": "2024-09-25",
+      "notes": "A review. Used only for observed facts, never for lore."
+    },
+    {
+      "id": "knotts-scary-farm:source:mouseinfo-2024-rankings",
+      "type": "article",
+      "title": "REVIEW: Ranking each maze for 2024 Knott's Scary Farm",
+      "url": "https://mouseinfo.com/2024/09/review-ranking-each-maze-for-2024-knotts-scary-farm/",
+      "publisher": "MouseInfo",
+      "publishedAt": "2024-09-20",
+      "notes": "A review. Used only for observed scene content."
+    },
+    {
+      "id": "knotts-scary-farm:source:hauntgirl-2024",
+      "type": "article",
+      "title": "Knotts Scary Farm 2024 Review",
+      "url": "https://thehauntgirl.com/2024/09/21/knotts-scary-farm-2024-review/",
+      "publisher": "The Haunt Girl",
+      "publishedAt": "2024-09-21"
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-i3opnwkrtow",
+      "type": "youtube",
+      "title": "Eight Fingers Nine: The Boogeyman FULL MAZE at Knott's Scary Farm 2024",
+      "url": "https://www.youtube.com/watch?v=I3oPnwKRtow",
+      "publisher": "Laughing Place",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-sqrsw1-upgw",
+      "type": "youtube",
+      "title": "Eight Fingers Nine: The Boogeyman Full Walkthrough | Knott's Scary Farm 2024",
+      "url": "https://www.youtube.com/watch?v=sQRSW1_UPgw",
+      "publisher": "It's EC",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-7o26mh2dcx8",
+      "type": "youtube",
+      "title": "Eight Fingers Nine at Knott's Scary Farm",
+      "url": "https://www.youtube.com/watch?v=7o26mh2DcX8",
+      "publisher": "Theme Park Insider",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-fzztwsdxroq",
+      "type": "youtube",
+      "title": "Widows FULL MAZE at Knott's Scary Farm 2024",
+      "url": "https://www.youtube.com/watch?v=FzztWSdXrOQ",
+      "publisher": "Laughing Place",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-1tcicm2g9sg",
+      "type": "youtube",
+      "title": "Widows Maze Walkthrough - Knott's Scary Farm 2024",
+      "url": "https://www.youtube.com/watch?v=1tcicM2G9sg",
+      "publisher": "Park Journey",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-drvef9cbxdg",
+      "type": "youtube",
+      "title": "Widows Maze 4K HDR POV Walkthrough | Knott's Scary Farm (2024)",
+      "url": "https://www.youtube.com/watch?v=dRVEF9cBXDg",
+      "publisher": "Theme Park Connect",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-umn7ivqvsky",
+      "type": "youtube",
+      "title": "Cinema Slasher Full Walkthrough | Knott's Scary Farm 2024",
+      "url": "https://www.youtube.com/watch?v=UmN7ivQVSKY",
+      "publisher": "It's EC",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-1erkhn48rve",
+      "type": "youtube",
+      "title": "Cinema Slasher Walkthrough Knott's Scary Farm 2024",
+      "url": "https://www.youtube.com/watch?v=1Erkhn48rVE",
+      "publisher": "Tommytoon World",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-uvbpaw-izvq",
+      "type": "youtube",
+      "title": "The Chilling Chambers 2024 Lights-On Walkthrough | Knott's Scary Farm",
+      "url": "https://www.youtube.com/watch?v=uvBPAW_IzvQ",
+      "publisher": "Charly Shelton",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-gu9jhglcsta",
+      "type": "youtube",
+      "title": "Room 13 Maze Walkthrough - Knott's Scary Farm 2024",
+      "url": "https://www.youtube.com/watch?v=gU9jhgLCSTA",
+      "publisher": "Park Journey",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-y7drqnl0f6y",
+      "type": "youtube",
+      "title": "Room 13 Full Walkthrough | Knott's Scary Farm 2024",
+      "url": "https://www.youtube.com/watch?v=Y7drqnL0f6Y",
+      "publisher": "It's EC",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-zwdofn06gxe",
+      "type": "youtube",
+      "title": "The Grimoire Full Walkthrough | Knott's Scary Farm 2024",
+      "url": "https://www.youtube.com/watch?v=zwDofn06GXE",
+      "publisher": "It's EC",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-vrba5awwpte",
+      "type": "youtube",
+      "title": "The Grimoire Haunt POV | Knott's Scary Farm 2024",
+      "url": "https://www.youtube.com/watch?v=vRBA5AWWptE",
+      "publisher": "Creepy Kingdom: Spooky IRL",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-hl9glavo1ra",
+      "type": "youtube",
+      "title": "Mesmer: Sideshow of the Mind Full Walkthrough | Knott's Scary Farm 2024",
+      "url": "https://www.youtube.com/watch?v=hL9Glavo1rA",
+      "publisher": "It's EC",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-cn-roo-4im4",
+      "type": "youtube",
+      "title": "Mesmer Maze 4K HDR POV Walkthrough | Knott's Scary Farm (2024)",
+      "url": "https://www.youtube.com/watch?v=cN-RoO_4im4",
+      "publisher": "Theme Park Connect",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-dlkmqhxweme",
+      "type": "youtube",
+      "title": "(Final Year) Bloodline 1842 - Knott's Scary Farm 2024",
+      "url": "https://www.youtube.com/watch?v=DlKmQHxwEmE",
+      "publisher": "Theme Parks Hunter",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-uuuldhaqbww",
+      "type": "youtube",
+      "title": "ALL 10 MAZES at Knott's Scary Farm 2024 | FULL Walkthrough of Every Maze!",
+      "url": "https://www.youtube.com/watch?v=uuulDhAqbww",
+      "publisher": "Attractions 360°",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:press-2025-52nd-season",
+      "type": "promotional",
+      "title": "Knott's Scary Farm celebrates 52nd season turning nightmares into reality; unveils two new terrifying mazes",
+      "url": "https://amusementtoday.com/2025/08/knotts-scary-farm-celebrates-52nd-season-turning-nightmares-into-reality-unveils-two-new-terrifying-mazes/",
+      "publisher": "Knott's Berry Farm (reprinted by Amusement Today)",
+      "publishedAt": "2025-08-21",
+      "notes": "Knott's press release. Knott's own 2025 event page is no longer online."
+    },
+    {
+      "id": "knotts-scary-farm:source:press-2025-52nd-season-tpd",
+      "type": "promotional",
+      "title": "Knott's Scary Farm Celebrates 52nd Season... (press release reprint, with press images)",
+      "url": "https://themeparkduo.com/2025/08/20/knotts-scary-farm-celebrates-52nd-season-turning-nightmares-into-reality-unveils-two-new-terrifying-mazes/",
+      "publisher": "Knott's Berry Farm (reprinted by Theme Park Duo)",
+      "publishedAt": "2025-08-20"
+    },
+    {
+      "id": "knotts-scary-farm:source:ahg-2025-nightmares-revealed",
+      "type": "article",
+      "title": "Everything Announced at Knott's Scary Farm Nightmares Revealed 2025",
+      "url": "https://www.allhallowsgeek.com/everything-announced-at-knotts-scary-farm-nightmares-revealed-2025/",
+      "publisher": "All Hallows Geek",
+      "publishedAt": "2025-08-19"
+    },
+    {
+      "id": "knotts-scary-farm:source:spectrum-2025",
+      "type": "article",
+      "title": "Knott's Scary Farm unveils 2 new mazes for 52nd Halloween season",
+      "url": "https://spectrumlocalnews.com/ca/california/entertainment/2025/08/21/knotts-scary-farm-unveils-two-new-mazes-for-52nd-halloween-season",
+      "publisher": "Spectrum News",
+      "publishedAt": "2025-08-20"
+    },
+    {
+      "id": "knotts-scary-farm:source:fangoria-2025",
+      "type": "article",
+      "title": "Knott's Scary Farm 2025 Mazes: Your Complete Guide",
+      "url": "https://www.fangoria.com/knotts-scary-farm-2025-mazes/",
+      "publisher": "Fangoria",
+      "publishedAt": "2025-08-20"
+    },
+    {
+      "id": "knotts-scary-farm:source:daps-2025-dates",
+      "type": "article",
+      "title": "Dates and Ticket Details Released for 2025 Knott's Scary Farm",
+      "url": "https://dapsmagic.com/2025/07/dates-and-ticket-details-released-for-2025-knotts-scary-farm/",
+      "publisher": "Daps Magic",
+      "publishedAt": "2025-07-08"
+    },
+    {
+      "id": "knotts-scary-farm:source:map-2025",
+      "type": "promotional",
+      "title": "Knott's Scary Farm 2025 official event guide and map (as posted by MouseInfo)",
+      "url": "https://mouseinfo.com/2025/09/event-map-2025-knotts-scary-farm-find-mazes-shows-and-more/",
+      "publisher": "Knott's Berry Farm / MouseInfo",
+      "publishedAt": "2025-09-12",
+      "notes": "The printed map is © 2025 Six Flags Entertainment Corp."
+    },
+    {
+      "id": "knotts-scary-farm:source:mouseinfo-2025-guide",
+      "type": "article",
+      "title": "FULL GUIDE: 2025 Knott's Scary Farm — everything you need to know!",
+      "url": "https://mouseinfo.com/2025/09/full-guide-2025-knotts-scary-farm-everything-you-need-to-know/",
+      "publisher": "MouseInfo"
+    },
+    {
+      "id": "knotts-scary-farm:source:insideuniversal-2025-reveal",
+      "type": "article",
+      "title": "Knott's Scary Farm reveals all at Nightmares Revealed 2025",
+      "url": "https://www.insideuniversal.net/2025/08/knotts-scary-farm-reveals-all-at-nightmares-revealed-2025/",
+      "publisher": "Inside Universal",
+      "publishedAt": "2025-08-21"
+    },
+    {
+      "id": "knotts-scary-farm:source:insideuniversal-2025-review",
+      "type": "article",
+      "title": "REVIEW: Knott's Scary Farm 2025 at Knott's Berry Farm",
+      "url": "https://www.insideuniversal.net/2025/09/review-knotts-scary-farm-2025-at-knotts-berry-farm/",
+      "publisher": "Inside Universal",
+      "publishedAt": "2025-09-25",
+      "notes": "A review. Used only for observed changes, never for lore."
+    },
+    {
+      "id": "knotts-scary-farm:source:hauntgirl-2025",
+      "type": "article",
+      "title": "Knott's Scary Farm continues to bring nightmares to life in 2025 (review)",
+      "url": "https://thehauntgirl.com/2025/10/04/knotts-scary-farm-continues-to-bring-nightmares-to-life-in-2025-review/",
+      "publisher": "The Haunt Girl",
+      "publishedAt": "2025-10-04"
+    },
+    {
+      "id": "knotts-scary-farm:source:wikipedia-knotts-scary-farm",
+      "type": "other",
+      "title": "Knott's Scary Farm (attraction history table)",
+      "url": "https://en.wikipedia.org/wiki/Knott%27s_Scary_Farm",
+      "publisher": "Wikipedia",
+      "notes": "Accessed 2026-09-28. Used for debut years only where another source agrees."
+    },
+    {
+      "id": "knotts-scary-farm:source:disneyfanatic-2025-wednesdays",
+      "type": "article",
+      "title": "Knott's Scary Farm Cuts Wednesday From Operations Without Notice",
+      "url": "https://www.disneyfanatic.com/knotts-scary-farm-cuts-wednesday-from-operations-without-notice-ad1/",
+      "publisher": "Disney Fanatic",
+      "publishedAt": "2025-08-26"
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-5ddzuqb6svo",
+      "type": "youtube",
+      "title": "Mary - The Haunting of Worth Home – Full NEW Maze | Knott's Scary Farm 2025",
+      "url": "https://www.youtube.com/watch?v=5DdzUQb6svo",
+      "publisher": "Laughing Place",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-yzntt-zzgwc",
+      "type": "youtube",
+      "title": "Mary: The Haunting of Worth Home - Knott's Scary Farm 2025 New Maze",
+      "url": "https://www.youtube.com/watch?v=yzntT_Zzgwc",
+      "publisher": "Attractions Magazine",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-0gv2cfsdcey",
+      "type": "youtube",
+      "title": "Knott's Scary Farm 2025 New Maze: Mary — The Haunting of Worth Home",
+      "url": "https://www.youtube.com/watch?v=0gV2cFSdCEY",
+      "publisher": "Halloween Every Night",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-b10vg8uyxwc",
+      "type": "youtube",
+      "title": "The Zoo Full Walkthrough Haunted Maze | Knott's Scary Farm | Knott's Berry Farm 2025",
+      "url": "https://www.youtube.com/watch?v=b10vG8uYxWc",
+      "publisher": "It's EC",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-ocf2-ylok3s",
+      "type": "youtube",
+      "title": "The Zoo LIGHTS OUT Full Walkthrough Haunted Maze | Knott's Scary Farm | Knott's Berry Farm 2025",
+      "url": "https://www.youtube.com/watch?v=ocf2_yLok3s",
+      "publisher": "It's EC",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-vzmvdz4y8o0",
+      "type": "youtube",
+      "title": "The Zoo: Lights Off - Knott's Scary Farm 2025 - Pro Shot - Full Maze Walk Through",
+      "url": "https://www.youtube.com/watch?v=vZmvdZ4Y8O0",
+      "publisher": "Hallowed Adventures",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-u2flwlefpem",
+      "type": "youtube",
+      "title": "Mesmer: Sideshow of the Mind Full Walkthrough | FINAL YEAR at Knott's Scary Farm 2025",
+      "url": "https://www.youtube.com/watch?v=U2FlwLEfPeM",
+      "publisher": "It's EC",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-2ix9qnj118u",
+      "type": "youtube",
+      "title": "Mesmer: Sideshow of the Mind - Knott's Scary Farm 2025 - Pro Shot - Full Maze Walk Through",
+      "url": "https://www.youtube.com/watch?v=2ix9QnJ118U",
+      "publisher": "Hallowed Adventures",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-k0tyaxai9wq",
+      "type": "youtube",
+      "title": "The Grimoire Full Walkthrough | FINAL YEAR at Knott's Scary Farm | Knott's Berry Farm 2025",
+      "url": "https://www.youtube.com/watch?v=k0TYaxAI9WQ",
+      "publisher": "It's EC",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-efc8t3nmoza",
+      "type": "youtube",
+      "title": "The Grimoire Lights On Tour | Nightmares Revealed | Knott's Scary Farm 2025 4K",
+      "url": "https://www.youtube.com/watch?v=eFc8T3nMOZA",
+      "publisher": "Daps Magic",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-p2luoxnf1cw",
+      "type": "youtube",
+      "title": "Cinema Slasher - Knott's Scary Farm 2025 - Pro Shot - Full Maze Walk Through",
+      "url": "https://www.youtube.com/watch?v=P2LUoxnF1cw",
+      "publisher": "Hallowed Adventures",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-ig1jwclbvfk",
+      "type": "youtube",
+      "title": "Cinema Slasher Full Walkthrough | Knott's Scary Farm | Knott's Berry Farm 2025",
+      "url": "https://www.youtube.com/watch?v=ig1jWClBvFk",
+      "publisher": "It's EC",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-shfgjebt1ms",
+      "type": "youtube",
+      "title": "Eight Fingers Nine: The Boogeyman - Knott's Scary Farm 2025 - Pro Shot - Full Maze Walk Through",
+      "url": "https://www.youtube.com/watch?v=shFGJeBt1Ms",
+      "publisher": "Hallowed Adventures",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-w5piyr--gyo",
+      "type": "youtube",
+      "title": "Eight Fingers Nine Full Walkthrough | Knott's Scary Farm | Knott's Berry Farm 2025",
+      "url": "https://www.youtube.com/watch?v=W5pIyR--Gyo",
+      "publisher": "It's EC",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-1xmext1ssfa",
+      "type": "youtube",
+      "title": "Widows - Knott's Scary Farm 2025 - Pro Shot - Full Maze Walk Through",
+      "url": "https://www.youtube.com/watch?v=1xMExt1ssfA",
+      "publisher": "Hallowed Adventures",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-htb1vfzfxdm",
+      "type": "youtube",
+      "title": "Widows Full Walkthrough | Knott's Scary Farm | Knott's Berry Farm 2025",
+      "url": "https://www.youtube.com/watch?v=htB1vfzFxDM",
+      "publisher": "It's EC",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-mru3cqk8m-g",
+      "type": "youtube",
+      "title": "Room 13 Full Walkthrough | Knott's Scary Farm | Knott's Berry Farm 2025",
+      "url": "https://www.youtube.com/watch?v=mru3CQK8M_g",
+      "publisher": "It's EC",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-hpzbcim3jxs",
+      "type": "youtube",
+      "title": "The Chilling Chambers Full Walkthrough | Knott's Scary Farm | Knott's Berry Farm 2025",
+      "url": "https://www.youtube.com/watch?v=hpzbcim3jXs",
+      "publisher": "It's EC",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-pp2jwg-xfwi",
+      "type": "youtube",
+      "title": "Knott's Scary Farm Panel | The Boulet Brothers | Retiring Mazes (Midsummer Scream 2025)",
+      "url": "https://www.youtube.com/watch?v=Pp2jWG-xfwI",
+      "publisher": "theFUNnelCakeBlog",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-zxhzhyp-guq",
+      "type": "youtube",
+      "title": "Knott's Scary Farm All 10 Haunted Houses Walkthrough 4K Low Light 2025 09 25",
+      "url": "https://www.youtube.com/watch?v=ZXHzHYp_GUQ",
+      "publisher": "JohnYChen",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-gbu5rnkcuek",
+      "type": "youtube",
+      "title": "POV Walkthrough | The Chilling Chambers – Knott's Scary Farm 2025",
+      "url": "https://www.youtube.com/watch?v=GBu5rnkCuek",
+      "publisher": "The Horrific Network",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-nvlmku-59iy",
+      "type": "youtube",
+      "title": "Mary & Widows a Spider-themed Haunted Houses Walkthrough | Knott's Scary Farm 2025",
+      "url": "https://www.youtube.com/watch?v=nvlMKU_59IY",
+      "publisher": "Attractions 360°",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:guide-2024",
+      "type": "promotional",
+      "title": "Knott's Scary Farm 2024 event guide and map (PDF)",
+      "url": "https://media.qrtiger.com/files/2024/09/kb24-200-scary-farm-event-guide.pdf",
+      "publisher": "Knott's Berry Farm / Six Flags",
+      "notes": "Knott's own print guide, hosted on the file service Knott's uses for its official PDFs. No official page linking to it was found; identified by its job-numbered filename, which matches the official 2026 guide."
+    },
+    {
+      "id": "knotts-scary-farm:source:official-2026",
+      "type": "official_site",
+      "title": "Halloween Events & Activities – Knott's Scary Farm",
+      "url": "https://www.sixflags.com/knotts/events/scary-farm",
+      "publisher": "Knott's Berry Farm / Six Flags",
+      "notes": "Accessed 2026-09-28. Describes the 2026 season."
+    },
+    {
+      "id": "knotts-scary-farm:source:laughingplace-2026-lineup",
+      "type": "article",
+      "title": "Knott's Scary Farm 2026 lineup (Nightmares Revealed)",
+      "url": "https://www.laughingplace.com/parks/knotts-scary-farm-2026-event-lineup/",
+      "publisher": "Laughing Place",
+      "publishedAt": "2026-08-19"
+    },
+    {
+      "id": "knotts-scary-farm:source:micechat-2026-guide",
+      "type": "article",
+      "title": "Knott's Scary Farm 2026 Guide: Mazes, Farewells (\"Last Rites\"), Food & a Hangin'",
+      "url": "https://www.micechat.com/365380-knotts-scary-farm-guide/",
+      "publisher": "MiceChat",
+      "publishedAt": "2026-09-18"
+    },
+    {
+      "id": "knotts-scary-farm:source:ahg-2026-nightmares-revealed",
+      "type": "article",
+      "title": "Knott's Scary Farm 2026: Every New Maze, Show, and More Announced at 'Nightmares Revealed'",
+      "url": "https://www.allhallowsgeek.com/knotts-scary-farm-2026-every-new-maze-show-and-more-announced-at-nightmares-revealed/",
+      "publisher": "All Hallows Geek",
+      "publishedAt": "2026-08-18"
+    },
+    {
+      "id": "knotts-scary-farm:source:themeparkiq-2026",
+      "type": "article",
+      "title": "Knott's Scary Farm 2026 Lineup: New Mazes, Shows, Big Rule Change",
+      "url": "https://www.themeparkiq.com/blog/knotts-berry-farm/knotts-scary-farm-2026-lineup-new-mazes-shows-big-rule-change",
+      "publisher": "Theme Park IQ",
+      "publishedAt": "2026-08-20"
+    },
+    {
+      "id": "knotts-scary-farm:source:han-2026-guide",
+      "type": "article",
+      "title": "Knott's Scary Farm 2026 Guide: Tickets, Hours, Map, and Every Maze",
+      "url": "https://hauntedattractionnetwork.com/knotts-scary-farm-2026-guide/",
+      "publisher": "Haunted Attraction Network",
+      "publishedAt": "2026-09-23",
+      "notes": "First published 2026-07-15, updated 2026-09-23."
+    },
+    {
+      "id": "knotts-scary-farm:source:laughingplace-2026-opening",
+      "type": "article",
+      "title": "Photos/Videos: Knott's Scary Farm Returns for 2026 with New Mazes and Entertainment",
+      "url": "https://www.laughingplace.com/parks/ksf-2026-new/",
+      "publisher": "Laughing Place",
+      "publishedAt": "2026-09-18"
+    },
+    {
+      "id": "knotts-scary-farm:source:nerdreactor-2026",
+      "type": "article",
+      "title": "Knott's Scary Farm 2026: What's New This Year for Mazes",
+      "url": "https://nerdreactor.com/knotts-scary-farm-2026-whats-new-this-year-for-mazes/",
+      "publisher": "Nerd Reactor",
+      "publishedAt": "2026-09-15"
+    },
+    {
+      "id": "knotts-scary-farm:source:mouseinfo-2026-reveal",
+      "type": "article",
+      "title": "REVEALED: 2026 Knott's Scary Farm confirms 2 new mazes, new shows, returning favorites",
+      "url": "https://mouseinfo.com/2026/08/revealed-2026-knotts-scary-farm-confirms-2-new-mazes-new-shows-returning-favorites/",
+      "publisher": "MouseInfo",
+      "publishedAt": "2026-08-18"
+    },
+    {
+      "id": "knotts-scary-farm:source:noproscenium-2026",
+      "type": "article",
+      "title": "Knott's Scary Farm 2026 (The NoPro Review)",
+      "url": "https://www.noproscenium.com/knotts-scary-farm-2026-review/",
+      "publisher": "No Proscenium",
+      "publishedAt": "2026-09-22",
+      "notes": "A review. Used only for observed facts, never for lore."
+    },
+    {
+      "id": "knotts-scary-farm:source:guide-2026",
+      "type": "promotional",
+      "title": "Knott's Scary Farm 2026 event guide and map (PDF)",
+      "url": "https://media.qrtiger.com/files/2026/09/kb-26-0113-scary-farm-event-guide.pdf",
+      "publisher": "Knott's Berry Farm / Six Flags",
+      "notes": "Linked from the \"View Guide\" button on the official event page."
+    },
+    {
+      "id": "knotts-scary-farm:source:sixflags-terms",
+      "type": "official_site",
+      "title": "Six Flags Terms of Use",
+      "url": "https://www.sixflags.com/terms-of-use",
+      "publisher": "Six Flags Entertainment Corp.",
+      "notes": "Covers sixflags.com and its images: all rights reserved; no use, copying, display or redistribution without express written permission."
+    },
+    {
+      "id": "knotts-scary-farm:source:knotts-media-center",
+      "type": "official_site",
+      "title": "Knott's Berry Farm Media Center",
+      "url": "https://www.sixflags.com/knotts/media-center",
+      "publisher": "Knott's Berry Farm / Six Flags",
+      "notes": "Press images, logos and video for credentialed media, via shared folders. Permission to display any Knott's artwork in the app would come through Knott's Public Relations."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-djcr6oyhidw",
+      "type": "youtube",
+      "title": "INKED Full Maze POV | Knott's Scary Farm 2026",
+      "url": "https://www.youtube.com/watch?v=djcR6oyhidw",
+      "publisher": "Parks and Cons",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-dqrh70ecdi8",
+      "type": "youtube",
+      "title": "INSIDE 2 NEW Mazes \"INKED\" & \"UNEARTHED\" | A Horror Cartoon Haunted House! Knott's Berry Farm 2026",
+      "url": "https://www.youtube.com/watch?v=DQRh70ECDI8",
+      "publisher": "Attractions 360°",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-xlaewqpvduy",
+      "type": "youtube",
+      "title": "NEW Inked Scare Maze at Knott's Scary Farm | Full Animated Disney-Style Preshow Video [2026 4K]",
+      "url": "https://www.youtube.com/watch?v=XlaEWQPvdUY",
+      "publisher": "WorldscapeScenery",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-yjz3v3qpawq",
+      "type": "youtube",
+      "title": "Unearthed Full POV | Knott's Scary Farm 2026",
+      "url": "https://www.youtube.com/watch?v=yjZ3v3qpAWQ",
+      "publisher": "Laughing Place",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-p4di-z-t-zu",
+      "type": "youtube",
+      "title": "The Zoo - Knott's Scary Farm 2026 - Pro Shot - Full Maze Walk Through",
+      "url": "https://www.youtube.com/watch?v=p4Di-Z-T-zU",
+      "publisher": "Hallowed Adventures",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-uwzu1gda5ms",
+      "type": "youtube",
+      "title": "Knott's Scary Farm 2026 - INSIDE All 10 Mazes!",
+      "url": "https://www.youtube.com/watch?v=UWZu1GDA5ms",
+      "publisher": "Theme Park Worldwide",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-p0q0e6dqt9m",
+      "type": "youtube",
+      "title": "Knott's Scary Farm 2026 at Knott's Berry Farm - Buena Park, California",
+      "url": "https://www.youtube.com/watch?v=P0Q0e6DqT9M",
+      "publisher": "Sharp Productions",
+      "notes": "Title and channel confirmed through YouTube oEmbed. Cited as documentation of the experience; never downloaded or rehosted."
+    },
+    {
+      "id": "knotts-scary-farm:source:laughingplace-2021-48th-season",
+      "type": "article",
+      "title": "Knott's Scary Farm Returns for 48th Season With Mesmerizing New Nightmares Starting Sept 16th",
+      "url": "https://www.laughingplace.com/w/news/2021/08/16/knotts-scary-farm-returns-for-48th-season-with-mesmerizing-new-nightmares-starting-sept-16th/",
+      "publisher": "Laughing Place",
+      "publishedAt": "2021-08-16",
+      "notes": "2021 dates and maze lineup; Mesmer as the one new maze."
+    },
+    {
+      "id": "knotts-scary-farm:source:mouseinfo-2021-recap",
+      "type": "article",
+      "title": "Recap: Everything coming to Knott's Scary Farm 2021, including new shows, maze and scare zone",
+      "url": "https://mouseinfo.com/2021/08/recap-everything-coming-to-knotts-scary-farm-2021-including-new-shows-maze-and-scare-zone/",
+      "publisher": "MouseInfo",
+      "publishedAt": "2021-08-22",
+      "notes": "Confirms the 2021 dates and maze list."
+    },
+    {
+      "id": "knotts-scary-farm:source:mousesteps-2022-49th-season",
+      "type": "article",
+      "title": "Knott's Scary Farm Returns for its 49th Season with New and Returning Offerings Starting September 22nd, 2022",
+      "url": "https://www.mousesteps.com/2022/08/15/knotts-scary-farm-returns-for-its-49th-season-with-new-and-returning-offerings-starting-september-22nd-2022/",
+      "publisher": "MouseSteps",
+      "publishedAt": "2022-08-15",
+      "notes": "2022 dates and maze lineup, with Knott's official descriptions of Bloodline 1842 and The Grimoire."
+    },
+    {
+      "id": "knotts-scary-farm:source:laughingplace-2022-recap",
+      "type": "article",
+      "title": "Event Recap: Knott's Scary Farm Delivers Another Solid Year of Haunted Mazes, Attractions and Shows for 2022",
+      "url": "https://www.laughingplace.com/w/articles/2022/09/23/event-recap-knotts-scary-farm-delivers-another-solid-year-of-haunted-mazes-attractions-and-shows-for-2022/",
+      "publisher": "Laughing Place",
+      "publishedAt": "2022-09-23",
+      "notes": "Confirms the 2022 maze list; places Bloodline 1842 near GhostRider."
+    },
+    {
+      "id": "knotts-scary-farm:source:spectrum-2022-bloodline-1842",
+      "type": "article",
+      "title": "In Knott's Scary Farm's new maze, guests become vampire hunters",
+      "url": "https://spectrumnews1.com/ca/southern-california/entertainment/2022/09/23/in-knott-s-scary-farm-s-new-maze--guests-become-vampire-hunters",
+      "publisher": "Spectrum News 1",
+      "publishedAt": "2022-09-23",
+      "notes": "Bloodline 1842's premise and interactive weapons; show director Jon Asperin on its size."
+    },
+    {
+      "id": "knotts-scary-farm:source:parkjourney-2022-review",
+      "type": "article",
+      "title": "Review: Knott's Scary Farm 2022",
+      "url": "https://www.parkjourney.com/cedar-fair-legacy/review-knotts-scary-farm-2022",
+      "publisher": "Park Journey",
+      "publishedAt": "2022-09-30",
+      "notes": "Locations of Bloodline 1842 (former Paranormal, Inc. site) and The Grimoire (Mystery Lodge area, former Infected space)."
+    },
+    {
+      "id": "knotts-scary-farm:source:han-2023-50-years",
+      "type": "article",
+      "title": "Knott's Scary Farm Celebrates 50 Years of Never-Ending Nightmares",
+      "url": "https://hauntedattractionnetwork.com/knotts-scary-farm-celebrates-50-years-nightmares/",
+      "publisher": "Haunted Attraction Network",
+      "publishedAt": "2023-08-26",
+      "notes": "2023 dates and maze lineup, with the three new mazes."
+    },
+    {
+      "id": "knotts-scary-farm:source:fangoria-2023-guide",
+      "type": "article",
+      "title": "2023 Knott's Scary Farm Guide",
+      "url": "https://www.fangoria.com/2023-knotts-scary-farm-guide/",
+      "publisher": "Fangoria",
+      "publishedAt": "2023-08-26",
+      "notes": "Confirms the 2023 dates and maze list."
+    },
+    {
+      "id": "knotts-scary-farm:source:insideuniversal-2024-lineup",
+      "type": "article",
+      "title": "Knott's Scary Farm lays out what's to come in 2024",
+      "url": "https://www.insideuniversal.net/2024/08/knotts-scary-farm-lays-out-whats-to-come-in-2024/",
+      "publisher": "Inside Universal",
+      "publishedAt": "2024-08-24",
+      "notes": "2024 lineup; Bloodline 1842's final year."
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-iuzurqflara",
+      "type": "youtube",
+      "title": "\"Bloodline 1842\" NEW interactive maze at Knott's Scary Farm 2022",
+      "url": "https://www.youtube.com/watch?v=IUzURqflaRA",
+      "publisher": "Laughing Place",
+      "publishedAt": "2022-09-23"
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-q-yxxkfxe2q",
+      "type": "youtube",
+      "title": "Bloodline 1842 at Knott's Scary Farm",
+      "url": "https://www.youtube.com/watch?v=Q_yxxkFxE2Q",
+      "publisher": "Theme Park Insider",
+      "publishedAt": "2022-09-22"
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-hgbghehsc3o",
+      "type": "youtube",
+      "title": "Bloodline 1842 Complete Walk-through Maze with Laser Tag Knott's Scary Farm 2022 Media Night",
+      "url": "https://www.youtube.com/watch?v=HgbGeHSHC3o",
+      "publisher": "TheCoasterViews",
+      "publishedAt": "2022-10-08"
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-xhboxljsyf8",
+      "type": "youtube",
+      "title": "\"The Grimoire\" NEW haunted maze at Knott's Scary Farm 2022",
+      "url": "https://www.youtube.com/watch?v=XHbOxLJsYf8",
+      "publisher": "Laughing Place",
+      "publishedAt": "2022-09-23"
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-sx8poythghi",
+      "type": "youtube",
+      "title": "The Grimoire FULL WALKTHROUGH - Knott's Scary Farm 2023",
+      "url": "https://www.youtube.com/watch?v=Sx8poyTHGhI",
+      "publisher": "HorrorBuzz",
+      "publishedAt": "2023-11-01"
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-xw4scvhdcj8",
+      "type": "youtube",
+      "title": "NEW! Mesmer Maze Knotts Scary Farm 2021 - Full Walkthrough - LOWLIGHT",
+      "url": "https://www.youtube.com/watch?v=xW4ScvhDcJ8",
+      "publisher": "Theme Park Steve",
+      "publishedAt": "2021-09-16"
+    },
+    {
+      "id": "knotts-scary-farm:source:yt-qhdafrmfdse",
+      "type": "youtube",
+      "title": "Mesmer: Sideshow of the Mind FULL WALKTHROUGH - Knott's Scary Farm 2023",
+      "url": "https://www.youtube.com/watch?v=qHDafRmFdSE",
+      "publisher": "HorrorBuzz",
+      "publishedAt": "2023-11-01"
+    }
+  ],
+  "events": [
+    {
+      "id": "knotts-scary-farm:2021",
+      "hauntId": "knotts-scary-farm",
+      "calendarYear": 2021,
+      "name": "Knott's Scary Farm 2021",
+      "description": "The 48th season, and the first after the 2020 cancellation: eight mazes, one of them new — Mesmer: Sideshow of the Mind.",
+      "sourceNotes": "Dates and lineup from Laughing Place's announcement coverage, confirmed by MouseInfo.",
+      "dates": {
+        "start": "2021-09-16",
+        "end": "2021-10-31"
+      },
+      "sourceIds": [
+        "knotts-scary-farm:source:laughingplace-2021-48th-season",
+        "knotts-scary-farm:source:mouseinfo-2021-recap"
+      ]
+    },
+    {
+      "id": "knotts-scary-farm:2022",
+      "hauntId": "knotts-scary-farm",
+      "calendarYear": 2022,
+      "name": "Knott's Scary Farm 2022",
+      "description": "The 49th season: nine mazes, two of them new — Bloodline 1842 and The Grimoire.",
+      "sourceNotes": "Dates and lineup from Knott's announcement as published by MouseSteps, confirmed by Laughing Place's recap.",
+      "dates": {
+        "start": "2022-09-22",
+        "end": "2022-10-31"
+      },
+      "sourceIds": [
+        "knotts-scary-farm:source:mousesteps-2022-49th-season",
+        "knotts-scary-farm:source:laughingplace-2022-recap"
+      ]
+    },
+    {
+      "id": "knotts-scary-farm:2023",
+      "hauntId": "knotts-scary-farm",
+      "calendarYear": 2023,
+      "name": "Knott's Scary Farm 2023",
+      "description": "The 50th season, billed as the event's 50th anniversary: ten mazes, three of them new — Cinema Slasher, The Chilling Chambers and Room 13.",
+      "sourceNotes": "Dates and lineup from Haunted Attraction Network, confirmed by Fangoria's guide.",
+      "dates": {
+        "start": "2023-09-21",
+        "end": "2023-10-31"
+      },
+      "sourceIds": [
+        "knotts-scary-farm:source:han-2023-50-years",
+        "knotts-scary-farm:source:fangoria-2023-guide"
+      ]
+    },
+    {
+      "id": "knotts-scary-farm:2024",
+      "calendarYear": 2024,
+      "name": "Knott's Scary Farm 2024",
+      "description": "The 51st season: 10 mazes and 5 scare zones over 31 nights. It had two new mazes, Widows and Eight Fingers Nine: The Boogeyman, and was the final year for Wax Works and Bloodline 1842. Elvira returned in the Yours Cruelly, Elvira EXXperience exhibit.",
+      "sourceNotes": "Lineup and dates from Knott's press release, reprinted by Visit Anaheim and Theme Park Duo, cross-checked with Laughing Place, All Hallows Geek and Haunted Attraction Network.",
+      "dates": {
+        "start": "2024-09-19",
+        "end": "2024-11-02"
+      },
+      "media": [
+        {
+          "id": "knotts-scary-farm:2024:media:event-guide",
+          "kind": "map",
+          "url": "https://media.qrtiger.com/files/2024/09/kb24-200-scary-farm-event-guide.pdf",
+          "attribution": "Knott's Berry Farm / Six Flags Entertainment Corp.",
+          "licenseNotes": "Knott's official 2024 event guide and map, a PDF. All rights reserved under Six Flags' Terms of Use. Recorded by reference; PDFs aren't kept offline.",
+          "sourceId": "knotts-scary-farm:source:guide-2024",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": [
+        "knotts-scary-farm:source:press-2024-51st-season",
+        "knotts-scary-farm:source:press-2024-51st-season-tpd",
+        "knotts-scary-farm:source:laughingplace-2024-lineup",
+        "knotts-scary-farm:source:ahg-2024-nightmares-revealed",
+        "knotts-scary-farm:source:han-2024",
+        "knotts-scary-farm:source:mouseinfo-2024-guide",
+        "knotts-scary-farm:source:guide-2024"
+      ],
+      "hauntId": "knotts-scary-farm"
+    },
+    {
+      "id": "knotts-scary-farm:2025",
+      "calendarYear": 2025,
+      "name": "Knott's Scary Farm 2025",
+      "description": "The 52nd season: 10 mazes and 5 scare zones, including a reimagined Gauntlet. It had two new mazes, Mary – The Haunting of Worth Home and The Zoo, and was the final year for The Grimoire and Mesmer: Sideshow of the Mind.",
+      "sourceNotes": "Lineup and dates from Knott's press release (via Amusement Today and Theme Park Duo) and the official 2025 map, cross-checked with All Hallows Geek and Spectrum News. Knott's announced 28 nights; a later report says two Wednesdays were dropped from the calendar, which Knott's did not confirm. Knott's own 2025 page is no longer online.",
+      "dates": {
+        "start": "2025-09-18",
+        "end": "2025-11-01"
+      },
+      "media": [
+        {
+          "id": "knotts-scary-farm:2025:media:event-map-back",
+          "kind": "map",
+          "url": "https://photos.smugmug.com/Official-Images/Knotts-Berry-Farm/i-TKgR3TL/1/LvTpWPrTGzxLXCB6Vc8vWpzbVgw4NXmCZNXRw2QCP/X3/knotts-scary-farm-event-map-2025-front-X3.jpg",
+          "attribution": "Knott's Berry Farm / Six Flags Entertainment Corp. (printed map)",
+          "licenseNotes": "The printed 2025 event map (front), on a SmugMug gallery named Official-Images whose operator could not be confirmed and which no Knott's page links to. The back is no longer available at its earlier URL, and this record, first made for the back, now describes the front. Redistribution unclear; an offline copy may be kept for personal use.",
+          "sourceId": "knotts-scary-farm:source:map-2025",
+          "distribution": "unclear"
+        }
+      ],
+      "sourceIds": [
+        "knotts-scary-farm:source:press-2025-52nd-season",
+        "knotts-scary-farm:source:press-2025-52nd-season-tpd",
+        "knotts-scary-farm:source:ahg-2025-nightmares-revealed",
+        "knotts-scary-farm:source:spectrum-2025",
+        "knotts-scary-farm:source:daps-2025-dates",
+        "knotts-scary-farm:source:map-2025",
+        "knotts-scary-farm:source:disneyfanatic-2025-wednesdays",
+        "knotts-scary-farm:source:mouseinfo-2025-guide",
+        "knotts-scary-farm:source:yt-zxhzhyp-guq"
+      ],
+      "hauntId": "knotts-scary-farm"
+    },
+    {
+      "id": "knotts-scary-farm:2026",
+      "calendarYear": 2026,
+      "name": "Knott's Scary Farm 2026",
+      "description": "The 53rd season: 10 mazes and 5 scare zones, opening September 17. It has two new mazes, Inked and Unearthed, and a reimagined CarnEVIL. It is the announced final year for The Chilling Chambers and Origins: The Curse of Calico.",
+      "sourceNotes": "Lineup from the official Knott's page, cross-checked with Laughing Place, All Hallows Geek, MiceChat and Haunted Attraction Network. Researched on 2026-09-28, eleven days into the run. Sources give 26 nights, except one that says 30. One source gives November 1 as the end date; the official page says October 31.",
+      "dates": {
+        "start": "2026-09-17",
+        "end": "2026-10-31"
+      },
+      "media": [
+        {
+          "id": "knotts-scary-farm:2026:media:key-art",
+          "kind": "event_artwork",
+          "url": "https://cdn.sanity.io/images/bsnrdz4t/production/604551260b30c6868133a678b85f32a676f35350-1550x990.jpg",
+          "attribution": "Knott's Berry Farm / Six Flags Entertainment Corp.",
+          "licenseNotes": "Official art from Knott's 2026 event page. Six Flags reserves all rights; its Terms of Use allow limited display for personal, noncommercial purposes only. Not for redistribution; an offline copy may be kept for personal use. The season's hero key art.",
+          "sourceId": "knotts-scary-farm:source:official-2026",
+          "distribution": "reference"
+        },
+        {
+          "id": "knotts-scary-farm:2026:media:event-guide",
+          "kind": "map",
+          "url": "https://media.qrtiger.com/files/2026/09/kb-26-0113-scary-farm-event-guide.pdf",
+          "attribution": "Knott's Berry Farm / Six Flags Entertainment Corp.",
+          "licenseNotes": "Knott's official 2026 event guide and map, a PDF linked from the event page. All rights reserved under Six Flags' Terms of Use. Recorded by reference; PDFs aren't kept offline.",
+          "sourceId": "knotts-scary-farm:source:guide-2026",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": [
+        "knotts-scary-farm:source:official-2026",
+        "knotts-scary-farm:source:laughingplace-2026-lineup",
+        "knotts-scary-farm:source:ahg-2026-nightmares-revealed",
+        "knotts-scary-farm:source:micechat-2026-guide",
+        "knotts-scary-farm:source:han-2026-guide",
+        "knotts-scary-farm:source:mouseinfo-2026-reveal",
+        "knotts-scary-farm:source:guide-2026",
+        "knotts-scary-farm:source:nerdreactor-2026",
+        "knotts-scary-farm:source:sixflags-terms",
+        "knotts-scary-farm:source:knotts-media-center",
+        "knotts-scary-farm:source:yt-uwzu1gda5ms",
+        "knotts-scary-farm:source:yt-p0q0e6dqt9m"
+      ],
+      "hauntId": "knotts-scary-farm"
+    }
+  ],
+  "attractions": [
+    {
+      "id": "knotts-scary-farm:2024:maze:mesmer-sideshow-of-the-mind",
+      "eventId": "knotts-scary-farm:2021",
+      "appearances": [
+        "knotts-scary-farm:2022",
+        "knotts-scary-farm:2023",
+        "knotts-scary-farm:2024",
+        "knotts-scary-farm:2025"
+      ],
+      "debutYear": 2021,
+      "type": "house",
+      "name": "Mesmer: Sideshow of the Mind",
+      "parks": ["knotts-berry-farm"],
+      "ip": {
+        "type": "original"
+      },
+      "summary": "A hypnotist's sideshow that promises to cure guests' phobias and preys on them instead.",
+      "wiki": {
+        "overview": "A sideshow tent run by the hypnotist Professor Mesmer, who offers to cure fears such as snakes, spiders, darkness and claustrophobia.",
+        "story": "Official copy: guests surrender to Mesmer's hypnosis, and his sideshow feeds on their hidden fears.",
+        "experience": "A narrated, story-driven circus sideshow with optical illusions. New video was added to the entrance hallway in 2025.",
+        "development": "Debuted in 2021. Knott's announced 2025 as its final year, and Inked took over its site in 2026. Mesmer the character moved into the CarnEVIL scare zone in 2026."
+      },
+      "location": "Boardwalk",
+      "characters": [
+        {
+          "id": "knotts-scary-farm:2024:maze:mesmer-sideshow-of-the-mind:character:professor-mesmer",
+          "name": "Professor Mesmer"
+        }
+      ],
+      "media": [
+        {
+          "id": "knotts-scary-farm:2024:maze:mesmer-sideshow-of-the-mind:media:copy-1",
+          "kind": "promotional_image",
+          "url": "https://themeparkduo.com/wp-content/uploads/2023/08/mesmer_heroimagemedia.jpg",
+          "attribution": "Presumed Knott's Berry Farm (rehosted by Theme Park Duo)",
+          "licenseNotes": "A copy on a third-party site with no credit or licence stated. Mesmer's 2023 media art. Redistribution unclear; an offline copy may be kept for personal use.",
+          "sourceId": null,
+          "distribution": "unclear"
+        }
+      ],
+      "sourceIds": [
+        "knotts-scary-farm:source:press-2024-51st-season",
+        "knotts-scary-farm:source:press-2024-51st-season-tpd",
+        "knotts-scary-farm:source:parkjourney-2024-review",
+        "knotts-scary-farm:source:press-2025-52nd-season",
+        "knotts-scary-farm:source:ahg-2025-nightmares-revealed",
+        "knotts-scary-farm:source:spectrum-2025",
+        "knotts-scary-farm:source:fangoria-2025",
+        "knotts-scary-farm:source:map-2025",
+        "knotts-scary-farm:source:insideuniversal-2025-review",
+        "knotts-scary-farm:source:wikipedia-knotts-scary-farm",
+        "knotts-scary-farm:source:laughingplace-2026-opening",
+        "knotts-scary-farm:source:official-2026",
+        "knotts-scary-farm:source:yt-hl9glavo1ra",
+        "knotts-scary-farm:source:yt-cn-roo-4im4",
+        "knotts-scary-farm:source:yt-u2flwlefpem",
+        "knotts-scary-farm:source:yt-2ix9qnj118u",
+        "knotts-scary-farm:source:yt-pp2jwg-xfwi",
+        "knotts-scary-farm:source:laughingplace-2021-48th-season",
+        "knotts-scary-farm:source:mouseinfo-2021-recap",
+        "knotts-scary-farm:source:han-2023-50-years",
+        "knotts-scary-farm:source:yt-xw4scvhdcj8",
+        "knotts-scary-farm:source:yt-qhdafrmfdse",
+        "knotts-scary-farm:source:han-2026-guide"
+      ]
+    },
+    {
+      "id": "knotts-scary-farm:2024:maze:bloodline-1842",
+      "eventId": "knotts-scary-farm:2022",
+      "appearances": ["knotts-scary-farm:2023", "knotts-scary-farm:2024"],
+      "debutYear": 2022,
+      "type": "house",
+      "name": "Bloodline 1842",
+      "parks": ["knotts-berry-farm"],
+      "ip": {
+        "type": "original"
+      },
+      "summary": "Vampire hunters battle the King of the Valhymphri in the war-torn city of Valdonia.",
+      "wiki": {
+        "overview": "Guests join the fight in the war-torn city of Valdonia against the King of the Valhymphri and his vampires.",
+        "experience": "It opened as an interactive shooting maze. Reviewers report it ran as a standard walk-through in 2024.",
+        "development": "Debuted in 2022. Knott's press release named 2024 as its final year. Show director Jon Asperin called it one of Knott's largest mazes. It brought back the shoot-'em-up mechanic of the earlier Special Ops: Infected maze.",
+        "story": "Guests play \"Daybreakers\" hunting the Valhymphri vampires through the streets of the fictional town of Valdonia, armed with interactive \"Bellatorian\" weapons."
+      },
+      "location": "Near GhostRider, in the former Paranormal, Inc. site",
+      "characters": [
+        {
+          "id": "knotts-scary-farm:2024:maze:bloodline-1842:character:the-king-of-the-valhymphri",
+          "name": "The King of the Valhymphri"
+        }
+      ],
+      "media": [],
+      "sourceIds": [
+        "knotts-scary-farm:source:press-2024-51st-season",
+        "knotts-scary-farm:source:press-2024-51st-season-tpd",
+        "knotts-scary-farm:source:ahg-2024-nightmares-revealed",
+        "knotts-scary-farm:source:parkjourney-2024-review",
+        "knotts-scary-farm:source:insideuniversal-2024-review",
+        "knotts-scary-farm:source:hauntgirl-2024",
+        "knotts-scary-farm:source:wikipedia-knotts-scary-farm",
+        "knotts-scary-farm:source:yt-dlkmqhxweme",
+        "knotts-scary-farm:source:yt-uuuldhaqbww",
+        "knotts-scary-farm:source:mousesteps-2022-49th-season",
+        "knotts-scary-farm:source:laughingplace-2022-recap",
+        "knotts-scary-farm:source:spectrum-2022-bloodline-1842",
+        "knotts-scary-farm:source:parkjourney-2022-review",
+        "knotts-scary-farm:source:han-2023-50-years",
+        "knotts-scary-farm:source:insideuniversal-2024-lineup",
+        "knotts-scary-farm:source:yt-iuzurqflara",
+        "knotts-scary-farm:source:yt-q-yxxkfxe2q",
+        "knotts-scary-farm:source:yt-hgbghehsc3o"
+      ]
+    },
+    {
+      "id": "knotts-scary-farm:2024:maze:the-grimoire",
+      "eventId": "knotts-scary-farm:2022",
+      "appearances": ["knotts-scary-farm:2023", "knotts-scary-farm:2024", "knotts-scary-farm:2025"],
+      "debutYear": 2022,
+      "type": "house",
+      "name": "The Grimoire",
+      "parks": ["knotts-berry-farm"],
+      "ip": {
+        "type": "original"
+      },
+      "summary": "An ancient spellbook whose stories turn guests' nightmares into reality.",
+      "wiki": {
+        "overview": "Built around an ancient spellbook whose dark stories exist to make guests' worst nightmares real. Guests have to escape the book's demonic creatures.",
+        "experience": "The story moves across eras, including camp children unleashing a curse, a 1950s setting and World War I trenches, with black-and-white scene effects. The pre-show video used in earlier years was not shown in 2024.",
+        "development": "Debuted in 2022. Knott's announced 2025 as its final year, and its space became home to Unearthed in 2026."
+      },
+      "location": "Mystery Lodge, Ghost Town",
+      "characters": [],
+      "media": [
+        {
+          "id": "knotts-scary-farm:2024:maze:the-grimoire:media:copy-1",
+          "kind": "promotional_image",
+          "url": "https://themeparkduo.com/wp-content/uploads/2023/08/grimoire_heroimagemedia.jpg",
+          "attribution": "Presumed Knott's Berry Farm (rehosted by Theme Park Duo)",
+          "licenseNotes": "A copy on a third-party site with no credit or licence stated. The Grimoire's 2023 media art. Redistribution unclear; an offline copy may be kept for personal use.",
+          "sourceId": null,
+          "distribution": "unclear"
+        }
+      ],
+      "sourceIds": [
+        "knotts-scary-farm:source:press-2024-51st-season",
+        "knotts-scary-farm:source:parkjourney-2024-review",
+        "knotts-scary-farm:source:insideuniversal-2024-review",
+        "knotts-scary-farm:source:mouseinfo-2024-rankings",
+        "knotts-scary-farm:source:press-2025-52nd-season",
+        "knotts-scary-farm:source:ahg-2025-nightmares-revealed",
+        "knotts-scary-farm:source:spectrum-2025",
+        "knotts-scary-farm:source:fangoria-2025",
+        "knotts-scary-farm:source:map-2025",
+        "knotts-scary-farm:source:insideuniversal-2025-review",
+        "knotts-scary-farm:source:wikipedia-knotts-scary-farm",
+        "knotts-scary-farm:source:laughingplace-2026-opening",
+        "knotts-scary-farm:source:yt-zwdofn06gxe",
+        "knotts-scary-farm:source:yt-vrba5awwpte",
+        "knotts-scary-farm:source:yt-k0tyaxai9wq",
+        "knotts-scary-farm:source:yt-efc8t3nmoza",
+        "knotts-scary-farm:source:yt-pp2jwg-xfwi",
+        "knotts-scary-farm:source:mousesteps-2022-49th-season",
+        "knotts-scary-farm:source:laughingplace-2022-recap",
+        "knotts-scary-farm:source:parkjourney-2022-review",
+        "knotts-scary-farm:source:han-2023-50-years",
+        "knotts-scary-farm:source:yt-xhboxljsyf8",
+        "knotts-scary-farm:source:yt-sx8poythghi"
+      ]
+    },
+    {
+      "id": "knotts-scary-farm:2024:maze:cinema-slasher",
+      "eventId": "knotts-scary-farm:2023",
+      "appearances": ["knotts-scary-farm:2024", "knotts-scary-farm:2025", "knotts-scary-farm:2026"],
+      "debutYear": 2023,
+      "type": "house",
+      "name": "Cinema Slasher",
+      "parks": ["knotts-berry-farm"],
+      "ip": {
+        "type": "original"
+      },
+      "summary": "Guests at the Midnight Theater step through the screen into a trilogy of slasher films.",
+      "wiki": {
+        "overview": "An original homage to slasher films. Guests enter the Midnight Theater, pass through the silver screen and become characters trying to survive the Slasher.",
+        "experience": "Plays as a triple feature: a fraternity slasher, a camp killer and a torture dungeon. A giant popcorn-bucket character was added in 2024.",
+        "development": "Debuted in 2023 and returned in 2024, 2025 and 2026. One 2025 guide listed it as new, which contradicts Knott's press release naming it among the returning mazes. Sometimes misspelled \"Cinema Slashers\"."
+      },
+      "location": "Boardwalk",
+      "characters": [
+        {
+          "id": "knotts-scary-farm:2024:maze:cinema-slasher:character:the-slasher",
+          "name": "The Slasher"
+        }
+      ],
+      "media": [
+        {
+          "id": "knotts-scary-farm:2024:maze:cinema-slasher:media:official-1",
+          "kind": "promotional_image",
+          "url": "https://cdn.sanity.io/images/bsnrdz4t/production/b06a998bb35d222ce61c77a57a15cfcaac25f52a-1550x990.jpg",
+          "attribution": "Knott's Berry Farm / Six Flags Entertainment Corp.",
+          "licenseNotes": "Official art from Knott's 2026 event page. Six Flags reserves all rights; its Terms of Use allow limited display for personal, noncommercial purposes only. Not for redistribution; an offline copy may be kept for personal use. Cinema Slasher, as shown in 2026.",
+          "sourceId": "knotts-scary-farm:source:official-2026",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": [
+        "knotts-scary-farm:source:press-2024-51st-season",
+        "knotts-scary-farm:source:insideuniversal-2024-review",
+        "knotts-scary-farm:source:mouseinfo-2024-rankings",
+        "knotts-scary-farm:source:press-2025-52nd-season",
+        "knotts-scary-farm:source:map-2025",
+        "knotts-scary-farm:source:hauntgirl-2025",
+        "knotts-scary-farm:source:wikipedia-knotts-scary-farm",
+        "knotts-scary-farm:source:official-2026",
+        "knotts-scary-farm:source:han-2026-guide",
+        "knotts-scary-farm:source:micechat-2026-guide",
+        "knotts-scary-farm:source:yt-umn7ivqvsky",
+        "knotts-scary-farm:source:yt-1erkhn48rve",
+        "knotts-scary-farm:source:yt-p2luoxnf1cw",
+        "knotts-scary-farm:source:yt-ig1jwclbvfk",
+        "knotts-scary-farm:source:yt-uwzu1gda5ms",
+        "knotts-scary-farm:source:han-2023-50-years",
+        "knotts-scary-farm:source:fangoria-2023-guide"
+      ]
+    },
+    {
+      "id": "knotts-scary-farm:2024:maze:room-13",
+      "eventId": "knotts-scary-farm:2023",
+      "appearances": ["knotts-scary-farm:2024", "knotts-scary-farm:2025", "knotts-scary-farm:2026"],
+      "debutYear": 2023,
+      "type": "house",
+      "name": "Room 13",
+      "parks": ["knotts-berry-farm"],
+      "ip": {
+        "type": "original"
+      },
+      "summary": "A Prohibition-era murder mystery that leads from a speakeasy into a hotel.",
+      "wiki": {
+        "overview": "A Prohibition-era mystery connecting a string of murders at The Blind Tiger speakeasy to the Argive Hotel.",
+        "story": "Official copy: violent murders interrupt the revelry at The Blind Tiger, a speakeasy on Memory Lane. They centre on The Devil's Elixir, a dangerously addictive green cocktail tied to the mayhem at the Argive Hotel.",
+        "experience": "Features mirrors, elevator effects and distinctive green lighting, and leans on the cocktail-and-murder storyline more than on jump scares.",
+        "development": "Debuted in 2023 and returned in 2024, 2025 and 2026. It shares The Blind Tiger backstory with The Gore-ing '20s scare zone. No changes were documented for 2025 or 2026."
+      },
+      "location": "Boardwalk area",
+      "characters": [],
+      "media": [
+        {
+          "id": "knotts-scary-farm:2024:maze:room-13:media:official-1",
+          "kind": "promotional_image",
+          "url": "https://cdn.sanity.io/images/bsnrdz4t/production/4d8dd945060b4a2ee12287804e9fd542fe1b5285-1550x990.jpg",
+          "attribution": "Knott's Berry Farm / Six Flags Entertainment Corp.",
+          "licenseNotes": "Official art from Knott's 2026 event page. Six Flags reserves all rights; its Terms of Use allow limited display for personal, noncommercial purposes only. Not for redistribution; an offline copy may be kept for personal use. Room 13, as shown in 2026.",
+          "sourceId": "knotts-scary-farm:source:official-2026",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": [
+        "knotts-scary-farm:source:press-2024-51st-season",
+        "knotts-scary-farm:source:parkjourney-2024-review",
+        "knotts-scary-farm:source:insideuniversal-2024-review",
+        "knotts-scary-farm:source:hauntgirl-2024",
+        "knotts-scary-farm:source:press-2025-52nd-season",
+        "knotts-scary-farm:source:map-2025",
+        "knotts-scary-farm:source:wikipedia-knotts-scary-farm",
+        "knotts-scary-farm:source:official-2026",
+        "knotts-scary-farm:source:han-2026-guide",
+        "knotts-scary-farm:source:noproscenium-2026",
+        "knotts-scary-farm:source:yt-gu9jhglcsta",
+        "knotts-scary-farm:source:yt-y7drqnl0f6y",
+        "knotts-scary-farm:source:yt-mru3cqk8m-g",
+        "knotts-scary-farm:source:yt-uwzu1gda5ms",
+        "knotts-scary-farm:source:han-2023-50-years",
+        "knotts-scary-farm:source:fangoria-2023-guide"
+      ]
+    },
+    {
+      "id": "knotts-scary-farm:2024:maze:the-chilling-chambers",
+      "eventId": "knotts-scary-farm:2023",
+      "appearances": ["knotts-scary-farm:2024", "knotts-scary-farm:2025", "knotts-scary-farm:2026"],
+      "debutYear": 2023,
+      "type": "house",
+      "name": "The Chilling Chambers",
+      "parks": ["knotts-berry-farm"],
+      "ip": {
+        "type": "original"
+      },
+      "summary": "A tribute maze that brings back themes and monsters from Scary Farm's own history.",
+      "wiki": {
+        "overview": "A retrospective of Knott's Scary Farm itself, created for the event's 50th anniversary as a tribute to its first maze and the mazes that followed.",
+        "story": "Guests enter a foreboding cathedral and meet classic themes from Scary Farm's past. In 2025 Knott's billed the Crimson Lord as the guide.",
+        "experience": "A \"greatest hits\" format with crypts and coffins labelled with the names of retired mazes. New gravestones were added in 2025 for Wax Works and Bloodline 1842, and in 2026 for Mesmer.",
+        "development": "Debuted in 2023. 2026 was announced as its final year. Sources disagree on whether The Keeper, a host character inspired by Larry Vincent, appeared in 2024."
+      },
+      "location": "Camp Snoopy entrance, by the front gates",
+      "characters": [
+        {
+          "id": "knotts-scary-farm:2024:maze:the-chilling-chambers:character:the-crimson-lord",
+          "name": "The Crimson Lord"
+        }
+      ],
+      "media": [
+        {
+          "id": "knotts-scary-farm:2024:maze:the-chilling-chambers:media:official-1",
+          "kind": "promotional_image",
+          "url": "https://cdn.sanity.io/images/bsnrdz4t/production/6a15c262f5b3fdca7229cffc5da4d6d07b1eb9fd-1550x990.jpg",
+          "attribution": "Knott's Berry Farm / Six Flags Entertainment Corp.",
+          "licenseNotes": "Official art from Knott's 2026 event page. Six Flags reserves all rights; its Terms of Use allow limited display for personal, noncommercial purposes only. Not for redistribution; an offline copy may be kept for personal use. The Chilling Chambers, as shown in 2026.",
+          "sourceId": "knotts-scary-farm:source:official-2026",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": [
+        "knotts-scary-farm:source:press-2024-51st-season",
+        "knotts-scary-farm:source:ahg-2024-nightmares-revealed",
+        "knotts-scary-farm:source:insideuniversal-2024-review",
+        "knotts-scary-farm:source:mouseinfo-2024-rankings",
+        "knotts-scary-farm:source:press-2025-52nd-season",
+        "knotts-scary-farm:source:map-2025",
+        "knotts-scary-farm:source:fangoria-2025",
+        "knotts-scary-farm:source:insideuniversal-2025-review",
+        "knotts-scary-farm:source:official-2026",
+        "knotts-scary-farm:source:laughingplace-2026-lineup",
+        "knotts-scary-farm:source:micechat-2026-guide",
+        "knotts-scary-farm:source:ahg-2026-nightmares-revealed",
+        "knotts-scary-farm:source:themeparkiq-2026",
+        "knotts-scary-farm:source:han-2026-guide",
+        "knotts-scary-farm:source:noproscenium-2026",
+        "knotts-scary-farm:source:yt-uvbpaw-izvq",
+        "knotts-scary-farm:source:yt-hpzbcim3jxs",
+        "knotts-scary-farm:source:yt-gbu5rnkcuek",
+        "knotts-scary-farm:source:yt-uwzu1gda5ms",
+        "knotts-scary-farm:source:han-2023-50-years",
+        "knotts-scary-farm:source:fangoria-2023-guide"
+      ]
+    },
+    {
+      "id": "knotts-scary-farm:2024:maze:eight-fingers-nine-the-boogeyman",
+      "eventId": "knotts-scary-farm:2024",
+      "appearances": ["knotts-scary-farm:2025", "knotts-scary-farm:2026"],
+      "debutYear": 2024,
+      "type": "house",
+      "name": "Eight Fingers Nine: The Boogeyman",
+      "parks": ["knotts-berry-farm"],
+      "ip": {
+        "type": "original"
+      },
+      "summary": "A storybook-style maze set in a colonial township terrorised at night by a finger-eating boogeyman.",
+      "wiki": {
+        "overview": "A dark fairy tale told as a walk-through storybook. It is set in an 18th-century colonial township where an inhuman creature with a taste for fingers comes out after dark.",
+        "story": "Official copy: when night falls, the monster Eight Fingers Nine emerges looking for fresh meat. His bite brings on sleep paralysis, holding his victim still while he slowly eats their flesh. In designer Gus Krueger's backstory, a boy from the town of Aliston was tied to a tree by his tormentors and left to starve for eight days and nine nights. The Green Spirit of the Wood freed him, and his hatred, joined with dark forces of the forest, turned him into the boogeyman who preys on the townsfolk who wronged him.",
+        "experience": "Scenes include a forest, an orphanage and The Miller Shop, an oddities shop filled with references to designer Daniel Miller's past mazes. The design draws on Grimm-style storybooks and classic dark rides. The official map calls it \"a living fairy tale\".",
+        "development": "New for 2024, designed by Gus Krueger as an original character created for Knott's rather than an adaptation of an existing boogeyman legend. It returned in 2025 and 2026. A 2025 review observed that the Eight Fingers Nine character appears in more scenes than before; Knott's announced no changes. Official copy says 18th century; MiceChat's designer feature says 17th century."
+      },
+      "location": "Backstage building beside GhostRider, in the space formerly used by Dark Entities",
+      "characters": [
+        {
+          "id": "knotts-scary-farm:2024:maze:eight-fingers-nine-the-boogeyman:character:eight-fingers-nine",
+          "name": "Eight Fingers Nine"
+        },
+        {
+          "id": "knotts-scary-farm:2024:maze:eight-fingers-nine-the-boogeyman:character:the-green-spirit-of-the-wood",
+          "name": "The Green Spirit of the Wood"
+        }
+      ],
+      "media": [
+        {
+          "id": "knotts-scary-farm:2024:maze:eight-fingers-nine-the-boogeyman:media:official-1",
+          "kind": "promotional_image",
+          "url": "https://cdn.sanity.io/images/bsnrdz4t/production/5b5e634d378fd41a7cd676e51730fe08cc0f5ee6-1550x990.jpg",
+          "attribution": "Knott's Berry Farm / Six Flags Entertainment Corp.",
+          "licenseNotes": "Official art from Knott's 2026 event page. Six Flags reserves all rights; its Terms of Use allow limited display for personal, noncommercial purposes only. Not for redistribution; an offline copy may be kept for personal use. Eight Fingers Nine, as shown in 2026.",
+          "sourceId": "knotts-scary-farm:source:official-2026",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": [
+        "knotts-scary-farm:source:press-2024-51st-season",
+        "knotts-scary-farm:source:press-2024-51st-season-tpd",
+        "knotts-scary-farm:source:laughingplace-2024-lineup",
+        "knotts-scary-farm:source:ahg-2024-nightmares-revealed",
+        "knotts-scary-farm:source:micechat-2024-eight-fingers-nine",
+        "knotts-scary-farm:source:parkjourney-2024-review",
+        "knotts-scary-farm:source:insideuniversal-2024-review",
+        "knotts-scary-farm:source:press-2025-52nd-season",
+        "knotts-scary-farm:source:map-2025",
+        "knotts-scary-farm:source:insideuniversal-2025-review",
+        "knotts-scary-farm:source:official-2026",
+        "knotts-scary-farm:source:micechat-2026-guide",
+        "knotts-scary-farm:source:yt-i3opnwkrtow",
+        "knotts-scary-farm:source:yt-sqrsw1-upgw",
+        "knotts-scary-farm:source:yt-7o26mh2dcx8",
+        "knotts-scary-farm:source:yt-shfgjebt1ms",
+        "knotts-scary-farm:source:yt-w5piyr--gyo",
+        "knotts-scary-farm:source:yt-uwzu1gda5ms"
+      ]
+    },
+    {
+      "id": "knotts-scary-farm:2024:maze:widows",
+      "eventId": "knotts-scary-farm:2024",
+      "appearances": ["knotts-scary-farm:2025", "knotts-scary-farm:2026"],
+      "debutYear": 2024,
+      "type": "house",
+      "name": "Widows",
+      "parks": ["knotts-berry-farm"],
+      "ip": {
+        "type": "original"
+      },
+      "summary": "A nursing home overrun by demonic black widow spiders that possess its elderly residents.",
+      "wiki": {
+        "overview": "Set in a web-choked convalescent home where black widow spiders have taken over the bodies of the residents. The title plays on both bereavement and the spider.",
+        "story": "Official copy: the widows crawl out of silken tunnels to possess the frail bodies of the residents, looking for a mate so they can hatch a clutch of eggs before sunrise. According to designer Daniel Miller, Gertrude, a voodoo priestess carried over from an earlier Scary Farm maze, opened a portal to the spider goddess Arachne, and spiders rose from underground to attack the residents of Sunset Rise Nursing Home.",
+        "experience": "The facade is a decaying pink Victorian mansion with giant spiders and green fog seeping from beneath the house. Inside, heavy webbing brushes past guests and performers play possessed seniors. Later scenes include a venom hall, a birthing hall and a temple ending with the spider queen.",
+        "development": "New for 2024, designed by Daniel Miller. It returned in 2025, when a review noted some set pieces had been rearranged, and again in 2026. One 2024 lineup article billed it in the singular as \"Widow\"; the press release and other sources use \"Widows\"."
+      },
+      "location": "Backstage building beside GhostRider",
+      "characters": [
+        {
+          "id": "knotts-scary-farm:2024:maze:widows:character:gertrude",
+          "name": "Gertrude",
+          "description": "A voodoo priestess carried over from an earlier Scary Farm maze."
+        },
+        {
+          "id": "knotts-scary-farm:2024:maze:widows:character:arachne",
+          "name": "Arachne",
+          "description": "The spider goddess, also billed as the spider queen."
+        }
+      ],
+      "media": [
+        {
+          "id": "knotts-scary-farm:2024:maze:widows:media:official-1",
+          "kind": "promotional_image",
+          "url": "https://cdn.sanity.io/images/bsnrdz4t/production/af82f94dcb25ccdfab00acf83c95ec7137d0873e-1550x990.jpg",
+          "attribution": "Knott's Berry Farm / Six Flags Entertainment Corp.",
+          "licenseNotes": "Official art from Knott's 2026 event page. Six Flags reserves all rights; its Terms of Use allow limited display for personal, noncommercial purposes only. Not for redistribution; an offline copy may be kept for personal use. Widows, as shown in 2026.",
+          "sourceId": "knotts-scary-farm:source:official-2026",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": [
+        "knotts-scary-farm:source:press-2024-51st-season",
+        "knotts-scary-farm:source:press-2024-51st-season-tpd",
+        "knotts-scary-farm:source:ahg-2024-nightmares-revealed",
+        "knotts-scary-farm:source:spectrum-2024-widows",
+        "knotts-scary-farm:source:micechat-2024-widows",
+        "knotts-scary-farm:source:insideuniversal-2024-review",
+        "knotts-scary-farm:source:press-2025-52nd-season",
+        "knotts-scary-farm:source:fangoria-2025",
+        "knotts-scary-farm:source:map-2025",
+        "knotts-scary-farm:source:insideuniversal-2025-review",
+        "knotts-scary-farm:source:official-2026",
+        "knotts-scary-farm:source:micechat-2026-guide",
+        "knotts-scary-farm:source:yt-fzztwsdxroq",
+        "knotts-scary-farm:source:yt-1tcicm2g9sg",
+        "knotts-scary-farm:source:yt-drvef9cbxdg",
+        "knotts-scary-farm:source:yt-1xmext1ssfa",
+        "knotts-scary-farm:source:yt-htb1vfzfxdm",
+        "knotts-scary-farm:source:yt-nvlmku-59iy"
+      ]
+    },
+    {
+      "id": "knotts-scary-farm:2025:maze:mary-the-haunting-of-worth-home",
+      "eventId": "knotts-scary-farm:2025",
+      "appearances": ["knotts-scary-farm:2026"],
+      "debutYear": 2025,
+      "type": "house",
+      "name": "Mary – The Haunting of Worth Home",
+      "parks": ["knotts-berry-farm"],
+      "ip": {
+        "type": "original"
+      },
+      "summary": "Knott's own take on the Bloody Mary legend, set in the Worth family's once-perfect home.",
+      "wiki": {
+        "overview": "An original maze built around Knott's version of the Bloody Mary legend, inside the decaying Worth family home.",
+        "story": "Official copy: after Mary Worth's family died suddenly, jealous townsfolk murdered her and buried her alive. She returns from the grave searching for her family, and she and her creatures take revenge on anyone who enters her home. At the announcement, the designers said the story spans from Elizabethan times to the present, drawing guests from the present day into Mary's past.",
+        "experience": "Built around mirror effects, with large puppet monsters and realistic rooms including a garage and a greenhouse. Much of it is set in a halfway house overrun by demons from the mirror.",
+        "development": "New for 2025, created by Jon Asperin, and returned in 2026. The official map styles the name \"Mary: Haunting of Worth Home\"."
+      },
+      "location": "Backstage building beside GhostRider",
+      "characters": [
+        {
+          "id": "knotts-scary-farm:2025:maze:mary-the-haunting-of-worth-home:character:mary-worth",
+          "name": "Mary Worth",
+          "description": "Bloody Mary."
+        }
+      ],
+      "media": [
+        {
+          "id": "knotts-scary-farm:2025:media:mary-press-image",
+          "kind": "promotional_image",
+          "url": "https://cdn.sanity.io/images/bsnrdz4t/production/a20e175364e20511cb8f7d71d1443698e78ec9ce-1550x990.jpg",
+          "attribution": "Knott's Berry Farm / Six Flags Entertainment Corp.",
+          "licenseNotes": "Official art from Knott's 2026 event page. Six Flags reserves all rights; its Terms of Use allow limited display for personal, noncommercial purposes only. Not for redistribution; an offline copy may be kept for personal use. Mary – The Haunting of Worth Home; the 2025 press image's official counterpart.",
+          "sourceId": "knotts-scary-farm:source:official-2026",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": [
+        "knotts-scary-farm:source:press-2025-52nd-season",
+        "knotts-scary-farm:source:press-2025-52nd-season-tpd",
+        "knotts-scary-farm:source:ahg-2025-nightmares-revealed",
+        "knotts-scary-farm:source:spectrum-2025",
+        "knotts-scary-farm:source:fangoria-2025",
+        "knotts-scary-farm:source:map-2025",
+        "knotts-scary-farm:source:insideuniversal-2025-reveal",
+        "knotts-scary-farm:source:insideuniversal-2025-review",
+        "knotts-scary-farm:source:official-2026",
+        "knotts-scary-farm:source:micechat-2026-guide",
+        "knotts-scary-farm:source:yt-5ddzuqb6svo",
+        "knotts-scary-farm:source:yt-yzntt-zzgwc",
+        "knotts-scary-farm:source:yt-0gv2cfsdcey",
+        "knotts-scary-farm:source:yt-nvlmku-59iy",
+        "knotts-scary-farm:source:yt-uwzu1gda5ms"
+      ]
+    },
+    {
+      "id": "knotts-scary-farm:2025:maze:the-zoo",
+      "eventId": "knotts-scary-farm:2025",
+      "appearances": ["knotts-scary-farm:2026"],
+      "debutYear": 2025,
+      "type": "house",
+      "name": "The Zoo",
+      "parks": ["knotts-berry-farm"],
+      "ip": {
+        "type": "original"
+      },
+      "summary": "An abandoned zoo turned military laboratory, where animal-human hybrids have turned on their makers.",
+      "wiki": {
+        "overview": "A military installation has moved into an abandoned zoo and is splicing soldiers with animal DNA to create super soldiers.",
+        "story": "Official copy: guests arrive as new recruits and discover that the hybrid creatures have turned on their creators and are planning something that will change everything.",
+        "experience": "Scenes are grouped by animal, such as an aviary and an aquarium, with interactive buttons at the enclosures. Every night at 11 p.m. the lights go out and guests go through by flashlight, so the maze runs in lights-on and lights-out versions.",
+        "development": "New for 2025, designed by Daniel Miller, and returned in 2026."
+      },
+      "location": "Backstage building beside GhostRider",
+      "characters": [],
+      "media": [
+        {
+          "id": "knotts-scary-farm:2025:media:the-zoo-press-image",
+          "kind": "promotional_image",
+          "url": "https://cdn.sanity.io/images/bsnrdz4t/production/df210d04db5c98cf6d3bc34778da0d262a49d881-1550x990.jpg",
+          "attribution": "Knott's Berry Farm / Six Flags Entertainment Corp.",
+          "licenseNotes": "Official art from Knott's 2026 event page. Six Flags reserves all rights; its Terms of Use allow limited display for personal, noncommercial purposes only. Not for redistribution; an offline copy may be kept for personal use. The Zoo; the 2025 press image's official counterpart.",
+          "sourceId": "knotts-scary-farm:source:official-2026",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": [
+        "knotts-scary-farm:source:press-2025-52nd-season",
+        "knotts-scary-farm:source:press-2025-52nd-season-tpd",
+        "knotts-scary-farm:source:ahg-2025-nightmares-revealed",
+        "knotts-scary-farm:source:spectrum-2025",
+        "knotts-scary-farm:source:fangoria-2025",
+        "knotts-scary-farm:source:map-2025",
+        "knotts-scary-farm:source:insideuniversal-2025-reveal",
+        "knotts-scary-farm:source:insideuniversal-2025-review",
+        "knotts-scary-farm:source:hauntgirl-2025",
+        "knotts-scary-farm:source:official-2026",
+        "knotts-scary-farm:source:micechat-2026-guide",
+        "knotts-scary-farm:source:yt-b10vg8uyxwc",
+        "knotts-scary-farm:source:yt-ocf2-ylok3s",
+        "knotts-scary-farm:source:yt-vzmvdz4y8o0",
+        "knotts-scary-farm:source:yt-p4di-z-t-zu"
+      ]
+    },
+    {
+      "id": "knotts-scary-farm:2026:maze:inked",
+      "eventId": "knotts-scary-farm:2026",
+      "debutYear": 2026,
+      "type": "house",
+      "name": "Inked",
+      "parks": ["knotts-berry-farm"],
+      "ip": {
+        "type": "original"
+      },
+      "summary": "A 1930s-cartoon horror maze in which a washed-up animator's creations come to life.",
+      "wiki": {
+        "overview": "Styled after golden-age 1930s cartoons, mixing mascot horror with multimedia. It begins in an animation studio and moves into the world of the studio's best-known cartoon.",
+        "story": "Official copy: Mortimer Morbid, a washed-up 1930s cartoonist and former head of Morbid Studios, discovers that when blood becomes ink, imagination becomes reality. He brings his murderous cartoon characters to life for one last Halloween special, and they drag guests into their world.",
+        "experience": "Opens with a pre-show video and uses puppets, mascot costumes, animatronics, projected 2D figures and rear-projected inflatable walls in small, tight rooms.",
+        "development": "New for 2026, designed by Daniel Miller."
+      },
+      "location": "Boardwalk, near Xcelerator, on the former Mesmer site",
+      "characters": [
+        {
+          "id": "knotts-scary-farm:2026:maze:inked:character:mortimer-morbid",
+          "name": "Mortimer Morbid"
+        }
+      ],
+      "media": [
+        {
+          "id": "knotts-scary-farm:2026:maze:inked:media:official-1",
+          "kind": "promotional_image",
+          "url": "https://cdn.sanity.io/images/bsnrdz4t/production/e63ee92f75308634658e5a3f66ccd5fd9d553cab-1550x990.jpg",
+          "attribution": "Knott's Berry Farm / Six Flags Entertainment Corp.",
+          "licenseNotes": "Official art from Knott's 2026 event page. Six Flags reserves all rights; its Terms of Use allow limited display for personal, noncommercial purposes only. Not for redistribution; an offline copy may be kept for personal use. Inked.",
+          "sourceId": "knotts-scary-farm:source:official-2026",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": [
+        "knotts-scary-farm:source:official-2026",
+        "knotts-scary-farm:source:laughingplace-2026-lineup",
+        "knotts-scary-farm:source:micechat-2026-guide",
+        "knotts-scary-farm:source:ahg-2026-nightmares-revealed",
+        "knotts-scary-farm:source:han-2026-guide",
+        "knotts-scary-farm:source:laughingplace-2026-opening",
+        "knotts-scary-farm:source:noproscenium-2026",
+        "knotts-scary-farm:source:yt-djcr6oyhidw",
+        "knotts-scary-farm:source:yt-dqrh70ecdi8",
+        "knotts-scary-farm:source:yt-xlaewqpvduy",
+        "knotts-scary-farm:source:yt-uwzu1gda5ms"
+      ]
+    },
+    {
+      "id": "knotts-scary-farm:2026:maze:unearthed",
+      "eventId": "knotts-scary-farm:2026",
+      "debutYear": 2026,
+      "type": "house",
+      "name": "Unearthed",
+      "parks": ["knotts-berry-farm"],
+      "ip": {
+        "type": "original"
+      },
+      "summary": "A search-and-rescue team answers a distress call from an excavation site where something ancient has woken.",
+      "wiki": {
+        "overview": "A mummy-themed archaeological horror maze set at a ransacked excavation site, built with vertical sets, crevices, ancient religious imagery and animal-human hybrid figures.",
+        "story": "Official copy: guests are a search-and-rescue team responding to a distress signal from an excavation. The discovery of ancient tablets has awoken a malevolent force from a forgotten age.",
+        "experience": "Glowing hieroglyphics, levers and pressure plates, large monster encounters and a portal effect with mummies.",
+        "development": "New for 2026, designed by Jon Asperin."
+      },
+      "location": "Ghost Town, by the Mystery Lodge, in the former The Grimoire space",
+      "characters": [],
+      "media": [
+        {
+          "id": "knotts-scary-farm:2026:maze:unearthed:media:official-1",
+          "kind": "promotional_image",
+          "url": "https://cdn.sanity.io/images/bsnrdz4t/production/fce93dc8558e8d6de3ea04d3a26667b929bfdca6-1550x990.jpg",
+          "attribution": "Knott's Berry Farm / Six Flags Entertainment Corp.",
+          "licenseNotes": "Official art from Knott's 2026 event page. Six Flags reserves all rights; its Terms of Use allow limited display for personal, noncommercial purposes only. Not for redistribution; an offline copy may be kept for personal use. Unearthed.",
+          "sourceId": "knotts-scary-farm:source:official-2026",
+          "distribution": "reference"
+        }
+      ],
+      "sourceIds": [
+        "knotts-scary-farm:source:official-2026",
+        "knotts-scary-farm:source:laughingplace-2026-lineup",
+        "knotts-scary-farm:source:micechat-2026-guide",
+        "knotts-scary-farm:source:ahg-2026-nightmares-revealed",
+        "knotts-scary-farm:source:han-2026-guide",
+        "knotts-scary-farm:source:laughingplace-2026-opening",
+        "knotts-scary-farm:source:noproscenium-2026",
+        "knotts-scary-farm:source:yt-dqrh70ecdi8",
+        "knotts-scary-farm:source:yt-yjz3v3qpawq",
+        "knotts-scary-farm:source:yt-uwzu1gda5ms"
+      ]
+    }
+  ]
+}

@@ -16,6 +16,7 @@ import { Badge, Panel } from "../ui";
 import { ParkBadgeRow } from "./ParkBadge";
 import { attractionTypeIcon, attractionTypeVariant } from "./typeIcons";
 import "./ArchiveCard.css";
+import { hauntTheme } from "../../models/hauntTheme";
 
 export interface ArchiveCardProps {
   attraction: Attraction;
@@ -54,7 +55,11 @@ export function ArchiveCard({
   const dateLabel = attractionDateLabel(attraction, eventYear);
 
   return (
-    <Link to={`/attractions/${attraction.id}`} className="archive-card-link">
+    <Link
+      to={`/attractions/${attraction.id}`}
+      className="archive-card-link"
+      data-haunt-theme={hauntTheme(eventYear?.hauntId)}
+    >
       <Panel elevated padding="none" className="archive-card">
         <div className="archive-card__art">
           {showImage ? (

@@ -89,6 +89,24 @@ fn migrations() -> Vec<Migration> {
             sql: include_str!("../migrations/0014_walkthroughs_only.sql"),
             kind: MigrationKind::Up,
         },
+        Migration {
+            version: 15,
+            description: "canonical identity: one HHN record per name per season, one Knott's record per maze",
+            sql: include_str!("../migrations/0015_canonical_identity.sql"),
+            kind: MigrationKind::Up,
+        },
+        Migration {
+            version: 16,
+            description: "knott's maze debut archive 2021-2026: retire returning pre-2021 mazes",
+            sql: include_str!("../migrations/0016_knotts_maze_archive.sql"),
+            kind: MigrationKind::Up,
+        },
+        Migration {
+            version: 17,
+            description: "repair names the hhn scrape broke, then re-apply canonical identity",
+            sql: include_str!("../migrations/0017_scrape_name_fixes.sql"),
+            kind: MigrationKind::Up,
+        },
     ]
 }
 

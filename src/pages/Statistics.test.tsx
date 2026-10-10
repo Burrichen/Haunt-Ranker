@@ -143,6 +143,7 @@ function makeState(overrides: Partial<StatisticsState> = {}): StatisticsState {
     yearPerformance: [
       {
         calendarYear: 2101,
+        hauntId: "hhn",
         eventYearId: "y2101",
         label: "Shadowfest 2101",
         average: 11,
@@ -150,6 +151,7 @@ function makeState(overrides: Partial<StatisticsState> = {}): StatisticsState {
       },
       {
         calendarYear: 2103,
+        hauntId: "hhn",
         eventYearId: "y2103",
         label: "Shadowfest 2103",
         average: 13.5,

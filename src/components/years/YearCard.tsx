@@ -9,6 +9,7 @@ import { formatScore } from "../../utils/formatScore";
 import type { YearSummary } from "../../utils/years";
 import { Badge, Panel } from "../ui";
 import "./YearCard.css";
+import { hauntTheme } from "../../models/hauntTheme";
 
 export interface YearCardProps {
   summary: YearSummary;
@@ -33,7 +34,11 @@ export function YearCard({ summary, showHaunt = true }: YearCardProps) {
   const showImage = Boolean(artworkUrl) && !imageFailed;
 
   return (
-    <Link to={`/years/${eventYear.id}`} className="year-card-link">
+    <Link
+      to={`/years/${eventYear.id}`}
+      className="year-card-link"
+      data-haunt-theme={hauntTheme(eventYear.hauntId)}
+    >
       <Panel elevated padding="none" className="year-card">
         <div className="year-card__art">
           {showImage ? (

@@ -17,6 +17,7 @@ import type { Attraction } from "../models/attraction";
 import type { EventYear } from "../models/eventYear";
 import type { Rating } from "../models/rating";
 import { buildYearRanking, summarizeYear } from "../utils/years";
+import { ZERO_WIDTH_PATTERN } from "../models/common";
 import type { SqlExecutor } from "./types";
 
 /**
@@ -47,6 +48,24 @@ import type { SqlExecutor } from "./types";
 
 const FIXTURE = join(import.meta.dirname, "..", "test", "fixtures", "hhn-v7");
 const BEFORE = JSON.parse(readFileSync(join(FIXTURE, "snapshot.json"), "utf8")) as HhnSnapshot;
+
+/**
+ * Migration 0017 repairs three names the original scrape broke. The recorded
+ * half predates that, so it's held to the repaired names: those changes are
+ * the migration's purpose, not drift. (0017 then merges the two 2021 The
+ * Haunting of Hill House records, which the merge checks below expect.)
+ */
+for (const facts of Object.values(BEFORE.attractions)) {
+  facts.name = facts.name.replace(new RegExp(ZERO_WIDTH_PATTERN, "g"), "").trim() || facts.name;
+}
+Object.assign(BEFORE.attractions["hhn-2015-house-"], {
+  name: "Insidious",
+  locationNotes: "Sprung Tent 2",
+});
+Object.assign(BEFORE.attractions["hhn-2021-house-the-hau"], {
+  name: "The Haunting of Hill House",
+  locationNotes: null,
+});
 
 const houseIds = new Set(
   Object.entries(BEFORE.attractions)
@@ -129,7 +148,13 @@ beforeAll(async () => {
   for (const [from, to] of mergedInto) {
     groups.set(to, [...(groups.get(to) ?? [to]), from]);
   }
-  involved = new Set([...mergedInto.keys(), ...mergedInto.values()]);
+  involved = new Set([
+    ...mergedInto.keys(),
+    ...mergedInto.values(),
+    // Renamed by 0017, so they legitimately move in any name-sorted order.
+    "hhn-2015-house-",
+    "hhn-2015-house-run-blood-sweat-and-fears",
+  ]);
   conflicts = await db.select(
     "SELECT subject_id, other_id FROM migration_conflicts WHERE kind = 'cross_park_personal_data'",
   );

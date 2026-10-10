@@ -1,7 +1,8 @@
 import { ConstraintViolationError, NotFoundError, withDatabaseErrors } from "../database/errors";
 import type { SqlExecutor } from "../database/types";
 import type { Attraction, AttractionInput, AttractionType } from "../models/attraction";
-import type { EntityId } from "../models/common";
+import { findIdentityClash, type IdentityCandidate } from "../models/attractionIdentity";
+import { hasVisibleText, type EntityId } from "../models/common";
 import { isRankedCategory } from "../models/haunt";
 import type { ParkId } from "../models/park";
 import { generateId } from "./id";
@@ -74,7 +75,7 @@ function mapRow(row: AttractionRow, parkIds: ParkId[]): Attraction {
  * write a nameless, yearless or parkless attraction.
  */
 function assertName(name: string): void {
-  if (name.trim() === "") {
+  if (!hasVisibleText(name)) {
     throw new ConstraintViolationError("An attraction needs a name", "check");
   }
 }
@@ -203,6 +204,62 @@ export function createAttractionRepository(db: SqlExecutor): AttractionRepositor
     });
   }
 
+  /**
+   * Refuses a record that would be a second copy of an attraction already
+   * archived: the same HHN name in the same season, or a Knott's maze that
+   * is already here from another season. See `models/attractionIdentity`.
+   */
+  async function assertCanonical(candidate: Omit<IdentityCandidate, "hauntId">): Promise<void> {
+    const haunts = await withDatabaseErrors(() =>
+      db.select<Array<{ haunt_id: string }>>("SELECT haunt_id FROM event_years WHERE id = ?", [
+        candidate.seasonId,
+      ]),
+    );
+    const hauntId = haunts[0]?.haunt_id;
+    if (!hauntId) {
+      return;
+    }
+    const rows = await withDatabaseErrors(() =>
+      db.select<
+        Array<{
+          id: string;
+          name: string;
+          event_year_id: string;
+          debut_year: number | null;
+          season_name: string;
+        }>
+      >(
+        `SELECT a.id, a.name, a.event_year_id, a.debut_year, e.name AS season_name
+         FROM attractions a
+         JOIN event_years e ON e.id = a.event_year_id
+         WHERE a.attraction_type = 'house' AND e.haunt_id = ?`,
+        [hauntId],
+      ),
+    );
+    const clash = findIdentityClash(
+      { ...candidate, hauntId },
+      rows.map((row) => ({
+        id: row.id,
+        hauntId,
+        seasonId: row.event_year_id,
+        name: row.name,
+        debutYear: row.debut_year,
+        seasonName: row.season_name,
+      })),
+    );
+    if (!clash) {
+      return;
+    }
+    throw new ConstraintViolationError(
+      hauntId === "hhn"
+        ? `"${clash.name}" is already in ${clash.seasonName}. The same house at both parks is ` +
+            "one attraction — add the other park to it instead."
+        : `"${clash.name}" is already archived from ${clash.seasonName}. A returning maze is ` +
+            "one attraction — add this season to it as an appearance instead.",
+      "unique",
+    );
+  }
+
   async function create(input: AttractionInput): Promise<Attraction> {
     // Checked before the insert, so a rejected record never leaves a
     // half-written row behind.
@@ -210,6 +267,11 @@ export function createAttractionRepository(db: SqlExecutor): AttractionRepositor
     assertEventYear(input.eventYearId);
     assertParks(input.parkIds);
     assertWalkthrough(input.attractionType);
+    await assertCanonical({
+      seasonId: input.eventYearId,
+      name: input.name,
+      debutYear: input.debutYear ?? null,
+    });
 
     const id = generateId();
     await withDatabaseErrors(() =>
@@ -315,6 +377,18 @@ export function createAttractionRepository(db: SqlExecutor): AttractionRepositor
         input.experienceTypeId === undefined ? existing.experienceTypeId : input.experienceTypeId,
       isSample: input.isSample === undefined ? existing.isSample : input.isSample,
     };
+    if (
+      next.name !== existing.name ||
+      next.eventYearId !== existing.eventYearId ||
+      next.debutYear !== existing.debutYear
+    ) {
+      await assertCanonical({
+        id,
+        seasonId: next.eventYearId,
+        name: next.name,
+        debutYear: next.debutYear ?? null,
+      });
+    }
 
     await withDatabaseErrors(() =>
       db.execute(

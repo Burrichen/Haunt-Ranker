@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
-  "datasetVersion": "2026.09.2",
-  "generatedAt": "2026-09-19T08:31:15.123Z",
+  "datasetVersion": "2026.10.1",
+  "generatedAt": "2026-10-10T00:00:00.000Z",
   "notes": "Halloween Horror Nights, 2010–2026, Universal Orlando and Universal Studios Hollywood. Structural facts (name, year, type, parks, IP, venue) are sourced per record; prose is present only where official Universal material describes the attraction, which currently means the 2026 season. Every other narrative field is deliberately absent rather than invented. See docs/research/ for how the catalogue and its year eligibility were established. Houses only: scare zones were removed from this dataset in 2026.09.2, when Haunt Ranker stopped archiving them.",
   "sources": [
     {
@@ -2648,6 +2648,62 @@
       "url": "https://web.archive.org/web/*/halloweenhorrornights.com*",
       "publisher": "Internet Archive (content: Universal)",
       "notes": "Universal's former official event site. The archive's copies grant no rights of their own."
+    },
+    {
+      "id": "art-insidious-haunted-house",
+      "type": "other",
+      "title": "Insidious (Haunted House)",
+      "url": "https://halloweenhorrornights.fandom.com/wiki/Insidious_(Haunted_House)",
+      "publisher": "Halloween Horror Nights Wiki",
+      "notes": "Fan-maintained archive page for the HHN 25 Orlando house, with its location."
+    },
+    {
+      "id": "art-halloween-horror-nights-25-full-review",
+      "type": "article",
+      "title": "Halloween Horror Nights 25 full review",
+      "url": "https://orlandoinformer.com/blog/halloween-horror-nights-25-full-review/",
+      "publisher": "Orlando Informer",
+      "notes": "Review of HHN 25 at Universal Orlando, naming the Insidious house."
+    },
+    {
+      "id": "art-la-llorona-themed-maze-coming-to-halloween-horror-nights-updated",
+      "type": "other",
+      "title": "\"La Llorona\" themed maze coming to Halloween Horror Nights (UPDATED)",
+      "url": "https://creepyla.com/2011/08/26/la-llorona-themed-maze-coming-to-halloween-horror-nights/",
+      "publisher": "Creepy LA",
+      "notes": "Fan-hosted page carrying Universal's official artwork for this house. Cited for the artwork only."
+    },
+    {
+      "id": "art-asylum-in-wonderland-3d",
+      "type": "other",
+      "title": "Asylum in Wonderland 3D",
+      "url": "https://halloweenhorrornights.fandom.com/wiki/Asylum_in_Wonderland_3D",
+      "publisher": "Halloween Horror Nights Wiki (Fandom)",
+      "notes": "Fan-hosted page carrying Universal's official artwork for this house. Cited for the artwork only."
+    },
+    {
+      "id": "art-face-off-in-the-flesh-orlando",
+      "type": "other",
+      "title": "Face Off: In the Flesh (Orlando)",
+      "url": "https://halloweenhorrornights.fandom.com/wiki/Face_Off:_In_the_Flesh_(Orlando)",
+      "publisher": "Halloween Horror Nights Wiki (Fandom)",
+      "notes": "Fan-hosted page carrying Universal's official artwork for this house. Cited for the artwork only."
+    },
+    {
+      "id": "art-killer-klowns-from-outer-space-hollywood-gallery-halloween-horror-nigh",
+      "type": "other",
+      "title": "Killer Klowns From Outer Space (Hollywood)/Gallery | Halloween Horror Nights Wiki | Fandom",
+      "url": "https://halloweenhorrornights.fandom.com/wiki/Killer_Klowns_From_Outer_Space_(Hollywood)/Gallery",
+      "publisher": "Halloween Horror Nights Wiki (Fandom)",
+      "notes": "Fan-hosted page carrying Universal's official artwork for this house. Cited for the artwork only."
+    },
+    {
+      "id": "art-the-curse-of-pandora-s-box-gallery-halloween-horror-nights-wiki-fandom",
+      "type": "other",
+      "title": "The Curse of Pandora's Box/Gallery | Halloween Horror Nights Wiki | Fandom",
+      "url": "https://halloweenhorrornights.fandom.com/wiki/The_Curse_of_Pandora%27s_Box/Gallery",
+      "publisher": "Halloween Horror Nights Wiki (Fandom)",
+      "notes": "Fan-hosted page carrying Universal's official artwork for this house. Cited for the artwork only."
     }
   ],
   "events": [
@@ -3310,7 +3366,18 @@
         "type": "original"
       },
       "location": "Halloween Horror Nights",
-      "sourceIds": ["wiki-horror-nights-the-hallow-d-past"]
+      "sourceIds": ["wiki-horror-nights-the-hallow-d-past"],
+      "media": [
+        {
+          "id": "hhn-2010-house-horror-nights-the-hallow-d-past-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/b/b5/Hallowdpast.jpg/revision/latest?cb=20100919223531",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-horror-nights-the-hallow-d-past",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2010-house-the-orfanage-ashes-to-ashes",
@@ -3322,7 +3389,18 @@
         "type": "original"
       },
       "location": "JAWS Queue",
-      "sourceIds": ["wiki-the-orfanage-ashes-to-ashes"]
+      "sourceIds": ["wiki-the-orfanage-ashes-to-ashes"],
+      "media": [
+        {
+          "id": "hhn-2010-house-the-orfanage-ashes-to-ashes-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/2/25/Orfanage.jpg/revision/latest?cb=20100926005230",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-orfanage-ashes-to-ashes",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2010-house-hades-the-gates-of-ruin",
@@ -3335,7 +3413,18 @@
         "franchise": "Greek Mythology"
       },
       "location": "Soundstage 23",
-      "sourceIds": ["wiki-hades-the-gates-of-ruin"]
+      "sourceIds": ["wiki-hades-the-gates-of-ruin"],
+      "media": [
+        {
+          "id": "hhn-2010-house-hades-the-gates-of-ruin-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/9/9f/Hades_Logo.jpg/revision/latest?cb=20210218153310",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-hades-the-gates-of-ruin",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2010-house-psychoscareapy-echoes-of-shadybrook",
@@ -3347,7 +3436,18 @@
         "type": "original"
       },
       "location": "Soundstage 23",
-      "sourceIds": ["wiki-psychoscareapy-echoes-of-shadybrook"]
+      "sourceIds": ["wiki-psychoscareapy-echoes-of-shadybrook"],
+      "media": [
+        {
+          "id": "hhn-2010-house-psychoscareapy-echoes-of-shadybrook-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/6/63/Psychoscareapy.jpg/revision/latest?cb=20100919223416",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-psychoscareapy-echoes-of-shadybrook",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2010-house-havoc-dogs-of-war",
@@ -3359,7 +3459,18 @@
         "type": "original"
       },
       "location": "Sprung Tent 2",
-      "sourceIds": ["wiki-havoc-dogs-of-war"]
+      "sourceIds": ["wiki-havoc-dogs-of-war"],
+      "media": [
+        {
+          "id": "hhn-2010-house-havoc-dogs-of-war-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/8/8c/Havoc1.jpg/revision/latest?cb=20101011234123",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-havoc-dogs-of-war",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2010-house-catacombs-black-death-rising",
@@ -3371,7 +3482,18 @@
         "type": "original"
       },
       "location": "Sprung Tent 1",
-      "sourceIds": ["wiki-catacombs-black-death-rising"]
+      "sourceIds": ["wiki-catacombs-black-death-rising"],
+      "media": [
+        {
+          "id": "hhn-2010-house-catacombs-black-death-rising-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/c/cd/Catacombs.jpg/revision/latest?cb=20210218153800",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-catacombs-black-death-rising",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2010-house-zombiegeddon",
@@ -3383,7 +3505,18 @@
         "type": "original"
       },
       "location": "Disaster! Queue",
-      "sourceIds": ["wiki-zombiegeddon"]
+      "sourceIds": ["wiki-zombiegeddon"],
+      "media": [
+        {
+          "id": "hhn-2010-house-zombiegeddon-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/e/ea/Zombiegeddon1.jpg/revision/latest?cb=20101107053213",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-zombiegeddon",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2010-house-legendary-truth-the-wyandot-estate",
@@ -3396,7 +3529,18 @@
         "franchise": "Legendary Truth: Awakening"
       },
       "location": "Soundstage 22",
-      "sourceIds": ["wiki-legendary-truth-the-wyandot-estate"]
+      "sourceIds": ["wiki-legendary-truth-the-wyandot-estate"],
+      "media": [
+        {
+          "id": "hhn-2010-house-legendary-truth-the-wyandot-estate-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/0/0b/Legendarytruth1.jpg/revision/latest?cb=20110605182146",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-legendary-truth-the-wyandot-estate",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2011-house-nevermore-the-madness-of-poe",
@@ -3409,7 +3553,18 @@
         "franchise": "The Tell Tale Heart"
       },
       "location": "Sprung Tent 2",
-      "sourceIds": ["wiki-nevermore-the-madness-of-poe"]
+      "sourceIds": ["wiki-nevermore-the-madness-of-poe"],
+      "media": [
+        {
+          "id": "hhn-2011-house-nevermore-the-madness-of-poe-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/9/9a/Nevermore_The_Madness_of_Poe.jpg/revision/latest?cb=20110918133019",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-nevermore-the-madness-of-poe",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2011-house-the-forsaken",
@@ -3421,7 +3576,18 @@
         "type": "original"
       },
       "location": "Parade Warehouse",
-      "sourceIds": ["wiki-the-forsaken"]
+      "sourceIds": ["wiki-the-forsaken"],
+      "media": [
+        {
+          "id": "hhn-2011-house-the-forsaken-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/0/05/The_Forsaken.jpg/revision/latest?cb=20110918133259",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-forsaken",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2011-house-the-thing",
@@ -3430,7 +3596,18 @@
       "name": "The Thing",
       "parks": ["orlando"],
       "location": "Soundstage 23",
-      "sourceIds": ["wiki-the-thing-2011"]
+      "sourceIds": ["wiki-the-thing-2011"],
+      "media": [
+        {
+          "id": "hhn-2011-house-the-thing-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/7/78/The_Thing.jpg/revision/latest?cb=20110918132155",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-thing-2011",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2011-house-saws-n-steam-into-the-machine",
@@ -3439,7 +3616,18 @@
       "name": "Saws N' Steam: Into the Machine",
       "parks": ["orlando"],
       "location": "JAWS Queue",
-      "sourceIds": ["wiki-saws-n-steam-into-the-machine"]
+      "sourceIds": ["wiki-saws-n-steam-into-the-machine"],
+      "media": [
+        {
+          "id": "hhn-2011-house-saws-n-steam-into-the-machine-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/e/ea/Saws_N%27_Steam_Into_the_Machine.jpg/revision/latest?cb=20110918132800",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-saws-n-steam-into-the-machine",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2011-house-h-r-bloodengutz-presents-holidays-of-horror",
@@ -3451,7 +3639,18 @@
         "type": "original"
       },
       "location": "Disaster! Queue",
-      "sourceIds": ["wiki-h-r-bloodengutz-presents-holidays-of-horror"]
+      "sourceIds": ["wiki-h-r-bloodengutz-presents-holidays-of-horror"],
+      "media": [
+        {
+          "id": "hhn-2011-house-h-r-bloodengutz-presents-holidays-of-horror-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/1/19/H.R._Bloodengutz_Presents_Holidays_of_Horror.jpg/revision/latest?cb=20110918132621",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-h-r-bloodengutz-presents-holidays-of-horror",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2011-house-the-in-between",
@@ -3463,7 +3662,18 @@
         "type": "original"
       },
       "location": "Sprung Tent 1",
-      "sourceIds": ["wiki-the-in-between"]
+      "sourceIds": ["wiki-the-in-between"],
+      "media": [
+        {
+          "id": "hhn-2011-house-the-in-between-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/6/61/The_In_Between.jpg/revision/latest?cb=20110918133153",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-in-between",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2011-house-winter-s-night-the-haunting-of-hawthorn-cemetery",
@@ -3475,7 +3685,18 @@
         "type": "original"
       },
       "location": "Soundstage 22",
-      "sourceIds": ["wiki-winter-s-night-the-haunting-of-hawthorn-cemetery"]
+      "sourceIds": ["wiki-winter-s-night-the-haunting-of-hawthorn-cemetery"],
+      "media": [
+        {
+          "id": "hhn-2011-house-winter-s-night-the-haunting-of-hawthorn-cemetery-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/3/3b/Winter%27s_Night_The_Haunting_of_Hawthorn_Cemetery.jpg/revision/latest?cb=20110918132347",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-winter-s-night-the-haunting-of-hawthorn-cemetery",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2011-house-nightingales-blood-prey",
@@ -3487,7 +3708,18 @@
         "type": "original"
       },
       "location": "Soundstage 23",
-      "sourceIds": ["wiki-nightingales-blood-prey"]
+      "sourceIds": ["wiki-nightingales-blood-prey"],
+      "media": [
+        {
+          "id": "hhn-2011-house-nightingales-blood-prey-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/7/72/Nightingales_Blood_Prey.jpg/revision/latest?cb=20110918132515",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-nightingales-blood-prey",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2012-house-dead-end",
@@ -3496,7 +3728,18 @@
       "name": "Dead End",
       "parks": ["orlando"],
       "location": "Soundstage 20",
-      "sourceIds": ["wiki-dead-end-orlando"]
+      "sourceIds": ["wiki-dead-end-orlando"],
+      "media": [
+        {
+          "id": "hhn-2012-house-dead-end-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/d/dc/Dead_End.jpg/revision/latest?cb=20120904194913",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-dead-end-orlando",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2012-house-gothic",
@@ -3505,7 +3748,18 @@
       "name": "Gothic",
       "parks": ["orlando"],
       "location": "Soundstage 20",
-      "sourceIds": ["wiki-gothic"]
+      "sourceIds": ["wiki-gothic"],
+      "media": [
+        {
+          "id": "hhn-2012-house-gothic-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/a/af/Gothic.jpg/revision/latest?cb=20120904194824",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-gothic",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2012-house-universal-s-house-of-horrors",
@@ -3514,7 +3768,18 @@
       "name": "Universal's House of Horrors",
       "parks": ["orlando"],
       "location": "Parade Warehouse",
-      "sourceIds": ["wiki-universal-s-house-of-horrors-orlando-2012"]
+      "sourceIds": ["wiki-universal-s-house-of-horrors-orlando-2012"],
+      "media": [
+        {
+          "id": "hhn-2012-house-universal-s-house-of-horrors-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/3/38/Universal%27s_House_of_Horrors.jpg/revision/latest?cb=20120904194239",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-universal-s-house-of-horrors-orlando-2012",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2012-house-alice-cooper-welcome-to-my-nightmare",
@@ -3523,7 +3788,18 @@
       "name": "Alice Cooper: Welcome to My Nightmare",
       "parks": ["orlando"],
       "location": "Sprung Tent 1",
-      "sourceIds": ["wiki-alice-cooper-welcome-to-my-nightmare-orlando"]
+      "sourceIds": ["wiki-alice-cooper-welcome-to-my-nightmare-orlando"],
+      "media": [
+        {
+          "id": "hhn-2012-house-alice-cooper-welcome-to-my-nightmare-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/0/02/Alice_Cooper_Welcome_to_My_Nightmare.jpg/revision/latest?cb=20120904193455",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-alice-cooper-welcome-to-my-nightmare-orlando",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2012-house-penn-and-teller-new-kd-vegas",
@@ -3532,7 +3808,18 @@
       "name": "Penn & Teller: New(kd) Vegas",
       "parks": ["orlando"],
       "location": "Sprung Tent 2",
-      "sourceIds": ["wiki-penn-and-teller-new-kd-vegas"]
+      "sourceIds": ["wiki-penn-and-teller-new-kd-vegas"],
+      "media": [
+        {
+          "id": "hhn-2012-house-penn-and-teller-new-kd-vegas-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/e/e2/Penn_and_Teller_New%28kd%29_Las_Vegas_3-D.jpeg/revision/latest?cb=20120904193329",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-penn-and-teller-new-kd-vegas",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2013-house-resident-evil-escape-from-raccoon-city",
@@ -3545,7 +3832,18 @@
         "franchise": "Resident Evil"
       },
       "location": "Soundstage 21",
-      "sourceIds": ["wiki-resident-evil-escape-from-raccoon-city"]
+      "sourceIds": ["wiki-resident-evil-escape-from-raccoon-city"],
+      "media": [
+        {
+          "id": "hhn-2013-house-resident-evil-escape-from-raccoon-city-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/9/9a/Resident_Evil.png/revision/latest?cb=20171108205035",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-resident-evil-escape-from-raccoon-city",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2013-house-evil-dead",
@@ -3558,7 +3856,18 @@
         "franchise": "Evil Dead"
       },
       "location": "Soundstage 24",
-      "sourceIds": ["wiki-evil-dead"]
+      "sourceIds": ["wiki-evil-dead"],
+      "media": [
+        {
+          "id": "hhn-2013-house-evil-dead-media-1",
+          "kind": "promotional_image",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/e/e5/Evil_Dead_Wallpaper.jpg/revision/latest?cb=20190517152316",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-evil-dead",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2013-house-the-cabin-in-the-woods",
@@ -3571,7 +3880,18 @@
         "franchise": "The Cabin in the Woods"
       },
       "location": "Soundstage 21",
-      "sourceIds": ["wiki-the-cabin-in-the-woods"]
+      "sourceIds": ["wiki-the-cabin-in-the-woods"],
+      "media": [
+        {
+          "id": "hhn-2013-house-the-cabin-in-the-woods-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/6/6e/CABIn.png/revision/latest?cb=20171108231137",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-cabin-in-the-woods",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2013-house-an-american-werewolf-in-london",
@@ -3584,7 +3904,18 @@
         "franchise": "An American Werewolf in London"
       },
       "location": "Soundstage 22",
-      "sourceIds": ["wiki-an-american-werewolf-in-london-orlando"]
+      "sourceIds": ["wiki-an-american-werewolf-in-london-orlando"],
+      "media": [
+        {
+          "id": "hhn-2013-house-an-american-werewolf-in-london-media-1",
+          "kind": "promotional_image",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/f/f1/American_Werewolf.jpg/revision/latest?cb=20170906202727",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-an-american-werewolf-in-london-orlando",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2013-house-urban-legends-la-llorona",
@@ -3597,7 +3928,18 @@
         "franchise": "The Legend Of La Llorona"
       },
       "location": "Sprung Tent 1",
-      "sourceIds": ["wiki-urban-legends-la-llorona"]
+      "sourceIds": ["wiki-urban-legends-la-llorona"],
+      "media": [
+        {
+          "id": "hhn-2013-house-urban-legends-la-llorona-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/3/37/Urban_Legends_La_LLrona.png/revision/latest?cb=20171110231135",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-urban-legends-la-llorona",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2013-house-afterlife-death-s-vengeance",
@@ -3609,7 +3951,18 @@
         "type": "original"
       },
       "location": "Sprung Tent 2",
-      "sourceIds": ["wiki-afterlife-death-s-vengeance"]
+      "sourceIds": ["wiki-afterlife-death-s-vengeance"],
+      "media": [
+        {
+          "id": "hhn-2013-house-afterlife-death-s-vengeance-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/f/f4/Afterlife.png/revision/latest?cb=20171112154725",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-afterlife-death-s-vengeance",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2013-house-havoc-derailed",
@@ -3621,7 +3974,18 @@
         "type": "original"
       },
       "location": "Disaster! Queue",
-      "sourceIds": ["wiki-havoc-derailed"]
+      "sourceIds": ["wiki-havoc-derailed"],
+      "media": [
+        {
+          "id": "hhn-2013-house-havoc-derailed-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/0/01/HavocDSmall-190x122.png/revision/latest?cb=20171107011348",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-havoc-derailed",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2014-house-dollhouse-of-the-damned",
@@ -3633,7 +3997,18 @@
         "type": "original"
       },
       "location": "Sprung Tent 1",
-      "sourceIds": ["wiki-dollhouse-of-the-damned-haunted-house"]
+      "sourceIds": ["wiki-dollhouse-of-the-damned-haunted-house"],
+      "media": [
+        {
+          "id": "hhn-2014-house-dollhouse-of-the-damned-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/4/4c/HHN24_Dollhouse-190x122.png/revision/latest?cb=20161204115419",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-dollhouse-of-the-damned-haunted-house",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2014-house-giggles-and-gore-inc",
@@ -3645,7 +4020,18 @@
         "type": "original"
       },
       "location": "Disaster! Queue",
-      "sourceIds": ["wiki-giggles-and-gore-inc"]
+      "sourceIds": ["wiki-giggles-and-gore-inc"],
+      "media": [
+        {
+          "id": "hhn-2014-house-giggles-and-gore-inc-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/8/8d/HHN24_Giggles.png/revision/latest?cb=20180728203022",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-giggles-and-gore-inc",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2014-house-halloween",
@@ -3658,7 +4044,18 @@
         "franchise": "Halloween"
       },
       "location": "Sprung Tent 2",
-      "sourceIds": ["wiki-halloween-orlando-2014"]
+      "sourceIds": ["wiki-halloween-orlando-2014"],
+      "media": [
+        {
+          "id": "hhn-2014-house-halloween-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/6/65/Halloween.png/revision/latest?cb=20171106213824",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-halloween-orlando-2014",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2014-house-roanoke-cannibal-colony",
@@ -3670,7 +4067,18 @@
         "type": "original"
       },
       "location": "Parade Warehouse",
-      "sourceIds": ["wiki-roanoke-cannibal-colony"]
+      "sourceIds": ["wiki-roanoke-cannibal-colony"],
+      "media": [
+        {
+          "id": "hhn-2014-house-roanoke-cannibal-colony-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/6/6d/Roanoke_Cannibal_Colont.png/revision/latest?cb=20171108210426",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-roanoke-cannibal-colony",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2015-house-jack-presents-25-years-of-monsters-and-mayhem",
@@ -3682,7 +4090,18 @@
         "type": "original"
       },
       "location": "Soundstage 21",
-      "sourceIds": ["wiki-jack-presents-25-years-of-monsters-and-mayhem"]
+      "sourceIds": ["wiki-jack-presents-25-years-of-monsters-and-mayhem"],
+      "media": [
+        {
+          "id": "hhn-2015-house-jack-presents-25-years-of-monsters-and-mayhem-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/8/8e/25-years-blog.jpg/revision/latest?cb=20160423060924",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-jack-presents-25-years-of-monsters-and-mayhem",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2015-house-an-american-werewolf-in-london",
@@ -3695,7 +4114,18 @@
         "franchise": "An American Werewolf in London"
       },
       "location": "Soundstage 22",
-      "sourceIds": ["wiki-an-american-werewolf-in-london-orlando"]
+      "sourceIds": ["wiki-an-american-werewolf-in-london-orlando"],
+      "media": [
+        {
+          "id": "hhn-2015-house-an-american-werewolf-in-london-media-1",
+          "kind": "promotional_image",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/f/f1/American_Werewolf.jpg/revision/latest?cb=20170906202727",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-an-american-werewolf-in-london-orlando",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2015-house-freddy-vs-jason",
@@ -3708,7 +4138,18 @@
         "franchise": "Friday the 13th"
       },
       "location": "Soundstage 24",
-      "sourceIds": ["wiki-freddy-vs-jason-orlando"]
+      "sourceIds": ["wiki-freddy-vs-jason-orlando"],
+      "media": [
+        {
+          "id": "hhn-2015-house-freddy-vs-jason-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/2/27/Freddy_vs_Jason.jpg/revision/latest?cb=20171106210423",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-freddy-vs-jason-orlando",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2015-house-body-collectors-recollections",
@@ -3720,19 +4161,41 @@
         "type": "original"
       },
       "location": "Soundstage 24",
-      "sourceIds": ["wiki-body-collectors-recollections"]
+      "sourceIds": ["wiki-body-collectors-recollections"],
+      "media": [
+        {
+          "id": "hhn-2015-house-body-collectors-recollections-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/9/93/Body_Collectors_Recollections.jpg/revision/latest?cb=20260322020924",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-body-collectors-recollections",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2015-house-run-blood-sweat-and-fears",
       "eventId": "hhn-2015",
       "type": "house",
-      "name": "​RUN: Blood Sweat and Fears",
+      "name": "RUN: Blood Sweat and Fears",
       "parks": ["orlando"],
       "ip": {
         "type": "original"
       },
       "location": "Disaster! Queue",
-      "sourceIds": ["wiki-run-blood-sweat-and-fears"]
+      "sourceIds": ["wiki-run-blood-sweat-and-fears"],
+      "media": [
+        {
+          "id": "hhn-2015-house-run-blood-sweat-and-fears-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/5/52/RUN_BSAF.jpg/revision/latest?cb=20171108204721",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-run-blood-sweat-and-fears",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2015-house-the-purge",
@@ -3745,7 +4208,18 @@
         "franchise": "The Purge"
       },
       "location": "Sprung Tent 1",
-      "sourceIds": ["wiki-the-purge-2015"]
+      "sourceIds": ["wiki-the-purge-2015"],
+      "media": [
+        {
+          "id": "hhn-2015-house-the-purge-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/2/2e/The_Purge.jpg/revision/latest?cb=20171110221936",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-purge-2015",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2015-house-asylum-in-wonderland-3d",
@@ -3758,7 +4232,18 @@
         "franchise": "Alice in Wonderland"
       },
       "location": "Shrek Theater",
-      "sourceIds": ["wiki-asylum-in-wonderland-3d"]
+      "sourceIds": ["wiki-asylum-in-wonderland-3d"],
+      "media": [
+        {
+          "id": "hhn-2015-house-asylum-in-wonderland-3d-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/5/5a/Asylum-in-Wonderland-blog.jpg/revision/latest?cb=20170906233502",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "art-asylum-in-wonderland-3d",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2015-house-the-walking-dead-the-living-and-the-dead",
@@ -3771,16 +4256,44 @@
         "franchise": "The Walking Dead"
       },
       "location": "Parade Warehouse",
-      "sourceIds": ["wiki-the-walking-dead-the-living-and-the-dead"]
+      "sourceIds": ["wiki-the-walking-dead-the-living-and-the-dead"],
+      "media": [
+        {
+          "id": "hhn-2015-house-the-walking-dead-the-living-and-the-dead-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/4/4c/TWD.jpg/revision/latest?cb=20171110224052",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-walking-dead-the-living-and-the-dead",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
-      "id": "hhn-2015-house-",
+      "id": "hhn-2015-house-insidious",
       "eventId": "hhn-2015",
       "type": "house",
-      "name": "​",
+      "name": "Insidious",
       "parks": ["orlando"],
-      "location": "Insidious",
-      "sourceIds": ["wiki-insidious"]
+      "location": "Sprung Tent 2",
+      "sourceIds": [
+        "wiki-insidious",
+        "art-insidious-haunted-house",
+        "art-halloween-horror-nights-25-full-review"
+      ],
+      "previousIds": ["hhn-2015-house-"],
+      "summary": "HHN 25's Orlando house based on the first three Insidious films.",
+      "media": [
+        {
+          "id": "hhn-2015-house-insidious-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/b/bf/Insidious.jpg/revision/latest?cb=20171107013830",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "art-insidious-haunted-house",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2016-house-the-walking-dead",
@@ -3793,7 +4306,18 @@
         "franchise": "The Walking Dead"
       },
       "location": "Soundstage 24A",
-      "sourceIds": ["wiki-the-walking-dead-2016"]
+      "sourceIds": ["wiki-the-walking-dead-2016"],
+      "media": [
+        {
+          "id": "hhn-2016-house-the-walking-dead-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/7/76/TWD_2016.jpg/revision/latest?cb=20171110224332",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-walking-dead-2016",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2016-house-ghost-town-the-curse-of-lightning-gulch",
@@ -3805,7 +4329,18 @@
         "type": "original"
       },
       "location": "Soundstage 24B",
-      "sourceIds": ["wiki-ghost-town-the-curse-of-lightning-gulch"]
+      "sourceIds": ["wiki-ghost-town-the-curse-of-lightning-gulch"],
+      "media": [
+        {
+          "id": "hhn-2016-house-ghost-town-the-curse-of-lightning-gulch-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/7/79/GHost_Town_TCOLG.jpg/revision/latest?cb=20170910165626",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-ghost-town-the-curse-of-lightning-gulch",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2016-house-lunatic-s-playground-3d-you-won-t-stand-a-chance",
@@ -3817,7 +4352,18 @@
         "type": "original"
       },
       "location": "MIB Tent",
-      "sourceIds": ["wiki-lunatic-s-playground-3d-you-won-t-stand-a-chance"]
+      "sourceIds": ["wiki-lunatic-s-playground-3d-you-won-t-stand-a-chance"],
+      "media": [
+        {
+          "id": "hhn-2016-house-lunatic-s-playground-3d-you-won-t-stand-a-chance-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/b/ba/Lunatics_Playground.jpg/revision/latest?cb=20170910165843",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-lunatic-s-playground-3d-you-won-t-stand-a-chance",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2016-house-tomb-of-the-ancients",
@@ -3829,7 +4375,18 @@
         "type": "original"
       },
       "location": "Sprung Tent 1",
-      "sourceIds": ["wiki-tomb-of-the-ancients"]
+      "sourceIds": ["wiki-tomb-of-the-ancients"],
+      "media": [
+        {
+          "id": "hhn-2016-house-tomb-of-the-ancients-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/1/1e/Tomb_of_the_Ancients.jpg/revision/latest?cb=20171110224758",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-tomb-of-the-ancients",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2016-house-the-texas-chainsaw-massacre",
@@ -3842,7 +4399,18 @@
         "franchise": "The Texas Chain Saw Massacre"
       },
       "location": "Sprung Tent 2",
-      "sourceIds": ["wiki-the-texas-chainsaw-massacre-orlando-2016"]
+      "sourceIds": ["wiki-the-texas-chainsaw-massacre-orlando-2016"],
+      "media": [
+        {
+          "id": "hhn-2016-house-the-texas-chainsaw-massacre-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/8/80/TTCM.jpg/revision/latest?cb=20180319231106",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-texas-chainsaw-massacre-orlando-2016",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2017-house-american-horror-story-volume-2",
@@ -3855,7 +4423,18 @@
         "franchise": "American Horror Story: Asylum"
       },
       "location": "Soundstage 21",
-      "sourceIds": ["wiki-american-horror-story-volume-2"]
+      "sourceIds": ["wiki-american-horror-story-volume-2"],
+      "media": [
+        {
+          "id": "hhn-2017-house-american-horror-story-volume-2-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/8/8e/HHN27-AHS.png/revision/latest?cb=20170901161840",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-american-horror-story-volume-2",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2017-house-dead-waters",
@@ -3867,7 +4446,18 @@
         "type": "original"
       },
       "location": "Soundstage 24",
-      "sourceIds": ["wiki-dead-waters"]
+      "sourceIds": ["wiki-dead-waters"],
+      "media": [
+        {
+          "id": "hhn-2017-house-dead-waters-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/f/f0/HHN27-Deadwaters.png/revision/latest?cb=20170901161606",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-dead-waters",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2017-house-the-fallen",
@@ -3879,7 +4469,18 @@
         "type": "original"
       },
       "location": "Soundstage 24",
-      "sourceIds": ["wiki-the-fallen"]
+      "sourceIds": ["wiki-the-fallen"],
+      "media": [
+        {
+          "id": "hhn-2017-house-the-fallen-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/5/5f/HHN27-TheFallen.png/revision/latest?cb=20170901151602",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-fallen",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2017-house-hive",
@@ -3891,7 +4492,18 @@
         "type": "original"
       },
       "location": "Sprung Tent 2",
-      "sourceIds": ["wiki-hive"]
+      "sourceIds": ["wiki-hive"],
+      "media": [
+        {
+          "id": "hhn-2017-house-hive-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/d/d7/HHN27-Hive.png/revision/latest?cb=20170901161421",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-hive",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2017-house-scarecrow-the-reaping",
@@ -3903,7 +4515,18 @@
         "type": "original"
       },
       "location": "Sprung Tent 1",
-      "sourceIds": ["wiki-scarecrow-the-reaping-orlando"]
+      "sourceIds": ["wiki-scarecrow-the-reaping-orlando"],
+      "media": [
+        {
+          "id": "hhn-2017-house-scarecrow-the-reaping-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/3/3f/HHN27-Scarecrow.png/revision/latest?cb=20170901151925",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-scarecrow-the-reaping-orlando",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2018-house-dead-exposure-patient-zero",
@@ -3915,7 +4538,18 @@
         "type": "original"
       },
       "location": "Sprung Tent 1",
-      "sourceIds": ["wiki-dead-exposure-patient-zero"]
+      "sourceIds": ["wiki-dead-exposure-patient-zero"],
+      "media": [
+        {
+          "id": "hhn-2018-house-dead-exposure-patient-zero-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/0/0b/Dead_Exposure_2_Logo.jpg/revision/latest?cb=20180430125613",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-dead-exposure-patient-zero",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2018-house-slaughter-sinema",
@@ -3927,7 +4561,18 @@
         "type": "original"
       },
       "location": "Sprung Tent 2",
-      "sourceIds": ["wiki-slaughter-sinema"]
+      "sourceIds": ["wiki-slaughter-sinema"],
+      "media": [
+        {
+          "id": "hhn-2018-house-slaughter-sinema-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/c/c3/Slaughter_Sinema_Logo.jpg/revision/latest?cb=20180621194936",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-slaughter-sinema",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2018-house-carnival-graveyard-rust-in-pieces",
@@ -3939,7 +4584,18 @@
         "type": "original"
       },
       "location": "Soundstage 24",
-      "sourceIds": ["wiki-carnival-graveyard-rust-in-pieces"]
+      "sourceIds": ["wiki-carnival-graveyard-rust-in-pieces"],
+      "media": [
+        {
+          "id": "hhn-2018-house-carnival-graveyard-rust-in-pieces-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/a/a6/Carnival_Graveyard.jpg/revision/latest?cb=20180807123514",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-carnival-graveyard-rust-in-pieces",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2018-house-seeds-of-extinction",
@@ -3951,7 +4607,18 @@
         "type": "original"
       },
       "location": "Second Parade Warehouse",
-      "sourceIds": ["wiki-seeds-of-extinction"]
+      "sourceIds": ["wiki-seeds-of-extinction"],
+      "media": [
+        {
+          "id": "hhn-2018-house-seeds-of-extinction-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/6/60/Seeds_of_Extinction_Logo.jpg/revision/latest?cb=20180808154153",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-seeds-of-extinction",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2018-house-the-horrors-of-blumhouse",
@@ -3960,7 +4627,18 @@
       "name": "The Horrors of Blumhouse",
       "parks": ["orlando"],
       "location": "MIB Tent",
-      "sourceIds": ["wiki-the-horrors-of-blumhouse-orlando-2018"]
+      "sourceIds": ["wiki-the-horrors-of-blumhouse-orlando-2018"],
+      "media": [
+        {
+          "id": "hhn-2018-house-the-horrors-of-blumhouse-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/d/d5/Horrors_of_Blumhouse_2_Logo.jpg/revision/latest?cb=20180820192136",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-horrors-of-blumhouse-orlando-2018",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2018-house-scary-tales-deadly-ever-after",
@@ -3969,7 +4647,18 @@
       "name": "Scary Tales: Deadly Ever After",
       "parks": ["orlando"],
       "location": "Soundstage 24",
-      "sourceIds": ["wiki-scary-tales-deadly-ever-after"]
+      "sourceIds": ["wiki-scary-tales-deadly-ever-after"],
+      "media": [
+        {
+          "id": "hhn-2018-house-scary-tales-deadly-ever-after-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/b/b6/Scary_Tales_Deadly_Logo.jpg/revision/latest?cb=20180822010231",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-scary-tales-deadly-ever-after",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2019-house-nightingales-blood-pit",
@@ -3981,7 +4670,18 @@
         "type": "original"
       },
       "location": "Sprung Tent 1",
-      "sourceIds": ["wiki-nightingales-blood-pit"]
+      "sourceIds": ["wiki-nightingales-blood-pit"],
+      "media": [
+        {
+          "id": "hhn-2019-house-nightingales-blood-pit-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/b/bb/Nightingales_Blood_Pit-0.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-nightingales-blood-pit",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2019-house-universal-monsters",
@@ -3994,7 +4694,18 @@
         "franchise": "Universal Classic Monsters"
       },
       "location": "Second Parade Warehouse",
-      "sourceIds": ["wiki-universal-monsters-orlando"]
+      "sourceIds": ["wiki-universal-monsters-orlando"],
+      "media": [
+        {
+          "id": "hhn-2019-house-universal-monsters-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/5/54/Universal_Monsters.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-universal-monsters-orlando",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2019-house-depths-of-fear",
@@ -4006,7 +4717,18 @@
         "type": "original"
       },
       "location": "Sprung Tent 2",
-      "sourceIds": ["wiki-depths-of-fear"]
+      "sourceIds": ["wiki-depths-of-fear"],
+      "media": [
+        {
+          "id": "hhn-2019-house-depths-of-fear-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/a/ab/Depths_Of_Fear.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-depths-of-fear",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2019-house-yeti-terror-of-the-yukon",
@@ -4018,7 +4740,18 @@
         "type": "original"
       },
       "location": "Soundstage 24",
-      "sourceIds": ["wiki-yeti-terror-of-the-yukon"]
+      "sourceIds": ["wiki-yeti-terror-of-the-yukon"],
+      "media": [
+        {
+          "id": "hhn-2019-house-yeti-terror-of-the-yukon-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/3/39/Yeti_Terror_of_the_Yukon.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-yeti-terror-of-the-yukon",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2019-house-graveyard-games",
@@ -4030,7 +4763,18 @@
         "type": "original"
       },
       "location": "Parade Warehouse",
-      "sourceIds": ["wiki-graveyard-games"]
+      "sourceIds": ["wiki-graveyard-games"],
+      "media": [
+        {
+          "id": "hhn-2019-house-graveyard-games-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/6/68/Graveyard_Games_Logo.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-graveyard-games",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2021-house-case-files-unearthed-legendary-truth",
@@ -4042,7 +4786,18 @@
         "type": "original"
       },
       "location": "Shrek Theater",
-      "sourceIds": ["wiki-case-files-unearthed-legendary-truth"]
+      "sourceIds": ["wiki-case-files-unearthed-legendary-truth"],
+      "media": [
+        {
+          "id": "hhn-2021-house-case-files-unearthed-legendary-truth-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/f/fa/Uor-hhn-case-files-legendary-truth-logo.webp/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-case-files-unearthed-legendary-truth",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2021-house-revenge-of-the-tooth-fairy",
@@ -4054,7 +4809,18 @@
         "type": "original"
       },
       "location": "Soundstage 24A",
-      "sourceIds": ["wiki-revenge-of-the-tooth-fairy"]
+      "sourceIds": ["wiki-revenge-of-the-tooth-fairy"],
+      "media": [
+        {
+          "id": "hhn-2021-house-revenge-of-the-tooth-fairy-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/7/78/Tooth_Fairy_Logo.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-revenge-of-the-tooth-fairy",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2021-house-hhn-icons-captured",
@@ -4066,7 +4832,18 @@
         "type": "original"
       },
       "location": "Soundstage 24B",
-      "sourceIds": ["wiki-hhn-icons-captured"]
+      "sourceIds": ["wiki-hhn-icons-captured"],
+      "media": [
+        {
+          "id": "hhn-2021-house-hhn-icons-captured-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/8/8a/Uor-hhn-icons-captured-logo.webp/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-hhn-icons-captured",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2021-house-welcome-to-scarey-horror-in-the-heartland",
@@ -4078,7 +4855,18 @@
         "type": "original"
       },
       "location": "MIB Tent",
-      "sourceIds": ["wiki-welcome-to-scarey-horror-in-the-heartland"]
+      "sourceIds": ["wiki-welcome-to-scarey-horror-in-the-heartland"],
+      "media": [
+        {
+          "id": "hhn-2021-house-welcome-to-scarey-horror-in-the-heartland-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/4/43/Uor-hhn-welcome-to-scarey-logo.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-welcome-to-scarey-horror-in-the-heartland",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2021-house-puppet-theatre-captive-audience",
@@ -4090,7 +4878,18 @@
         "type": "original"
       },
       "location": "Sprung Tent 1",
-      "sourceIds": ["wiki-puppet-theatre-captive-audience"]
+      "sourceIds": ["wiki-puppet-theatre-captive-audience"],
+      "media": [
+        {
+          "id": "hhn-2021-house-puppet-theatre-captive-audience-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/d/db/Puppet_Theatre_Logo.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-puppet-theatre-captive-audience",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2021-house-the-wicked-growth-realm-of-the-pumpkin",
@@ -4102,7 +4901,18 @@
         "type": "original"
       },
       "location": "Sprung Tent 2",
-      "sourceIds": ["wiki-the-wicked-growth-realm-of-the-pumpkin"]
+      "sourceIds": ["wiki-the-wicked-growth-realm-of-the-pumpkin"],
+      "media": [
+        {
+          "id": "hhn-2021-house-the-wicked-growth-realm-of-the-pumpkin-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/7/79/Uor-hhn-wicked-growth-logo.webp/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-wicked-growth-realm-of-the-pumpkin",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2021-house-beetlejuice",
@@ -4115,20 +4925,18 @@
         "franchise": "Beetlejuice"
       },
       "location": "Parade Warehouse",
-      "sourceIds": ["wiki-beetlejuice-haunted-house"]
-    },
-    {
-      "id": "hhn-2021-house-the-hau",
-      "eventId": "hhn-2021",
-      "type": "house",
-      "name": "The Hau",
-      "parks": ["orlando"],
-      "ip": {
-        "type": "licensed",
-        "franchise": "The Haunting of Hill House"
-      },
-      "location": "nting of Hill House",
-      "sourceIds": ["wiki-the-haunting-of-hill-house-haunted-house-orlando"]
+      "sourceIds": ["wiki-beetlejuice-haunted-house"],
+      "media": [
+        {
+          "id": "hhn-2021-house-beetlejuice-media-1",
+          "kind": "promotional_image",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/7/7f/HHN-Beetlejuice-Image.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-beetlejuice-haunted-house",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2022-house-spirits-of-the-coven",
@@ -4140,7 +4948,18 @@
         "type": "original"
       },
       "location": "Soundstage 22",
-      "sourceIds": ["wiki-spirits-of-the-coven"]
+      "sourceIds": ["wiki-spirits-of-the-coven"],
+      "media": [
+        {
+          "id": "hhn-2022-house-spirits-of-the-coven-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/6/68/Upr-hhn-spirits-of-the-coven-hero-cf-a.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-spirits-of-the-coven",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2022-house-hellblock-horror",
@@ -4152,7 +4971,18 @@
         "type": "original"
       },
       "location": "Soundstage 23A",
-      "sourceIds": ["wiki-hellblock-horror"]
+      "sourceIds": ["wiki-hellblock-horror"],
+      "media": [
+        {
+          "id": "hhn-2022-house-hellblock-horror-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/e/e7/Upr-hhn-hellblock-of-horrorr-cf-a.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-hellblock-horror",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2022-house-fiesta-de-chupacabras",
@@ -4164,7 +4994,18 @@
         "type": "original"
       },
       "location": "Soundstage 24A",
-      "sourceIds": ["wiki-fiesta-de-chupacabras-haunted-house"]
+      "sourceIds": ["wiki-fiesta-de-chupacabras-haunted-house"],
+      "media": [
+        {
+          "id": "hhn-2022-house-fiesta-de-chupacabras-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/2/22/Upr-hhn-fiesta-de-chupacabras-hero-cf-a.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-fiesta-de-chupacabras-haunted-house",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2022-house-dead-man-s-pier-winter-s-wake",
@@ -4176,7 +5017,18 @@
         "type": "original"
       },
       "location": "Soundstage 24B",
-      "sourceIds": ["wiki-dead-man-s-pier-winter-s-wake"]
+      "sourceIds": ["wiki-dead-man-s-pier-winter-s-wake"],
+      "media": [
+        {
+          "id": "hhn-2022-house-dead-man-s-pier-winter-s-wake-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/1/18/Upr-hhn-dead-mans-pier-winters-wake-hero-cf-a.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-dead-man-s-pier-winter-s-wake",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2022-house-descendants-of-destruction",
@@ -4188,7 +5040,18 @@
         "type": "original"
       },
       "location": "Sprung Tent 1",
-      "sourceIds": ["wiki-descendants-of-destruction"]
+      "sourceIds": ["wiki-descendants-of-destruction"],
+      "media": [
+        {
+          "id": "hhn-2022-house-descendants-of-destruction-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/d/d4/Upr-hhn-descendants-of-destruction-hero-cf-a.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-descendants-of-destruction",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2022-house-bugs-eaten-alive",
@@ -4200,7 +5063,18 @@
         "type": "original"
       },
       "location": "Sprung Tent 2",
-      "sourceIds": ["wiki-bugs-eaten-alive-haunted-house"]
+      "sourceIds": ["wiki-bugs-eaten-alive-haunted-house"],
+      "media": [
+        {
+          "id": "hhn-2022-house-bugs-eaten-alive-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/4/43/Upr-hhn-bugs-eaten-alive-hero-cf-a.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-bugs-eaten-alive-haunted-house",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2023-house-the-exorcist-believer",
@@ -4213,7 +5087,18 @@
         "franchise": "The Exorcist: Believer"
       },
       "location": "Orlando: Soundstage 22; Hollywood: Soundstage 22",
-      "sourceIds": ["wiki-the-exorcist-believer-orlando", "wiki-the-exorcist-believer-hollywood"]
+      "sourceIds": ["wiki-the-exorcist-believer-orlando", "wiki-the-exorcist-believer-hollywood"],
+      "media": [
+        {
+          "id": "hhn-2023-house-the-exorcist-believer-media-1",
+          "kind": "promotional_image",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/c/cc/Media-Site-Carousel-The-Exorcist.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-exorcist-believer-orlando",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2023-house-blood-moon-dark-offerings",
@@ -4225,7 +5110,18 @@
         "type": "original"
       },
       "location": "Soundstage 23A",
-      "sourceIds": ["wiki-blood-moon-dark-offerings-haunted-house"]
+      "sourceIds": ["wiki-blood-moon-dark-offerings-haunted-house"],
+      "media": [
+        {
+          "id": "hhn-2023-house-blood-moon-dark-offerings-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/4/44/Screenshot_2023-07-28_at_13-15-26_usf-halloween-horror-nights-house-bloodmoon-logo-cf-a.jpg_%28AVIF_Image_2800_%C3%97_1200_pixels%29_%E2%80%94_Scaled_%2851%25%29.png/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-blood-moon-dark-offerings-haunted-house",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2023-house-dueling-dragons-choose-thy-fate",
@@ -4237,7 +5133,18 @@
         "type": "original"
       },
       "location": "Soundstage 24A",
-      "sourceIds": ["wiki-dueling-dragons-choose-thy-fate-haunted-house"]
+      "sourceIds": ["wiki-dueling-dragons-choose-thy-fate-haunted-house"],
+      "media": [
+        {
+          "id": "hhn-2023-house-dueling-dragons-choose-thy-fate-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/1/17/Screenshot_2023-07-28_at_12-48-06_usf-halloween-horror-nights-house-dueling-dragons-logo-cf-a.jpg_%28AVIF_Image_2800_%C3%97_1200_pixels%29_%E2%80%94_Scaled_%2836%25%29.png/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-dueling-dragons-choose-thy-fate-haunted-house",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2023-house-yeti-campground-kills",
@@ -4249,7 +5156,18 @@
         "type": "original"
       },
       "location": "Soundstage 24B",
-      "sourceIds": ["wiki-yeti-campground-kills-haunted-house"]
+      "sourceIds": ["wiki-yeti-campground-kills-haunted-house"],
+      "media": [
+        {
+          "id": "hhn-2023-house-yeti-campground-kills-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/2/22/Screenshot_2023-07-28_at_13-14-51_usf-halloween-horror-nights-house-yeti-campground-logo-cf-a.jpg_%28AVIF_Image_2800_%C3%97_1200_pixels%29_%E2%80%94_Scaled_%2851%25%29.png/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-yeti-campground-kills-haunted-house",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2023-house-the-darkest-deal",
@@ -4261,7 +5179,18 @@
         "type": "original"
       },
       "location": "Sprung Tent 1",
-      "sourceIds": ["wiki-the-darkest-deal-haunted-house"]
+      "sourceIds": ["wiki-the-darkest-deal-haunted-house"],
+      "media": [
+        {
+          "id": "hhn-2023-house-the-darkest-deal-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/0/03/Screenshot_2023-07-28_at_13-15-19_usf-halloween-horror-nights-house-darkest-deal-logo-cf-a.jpg_%28AVIF_Image_2800_%C3%97_1200_pixels%29_%E2%80%94_Scaled_%2851%25%29.png/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-darkest-deal-haunted-house",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2023-house-dr-oddfellow-s-twisted-origins",
@@ -4273,7 +5202,18 @@
         "type": "original"
       },
       "location": "Sprung Tent 2",
-      "sourceIds": ["wiki-dr-oddfellow-s-twisted-origins"]
+      "sourceIds": ["wiki-dr-oddfellow-s-twisted-origins"],
+      "media": [
+        {
+          "id": "hhn-2023-house-dr-oddfellow-s-twisted-origins-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/9/9b/Screenshot_2023-07-28_at_12-45-09_usf-halloween-horror-nights-house-dr-oddfellows-logo-cf-a.jpg_%28AVIF_Image_2800_%C3%97_1200_pixels%29_%E2%80%94_Scaled_%2851%25%29.png/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-dr-oddfellow-s-twisted-origins",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2024-house-monstruos-the-monsters-of-latin-america",
@@ -4736,7 +5676,18 @@
         "franchise": "A Nightmare on Elm Street"
       },
       "location": "Shrek 4D Queue",
-      "sourceIds": ["wiki-a-nightmare-on-elm-street-never-sleep-again"]
+      "sourceIds": ["wiki-a-nightmare-on-elm-street-never-sleep-again"],
+      "media": [
+        {
+          "id": "hhn-2010-house-a-nightmare-on-elm-street-never-sleep-again-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/6/6f/ANOESNSA.png/revision/latest?cb=20200515002653",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-a-nightmare-on-elm-street-never-sleep-again",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2010-house-friday-the-13th-kill-jason-kill",
@@ -4749,7 +5700,18 @@
         "franchise": "Friday the 13th"
       },
       "location": "Wild West Stage",
-      "sourceIds": ["wiki-friday-the-13th-kill-jason-kill"]
+      "sourceIds": ["wiki-friday-the-13th-kill-jason-kill"],
+      "media": [
+        {
+          "id": "hhn-2010-house-friday-the-13th-kill-jason-kill-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/f/fa/FT13KJK.png/revision/latest?cb=20200515001603",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-friday-the-13th-kill-jason-kill",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2010-house-saw-game-on",
@@ -4774,7 +5736,18 @@
         "type": "original"
       },
       "location": "UBE Venue",
-      "sourceIds": ["wiki-vampyre-castle-of-the-undead"]
+      "sourceIds": ["wiki-vampyre-castle-of-the-undead"],
+      "media": [
+        {
+          "id": "hhn-2010-house-vampyre-castle-of-the-undead-media-1",
+          "kind": "promotional_image",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/5/5f/0vamps-0.jpg/revision/latest?cb=20180807162711",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-vampyre-castle-of-the-undead",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2010-house-rob-zombie-s-house-of-1000-corpses-in-3-d-zombie",
@@ -4787,7 +5760,18 @@
         "franchise": "House of 1000 Corpses"
       },
       "location": "Terminator Queue",
-      "sourceIds": ["wiki-rob-zombie-s-house-of-1000-corpses-in-3-d-zombievision"]
+      "sourceIds": ["wiki-rob-zombie-s-house-of-1000-corpses-in-3-d-zombievision"],
+      "media": [
+        {
+          "id": "hhn-2010-house-rob-zombie-s-house-of-1000-corpses-in-3-d-zombie-media-1",
+          "kind": "promotional_image",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/6/69/House_of_1000_Corpses-MazeFace.jpg/revision/latest?cb=20180709184401",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-rob-zombie-s-house-of-1000-corpses-in-3-d-zombievision",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2011-house-hostel-hunting-season",
@@ -4800,7 +5784,18 @@
         "franchise": "Hostel"
       },
       "location": "Mummy Venue",
-      "sourceIds": ["wiki-hostel-hunting-season"]
+      "sourceIds": ["wiki-hostel-hunting-season"],
+      "media": [
+        {
+          "id": "hhn-2011-house-hostel-hunting-season-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/6/6c/Hostel400.jpg/revision/latest?cb=20120311030709",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-hostel-hunting-season",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2011-house-alice-cooper-welcome-to-my-nightmare",
@@ -4813,7 +5808,18 @@
         "franchise": "Welcome to My Nightmare"
       },
       "location": "Jurassic Park Queue",
-      "sourceIds": ["wiki-alice-cooper-welcome-to-my-nightmare-hollywood"]
+      "sourceIds": ["wiki-alice-cooper-welcome-to-my-nightmare-hollywood"],
+      "media": [
+        {
+          "id": "hhn-2011-house-alice-cooper-welcome-to-my-nightmare-media-1",
+          "kind": "promotional_image",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/6/66/Alice_Cooper-MazeFace.jpg/revision/latest?cb=20180725070138",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-alice-cooper-welcome-to-my-nightmare-hollywood",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2011-house-the-thing-assimilation",
@@ -4826,7 +5832,18 @@
         "franchise": "The Thing"
       },
       "location": "Wild West Stage",
-      "sourceIds": ["wiki-the-thing-assimilation-2011"]
+      "sourceIds": ["wiki-the-thing-assimilation-2011"],
+      "media": [
+        {
+          "id": "hhn-2011-house-the-thing-assimilation-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/e/e8/The_Thing_Assimilation_logo_.jpg/revision/latest?cb=20241122002519",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-thing-assimilation-2011",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2011-house-rob-zombie-s-house-of-1000-corpses-in-3-d-zombie",
@@ -4839,7 +5856,18 @@
         "franchise": "House of 1000 Corpses"
       },
       "location": "Terminator Queue",
-      "sourceIds": ["wiki-rob-zombie-s-house-of-1000-corpses-in-3-d-zombievision"]
+      "sourceIds": ["wiki-rob-zombie-s-house-of-1000-corpses-in-3-d-zombievision"],
+      "media": [
+        {
+          "id": "hhn-2011-house-rob-zombie-s-house-of-1000-corpses-in-3-d-zombie-media-1",
+          "kind": "promotional_image",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/6/69/House_of_1000_Corpses-MazeFace.jpg/revision/latest?cb=20180709184401",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-rob-zombie-s-house-of-1000-corpses-in-3-d-zombievision",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2011-house-the-wolfman-curse-of-talbot-hall",
@@ -4852,7 +5880,18 @@
         "franchise": "The Wolfman"
       },
       "location": "UBE Venue",
-      "sourceIds": ["wiki-the-wolfman-the-curse-of-talbot-hall"]
+      "sourceIds": ["wiki-the-wolfman-the-curse-of-talbot-hall"],
+      "media": [
+        {
+          "id": "hhn-2011-house-the-wolfman-curse-of-talbot-hall-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/1/1c/WM_logo.jpg/revision/latest?cb=20200528111140",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-wolfman-the-curse-of-talbot-hall",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2011-house-la-llorona-villa-de-almas-perdidas",
@@ -4865,7 +5904,18 @@
         "franchise": "The Urban Legend Of La Llorona"
       },
       "location": "Shrek 4D Queue",
-      "sourceIds": ["wiki-la-llorona-villa-de-almas-perdidas"]
+      "sourceIds": ["wiki-la-llorona-villa-de-almas-perdidas"],
+      "media": [
+        {
+          "id": "hhn-2011-house-la-llorona-villa-de-almas-perdidas-media-1",
+          "kind": "promotional_image",
+          "url": "https://creepyla.com/wp-content/uploads/2011/08/lallorona468x261.png",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Creepy LA)",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Creepy LA, not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "art-la-llorona-themed-maze-coming-to-halloween-horror-nights-updated",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2012-house-the-walking-dead-dead-inside-hollywood",
@@ -4893,6 +5943,17 @@
           "location": "Disaster!",
           "sourceIds": ["wiki-the-walking-dead-dead-inside-orlando"]
         }
+      ],
+      "media": [
+        {
+          "id": "hhn-2012-house-the-walking-dead-dead-inside-hollywood-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/2/27/The_Walking_Dead_Dead_Inside.jpeg/revision/latest?cb=20120904185714",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-walking-dead-dead-inside-orlando",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -4906,7 +5967,18 @@
         "franchise": "The Texas Chainsaw Massacre"
       },
       "location": "Jurassic Park Queue",
-      "sourceIds": ["wiki-the-texas-chainsaw-massacre-the-saw-is-the-law"]
+      "sourceIds": ["wiki-the-texas-chainsaw-massacre-the-saw-is-the-law"],
+      "media": [
+        {
+          "id": "hhn-2012-house-the-texas-chainsaw-massacre-the-saw-is-the-law-media-1",
+          "kind": "promotional_image",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/4/42/Hhn2.png/revision/latest?cb=20120829204037",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-texas-chainsaw-massacre-the-saw-is-the-law",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2012-house-welcome-to-silent-hill-hollywood",
@@ -4934,6 +6006,17 @@
           "location": "Soundstage 22",
           "sourceIds": ["wiki-welcome-to-silent-hill-orlando"]
         }
+      ],
+      "media": [
+        {
+          "id": "hhn-2012-house-welcome-to-silent-hill-hollywood-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/4/40/Welcome_to_Silent_Hill.jpeg/revision/latest?cb=20120904191238",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-welcome-to-silent-hill-orlando",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -4947,7 +6030,18 @@
         "franchise": "The Urban Legend of La Llorona"
       },
       "location": "Shrek 4D Queue",
-      "sourceIds": ["wiki-la-llorona-la-cazadora-de-ni-os"]
+      "sourceIds": ["wiki-la-llorona-la-cazadora-de-ni-os"],
+      "media": [
+        {
+          "id": "hhn-2012-house-la-llorona-la-cazadora-de-ni-os-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/2/2a/La_Larrona.png/revision/latest?cb=20200731131026",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-la-llorona-la-cazadora-de-ni-os",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2012-house-alice-cooper-goes-to-hell-3d",
@@ -4960,7 +6054,18 @@
         "franchise": "Alice Cooper"
       },
       "location": "Terminator Queue",
-      "sourceIds": ["wiki-alice-cooper-goes-to-hell-3d"]
+      "sourceIds": ["wiki-alice-cooper-goes-to-hell-3d"],
+      "media": [
+        {
+          "id": "hhn-2012-house-alice-cooper-goes-to-hell-3d-media-1",
+          "kind": "promotional_image",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/8/89/Maze_AliceCooper.png/revision/latest?cb=20160421003800",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-alice-cooper-goes-to-hell-3d",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2012-house-universal-monsters-remix",
@@ -4973,7 +6078,18 @@
         "franchise": "Universal Classic Horror Films"
       },
       "location": "UBE Venue",
-      "sourceIds": ["wiki-universal-monsters-remix"]
+      "sourceIds": ["wiki-universal-monsters-remix"],
+      "media": [
+        {
+          "id": "hhn-2012-house-universal-monsters-remix-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/1/11/Maze_Monsters.png/revision/latest?cb=20120920202025",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-universal-monsters-remix",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2013-house-black-sabbath-13-3d",
@@ -4986,7 +6102,18 @@
         "franchise": "The Music of Black Sabbath"
       },
       "location": "Soundstage 747",
-      "sourceIds": ["wiki-black-sabbath-13-3d"]
+      "sourceIds": ["wiki-black-sabbath-13-3d"],
+      "media": [
+        {
+          "id": "hhn-2013-house-black-sabbath-13-3d-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/7/70/BS133D.png/revision/latest?cb=20200513064958",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-black-sabbath-13-3d",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2013-house-el-cucuy-the-boogeyman",
@@ -4999,7 +6126,18 @@
         "franchise": "The legend of El Cucuy"
       },
       "location": "Parisian Courtyard",
-      "sourceIds": ["wiki-el-cucuy-the-boogeyman"]
+      "sourceIds": ["wiki-el-cucuy-the-boogeyman"],
+      "media": [
+        {
+          "id": "hhn-2013-house-el-cucuy-the-boogeyman-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/0/0f/El_Cucuy_.jpg/revision/latest?cb=20200513073636",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-el-cucuy-the-boogeyman",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2013-house-evil-dead-book-of-the-dead",
@@ -5012,7 +6150,18 @@
         "franchise": "Evil Dead"
       },
       "location": "Mummy Venue",
-      "sourceIds": ["wiki-evil-dead-book-of-the-dead"]
+      "sourceIds": ["wiki-evil-dead-book-of-the-dead"],
+      "media": [
+        {
+          "id": "hhn-2013-house-evil-dead-book-of-the-dead-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/3/3c/EDBOTD.jpg/revision/latest?cb=20200529032633",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-evil-dead-book-of-the-dead",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2013-house-insidious-into-the-further",
@@ -5025,7 +6174,18 @@
         "franchise": "Insidious"
       },
       "location": "Jurassic Park Queue",
-      "sourceIds": ["wiki-insidious-into-the-further"]
+      "sourceIds": ["wiki-insidious-into-the-further"],
+      "media": [
+        {
+          "id": "hhn-2013-house-insidious-into-the-further-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/b/b0/Insidious_ITF_.png/revision/latest?cb=20200513073919",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-insidious-into-the-further",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2013-house-universal-monsters-remix-resurrection",
@@ -5038,7 +6198,18 @@
         "franchise": "Universal Classic Monsters"
       },
       "location": "UBE Venue",
-      "sourceIds": ["wiki-universal-monsters-remix-resurrection"]
+      "sourceIds": ["wiki-universal-monsters-remix-resurrection"],
+      "media": [
+        {
+          "id": "hhn-2013-house-universal-monsters-remix-resurrection-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/c/c5/UMRR.png/revision/latest?cb=20200513065300",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-universal-monsters-remix-resurrection",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2013-house-the-walking-dead-no-safe-haven-hollywood",
@@ -5066,6 +6237,17 @@
           "location": "Parade Warehouse",
           "sourceIds": ["wiki-the-walking-dead-no-safe-haven-orlando"]
         }
+      ],
+      "media": [
+        {
+          "id": "hhn-2013-house-the-walking-dead-no-safe-haven-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/1/10/TWDNSH.png/revision/latest?cb=20200513065559",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-walking-dead-no-safe-haven-hollywood",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -5079,7 +6261,18 @@
         "franchise": "An American Werewolf in London"
       },
       "location": "Jurassic Park Queue",
-      "sourceIds": ["wiki-an-american-werewolf-in-london-hollywood"]
+      "sourceIds": ["wiki-an-american-werewolf-in-london-hollywood"],
+      "media": [
+        {
+          "id": "hhn-2014-house-an-american-werewolf-in-london-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/b/b1/AWIL.jpg/revision/latest?cb=20200513110241",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-an-american-werewolf-in-london-hollywood",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2014-house-avp-alien-vs-predator-hollywood",
@@ -5107,6 +6300,17 @@
           "location": "Soundstage 24",
           "sourceIds": ["wiki-avp-alien-vs-predator-orlando"]
         }
+      ],
+      "media": [
+        {
+          "id": "hhn-2014-house-avp-alien-vs-predator-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/5/5c/Alien_Vs._Predator_%28Hollywood_2014%29.jpg/revision/latest?cb=20201005203710",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-avp-alien-vs-predator-hollywood",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -5119,7 +6323,18 @@
         "type": "original"
       },
       "location": "Mummy Venue",
-      "sourceIds": ["wiki-clowns-3d-music-by-slash"]
+      "sourceIds": ["wiki-clowns-3d-music-by-slash"],
+      "media": [
+        {
+          "id": "hhn-2014-house-clowns-3d-music-by-slash-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/8/88/HHN-2014-Clowns-3D-image-with-txt.jpg/revision/latest?cb=20180807023112",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-clowns-3d-music-by-slash",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2014-house-dracula-untold-reign-of-blood-hollywood",
@@ -5147,6 +6362,17 @@
           "location": "Soundstage 24",
           "sourceIds": ["wiki-dracula-untold-reign-of-blood-orlando"]
         }
+      ],
+      "media": [
+        {
+          "id": "hhn-2014-house-dracula-untold-reign-of-blood-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/8/8a/20211125_055546.jpg/revision/latest?cb=20211125135742",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-dracula-untold-reign-of-blood-hollywood",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -5161,7 +6387,18 @@
         "franchise": "FaceOff TV Show"
       },
       "location": "UBE Venue",
-      "sourceIds": ["wiki-face-off-in-the-flesh-hollywood"]
+      "sourceIds": ["wiki-face-off-in-the-flesh-hollywood"],
+      "media": [
+        {
+          "id": "hhn-2014-house-face-off-in-the-flesh-hollywood-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/1/17/Face_Off_In_the_Flesh.png/revision/latest?cb=20171106201118",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "art-face-off-in-the-flesh-orlando",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2014-house-from-dusk-till-dawn-hollywood",
@@ -5188,6 +6425,17 @@
           "park": "orlando",
           "location": "Soundstage 22",
           "sourceIds": ["wiki-from-dusk-till-dawn-orlando"]
+        }
+      ],
+      "media": [
+        {
+          "id": "hhn-2014-house-from-dusk-till-dawn-hollywood-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/b/bd/From_Dusk_%27Till_Dawn.png/revision/latest?cb=20171106211651",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-from-dusk-till-dawn-orlando",
+          "distribution": "unclear"
         }
       ]
     },
@@ -5217,6 +6465,17 @@
           "location": "Soundstage 25",
           "sourceIds": ["wiki-the-walking-dead-the-end-of-the-line-orlando"]
         }
+      ],
+      "media": [
+        {
+          "id": "hhn-2014-house-the-walking-dead-end-of-the-line-hollywood-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/0/07/The_Walking_Dead_EOTL.png/revision/latest?cb=20171110223952",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-walking-dead-the-end-of-the-line-orlando",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -5230,7 +6489,18 @@
         "franchise": "Crimson Peak"
       },
       "location": "Metro Sets Tent",
-      "sourceIds": ["wiki-crimson-peak-maze-of-madness"]
+      "sourceIds": ["wiki-crimson-peak-maze-of-madness"],
+      "media": [
+        {
+          "id": "hhn-2015-house-crimson-peak-maze-of-madness-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/4/4b/Crimson_Peak_Maze_of_Madness.jpg/revision/latest?cb=20191208181717",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-crimson-peak-maze-of-madness",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2015-house-insidious-return-to-the-further",
@@ -5243,7 +6513,18 @@
         "franchise": "Insidious"
       },
       "location": "Jurassic Park Queue",
-      "sourceIds": ["wiki-insidious-return-to-the-further"]
+      "sourceIds": ["wiki-insidious-return-to-the-further"],
+      "media": [
+        {
+          "id": "hhn-2015-house-insidious-return-to-the-further-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/8/8f/IRTTF.jpg/revision/latest?cb=20180326095154",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-insidious-return-to-the-further",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2015-house-the-walking-dead-wolves-not-far",
@@ -5256,7 +6537,18 @@
         "franchise": "The Walking Dead"
       },
       "location": "Soundstage 28 Tent",
-      "sourceIds": ["wiki-the-walking-dead-wolves-not-far"]
+      "sourceIds": ["wiki-the-walking-dead-wolves-not-far"],
+      "media": [
+        {
+          "id": "hhn-2015-house-the-walking-dead-wolves-not-far-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/c/c2/The_Walking_Dead_Wolves_Not_Far.jpeg/revision/latest?cb=20201005203655",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-walking-dead-wolves-not-far",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2015-house-halloween-michael-myers-comes-home",
@@ -5269,7 +6561,18 @@
         "franchise": "Halloween"
       },
       "location": "Parisian Courtyard",
-      "sourceIds": ["wiki-halloween-michael-myers-comes-home"]
+      "sourceIds": ["wiki-halloween-michael-myers-comes-home"],
+      "media": [
+        {
+          "id": "hhn-2015-house-halloween-michael-myers-comes-home-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/e/eb/Screenshot_2020-08-14_11258310_890831457621426_906420919_n_jpg_%28JPEG_Image%2C_600_%C3%97_600_pixels%29.png/revision/latest?cb=20200814152952",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-halloween-michael-myers-comes-home",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2015-house-this-is-the-end-3d",
@@ -5282,7 +6585,18 @@
         "franchise": "This is the End"
       },
       "location": "Mummy Venue",
-      "sourceIds": ["wiki-this-is-the-end-3d"]
+      "sourceIds": ["wiki-this-is-the-end-3d"],
+      "media": [
+        {
+          "id": "hhn-2015-house-this-is-the-end-3d-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/3/3c/This_is_The_End_3D_Poster.jpg/revision/latest?cb=20200922202142",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-this-is-the-end-3d",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2015-house-avp-alien-vs-predator",
@@ -5295,7 +6609,18 @@
         "franchise": "Alien"
       },
       "location": "Soundstage 747",
-      "sourceIds": ["wiki-avp-alien-vs-predator-hollywood"]
+      "sourceIds": ["wiki-avp-alien-vs-predator-hollywood"],
+      "media": [
+        {
+          "id": "hhn-2015-house-avp-alien-vs-predator-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/9/98/Alien_Vs._Predator_%28Hollywood_2015%29.jpeg/revision/latest?cb=20201005203926",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-avp-alien-vs-predator-hollywood",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2016-house-american-horror-story-hollywood",
@@ -5322,6 +6647,17 @@
           "park": "orlando",
           "location": "Soundstage 19",
           "sourceIds": ["wiki-american-horror-story-orlando"]
+        }
+      ],
+      "media": [
+        {
+          "id": "hhn-2016-house-american-horror-story-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/7/79/AHS_%28Hollywood%29.jpeg/revision/latest?cb=20201013001623",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-american-horror-story-hollywood",
+          "distribution": "unclear"
         }
       ]
     },
@@ -5351,6 +6687,17 @@
           "location": "Soundstage 22",
           "sourceIds": ["wiki-the-exorcist-orlando"]
         }
+      ],
+      "media": [
+        {
+          "id": "hhn-2016-house-the-exorcist-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/0/03/The_Excorcist_%28HHN_2016_Hollywood%29.jpeg/revision/latest?cb=20201023224653",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-exorcist-hollywood",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -5364,7 +6711,18 @@
         "franchise": "Friday the 13th"
       },
       "location": "747 Tent",
-      "sourceIds": ["wiki-freddy-vs-jason-hollywood"]
+      "sourceIds": ["wiki-freddy-vs-jason-hollywood"],
+      "media": [
+        {
+          "id": "hhn-2016-house-freddy-vs-jason-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/c/c7/Freddy_Vs._Jason_Wallpaper.jpeg/revision/latest?cb=20201021233006",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-freddy-vs-jason-hollywood",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2016-house-halloween-hell-comes-to-haddonfield-hollywood",
@@ -5391,6 +6749,17 @@
           "park": "orlando",
           "location": "Parade Warehouse",
           "sourceIds": ["wiki-halloween-hell-comes-to-haddonfield-orlando"]
+        }
+      ],
+      "media": [
+        {
+          "id": "hhn-2016-house-halloween-hell-comes-to-haddonfield-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/8/83/HHCTH.png/revision/latest?cb=20200514085748",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-halloween-hell-comes-to-haddonfield-hollywood",
+          "distribution": "unclear"
         }
       ]
     },
@@ -5420,6 +6789,17 @@
           "location": "Shrek Theater",
           "sourceIds": ["wiki-krampus-orlando"]
         }
+      ],
+      "media": [
+        {
+          "id": "hhn-2016-house-krampus-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/c/c0/Krampus_%28Hollywood_2016%29.jpeg/revision/latest?cb=20201020213309",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-krampus-hollywood",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -5433,7 +6813,18 @@
         "franchise": "The Texas Chainsaw Massacre"
       },
       "location": "Waterworld Queue",
-      "sourceIds": ["wiki-the-texas-chainsaw-massacre-blood-brothers"]
+      "sourceIds": ["wiki-the-texas-chainsaw-massacre-blood-brothers"],
+      "media": [
+        {
+          "id": "hhn-2016-house-the-texas-chainsaw-massacre-blood-brothers-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/9/9f/TCMBB.jpg/revision/latest?cb=20180326081959",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-texas-chainsaw-massacre-blood-brothers",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2016-house-the-walking-dead-attraction",
@@ -5446,7 +6837,18 @@
         "franchise": "The Walking Dead"
       },
       "location": "UBE Venue",
-      "sourceIds": ["wiki-the-walking-dead-attraction"]
+      "sourceIds": ["wiki-the-walking-dead-attraction"],
+      "media": [
+        {
+          "id": "hhn-2016-house-the-walking-dead-attraction-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/7/77/Walking_Dead_Attraction_Poster.jpeg/revision/latest?cb=20201022223446",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-walking-dead-attraction",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2017-house-american-horror-story-roanoke",
@@ -5459,7 +6861,18 @@
         "franchise": "American Horror Story: Roanoke"
       },
       "location": "FDTD Area",
-      "sourceIds": ["wiki-american-horror-story-roanoke"]
+      "sourceIds": ["wiki-american-horror-story-roanoke"],
+      "media": [
+        {
+          "id": "hhn-2017-house-american-horror-story-roanoke-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/9/95/American_Horror_Story_Roanoke_Poster.jpg/revision/latest?cb=20200113235953",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-american-horror-story-roanoke",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2017-house-the-shining-hollywood",
@@ -5487,6 +6900,17 @@
           "location": "Soundstage 22",
           "sourceIds": ["wiki-the-shining-orlando"]
         }
+      ],
+      "media": [
+        {
+          "id": "hhn-2017-house-the-shining-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/5/5c/HHN_The_Shining_Poster_%28Hollywood%29.jpg/revision/latest?cb=20190601225335",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-shining-hollywood",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -5504,7 +6928,18 @@
       "slug": "hhn-2017-house-ash-vs-evil-dead",
       "previousIds": ["hhn-2017-house-ash-vs-evil-dead-orlando"],
       "location": "Parade Warehouse",
-      "summary": null
+      "summary": null,
+      "media": [
+        {
+          "id": "hhn-2017-house-ash-vs-evil-dead-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/a/a1/Ash_Vs.Evil_Dead_Poster_%28Hollywood%29.jpg/revision/latest?cb=20190407023452",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-ash-vs-evil-dead-hollywood",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2017-house-titans-of-terror",
@@ -5517,7 +6952,18 @@
         "franchise": "Friday the 13th"
       },
       "location": "Waterworld Queue",
-      "sourceIds": ["wiki-titans-of-terror"]
+      "sourceIds": ["wiki-titans-of-terror"],
+      "media": [
+        {
+          "id": "hhn-2017-house-titans-of-terror-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/d/df/3b1a66_934e795be081422a860da93067396d24~mv2.jpg/revision/latest?cb=20200522203940",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-titans-of-terror",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2017-house-saw-the-games-of-jigsaw-hollywood",
@@ -5545,6 +6991,17 @@
           "location": "Shrek Theater",
           "sourceIds": ["wiki-saw-the-games-of-jigsaw-orlando"]
         }
+      ],
+      "media": [
+        {
+          "id": "hhn-2017-house-saw-the-games-of-jigsaw-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/f/ff/Saw_the_Games_of_Jigsaw_Poster_%28Hollywood%29.jpeg/revision/latest?cb=20210303214305",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-saw-the-games-of-jigsaw-hollywood",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -5558,7 +7015,18 @@
         "franchise": "Insidious"
       },
       "location": "Jurassic Park Queue",
-      "sourceIds": ["wiki-insidious-beyond-the-further"]
+      "sourceIds": ["wiki-insidious-beyond-the-further"],
+      "media": [
+        {
+          "id": "hhn-2017-house-insidious-beyond-the-further-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/1/1b/Insidious-hhn.jpg/revision/latest?cb=20200725171129",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-insidious-beyond-the-further",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2017-house-the-horrors-of-blumhouse-hollywood",
@@ -5586,6 +7054,17 @@
           "location": "MIB Tent",
           "sourceIds": ["wiki-the-horrors-of-blumhouse-orlando-2017"]
         }
+      ],
+      "media": [
+        {
+          "id": "hhn-2017-house-the-horrors-of-blumhouse-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/1/1b/The_Horrors_Of_BlumHouse_2017_Poster_%28Hollywood%29.jpg/revision/latest?cb=20190412140415",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-horrors-of-blumhouse-hollywood-2017",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -5599,7 +7078,18 @@
         "franchise": "The Walking Dead"
       },
       "location": "UBE Venue",
-      "sourceIds": ["wiki-the-walking-dead-attraction"]
+      "sourceIds": ["wiki-the-walking-dead-attraction"],
+      "media": [
+        {
+          "id": "hhn-2017-house-the-walking-dead-attraction-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/7/77/Walking_Dead_Attraction_Poster.jpeg/revision/latest?cb=20201022223446",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-walking-dead-attraction",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2018-house-stranger-things-hollywood",
@@ -5667,6 +7157,17 @@
           "location": "Parade Warehouse",
           "sourceIds": ["wiki-trick-r-treat-haunted-house-orlando"]
         }
+      ],
+      "media": [
+        {
+          "id": "hhn-2018-house-trick-r-treat-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/6/6f/Trick_%27r_Treat_Poster_%28Hollywood%29.jpg/revision/latest?cb=20190407184647",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-trick-r-treat-haunted-maze-hollywood",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -5680,7 +7181,18 @@
         "franchise": "The First Purge"
       },
       "location": "Metro Sets Tent",
-      "sourceIds": ["wiki-the-first-purge"]
+      "sourceIds": ["wiki-the-first-purge"],
+      "media": [
+        {
+          "id": "hhn-2018-house-the-first-purge-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/2/2a/The_First_Purge_Logo.jpg/revision/latest?cb=20180902195158",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-first-purge",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2018-house-the-walking-dead-attraction",
@@ -5693,7 +7205,18 @@
         "franchise": "The Walking Dead"
       },
       "location": "UBE Venue",
-      "sourceIds": ["wiki-the-walking-dead-attraction"]
+      "sourceIds": ["wiki-the-walking-dead-attraction"],
+      "media": [
+        {
+          "id": "hhn-2018-house-the-walking-dead-attraction-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/7/77/Walking_Dead_Attraction_Poster.jpeg/revision/latest?cb=20201022223446",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-walking-dead-attraction",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2018-house-poltergeist-hollywood",
@@ -5720,6 +7243,17 @@
           "park": "orlando",
           "location": "Soundstage 25",
           "sourceIds": ["wiki-poltergeist-orlando"]
+        }
+      ],
+      "media": [
+        {
+          "id": "hhn-2018-house-poltergeist-hollywood-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/f/f7/Poltergeist_Hollywood_Logo.jpg/revision/latest?cb=20180902195627",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-poltergeist-hollywood",
+          "distribution": "unclear"
         }
       ]
     },
@@ -5749,6 +7283,17 @@
           "location": "Shrek Theater",
           "sourceIds": ["wiki-halloween-4-the-return-of-michael-myers-orlando"]
         }
+      ],
+      "media": [
+        {
+          "id": "hhn-2018-house-halloween-4-the-return-of-michael-myers-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/3/34/Halloween-4-maze-at-HHN-2018Rev-676x845.jpg/revision/latest?cb=20200725155909",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-halloween-4-the-return-of-michael-myers-hollywood",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -5762,7 +7307,18 @@
         "franchise": "Unfriended"
       },
       "location": "FDTD Area",
-      "sourceIds": ["wiki-the-horrors-of-blumhouse-chapter-two"]
+      "sourceIds": ["wiki-the-horrors-of-blumhouse-chapter-two"],
+      "media": [
+        {
+          "id": "hhn-2018-house-the-horrors-of-blumhouse-chapter-two-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/6/66/Horrors_of_Blumhouse_2_Hollywood_Logo.jpg/revision/latest?cb=20180902201315",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-horrors-of-blumhouse-chapter-two",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2018-house-universal-monsters-music-by-slash",
@@ -5775,7 +7331,18 @@
         "franchise": "Universal Classic Monsters"
       },
       "location": "Parisian Courtyard",
-      "sourceIds": ["wiki-universal-monsters-music-by-slash"]
+      "sourceIds": ["wiki-universal-monsters-music-by-slash"],
+      "media": [
+        {
+          "id": "hhn-2018-house-universal-monsters-music-by-slash-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/6/65/Universal_Monsters_Logo.jpg/revision/latest?cb=20180902202025",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-universal-monsters-music-by-slash",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2019-house-stranger-things-hollywood",
@@ -5827,7 +7394,18 @@
         "type": "original"
       },
       "location": "Parisian Courtyard",
-      "sourceIds": ["wiki-holidayz-in-hell-haunted-maze"]
+      "sourceIds": ["wiki-holidayz-in-hell-haunted-maze"],
+      "media": [
+        {
+          "id": "hhn-2019-house-holidayz-in-hell-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/2/21/Holidayz_In_Hell_Maze.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-holidayz-in-hell-haunted-maze",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2019-house-universal-monsters-frankenstein-meets-the-wolf-m",
@@ -5840,7 +7418,18 @@
         "franchise": "Universal Classic Monsters"
       },
       "location": "Metro Sets Tent",
-      "sourceIds": ["wiki-universal-monsters-frankenstein-meets-the-wolf-man"]
+      "sourceIds": ["wiki-universal-monsters-frankenstein-meets-the-wolf-man"],
+      "media": [
+        {
+          "id": "hhn-2019-house-universal-monsters-frankenstein-meets-the-wolf-m-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/1/17/Frankenstein_Meets_The_Wolf_Man_Poster.png/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-universal-monsters-frankenstein-meets-the-wolf-man",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2019-house-the-walking-dead-attraction",
@@ -5853,7 +7442,18 @@
         "franchise": "The Walking Dead"
       },
       "location": "UBE Venue",
-      "sourceIds": ["wiki-the-walking-dead-attraction"]
+      "sourceIds": ["wiki-the-walking-dead-attraction"],
+      "media": [
+        {
+          "id": "hhn-2019-house-the-walking-dead-attraction-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/7/77/Walking_Dead_Attraction_Poster.jpeg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-walking-dead-attraction",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2019-house-ghostbusters-hollywood",
@@ -5921,6 +7521,17 @@
           "location": "Shrek Theater",
           "sourceIds": ["wiki-killer-klowns-from-outer-space-haunted-house-orlando"]
         }
+      ],
+      "media": [
+        {
+          "id": "hhn-2019-house-killer-klowns-from-outer-space-hollywood-media-1",
+          "kind": "promotional_image",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/3/3d/Killer_Klowns_From_Outer_Space_Wallpaper_%28Hollywood%29.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "art-killer-klowns-from-outer-space-hollywood-gallery-halloween-horror-nigh",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -5930,7 +7541,18 @@
       "name": "Creepshow",
       "parks": ["hollywood"],
       "location": "FDTD Area",
-      "sourceIds": ["wiki-creepshow-haunted-house"]
+      "sourceIds": ["wiki-creepshow-haunted-house"],
+      "media": [
+        {
+          "id": "hhn-2019-house-creepshow-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/d/de/Creepshow_Poster.png/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-creepshow-haunted-house",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2019-house-us-hollywood",
@@ -5957,6 +7579,17 @@
           "park": "orlando",
           "location": "Soundstage 24",
           "sourceIds": ["wiki-us-orlando"]
+        }
+      ],
+      "media": [
+        {
+          "id": "hhn-2019-house-us-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/0/08/Us_%28Hollywood%29.png/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-us-hollywood",
+          "distribution": "unclear"
         }
       ]
     },
@@ -5986,6 +7619,17 @@
           "location": "MIB Tent",
           "sourceIds": ["wiki-house-of-1000-corpses-haunted-house-orlando"]
         }
+      ],
+      "media": [
+        {
+          "id": "hhn-2019-house-house-of-1000-corpses-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/0/05/House_of_1000_Corpses_Hollywood.jpeg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-house-of-1000-corpses-haunted-maze-hollywood",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -5998,20 +7642,52 @@
         "type": "original"
       },
       "location": "Tram Garage Tent 2",
-      "sourceIds": ["wiki-the-curse-of-pandora-s-box"]
+      "sourceIds": ["wiki-the-curse-of-pandora-s-box"],
+      "media": [
+        {
+          "id": "hhn-2019-house-the-curse-of-pandora-s-box-media-1",
+          "kind": "promotional_image",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/d/d5/IMG_7175.JPG/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "art-the-curse-of-pandora-s-box-gallery-halloween-horror-nights-wiki-fandom",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2021-house-the-haunting-of-hill-house",
       "eventId": "hhn-2021",
       "type": "house",
       "name": "The Haunting of Hill House",
-      "parks": ["hollywood"],
+      "parks": ["hollywood", "orlando"],
       "ip": {
         "type": "licensed",
         "franchise": "The Haunting of Hill House"
       },
-      "location": "H-Lot North",
-      "sourceIds": ["wiki-the-haunting-of-hill-house-haunted-maze-hollywood"]
+      "sourceIds": [
+        "wiki-the-haunting-of-hill-house-haunted-maze-hollywood",
+        "wiki-the-haunting-of-hill-house-haunted-house-orlando"
+      ],
+      "previousIds": ["hhn-2021-house-the-hau"],
+      "variantName": null,
+      "media": [
+        {
+          "id": "hhn-2021-house-the-haunting-of-hill-house-media-1",
+          "kind": "promotional_image",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/b/ba/Uor-hhn-haunting-hill-house-homepage-hero-lvp-new.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-haunting-of-hill-house-haunted-house-orlando",
+          "distribution": "unclear"
+        }
+      ],
+      "venueWiki": [
+        {
+          "park": "hollywood",
+          "location": "H-Lot North"
+        }
+      ]
     },
     {
       "id": "hhn-2021-house-universal-monsters-the-bride-of-frankenstein-liv-hollywood",
@@ -6038,6 +7714,17 @@
           "park": "orlando",
           "location": "Soundstage 23A",
           "sourceIds": ["wiki-universal-monsters-the-bride-of-frankenstein-lives-hollywood"]
+        }
+      ],
+      "media": [
+        {
+          "id": "hhn-2021-house-universal-monsters-the-bride-of-frankenstein-liv-hollywood-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/6/63/Uor-hhn-universal-monsters-bride-frankenstein-logo.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-universal-monsters-the-bride-of-frankenstein-lives-hollywood",
+          "distribution": "unclear"
         }
       ]
     },
@@ -6067,6 +7754,17 @@
           "location": "Soundstage 23B",
           "sourceIds": ["wiki-the-texas-chainsaw-massacre-orlando-2021"]
         }
+      ],
+      "media": [
+        {
+          "id": "hhn-2021-house-the-texas-chainsaw-massacre-hollywood-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/4/47/Uor-hhn-texas-chainsaw-massacre-logo.webp/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-texas-chainsaw-massacre-hollywood",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -6080,7 +7778,18 @@
         "franchise": "The Exorcist"
       },
       "location": "Soundstage 29",
-      "sourceIds": ["wiki-the-exorcist-hollywood"]
+      "sourceIds": ["wiki-the-exorcist-hollywood"],
+      "media": [
+        {
+          "id": "hhn-2021-house-the-exorcist-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/0/03/The_Excorcist_%28HHN_2016_Hollywood%29.jpeg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-exorcist-hollywood",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2021-house-the-curse-of-pandora-s-box",
@@ -6092,7 +7801,18 @@
         "type": "original"
       },
       "location": "H-Lot South",
-      "sourceIds": ["wiki-the-curse-of-pandora-s-box"]
+      "sourceIds": ["wiki-the-curse-of-pandora-s-box"],
+      "media": [
+        {
+          "id": "hhn-2021-house-the-curse-of-pandora-s-box-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/e/e4/TCOPBHHNH2019.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "art-the-curse-of-pandora-s-box-gallery-halloween-horror-nights-wiki-fandom",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2021-house-halloween-4-the-return-of-michael-myers",
@@ -6105,7 +7825,18 @@
         "franchise": "Halloween 4: The Return of Michael Myers"
       },
       "location": "Waterworld Queue",
-      "sourceIds": ["wiki-halloween-4-the-return-of-michael-myers-hollywood"]
+      "sourceIds": ["wiki-halloween-4-the-return-of-michael-myers-hollywood"],
+      "media": [
+        {
+          "id": "hhn-2021-house-halloween-4-the-return-of-michael-myers-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/3/34/Halloween-4-maze-at-HHN-2018Rev-676x845.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-halloween-4-the-return-of-michael-myers-hollywood",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2021-house-the-walking-dead-attraction",
@@ -6118,7 +7849,18 @@
         "franchise": "The Walking Dead"
       },
       "location": "UBE Venue",
-      "sourceIds": ["wiki-the-walking-dead-attraction"]
+      "sourceIds": ["wiki-the-walking-dead-attraction"],
+      "media": [
+        {
+          "id": "hhn-2021-house-the-walking-dead-attraction-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/7/77/Walking_Dead_Attraction_Poster.jpeg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-walking-dead-attraction",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2022-house-universal-monsters-legends-collide-hollywood",
@@ -6145,6 +7887,17 @@
           "park": "orlando",
           "location": "Parade Warehouse",
           "sourceIds": ["wiki-universal-monsters-legends-collide-orlando"]
+        }
+      ],
+      "media": [
+        {
+          "id": "hhn-2022-house-universal-monsters-legends-collide-hollywood-media-1",
+          "kind": "promotional_image",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/0/07/Upr-hhn-universal-monsters-legends-collide-c.webp/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-universal-monsters-legends-collide-hollywood",
+          "distribution": "unclear"
         }
       ]
     },
@@ -6174,6 +7927,17 @@
           "location": "Soundstage 23B",
           "sourceIds": ["wiki-halloween-orlando-2022"]
         }
+      ],
+      "media": [
+        {
+          "id": "hhn-2022-house-halloween-hollywood-media-1",
+          "kind": "promotional_image",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/5/5b/Upr-hhn-halloween-michael-myers-hero-a.webp/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-halloween-hollywood-2022",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -6201,6 +7965,17 @@
           "park": "orlando",
           "location": "Fast & Furious Location",
           "sourceIds": ["wiki-the-horrors-of-blumhouse-orlando-2022"]
+        }
+      ],
+      "media": [
+        {
+          "id": "hhn-2022-house-the-horrors-of-blumhouse-hollywood-media-1",
+          "kind": "promotional_image",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/2/22/THOB2022.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-horrors-of-blumhouse-hollywood-2022",
+          "distribution": "unclear"
         }
       ]
     },
@@ -6230,6 +8005,17 @@
           "location": "Second Parade Warehouse",
           "sourceIds": ["wiki-the-weeknd-after-hours-nightmare-orlando"]
         }
+      ],
+      "media": [
+        {
+          "id": "hhn-2022-house-the-weeknd-after-hours-nightmare-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/d/d9/D60C451C-2E43-479A-AF6F-6AD31467E949.jpeg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-weeknd-after-hours-nightmare-orlando",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -6242,7 +8028,18 @@
         "type": "original"
       },
       "location": "H-Lot North",
-      "sourceIds": ["wiki-scarecrow-the-reaping-hollywood"]
+      "sourceIds": ["wiki-scarecrow-the-reaping-hollywood"],
+      "media": [
+        {
+          "id": "hhn-2022-house-scarecrow-the-reaping-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/0/06/Ush-hhn-scarecrow-the-reaping-hero-cf-a.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-scarecrow-the-reaping-hollywood",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2022-house-la-llorona-the-weeping-woman",
@@ -6255,7 +8052,18 @@
         "franchise": "The Urban Legend of La Llorona"
       },
       "location": "Parisian Courtyard",
-      "sourceIds": ["wiki-la-llorona-the-weeping-woman"]
+      "sourceIds": ["wiki-la-llorona-the-weeping-woman"],
+      "media": [
+        {
+          "id": "hhn-2022-house-la-llorona-the-weeping-woman-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/0/01/Ush-hhn-la-llorona-hero-cf-a.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-la-llorona-the-weeping-woman",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2022-house-universal-horror-hotel",
@@ -6267,7 +8075,18 @@
         "type": "original"
       },
       "location": "UBE Venue",
-      "sourceIds": ["wiki-universal-horror-hotel"]
+      "sourceIds": ["wiki-universal-horror-hotel"],
+      "media": [
+        {
+          "id": "hhn-2022-house-universal-horror-hotel-media-1",
+          "kind": "logo",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/f/f0/Ush-hhn-universal-horror-hotel-cf-a.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-universal-horror-hotel",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2022-house-killer-klowns-from-outer-space",
@@ -6280,7 +8099,18 @@
         "franchise": "Killer Klowns From Outer Space"
       },
       "location": "T-Pad",
-      "sourceIds": ["wiki-killer-klowns-from-outer-space-hollywood"]
+      "sourceIds": ["wiki-killer-klowns-from-outer-space-hollywood"],
+      "media": [
+        {
+          "id": "hhn-2022-house-killer-klowns-from-outer-space-media-1",
+          "kind": "promotional_image",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/b/b5/KKFOS2022House.webp/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "art-killer-klowns-from-outer-space-hollywood-gallery-halloween-horror-nigh",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2023-house-chucky-ultimate-kill-count-hollywood",
@@ -6307,6 +8137,17 @@
           "park": "orlando",
           "location": "Fast & Furious Location",
           "sourceIds": ["wiki-chucky-ultimate-kill-count-orlando"]
+        }
+      ],
+      "media": [
+        {
+          "id": "hhn-2023-house-chucky-ultimate-kill-count-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/2/2c/Chuckyultimatekillcount.jpeg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-chucky-ultimate-kill-count-orlando",
+          "distribution": "unclear"
         }
       ]
     },
@@ -6336,6 +8177,17 @@
           "location": "Second Parade Warehouse",
           "sourceIds": ["wiki-the-last-of-us-orlando"]
         }
+      ],
+      "media": [
+        {
+          "id": "hhn-2023-house-the-last-of-us-hollywood-media-1",
+          "kind": "poster",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/7/71/PR-Media-Carousel-PS-1220x940-1.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-the-last-of-us-orlando",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -6363,6 +8215,17 @@
           "park": "orlando",
           "location": "Soundstage 23B",
           "sourceIds": ["wiki-stranger-things-4-orlando"]
+        }
+      ],
+      "media": [
+        {
+          "id": "hhn-2023-house-stranger-things-4-hollywood-media-1",
+          "kind": "promotional_image",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/5/5f/HHNStrangerThings2023.jpeg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-stranger-things-4-orlando",
+          "distribution": "unclear"
         }
       ]
     },
@@ -6392,6 +8255,17 @@
           "location": "Parade Warehouse",
           "sourceIds": ["wiki-universal-monsters-unmasked-orlando"]
         }
+      ],
+      "media": [
+        {
+          "id": "hhn-2023-house-universal-monsters-unmasked-hollywood-media-1",
+          "kind": "promotional_image",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/8/8a/UM_Unmasked_Logo.jpeg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-universal-monsters-unmasked-orlando",
+          "distribution": "unclear"
+        }
       ]
     },
     {
@@ -6405,7 +8279,18 @@
         "franchise": "Latin American Urban Legends"
       },
       "location": "Parisian Courtyard",
-      "sourceIds": ["wiki-monstruos-the-monsters-of-latin-america-hollywood"]
+      "sourceIds": ["wiki-monstruos-the-monsters-of-latin-america-hollywood"],
+      "media": [
+        {
+          "id": "hhn-2023-house-monstruos-the-monsters-of-latin-america-media-1",
+          "kind": "promotional_image",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/c/c8/Monstruos.jpeg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-monstruos-the-monsters-of-latin-america-hollywood",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2023-house-evil-dead-rise",
@@ -6418,7 +8303,18 @@
         "franchise": "Evil Dead Rise"
       },
       "location": "UBE Venue",
-      "sourceIds": ["wiki-evil-dead-rise"]
+      "sourceIds": ["wiki-evil-dead-rise"],
+      "media": [
+        {
+          "id": "hhn-2023-house-evil-dead-rise-media-1",
+          "kind": "promotional_image",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/7/7d/F3GhahUWwAEDcC3.jpg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-evil-dead-rise",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2023-house-holidayz-in-hell",
@@ -6430,7 +8326,18 @@
         "type": "original"
       },
       "location": "T-Pad",
-      "sourceIds": ["wiki-holidayz-in-hell-haunted-maze"]
+      "sourceIds": ["wiki-holidayz-in-hell-haunted-maze"],
+      "media": [
+        {
+          "id": "hhn-2023-house-holidayz-in-hell-media-1",
+          "kind": "promotional_image",
+          "url": "https://static.wikia.nocookie.net/halloweenhorrornights/images/d/de/HolidayzInHell2023.jpeg/revision/latest",
+          "attribution": "Universal Destinations & Experiences (copy hosted by Halloween Horror Nights Wiki (Fandom))",
+          "licenseNotes": "Official Halloween Horror Nights artwork. The archive's owner has confirmed permission to use official HHN artwork (2026-10-10). This copy is hosted by Halloween Horror Nights Wiki (Fandom), not by Universal. Kept as a personal offline copy; not redistributed.",
+          "sourceId": "wiki-holidayz-in-hell-haunted-maze",
+          "distribution": "unclear"
+        }
+      ]
     },
     {
       "id": "hhn-2024-house-a-quiet-place-hollywood",

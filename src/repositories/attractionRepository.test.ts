@@ -222,6 +222,61 @@ describe("AttractionRepository", () => {
     expect((error as ConstraintViolationError).constraint).toBe("check");
   });
 
+  describe("canonical identity", () => {
+    const house = (season: string, name: string, debutYear: number | null = null) =>
+      attractions.create({
+        eventYearId: season,
+        attractionType: "house",
+        name,
+        slug: `${season}-${name}`.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+        parkIds: [season.startsWith("ksf") ? "knotts-berry-farm" : "orlando"],
+        debutYear,
+      });
+
+    beforeEach(async () => {
+      await db.execute(
+        `INSERT INTO event_years (id, haunt_id, calendar_year, name) VALUES
+           ('ksf-2024', 'knotts-scary-farm', 2024, 'Knott''s Scary Farm 2024'),
+           ('ksf-2025', 'knotts-scary-farm', 2025, 'Knott''s Scary Farm 2025')`,
+      );
+    });
+
+    it("refuses a second record for one HHN name in one season", async () => {
+      await house(eventYearId, "The Deed");
+      await expect(house(eventYearId, "  the  DEED ")).rejects.toThrow(
+        /at both parks is one attraction/,
+      );
+    });
+
+    it("allows an HHN name reused in another season", async () => {
+      const otherYear = (await createFixtureEventYear(db, { calendarYear: 2019, name: "HHN 2019" }))
+        .id;
+      await house(eventYearId, "The Deed");
+      await expect(house(otherYear, "The Deed")).resolves.toBeTruthy();
+    });
+
+    it("refuses a returning Knott's maze as a new record, and says to add an appearance", async () => {
+      await house("ksf-2024", "Room 13");
+      await expect(house("ksf-2025", "Room 13")).rejects.toThrow(
+        /add this season to it as an appearance/,
+      );
+    });
+
+    it("allows a Knott's title reused with a different known debut", async () => {
+      await house("ksf-2024", "The Gauntlet", 2001);
+      await expect(house("ksf-2025", "The Gauntlet", 2025)).resolves.toBeTruthy();
+    });
+
+    it("refuses a rename that would make a duplicate, but not an edit of the record itself", async () => {
+      const deed = await house(eventYearId, "The Deed");
+      const other = await house(eventYearId, "Other");
+      await expect(attractions.update(other.id, { name: "The Deed" })).rejects.toBeInstanceOf(
+        ConstraintViolationError,
+      );
+      await expect(attractions.update(deed.id, { name: "THE DEED" })).resolves.toBeTruthy();
+    });
+  });
+
   describe("required facts", () => {
     function validInput() {
       return {

@@ -34,9 +34,16 @@ describe("the documented example dataset", () => {
     }
 
     const { attractions } = result.dataset;
-    // One record at both parks — a shared appearance.
+    // One record at both parks, with what differed kept per venue.
     expect(attractions.some((attraction) => attraction.parks.length === 2)).toBe(true);
-    // A separate record for a substantially different version, linked back.
+    expect(attractions.some((attraction) => (attraction.venueWiki?.length ?? 0) === 2)).toBe(true);
+    // A returning Knott's maze: one record, several seasons, a researched debut.
+    expect(
+      attractions.some(
+        (attraction) => attraction.appearances?.length && attraction.debutYear != null,
+      ),
+    ).toBe(true);
+    // A name reused in a later season: its own record, linked back.
     expect(attractions.some((attraction) => attraction.variantName)).toBe(true);
     expect(
       attractions.some((attraction) =>

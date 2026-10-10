@@ -40,7 +40,7 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  color: var(--color-orange-strong);
+  color: var(--accent-strong);
   font-family: inherit;
 }
 

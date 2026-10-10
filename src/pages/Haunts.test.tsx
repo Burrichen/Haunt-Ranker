@@ -60,19 +60,17 @@ describe("Haunts", () => {
     window.localStorage.removeItem(PREFERENCE_KEYS.hauntScope);
   });
 
-  it("leads with the home collection and still lists the others properly", () => {
+  it('shows both haunts as equals, each in its own theme, never as an "other" haunt', () => {
     renderHaunts();
 
-    expect(screen.getByText("Home collection")).toBeInTheDocument();
-    expect(
-      screen.getByRole("link", { name: /Open the Halloween Horror Nights archive/i }),
-    ).toBeInTheDocument();
-
-    const others = within(screen.getByRole("region", { name: "Other haunts" }));
-    expect(others.getByRole("heading", { name: "Other Haunts" })).toBeInTheDocument();
-    expect(
-      others.getByRole("link", { name: /Open the Knott's Scary Farm archive/i }),
-    ).toBeInTheDocument();
+    const hhn = screen.getByRole("link", { name: /Open the Halloween Horror Nights archive/i });
+    const knotts = screen.getByRole("link", { name: /Open the Knott's Scary Farm archive/i });
+    expect(hhn).toHaveAttribute("data-haunt-theme", "hhn");
+    expect(knotts).toHaveAttribute("data-haunt-theme", "knotts");
+    // Same card, same parent: neither is featured over the other.
+    expect(hhn.parentElement).toBe(knotts.parentElement);
+    expect(screen.queryByText(/other haunts?/i)).not.toBeInTheDocument();
+    expect(screen.queryByText("Home collection")).not.toBeInTheDocument();
   });
 
   it("counts what each haunt holds, in that haunt's own words", () => {
