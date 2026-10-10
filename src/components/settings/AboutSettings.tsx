@@ -26,8 +26,9 @@ export function AboutSettings() {
 
       <p className="settings-panel__footnote">
         Everything lives on this machine: one SQLite database, your own image files, and whatever
-        backups you write. There is no account and no server. Nothing leaves the app unless you open
-        an external link yourself — those, and only those, go to your browser.
+        backups you write. There is no account and no server. Nothing about you leaves the app. It
+        goes online only to save the archive&rsquo;s artwork for offline use after an update
+        (Settings → Archive), and external links open in your browser.
       </p>
     </Panel>
   );

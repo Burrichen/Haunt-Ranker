@@ -17,6 +17,8 @@ export const PREFERENCE_KEYS = {
   hauntScope: "haunt-ranker:haunt-scope",
   /** The haunt a fresh start uses, chosen in Settings. */
   defaultHauntScope: "haunt-ranker:default-haunt-scope",
+  /** "false" stops the app saving new artwork by itself after an update. */
+  autoDownloadArtwork: "haunt-ranker:auto-download-artwork",
 } as const;
 
 export type PreferenceKey = keyof typeof PREFERENCE_KEYS;

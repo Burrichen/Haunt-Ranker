@@ -309,10 +309,19 @@ describe("Settings", () => {
       expect(screen.getByText("Backup format")).toBeInTheDocument();
     });
 
-    it("says plainly that nothing leaves the machine", () => {
+    it("says plainly that nothing about you leaves the machine, and when it goes online", () => {
       renderSettings();
 
       expect(screen.getByText(/no account and no server/i)).toBeInTheDocument();
+      expect(screen.getByText(/goes online only to save the archive/i)).toBeInTheDocument();
+    });
+
+    it("offers to turn off the automatic artwork download", () => {
+      renderSettings();
+
+      expect(
+        screen.getByRole("switch", { name: /download new artwork automatically/i }),
+      ).toBeInTheDocument();
     });
   });
 

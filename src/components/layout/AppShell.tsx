@@ -6,6 +6,7 @@ import { hauntTheme } from "../../models/hauntTheme";
 import { HauntRegistryProvider } from "./HauntRegistryProvider";
 import { HauntScopeProvider } from "./HauntScopeProvider";
 import { Atmosphere } from "../atmosphere/Atmosphere";
+import { ArchiveUpdateGate } from "./ArchiveUpdateGate";
 import { Sidebar } from "./Sidebar";
 import "./AppShell.css";
 
@@ -25,7 +26,9 @@ function ThemedShell() {
         <Sidebar />
         <main className="app-shell__content">
           <div className="app-shell__content-inner">
-            <Outlet />
+            <ArchiveUpdateGate>
+              <Outlet />
+            </ArchiveUpdateGate>
           </div>
         </main>
       </div>
